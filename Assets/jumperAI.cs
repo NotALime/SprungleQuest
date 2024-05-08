@@ -121,11 +121,11 @@ public class jumperAI : MonoBehaviour
             {
                 jumpSound.PlaySound();
             }
-            rb.AddForce(Vector3.up * jumpUp * entity.mob.stats.moveSpeed);
+            rb.AddForce(Vector3.up * jumpUp * entity.mob.stats.moveSpeed * Random.Range(0.8f, 1.2f));
 
             Vector3 forwardForceInput = entity.mob.orientation.forward * entity.mob.input.z + entity.mob.orientation.right * entity.mob.input.x;
 
-            rb.AddForce(forwardForceInput * jumpForward * entity.mob.stats.moveSpeed);
+            rb.AddForce(forwardForceInput * jumpForward * entity.mob.stats.moveSpeed * Random.Range(0.8f, 1.2f));
             yield return new WaitUntil(() => IsGrounded());
             for (int i = 0; i < projectileAmount; i++)
             {

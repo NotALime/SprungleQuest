@@ -60,17 +60,18 @@ public class Humanoid : MonoBehaviour
         entity = GetComponent<Entity>();
         inv = GetComponent<Inventory>();
         rb.freezeRotation = true;
-
         readyToJump = true;
 
         if (species != null)
         {
             species.ApplySpecies(this);
         }
+
+        exitingSlope = false;
     }
     private void Update()
     {
-    //    SpeedControl();
+        SpeedControl();
         StateHandler();
         entity.AI();
         Jump();
@@ -117,35 +118,49 @@ public class Humanoid : MonoBehaviour
     }
     private void MovePlayer()
     {
-        Vector3 walkInput = flatForwardOrientation() * entity.mob.input.z + flatRightOrientation() * entity.mob.input.x;
+        Vector3 walkInput = (flatForwardOrientation() * entity.mob.input.z + flatRightOrientation() * entity.mob.input.x).normalized;
         if (movementEnabled)
         {
             // on slope
-            if (OnSlope() && !exitingSlope)
+            //   if (OnSlope() && !exitingSlope)
+            //  {
+        //    GetSlopeMoveDirection(walkInput);
+            rb.AddForce(walkInput * desiredMoveSpeed * 20f, ForceMode.Force);
+            // }
+            // else if (isGrounded())
+            // {
+            //     rb.AddForce(walkInput * desiredMoveSpeed * 10f, ForceMode.Force);;
+            // }
+            if (isGrounded() || (OnSlope() && !exitingSlope))
             {
-                rb.AddForce(GetSlopeMoveDirection(walkInput) * desiredMoveSpeed * 20f, ForceMode.Force);
-                //   if (rb.velocity.y > 0)
-                //    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
+
+                if (rb.velocity.y > 0 && entity.mob.input.magnitude == 0)
+                {
+                    rb.AddForce(gravity * 10 * Vector3.down);
+                }
             }
             else
             {
-                rb.AddForce(walkInput * desiredMoveSpeed * 10f, ForceMode.Force);
+                rb.velocity = new Vector3(rb.velocity.x * drag, rb.velocity.y, rb.velocity.z * drag);
+                rb.AddForce(gravity * Vector3.down);
             }
 
         }
-
-        if (isGrounded())
-        {
-            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
-        }
         else
         {
-            rb.velocity = new Vector3(rb.velocity.x * drag, rb.velocity.y, rb.velocity.z * drag);
-            rb.AddForce(gravity * Vector3.down);
+            if (isGrounded())
+            {
+                rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y * friction, rb.velocity.z * friction);
+            }
+            else
+            {
+                rb.velocity = new Vector3(rb.velocity.x * drag, rb.velocity.y, rb.velocity.z * drag);
+                rb.AddForce(gravity * Vector3.down);
+            }
         }
 
-
-        rb.useGravity = (OnSlope() && !exitingSlope);
+   //     rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
@@ -154,18 +169,18 @@ public class Humanoid : MonoBehaviour
             if (OnSlope() && !exitingSlope)
             {
                 if (rb.velocity.magnitude > desiredMoveSpeed)
-                    rb.velocity = rb.velocity.normalized * entity.mob.stats.moveSpeed;
+                    rb.velocity = rb.velocity.normalized * desiredMoveSpeed;
             }
 
             // limiting speed on ground or in air
             else
             {
-                Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+                Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
                 // limit velocity if needed
                 if (flatVel.magnitude > desiredMoveSpeed)
                 {
-                    Vector3 limitedVel = flatVel.normalized* entity.mob.stats.moveSpeed;
+                    Vector3 limitedVel = flatVel.normalized * desiredMoveSpeed;
                     rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
                 }
                 //  }
@@ -218,16 +233,9 @@ public class Humanoid : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
-
-    public static float Round(float value, int digits)
-    {
-        float mult = Mathf.Pow(10.0f, (float)digits);
-        return Mathf.Round(value * mult) / mult;
-    }
-
     public bool isGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, groundLayer);
+        return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.05f, groundLayer);
     }
 
     float neckRotateSpeed = 30;
@@ -267,7 +275,7 @@ public class Humanoid : MonoBehaviour
     {
         Vector3 inputHorizontal = new Vector3(entity.mob.input.x, 0, entity.mob.input.z).normalized;
         rig.anim.SetInteger("Horizontal", (int)inputHorizontal.magnitude * 100);
-        rig.anim.SetBool("Grounded", isGrounded());
+        rig.anim.SetBool("Grounded", isGrounded() || OnSlope());
 
         if ((isGrounded() && readyToJump) && entity.mob.input.y > 0)
         {

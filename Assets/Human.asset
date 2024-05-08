@@ -46,7 +46,7 @@ MonoBehaviour:
   - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
   - {fileID: 5115609169192176431, guid: 846fbe0316766444d86d24b582870aa7, type: 3}
-  loadoutSize: 1
+  loadoutSize: 2
   accessoryPool:
   - {fileID: 2963063923627930831, guid: c1990503ef0b9ba4eaa94531374d22f0, type: 3}
   - {fileID: 1929162685289141222, guid: f5c1579f323f7684ba5e3c8f8491a4e6, type: 3}

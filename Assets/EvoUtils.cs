@@ -18,4 +18,10 @@ public class EvoUtils : MonoBehaviour
         }
         return Random.Range(0f, 1f) <= chancePerFrame;
     }
+
+    public static float RoundToMultiple(float value, int digits)
+    {
+        float mult = Mathf.Pow(10.0f, (float)digits);
+        return Mathf.Round(value * mult) / mult;
+    }
 }
