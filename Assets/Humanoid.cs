@@ -70,7 +70,7 @@ public class Humanoid : MonoBehaviour
     }
     private void Update()
     {
-    //    SpeedControl();
+        SpeedControl();
         StateHandler();
         entity.AI();
         Jump();
@@ -120,21 +120,14 @@ public class Humanoid : MonoBehaviour
         Vector3 walkInput = flatForwardOrientation() * entity.mob.input.z + flatRightOrientation() * entity.mob.input.x;
         if (movementEnabled)
         {
-            // on slope
-            if (OnSlope() && !exitingSlope)
-            {
-                rb.AddForce(GetSlopeMoveDirection(walkInput) * desiredMoveSpeed * 20f, ForceMode.Force);
-                //   if (rb.velocity.y > 0)
-                //    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
-            }
-            else
-            {
-                rb.AddForce(walkInput * desiredMoveSpeed * 10f, ForceMode.Force);
-            }
-
+            rb.AddForce(GetSlopeMoveDirection(walkInput) * desiredMoveSpeed * 20f, ForceMode.Force);
+         // if (rb.velocity.y > 0)
+         // {
+         //     rb.AddForce(gravity * Vector3.down * 4);
+         // }
         }
 
-        if (isGrounded())
+        if (isGrounded() || (OnSlope() && !exitingSlope))
         {
             rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
         }
@@ -144,8 +137,7 @@ public class Humanoid : MonoBehaviour
             rb.AddForce(gravity * Vector3.down);
         }
 
-
-        rb.useGravity = (OnSlope() && !exitingSlope);
+        rb.useGravity = !OnSlope() || !isGrounded();
     }
 
     private void SpeedControl()
@@ -154,7 +146,7 @@ public class Humanoid : MonoBehaviour
             if (OnSlope() && !exitingSlope)
             {
                 if (rb.velocity.magnitude > desiredMoveSpeed)
-                    rb.velocity = rb.velocity.normalized * entity.mob.stats.moveSpeed;
+                    rb.velocity = rb.velocity.normalized * desiredMoveSpeed;
             }
 
             // limiting speed on ground or in air
@@ -267,7 +259,7 @@ public class Humanoid : MonoBehaviour
     {
         Vector3 inputHorizontal = new Vector3(entity.mob.input.x, 0, entity.mob.input.z).normalized;
         rig.anim.SetInteger("Horizontal", (int)inputHorizontal.magnitude * 100);
-        rig.anim.SetBool("Grounded", isGrounded());
+        rig.anim.SetBool("Grounded", isGrounded() || OnSlope());
 
         if ((isGrounded() && readyToJump) && entity.mob.input.y > 0)
         {

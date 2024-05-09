@@ -223,7 +223,7 @@ MonoBehaviour:
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
   drops: []
-  iframe: 0.1
+  iframe: 0.5
   currentIframe: 0
   mob:
     stats:

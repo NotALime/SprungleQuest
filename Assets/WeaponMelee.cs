@@ -183,19 +183,16 @@ public class WeaponMelee : MonoBehaviour
                 if (Entity.CompareTeams(inv.owner.entity, hitEntity))
                 {
                     Camera.main.fieldOfView -= 1;
-                    hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
-
-                    hitSound.PlaySound();
 
                     if (hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity))
                     {
-                        Vector3 dir = inv.owner.flatForwardOrientation();
-                        hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
-
-
-
+                        hitSound.PlaySound();
                         StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
                     }
+                    hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
+
+                    Vector3 dir = inv.owner.flatForwardOrientation();
+                    hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
                 }
             }
         }
@@ -211,27 +208,29 @@ public class WeaponMelee : MonoBehaviour
         {
             if (ai.owner.entity.GetClosestTarget() != null)
                 ai.owner.entity.mob.target = ai.owner.entity.GetClosestTarget();
+                ai.owner.entity.mob.input = Vector3.forward;
         }
         else
         {
             ai.owner.entity.mob.orientation.LookAt(ai.owner.entity.mob.target.mob.orientation);
-            if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= ai.owner.entity.mob.stats.visionRange * 0.15f)
+
+            if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= 1f)
             {
+                ai.owner.entity.mob.primaryInput = true;
+                if (EvoUtils.PercentChance(0.5f, true))
+                {
+                    ai.owner.entity.mob.input.z = -1;
+                }
+            }
+            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= ai.owner.entity.mob.stats.visionRange * 0.1f)
+            {
+                ai.owner.entity.mob.primaryInput = false;
                 if (ai.owner.entity.mob.input.x != 0)
                 {
+                    ai.owner.entity.mob.input.z = 0;
                     if (EvoUtils.PercentChance(0.1f, true))
                     {
-                        if (EvoUtils.PercentChance(0.5f, false))
-                        {
-                            ai.owner.entity.mob.input.z = -0.5f;
-                        }
-                        else
-                        {
-                            ai.owner.entity.mob.input.z = 0.5f;
-                        }
-                    }
-                    if (EvoUtils.PercentChance(0.1f, true))
-                    {
+                        ai.owner.entity.mob.secondaryInput = true;
                         if (EvoUtils.PercentChance(0.5f, false))
                         {
                             ai.owner.entity.mob.input.x = -0.5f;
@@ -241,42 +240,35 @@ public class WeaponMelee : MonoBehaviour
                             ai.owner.entity.mob.input.x = 0.5f;
                         }
                     }
-                    if (EvoUtils.PercentChance(0.05f))
+                    if (EvoUtils.PercentChance(0.1f * (1 + ai.owner.entity.mob.stats.level), true))
                     {
-                        ai.owner.entity.mob.input.x = 0;
-                        ai.owner.entity.mob.input.z = 1;
+                        ai.owner.entity.mob.input = Vector3.forward;
+                        ai.owner.entity.mob.secondaryInput = false;
                     }
                 }
             }
             else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) > ai.owner.entity.mob.stats.visionRange * 0.3f)
             {
-                ai.owner.entity.mob.input.z = 1;
+                ai.owner.entity.mob.primaryInput = false;
                 if (EvoUtils.PercentChance(0.5f, false))
                 {
-                    ai.owner.entity.mob.input.x = -1f;
+                    ai.owner.entity.mob.input.x = -0.5f;
                 }
                 else
                 {
-                    ai.owner.entity.mob.input.x = 1f;
+                    ai.owner.entity.mob.input.x = 0.5f;
                 }
+                ai.owner.entity.mob.input.z = 0.5f;
             }
-            if(ai.owner.entity.mob.input.z == -1)
-            {
-                if (EvoUtils.PercentChance(0.1f, false))
-                {
-                    ai.owner.entity.mob.input.z = 1f;
-                }
-            }
+            //   }
 
-            if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= ai.owner.entity.mob.stats.visionRange * 0.03f)
-            {
-                    ai.owner.entity.mob.primaryInput = true;
-                    ai.owner.entity.mob.input.z = -1f;
-            }
-            else
-            {
-                ai.owner.entity.mob.primaryInput = false;
-            }
+            //  if (ai.owner.entity.mob.input.z != 0)
+            //  {
+            //      ai.owner.entity.mob.secondaryInput = false;
+            //  }
+
+
+
         }
     }
 }
