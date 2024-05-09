@@ -196,7 +196,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -292,14 +292,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02c29b882f39a47bbe38e4406f218c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPitch: 0.5
-  maxPitch: 0.8
+  minPitch: 0.3
+  maxPitch: 0.5
   audio: {fileID: 0}
   clipVarients:
-  - {fileID: 8300000, guid: dea4037344a3e7d478165c9ed9fa16f9, type: 3}
-  - {fileID: 8300000, guid: f3f7c414bac04b6449f1cb39e0cea310, type: 3}
-  - {fileID: 8300000, guid: b9b85af95dd4a904c9e93fa1f1cdd47b, type: 3}
-  - {fileID: 8300000, guid: 5e52e650245730640ad9163d3de23384, type: 3}
+  - {fileID: 8300000, guid: 0c728ede810809d4195fc7e1378520a2, type: 3}
 --- !u!1 &8919922965090953386
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +759,7 @@ MonoBehaviour:
     thrust: 10
     locks: 0
     damage: 50
-    knockback: 500
+    knockback: 5000
     stunTime: 1
     sound: {fileID: 2225834757940266336}
     attack:
