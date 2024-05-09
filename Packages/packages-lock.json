@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.github.siccity.serializablecallback": {
-      "version": "file:C:/Users/marti/Downloads/SerializableCallback-master/SerializableCallback-master",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

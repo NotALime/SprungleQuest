@@ -183,16 +183,14 @@ public class WeaponMelee : MonoBehaviour
                 if (Entity.CompareTeams(inv.owner.entity, hitEntity))
                 {
                     Camera.main.fieldOfView -= 1;
-
-                    if (hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity))
+                    Vector3 dir = inv.owner.flatForwardOrientation();
+                    if (hitEntity.TakeDamage(attackCombo[attackIndex].damage, inv.owner.entity))
                     {
+                        hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
                         hitSound.PlaySound();
                         StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
+                        hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
                     }
-                    hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
-
-                    Vector3 dir = inv.owner.flatForwardOrientation();
-                    hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
                 }
             }
         }
@@ -228,7 +226,7 @@ public class WeaponMelee : MonoBehaviour
                 if (ai.owner.entity.mob.input.x != 0)
                 {
                     ai.owner.entity.mob.input.z = 0;
-                    if (EvoUtils.PercentChance(0.1f, true))
+                    if (EvoUtils.PercentChance(0.3f, true))
                     {
                         ai.owner.entity.mob.secondaryInput = true;
                         if (EvoUtils.PercentChance(0.5f, false))
@@ -250,13 +248,16 @@ public class WeaponMelee : MonoBehaviour
             else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) > ai.owner.entity.mob.stats.visionRange * 0.3f)
             {
                 ai.owner.entity.mob.primaryInput = false;
-                if (EvoUtils.PercentChance(0.5f, false))
+                if (ai.owner.entity.mob.input.x == 0)
                 {
-                    ai.owner.entity.mob.input.x = -0.5f;
-                }
-                else
-                {
-                    ai.owner.entity.mob.input.x = 0.5f;
+                    if (EvoUtils.PercentChance(0.5f, false))
+                    {
+                        ai.owner.entity.mob.input.x = -0.5f;
+                    }
+                    else
+                    {
+                        ai.owner.entity.mob.input.x = 0.5f;
+                    }
                 }
                 ai.owner.entity.mob.input.z = 0.5f;
             }

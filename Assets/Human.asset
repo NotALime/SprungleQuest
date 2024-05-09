@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addcf38eead911043a9ec1003bdfaae7, type: 3}
   m_Name: Human
   m_EditorClassIdentifier: 
-  skinTone:
+  tint:
     serializedVersion: 2
-    key0: {r: 0.93725497, g: 0.80392164, b: 0.7058824, a: 1}
-    key1: {r: 0.85098046, g: 0.5921569, b: 0.4901961, a: 1}
-    key2: {r: 0.5294118, g: 0.29803923, b: 0.14117648, a: 0}
-    key3: {r: 0.21698111, g: 0.08208184, b: 0.056292273, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 1, g: 0.9196285, b: 0.7877358, a: 1}
+    key1: {r: 0.9764706, g: 0.8156863, b: 0.69803923, a: 1}
+    key2: {r: 0.9215687, g: 0.70980394, b: 0.5686275, a: 0}
+    key3: {r: 0.69803923, g: 0.44593573, b: 0.33333334, a: 0}
+    key4: {r: 0.23529413, g: 0.121568635, b: 0.10588236, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 32768
-    ctime2: 49151
-    ctime3: 65535
-    ctime4: 0
+    ctime1: 6361
+    ctime2: 35852
+    ctime3: 50115
+    ctime4: 65535
     ctime5: 0
     ctime6: 0
     ctime7: 0
@@ -40,8 +40,19 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 4
+    m_NumColorKeys: 5
     m_NumAlphaKeys: 2
+  minScale: 0.9
+  maxScale: 1.2
+  stats:
+    minHealth: 0.9
+    maxHealth: 1.1
+    minDamage: 0.9
+    maxDamage: 1.1
+    minSpeed: 0.9
+    maxSpeed: 1.1
+    minAttackSpeed: 0.9
+    maxAttackSpeed: 1.1
   weaponPool:
   - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
@@ -64,8 +75,6 @@ MonoBehaviour:
   - {fileID: -421643647, guid: c50c224c10b46054486afa535385c1e5, type: 3}
   - {fileID: 476048454, guid: c50c224c10b46054486afa535385c1e5, type: 3}
   rigScale:
-    baseScaleMin: 0.9
-    baseScaleMax: 1.1
     spineLowerMin: 0.8
     spineLowerMax: 1
     neckMin: 0.6

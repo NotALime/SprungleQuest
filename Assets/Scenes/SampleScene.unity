@@ -2724,7 +2724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b004de87568c2549a1b17df9c35149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
+  moveSpeed: 15
   sprintMultiplier: 2
   speedIncreaseMultiplier: 1
   slopeIncreaseMultiplier: 1
@@ -2741,7 +2741,6 @@ MonoBehaviour:
   rb: {fileID: 479256623}
   entity: {fileID: 0}
   inv: {fileID: 0}
-  species: {fileID: 0}
   rig:
     anim: {fileID: 1839386379}
     renderer: {fileID: 0}
@@ -2797,6 +2796,7 @@ MonoBehaviour:
   currentIframe: 0
   mob:
     stats:
+      health: 1
       moveSpeed: 1
       damage: 1
       attackSpeed: 1
@@ -2827,6 +2827,9 @@ MonoBehaviour:
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
+    scale: 1
+    renderer: {fileID: 0}
+    species: {fileID: 0}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0
@@ -6138,7 +6141,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   entity: {fileID: 0}
   inv: {fileID: 0}
-  species: {fileID: 0}
   rig:
     anim: {fileID: 0}
     renderer: {fileID: 0}
@@ -6194,6 +6196,7 @@ MonoBehaviour:
   currentIframe: 0
   mob:
     stats:
+      health: 1
       moveSpeed: 5
       damage: 10
       attackSpeed: 0
@@ -6224,6 +6227,9 @@ MonoBehaviour:
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
+    scale: 1
+    renderer: {fileID: 0}
+    species: {fileID: 0}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0

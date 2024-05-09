@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2005428040153362030}
   - component: {fileID: 4224061906313042058}
   m_Layer: 6
-  m_Name: Icosphere.001
+  m_Name: Pit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,10 +347,10 @@ ConfigurableJoint:
   m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
-    spring: 2000
-    damper: 10
+    spring: 1000
+    damper: 1
   m_LinearLimit:
-    limit: 0.6
+    limit: 0.5
     bounciness: 1
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -455,7 +455,7 @@ Transform:
   m_GameObject: {fileID: 1113204231130567300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.017374862, z: -0, w: 0.9998491}
-  m_LocalPosition: {x: -0, y: 0.005, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0074999994, z: -0.000000009313226}
   m_LocalScale: {x: 0.9999997, y: 1, z: 0.9999997}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -512,10 +512,10 @@ ConfigurableJoint:
   m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
-    spring: 2000
-    damper: 10
+    spring: 1000
+    damper: 1
   m_LinearLimit:
-    limit: 0.6
+    limit: 0.5
     bounciness: 1
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -611,8 +611,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.002
-  m_Center: {x: 0, y: 0.005, z: 0}
+  m_Radius: 0.005
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2111141651220135829
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 1218872387471397827}
   - component: {fileID: 7154836374126362100}
   m_Layer: 6
-  m_Name: Icosphere
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1188,6 +1188,7 @@ MonoBehaviour:
   currentIframe: 0
   mob:
     stats:
+      health: 1
       moveSpeed: 1
       damage: 1
       attackSpeed: 1
@@ -1218,6 +1219,9 @@ MonoBehaviour:
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
+    scale: 1
+    renderer: {fileID: 4518383633555934093}
+    species: {fileID: 11400000, guid: f48ab326275e65341ab82abf75d52ec4, type: 2}
     input: {x: 0.58590037, y: 0, z: -0.7536639}
     primaryInput: 0
     secondaryInput: 0

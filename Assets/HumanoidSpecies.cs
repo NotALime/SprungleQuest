@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Entity/Humanoid Species")]
-public class HumanoidSpecies : ScriptableObject
+[CreateAssetMenu(menuName = "Entity/Species/Humanoid Species")]
+public class HumanoidSpecies : Species
 {
-    public Gradient skinTone;
-
+    [Header("-----------------")]
+    [Header("HUMANOID")]
+    [Header("-----------------")]
     public Item[] weaponPool;
     public int loadoutSize;
     public Item[] accessoryPool;
@@ -17,10 +18,12 @@ public class HumanoidSpecies : ScriptableObject
 
     public RigScale rigScale;
 
+    public override void ApplyOverride(Entity mob)
+    {
+        ApplySpecies(mob.GetComponent<Humanoid>());
+    }
     public void ApplySpecies(Humanoid mob)
     {
-        mob.transform.localScale *= Random.Range(rigScale.baseScaleMin, rigScale.baseScaleMax);
-
         mob.rig.spine.spineLower.ScaleLimb(Vector3.one * Random.Range(rigScale.spineLowerMin, rigScale.spineLowerMax));
         mob.rig.spine.neck.ScaleLimb(Vector3.one * Random.Range(rigScale.neckMin, rigScale.neckMax));
         if (rigScale.uniformShoulders)
@@ -51,9 +54,6 @@ public class HumanoidSpecies : ScriptableObject
         mob.rig.armLeft.arm.ScaleLimb(Vector3.one * armScale);
         mob.rig.armRight.arm.ScaleLimb(Vector3.one * armScale);
 
-
-        mob.rig.renderer.material.SetColor("_Tint", skinTone.Evaluate(Random.Range(0f, 1f)));
-
         if (hairPool.Length > 0)
         {
             mob.inv.VisualEquip(hairPool[Random.Range(0, hairPool.Length)]);
@@ -80,8 +80,6 @@ public class HumanoidSpecies : ScriptableObject
 [System.Serializable]
 public class RigScale
 {
-    public float baseScaleMin = 1;
-    public float baseScaleMax = 1;
     [Header("Lower spine/Stomach")]
     public float spineLowerMin = 1;
     public float spineLowerMax = 1;

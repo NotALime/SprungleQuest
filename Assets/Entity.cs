@@ -26,6 +26,17 @@ public class Entity : MonoBehaviour
             baseEntity.deathEffect.SetActive(false);
         }
     }
+
+    private void Start()
+    {
+        UpdateHealth();
+
+        if (mob.species != null)
+        {
+            mob.species.ApplySpecies(this);
+        }
+        transform.localScale *= mob.scale;
+    }
     private void FixedUpdate()
     {
         currentIframe -= Time.deltaTime;
@@ -68,6 +79,7 @@ public class Entity : MonoBehaviour
             e.mob.aiEnabled = false;
             e.mob.input = Vector3.zero;
             e.mob.primaryInput = false;
+            e.mob.secondaryInput = false;
             yield return new WaitForSeconds(stunTime);
             e.mob.aiEnabled = true;
         }
@@ -166,6 +178,11 @@ public class Entity : MonoBehaviour
         return spawn;
     }
 
+    public void UpdateHealth()
+    {
+        baseEntity.maxHealth *= mob.stats.health;    
+    }
+
     virtual public bool TakeDamage(float damage, Entity damager = null, bool ignoreIFrames = false)
     {
         baseEntity.tookDamage = true;
@@ -250,6 +267,11 @@ public class Mob
     public Entity passenger;
     public ConfigurableJoint mountSeat;
 
+    [Header("Variety")]
+    public float scale = 1;
+    public Renderer renderer;
+    public Species species;
+
     [HideInInspector]
     public Vector3 input;
     [HideInInspector]
@@ -265,6 +287,7 @@ public class Mob
 [System.Serializable]
 public class MobStats
 {
+    public float health = 1;
     public float moveSpeed = 1;
     public float damage = 1;
     public float attackSpeed = 1;

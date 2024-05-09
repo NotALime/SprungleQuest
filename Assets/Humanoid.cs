@@ -44,8 +44,6 @@ public class Humanoid : MonoBehaviour
     [HideInInspector]
     public Inventory inv;
 
-    public HumanoidSpecies species;
-
     public HumanoidRig rig;
 
     public MovementState state;
@@ -62,10 +60,7 @@ public class Humanoid : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
 
-        if (species != null)
-        {
-            species.ApplySpecies(this);
-        }
+        playerHeight *= transform.localScale.y;
 
         exitingSlope = false;
     }

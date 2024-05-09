@@ -74,7 +74,7 @@ public class jumperAI : MonoBehaviour
                 {
                     if (Entity.CompareTeams(entity, e.GetComponent<Entity>()))
                     {
-                        e.GetComponent<Entity>().TakeDamage(damage * entity.mob.stats.damage, entity);
+                        e.GetComponent<Entity>().TakeDamage(damage, entity);
                         if (hitSound != null)
                         {
                             hitSound.PlaySound();
@@ -121,7 +121,7 @@ public class jumperAI : MonoBehaviour
             {
                 jumpSound.PlaySound();
             }
-            rb.AddForce(Vector3.up * jumpUp * entity.mob.stats.moveSpeed * Random.Range(0.8f, 1.2f));
+            rb.AddForce(Vector3.up * jumpUp * Random.Range(0.8f, 1.2f));
 
             Vector3 forwardForceInput = entity.mob.orientation.forward * entity.mob.input.z + entity.mob.orientation.right * entity.mob.input.x;
 

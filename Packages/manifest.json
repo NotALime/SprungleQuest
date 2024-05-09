@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.github.siccity.serializablecallback": "file:C:/Users/marti/Downloads/SerializableCallback-master/SerializableCallback-master",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.collab-proxy": "2.3.1",
