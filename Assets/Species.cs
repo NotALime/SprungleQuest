@@ -18,7 +18,12 @@ public class Species : ScriptableObject
     public void ApplySpecies(Entity mob)
     {
         mob.mob.scale *= Random.Range(minScale, maxScale);
-        mob.mob.renderer.material.SetColor("_Tint", tint.Evaluate(Random.Range(0f, 1f)));
+
+        Color tintColor = tint.Evaluate(Random.Range(0f, 1f));
+        foreach (Renderer r in mob.renderer)
+        {
+            r.material.SetColor("_Tint", tintColor);
+        }
 
         mob.mob.stats.health *= Random.Range(stats.minHealth, stats.maxHealth);
         mob.UpdateHealth();

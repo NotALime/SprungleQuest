@@ -986,7 +986,7 @@ ConfigurableJoint:
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
-  m_ConfiguredInWorldSpace: 0
+  m_ConfiguredInWorldSpace: 1
   m_SwapBodies: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -1184,6 +1184,10 @@ MonoBehaviour:
     deathEffect: {fileID: 7264500134733542290}
     hurtSound: {fileID: 3420235616783140608}
   drops: []
+  renderer:
+  - {fileID: 4518383633555934093}
+  - {fileID: 2005428040153362030}
+  - {fileID: 3670109741208390941}
   iframe: 0.2
   currentIframe: 0
   mob:
@@ -1220,7 +1224,6 @@ MonoBehaviour:
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
-    renderer: {fileID: 4518383633555934093}
     species: {fileID: 11400000, guid: f48ab326275e65341ab82abf75d52ec4, type: 2}
     input: {x: 0.58590037, y: 0, z: -0.7536639}
     primaryInput: 0

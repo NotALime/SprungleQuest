@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     public BaseEntity baseEntity;
 
     public MobDrop[] drops;
+    public Renderer[] renderer;
 
     public float iframe = 0.2f;
     [HideInInspector]
@@ -269,7 +270,6 @@ public class Mob
 
     [Header("Variety")]
     public float scale = 1;
-    public Renderer renderer;
     public Species species;
 
     [HideInInspector]
