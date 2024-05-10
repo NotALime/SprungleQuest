@@ -12,6 +12,8 @@ public class GameSettings : MonoBehaviour
     public static AudioPlayer hitSound;
     public AudioPlayer hit;
 
+    public Healthbar onHitHealthbar;
+    public static Healthbar hitBar;
 
     public Entity playerReference;
     public static Entity player;
@@ -19,7 +21,7 @@ public class GameSettings : MonoBehaviour
     private void Start()
     {
         player = playerReference;
-
+        hitBar = onHitHealthbar;
         chunkRange = FindObjectOfType<TerraSettings>().ColliderGenerationExtent;
         hitSound = hit;
         Cursor.lockState = CursorLockMode.Locked;

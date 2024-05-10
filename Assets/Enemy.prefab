@@ -247,7 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity:
     gameName: Wizard
-    health: 200
+    health: 100
     maxHealth: 0
     tookDamage: 0
     deathEffect: {fileID: 2496266768272151268}
@@ -261,7 +261,7 @@ MonoBehaviour:
     stats:
       health: 1
       moveSpeed: 1
-      damage: 1
+      damage: 0.5
       attackSpeed: 1
       level: 1
       visionRange: 30

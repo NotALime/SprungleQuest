@@ -228,7 +228,10 @@ public class WeaponMelee : MonoBehaviour
                     ai.owner.entity.mob.input.z = 0;
                     if (EvoUtils.PercentChance(0.3f, true))
                     {
-                        ai.owner.entity.mob.secondaryInput = true;
+                        if (EvoUtils.PercentChance(0.2f * ai.owner.entity.mob.stats.level, false))
+                        {
+                            ai.owner.entity.mob.secondaryInput = true;
+                        }
                         if (EvoUtils.PercentChance(0.5f, false))
                         {
                             ai.owner.entity.mob.input.x = -0.5f;

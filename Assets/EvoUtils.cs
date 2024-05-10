@@ -24,4 +24,10 @@ public class EvoUtils : MonoBehaviour
         float mult = Mathf.Pow(10.0f, (float)digits);
         return Mathf.Round(value * mult) / mult;
     }
+
+    public static IEnumerator DestroyObject(GameObject obj, float time = 20)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(obj);
+    }
 }

@@ -30,6 +30,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
+        baseEntity.maxHealth = baseEntity.health;
         UpdateHealth();
 
         if (mob.species != null)
@@ -192,7 +193,20 @@ public class Entity : MonoBehaviour
             GameSettings.hitSound.PlaySound();
             currentIframe = iframe;
 
-            baseEntity.health -= damage;
+            float damageMultiplier = 1;
+
+            if (damager != null)
+            {
+                damageMultiplier = damager.mob.stats.damage;
+
+                if (damager.player)
+                {
+                    Healthbar bar = Instantiate(GameSettings.hitBar, transform.position, transform.rotation);
+                    bar.entity = this;
+                }
+            }   
+
+            baseEntity.health -= damage * damageMultiplier;
             Debug.Log(name + " took " + damage.ToString() + " damage");
             if (baseEntity.hurtSound != null)
             {
@@ -204,6 +218,7 @@ public class Entity : MonoBehaviour
                 {
                     baseEntity.deathEffect.SetActive(true);
                     baseEntity.deathEffect.transform.parent = null;
+                    StartCoroutine(EvoUtils.DestroyObject(baseEntity.deathEffect));
                 }
                 foreach (MobDrop drop in drops)
                 {
@@ -236,7 +251,7 @@ public class BaseEntity
 {
     public string gameName;
     public float health;
-    [HideInInspector]
+
     public float maxHealth;
 
     [HideInInspector]
