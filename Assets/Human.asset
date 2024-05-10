@@ -53,6 +53,15 @@ MonoBehaviour:
     maxSpeed: 1.1
     minAttackSpeed: 0.9
     maxAttackSpeed: 1.1
+  generatesName: 1
+  nameStructure:
+    nameStructure:
+    - '[first]-[last]'
+    - '[first]-the-[type]'
+    pieces:
+    - toReplace: '[first]'
+      pieceFile: 
+      pieces: []
   weaponPool:
   - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}

@@ -185,6 +185,7 @@ public class Entity : MonoBehaviour
         baseEntity.maxHealth *= mob.stats.health;    
     }
 
+    IEnumerator destroyHealthBarCountdown;
     virtual public bool TakeDamage(float damage, Entity damager = null, bool ignoreIFrames = false)
     {
         baseEntity.tookDamage = true;
@@ -199,10 +200,16 @@ public class Entity : MonoBehaviour
             {
                 damageMultiplier = damager.mob.stats.damage;
 
-                if (damager.player)
+                if (baseEntity.healthbar == null)
                 {
-                    Healthbar bar = Instantiate(GameSettings.hitBar, transform.position, transform.rotation);
-                    bar.entity = this;
+                    if (damager != null && !player)
+                    {
+                        Healthbar bar = Instantiate(GameSettings.hitBar, transform.position + Vector3.up * 1.5f, transform.rotation);
+                        bar.transform.parent = transform;
+                        baseEntity.healthbar = bar;
+                        StartCoroutine(EvoUtils.DestroyObject(bar.gameObject, 10));
+                        bar.entity = this;
+                    }
                 }
             }   
 
@@ -256,6 +263,8 @@ public class BaseEntity
 
     [HideInInspector]
     public bool tookDamage;
+    [HideInInspector]
+    public Healthbar healthbar;
 
     public GameObject deathEffect;
     public AudioPlayer hurtSound;

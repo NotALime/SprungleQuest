@@ -7,20 +7,27 @@ using TMPro;
 public class Healthbar : MonoBehaviour
 {
     public Image health;
-    public TextMeshPro nameText;
-    public TextMeshPro healthText;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI healthText;
 
     public Entity entity;
 
-    private void Start()
-    {
-    //    health = GetComponent<Image>();
-        nameText.text = entity.baseEntity.gameName;
-    }
+    public Color baseColor = Color.green;
+    public Color damageColor = Color.red;
     // Update is called once per frame
     void FixedUpdate()
     {
-        health.fillAmount = Mathf.LerpUnclamped(health.fillAmount, entity.baseEntity.health / entity.baseEntity.maxHealth, 0.1f);
-        healthText.text = entity.baseEntity.health.ToString() + "/" + entity.baseEntity.maxHealth.ToString();
+        nameText.text = entity.baseEntity.gameName;
+        health.fillAmount = Mathf.LerpUnclamped(health.fillAmount, entity.baseEntity.health / entity.baseEntity.maxHealth, 0.5f);
+        healthText.text = ((int)entity.baseEntity.health).ToString() + "/" + ((int)entity.baseEntity.maxHealth).ToString();
+
+        if (entity.currentIframe <= 0)
+        {
+            health.color = baseColor;
+        }
+        else
+        {
+            health.color = damageColor;
+        }
     }
 }

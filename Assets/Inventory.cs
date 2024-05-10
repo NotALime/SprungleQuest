@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     public LayerMask itemLayer;
 
     [HideInInspector]
-    public int hotbarIndex = -1;
+    public int hotbarIndex = 0;
 
     public float deathDecay;
 
@@ -129,8 +129,7 @@ public class Inventory : MonoBehaviour
         // Print selected items for demonstration
         foreach (var item in selectedItems)
         {
-            item.transform.parent = null;
-            item.gameObject.SetActive(true);
+            DropItem(item);
         }
     }
 

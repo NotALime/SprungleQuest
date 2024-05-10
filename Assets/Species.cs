@@ -15,6 +15,10 @@ public class Species : ScriptableObject
     [Header("Basic stats")]
     public StatRange stats;
 
+    [Header("Naming")]
+    public bool generatesName;
+    public NameStructure nameStructure;
+
     public void ApplySpecies(Entity mob)
     {
         mob.mob.scale *= Random.Range(minScale, maxScale);
@@ -34,6 +38,11 @@ public class Species : ScriptableObject
         mob.mob.stats.attackSpeed *= Random.Range(stats.minAttackSpeed, stats.maxAttackSpeed);
 
         ApplyOverride(mob);
+
+        if (generatesName)
+        {
+            mob.baseEntity.gameName = nameStructure.GenerateName();
+        }
     }
 
     public virtual void ApplyOverride(Entity mob)
@@ -61,3 +70,42 @@ public class StatRange
     public float minAttackSpeed = 0.9f;
     public float maxAttackSpeed = 1.1f;
 }
+[System.Serializable]
+public class NameStructure
+{
+    public string[] nameStructure;
+    public NamePiece[] pieces;
+
+    public string GenerateName()
+    {
+        foreach (NamePiece p in pieces)
+        {
+            p.pieces = System.IO.File.ReadAllLines(p.pieceFile);
+        }
+
+        string chosenName = nameStructure[Random.Range(0, nameStructure.Length)];
+        string newName = chosenName;
+        newName.Replace("-", " ");
+        chosenName.Replace("-", "");
+        while(chosenName != "")
+        {
+            NamePiece piece = pieces[Random.Range(0, pieces.Length)];
+            newName.Replace(piece.toReplace, piece.pieces[Random.Range(0, piece.pieces.Length)]);
+            chosenName.Replace(piece.toReplace, "");
+        }
+        return newName;
+    }
+}
+[System.Serializable]
+public class NamePiece
+{
+    public string toReplace;
+    [Header("Possible Name Pieces")]
+    public string pieceFile = "Content/X";
+
+    [HideInInspector]
+    public string[] pieces;
+   
+}
+
+

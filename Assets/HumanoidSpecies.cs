@@ -24,6 +24,7 @@ public class HumanoidSpecies : Species
     }
     public void ApplySpecies(Humanoid mob)
     {
+        Debug.Log("Applied humanoid");
         mob.rig.spine.spineLower.ScaleLimb(Vector3.one * Random.Range(rigScale.spineLowerMin, rigScale.spineLowerMax));
         mob.rig.spine.neck.ScaleLimb(Vector3.one * Random.Range(rigScale.neckMin, rigScale.neckMax));
         if (rigScale.uniformShoulders)
