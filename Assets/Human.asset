@@ -60,12 +60,10 @@ MonoBehaviour:
     - '[first]-the-[type]'
     pieces:
     - toReplace: '[first]'
-      pieceFile: 
       pieces: []
   weaponPool:
   - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
-  - {fileID: 6308485019078479608, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
-  - {fileID: 5115609169192176431, guid: 846fbe0316766444d86d24b582870aa7, type: 3}
+  - {fileID: 1844018189288337678, guid: ace460bd25b74ce4e80061c374f3fcc7, type: 3}
   - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
   loadoutSize: 2
   accessoryPool:

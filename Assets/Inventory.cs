@@ -176,7 +176,7 @@ public class Inventory : MonoBehaviour
         {
             i.rb.constraints = RigidbodyConstraints.None;
         }
-        i.transform.parent = null;
+        i.transform.SetParent(null, true);
         i.transform.position = hand.transform.position;
         i.transform.rotation = hand.transform.rotation;
         i.gameObject.layer = 7;

@@ -113,49 +113,30 @@ public class Humanoid : MonoBehaviour
     }
     private void MovePlayer()
     {
-        Vector3 walkInput = (flatForwardOrientation() * entity.mob.input.z + flatRightOrientation() * entity.mob.input.x).normalized;
-        if (movementEnabled)
+        if (isGrounded())
         {
-            // on slope
-            //   if (OnSlope() && !exitingSlope)
-            //  {
-        //    GetSlopeMoveDirection(walkInput);
-            rb.AddForce(walkInput * desiredMoveSpeed * 20f, ForceMode.Force);
-            // }
-            // else if (isGrounded())
-            // {
-            //     rb.AddForce(walkInput * desiredMoveSpeed * 10f, ForceMode.Force);;
-            // }
-            if (isGrounded() || (OnSlope() && !exitingSlope))
-            {
-                rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
+            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
+        }
+        // calculate movement direction
+        Vector3 moveDirection = flatForwardOrientation() * entity.mob.input.z + flatRightOrientation() * entity.mob.input.x;
 
-                if (rb.velocity.y > 0 && entity.mob.input.magnitude == 0)
-                {
-                    rb.AddForce(gravity * 10 * Vector3.down);
-                }
-            }
-            else
-            {
-                rb.velocity = new Vector3(rb.velocity.x * drag, rb.velocity.y, rb.velocity.z * drag);
-                rb.AddForce(gravity * Vector3.down);
-            }
-
+        // on slope
+        if (OnSlope() && !exitingSlope)
+        {
+            rb.AddForce(GetSlopeMoveDirection(moveDirection) * desiredMoveSpeed * 20f, ForceMode.Force);
         }
         else
         {
-            if (isGrounded())
-            {
-                rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y * friction, rb.velocity.z * friction);
-            }
-            else
-            {
-                rb.velocity = new Vector3(rb.velocity.x * drag, rb.velocity.y, rb.velocity.z * drag);
-                rb.AddForce(gravity * Vector3.down);
-            }
+            rb.AddForce(moveDirection.normalized * desiredMoveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(Vector3.down * gravity);
+        }
+        if (rb.velocity.y > 0 || exitingSlope)
+        {
+            rb.AddForce(Vector3.down * gravity, ForceMode.Force);
         }
 
-   //     rb.useGravity = !OnSlope();
+        // turn gravity off while on slope
+        rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
@@ -195,14 +176,19 @@ public class Humanoid : MonoBehaviour
     {
         if (isGrounded() && readyToJump)
         {
+            Debug.Log("Attemped Jump");
             exitingSlope = true;
             readyToJump = false;
-   
+
             // reset y velocity
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-   
-            rb.AddForce(transform.up * jumpForce * Mathf.Clamp01(entity.mob.input.y), ForceMode.Impulse);
-            Invoke(nameof(ResetJump), jumpCooldown);
+
+            if (entity.mob.input.y != 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+                rb.AddForce(transform.up * jumpForce * gravity, ForceMode.Impulse);
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
         }
     }
     private void ResetJump()
@@ -214,7 +200,7 @@ public class Humanoid : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.2f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * entity.mob.scale * 0.5f + 0.2f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -230,7 +216,7 @@ public class Humanoid : MonoBehaviour
 
     public bool isGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.05f, groundLayer);
+        return Physics.Raycast(transform.position, Vector3.down, playerHeight * entity.mob.scale * 0.5f + 0.1f, groundLayer);
     }
 
     float neckRotateSpeed = 30;

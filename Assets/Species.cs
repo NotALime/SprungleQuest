@@ -78,11 +78,6 @@ public class NameStructure
 
     public string GenerateName()
     {
-        foreach (NamePiece p in pieces)
-        {
-            p.pieces = System.IO.File.ReadAllLines(p.pieceFile);
-        }
-
         string chosenName = nameStructure[Random.Range(0, nameStructure.Length)];
         string newName = chosenName;
         newName.Replace("-", " ");
@@ -101,11 +96,7 @@ public class NamePiece
 {
     public string toReplace;
     [Header("Possible Name Pieces")]
-    public string pieceFile = "Content/X";
-
-    [HideInInspector]
     public string[] pieces;
-   
 }
 
 

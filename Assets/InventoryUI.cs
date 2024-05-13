@@ -135,7 +135,10 @@ public class InventoryUI : MonoBehaviour
             tooltipDescription.text = "";
         }
 
-        HotbarScrollLogic();
+        if (!inv.owner.entity.mob.primaryInput && !inv.owner.entity.mob.primaryInput)
+        {
+            HotbarScrollLogic();
+        }
     }
     public void HotbarScrollLogic()
     {

@@ -233,6 +233,9 @@ MonoBehaviour:
   nameText: {fileID: 4542576212314041166}
   healthText: {fileID: 7202011664907590687}
   entity: {fileID: 0}
+  baseColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 1}
+  invulnerableColor: {r: 1, g: 0.7188506, b: 0.28627455, a: 1}
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!223 &7493804512018770741
 Canvas:
   m_ObjectHideFlags: 0

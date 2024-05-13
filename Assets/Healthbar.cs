@@ -13,6 +13,7 @@ public class Healthbar : MonoBehaviour
     public Entity entity;
 
     public Color baseColor = Color.green;
+    public Color invulnerableColor = Color.white;
     public Color damageColor = Color.red;
     // Update is called once per frame
     void FixedUpdate()
@@ -25,9 +26,13 @@ public class Healthbar : MonoBehaviour
         {
             health.color = baseColor;
         }
-        else
+        else if (entity.baseEntity.tookDamage)
         {
             health.color = damageColor;
+        }
+        else
+        {
+            health.color = invulnerableColor;
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using JetBrains.Annotations;
 using System.Security.Principal;
+using System.Collections.Concurrent;
 
 public class WeaponMelee : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class WeaponMelee : MonoBehaviour
     }
     public void Attack(Inventory inv)
     {
+        inv.owner.entity.mob.secondaryInput = false;
         if (!holdAttack)
         {
             inv.owner.entity.mob.primaryInput = false;
@@ -90,32 +92,35 @@ public class WeaponMelee : MonoBehaviour
         }
         else
         {
+            blocked = false;
             inv.handAnimator.speed = 1;
             inv.owner.movementEnabled = true;
             attacking = false;
-            inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 5 * Time.deltaTime);
             damageCollider.enabled = false;
-            if (inv.owner.entity.mob.secondaryInput && item.cooldown < 0)
+            if (inv.owner.entity.mob.secondaryInput)
             {
-                Block(inv);
                 inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), 10 * Time.deltaTime);
             }
+            else
+            {
+                inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 5 * Time.deltaTime);
+            }
         }
-    //  blocking = inv.owner.entity.mob.secondaryInput;
-        inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput && item.cooldown <= 0);
+        if(blocked)
+        {
+            inv.owner.entity.mob.rb.AddForce(inv.owner.flatForwardOrientation() * -500);
+        }
 
-        previousSecondaryInput = inv.owner.entity.mob.secondaryInput;
+        inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput || blocked && !attacking);
     }
 
     public float parryRadius = 4;
     public float parryCooldown = 0.5f;
 
-    public bool blocking;
+    bool blocked;
 
-    float healthPrevious;
     public void Parry(Inventory inv)
     {
-        rotDir.z = -90 + Mathf.PerlinNoise(0, Time.time * 0.1f) * 10;
         attacking = false;
         Collider[] projectileCheck = Physics.OverlapSphere(inv.owner.entity.mob.orientation.position + inv.owner.entity.mob.orientation.forward, parryRadius);
 
@@ -140,31 +145,28 @@ public class WeaponMelee : MonoBehaviour
             inv.owner.entity.mob.secondaryInput = false;
             parrySound.PlaySound();
             Debug.Log("DEFLECTED!");
-          //  StartCoroutine(GameSettings.FreezeFrame(0.5f));
         }
     }
 
     public void Block(Inventory inv)
     {
-        if (inv.owner.entity.baseEntity.tookDamage)
-        {
-            item.cooldown = parryCooldown;
-            parrySound.PlaySound();
-        }
-
         rotDir.z = -90;
-        inv.owner.entity.currentIframe = 1;
-        
+        inv.owner.entity.currentIframe = 0.05f;
+        if (inv.owner.entity.baseEntity.tookDamage == true && item.cooldown <= 0)
+        {
+            inv.owner.entity.baseEntity.tookDamage = false;
+            if (!blocked)
+            {
+                rotDir.z = -70;
+                inv.owner.entity.currentIframe = parryCooldown;
 
-    //   if (inv.owner.entity.baseEntity.health < healthPrevious)
-    //   {
-    //       Debug.Log("PARRIED!");
-    //       inv.owner.entity.mob.secondaryInput = false;
-    //       StartCoroutine(GameSettings.FreezeFrame(0.5f));
-    //   //    StartCoroutine(Entity.Stun(inv.owner.entity, 0.5f));
-    //       item.cooldown = parryCooldown;
-    //   }
-    //   healthPrevious = inv.owner.entity.baseEntity.health;
+                Entity.Stun(inv.owner.entity, parryCooldown);
+                item.cooldown = parryCooldown;
+                inv.owner.entity.mob.secondaryInput = false;
+                blocked = true;
+                parrySound.PlaySound();
+            }
+        }
     }
 
     public void DamageCheck(Inventory inv)
@@ -182,14 +184,16 @@ public class WeaponMelee : MonoBehaviour
                 Entity hitEntity = col.GetComponent<Entity>();
                 if (Entity.CompareTeams(inv.owner.entity, hitEntity))
                 {
-                    Camera.main.fieldOfView -= 1;
                     Vector3 dir = inv.owner.flatForwardOrientation();
+                    hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
                     if (hitEntity.TakeDamage(attackCombo[attackIndex].damage, inv.owner.entity))
                     {
                         hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
                         hitSound.PlaySound();
-                        StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
-                        hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
+                        if (!hitEntity.player)
+                        {
+                            StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
+                        }
                     }
                 }
             }
@@ -214,13 +218,16 @@ public class WeaponMelee : MonoBehaviour
 
             if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= 1f)
             {
-                ai.owner.entity.mob.primaryInput = true;
+                if (ai.owner.entity.mob.input.z > 0)
+                {
+                    ai.owner.entity.mob.primaryInput = true;
+                }
                 if (EvoUtils.PercentChance(0.5f, true))
                 {
                     ai.owner.entity.mob.input.z = -1;
                 }
             }
-            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= ai.owner.entity.mob.stats.visionRange * 0.1f)
+            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= 5)
             {
                 ai.owner.entity.mob.primaryInput = false;
                 if (ai.owner.entity.mob.input.x != 0)
@@ -228,7 +235,7 @@ public class WeaponMelee : MonoBehaviour
                     ai.owner.entity.mob.input.z = 0;
                     if (EvoUtils.PercentChance(0.3f, true))
                     {
-                        if (EvoUtils.PercentChance(0.2f * ai.owner.entity.mob.stats.level, false))
+                        if (EvoUtils.PercentChance(0.5f * ai.owner.entity.mob.stats.level, false))
                         {
                             ai.owner.entity.mob.secondaryInput = true;
                         }
@@ -248,7 +255,7 @@ public class WeaponMelee : MonoBehaviour
                     }
                 }
             }
-            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) > ai.owner.entity.mob.stats.visionRange * 0.3f)
+            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) > 10 * ai.owner.entity.mob.scale)
             {
                 ai.owner.entity.mob.primaryInput = false;
                 if (ai.owner.entity.mob.input.x == 0)
@@ -263,6 +270,10 @@ public class WeaponMelee : MonoBehaviour
                     }
                 }
                 ai.owner.entity.mob.input.z = 0.5f;
+            }
+            else
+            {
+                ai.owner.entity.mob.input.z = 1f;
             }
             //   }
 

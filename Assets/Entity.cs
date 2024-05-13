@@ -42,7 +42,10 @@ public class Entity : MonoBehaviour
     private void FixedUpdate()
     {
         currentIframe -= Time.deltaTime;
-        baseEntity.tookDamage = false;
+        if (currentIframe <= 0)
+        {
+            baseEntity.tookDamage = false;
+        }
     }
 
     public void AI()
@@ -76,15 +79,12 @@ public class Entity : MonoBehaviour
 
     public static IEnumerator Stun(Entity e, float stunTime = 0.5f)
     {
-        if (!e.player)
-        {
             e.mob.aiEnabled = false;
             e.mob.input = Vector3.zero;
             e.mob.primaryInput = false;
             e.mob.secondaryInput = false;
             yield return new WaitForSeconds(stunTime);
             e.mob.aiEnabled = true;
-        }
     }
 
     public void SetChunk()
@@ -263,7 +263,7 @@ public class BaseEntity
 
     [HideInInspector]
     public bool tookDamage;
-    [HideInInspector]
+
     public Healthbar healthbar;
 
     public GameObject deathEffect;

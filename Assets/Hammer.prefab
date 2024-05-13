@@ -756,34 +756,12 @@ MonoBehaviour:
   attackCombo:
   - animation: SwingOver
     attackCooldown: 0.6
-    thrust: 10
+    thrust: 40
     locks: 0
     damage: 50
     knockback: 5000
     stunTime: 1
     sound: {fileID: 2225834757940266336}
-    attack:
-      m_PersistentCalls:
-        m_Calls: []
-  - animation: SwingOver
-    attackCooldown: 0.6
-    thrust: 10
-    locks: 0
-    damage: 75
-    knockback: 500
-    stunTime: 2
-    sound: {fileID: 2225834757940266336}
-    attack:
-      m_PersistentCalls:
-        m_Calls: []
-  - animation: SwingOver
-    attackCooldown: 0.2
-    thrust: 500
-    locks: 1
-    damage: 100
-    knockback: 1500
-    stunTime: 2
-    sound: {fileID: 3142115237462057013}
     attack:
       m_PersistentCalls:
         m_Calls: []
@@ -795,7 +773,6 @@ MonoBehaviour:
   attacking: 0
   parryRadius: 0
   parryCooldown: 0
-  blocking: 0
 --- !u!65 &1816851510739174796
 BoxCollider:
   m_ObjectHideFlags: 0
