@@ -21,28 +21,32 @@ public class Species : ScriptableObject
 
     public void ApplySpecies(Entity mob)
     {
-        mob.mob.scale *= Random.Range(minScale, maxScale);
-
-        Color tintColor = tint.Evaluate(Random.Range(0f, 1f));
-        foreach (Renderer r in mob.renderer)
-        {
-            r.material.SetColor("_Tint", tintColor);
-        }
-
-        mob.mob.stats.health *= Random.Range(stats.minHealth, stats.maxHealth);
-        mob.UpdateHealth();
-
-        mob.mob.stats.damage *= Random.Range(stats.minDamage, stats.maxDamage);
-
-        mob.mob.stats.moveSpeed *= Random.Range(stats.minSpeed, stats.maxSpeed);
-        mob.mob.stats.attackSpeed *= Random.Range(stats.minAttackSpeed, stats.maxAttackSpeed);
-
+        ApplyBaseSpecies(mob, this);
         ApplyOverride(mob);
 
         if (generatesName)
         {
             mob.baseEntity.gameName = nameStructure.GenerateName();
         }
+    }
+
+    public void ApplyBaseSpecies(Entity mob, Species species)
+    {
+        mob.mob.scale *= Random.Range(species.minScale, species.maxScale);
+
+        Color tintColor = species.tint.Evaluate(Random.Range(0f, 1f));
+        foreach (Renderer r in mob.renderer)
+        {
+            r.material.SetColor("_Tint", tintColor);
+        }
+
+        mob.mob.stats.health *= Random.Range(species.stats.minHealth, species.stats.maxHealth);
+        mob.UpdateHealth();
+
+        mob.mob.stats.damage *= Random.Range(species.stats.minDamage, stats.maxDamage);
+
+        mob.mob.stats.moveSpeed *= Random.Range(species.stats.minSpeed, species.stats.maxSpeed);
+        mob.mob.stats.attackSpeed *= Random.Range(species.stats.minAttackSpeed, species.stats.maxAttackSpeed);
     }
 
     public virtual void ApplyOverride(Entity mob)

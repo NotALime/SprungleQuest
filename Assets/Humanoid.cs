@@ -60,8 +60,6 @@ public class Humanoid : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
 
-        playerHeight *= transform.localScale.y;
-
         exitingSlope = false;
     }
     private void Update()
@@ -130,10 +128,10 @@ public class Humanoid : MonoBehaviour
             rb.AddForce(moveDirection.normalized * desiredMoveSpeed * 10f, ForceMode.Force);
             rb.AddForce(Vector3.down * gravity);
         }
-        if (rb.velocity.y > 0 || exitingSlope)
-        {
-            rb.AddForce(Vector3.down * gravity, ForceMode.Force);
-        }
+      // if (rb.velocity.y > 0 || exitingSlope)
+      // {
+      //     rb.AddForce(Vector3.down * gravity, ForceMode.Force);
+      // }
 
         // turn gravity off while on slope
         rb.useGravity = !OnSlope();
@@ -177,16 +175,13 @@ public class Humanoid : MonoBehaviour
         if (isGrounded() && readyToJump)
         {
             Debug.Log("Attemped Jump");
-            exitingSlope = true;
-            readyToJump = false;
-
-            // reset y velocity
-
             if (entity.mob.input.y != 0)
             {
+                exitingSlope = true;
+                readyToJump = false;
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-                rb.AddForce(transform.up * jumpForce * gravity, ForceMode.Impulse);
+                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
                 Invoke(nameof(ResetJump), jumpCooldown);
             }
         }

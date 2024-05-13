@@ -11,5 +11,4 @@ public class BiomeGen : MonoBehaviour
     {
         terra = GetComponent<TerraSettings>();     
     }
-
 }
