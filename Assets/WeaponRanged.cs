@@ -34,30 +34,25 @@ public class WeaponRanged : MonoBehaviour
         shotsFired++;
 
         Projectile proj = null;
-        inv.handAnimator.SetBool("Active", true);
-
-        if (rotatedToAttack)
+        for (int i = 0; i < projectilesPerShot; i++)
         {
-            for (int i = 0; i < projectilesPerShot; i++)
+            proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
+            proj.ApplyLevel(proj.level.level);
+            if (shotsFired == shotsToBig)
             {
-                proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
-                proj.ApplyLevel(proj.level.level);
-                if (shotsFired == shotsToBig)
-                {
-                    proj.ApplyLevel(overHeatLevel);
-                    shotsFired = 0;
-                }
+                proj.ApplyLevel(overHeatLevel);
+                shotsFired = 0;
             }
-            if (shotsToBig > 0)
-            {
-                castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
-            }
-            else
-            {
-                castSound.PlaySound();
-            }
-            item.cooldown = (cooldown * proj.cooldown) / inv.owner.entity.mob.stats.attackSpeed;
         }
+        if (shotsToBig > 0)
+        {
+            castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
+        }
+        else
+        {
+            castSound.PlaySound();
+        }
+        item.cooldown = (cooldown * proj.cooldown) / inv.owner.entity.mob.stats.attackSpeed;
     }
 
     [Header("Player Specific")]
@@ -72,19 +67,16 @@ public class WeaponRanged : MonoBehaviour
             }
     }
 
-    bool rotatedToAttack;
     public void ArmAnim(Inventory inv)
     {
         inv.handAnimator.SetBool("Active", (inv.owner.entity.mob.primaryInput || inv.owner.entity.mob.secondaryInput));
         if (inv.owner.entity.mob.primaryInput || inv.owner.entity.mob.secondaryInput)
         {
             inv.owner.rig.armRight.shoulder.transform.rotation = inv.owner.rig.spine.neck.transform.rotation * Quaternion.Euler(new Vector3(0, 0, -83.622f));
-            rotatedToAttack = true;
         }
         else
         {
             inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.Slerp(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 10 * Time.deltaTime);
-            rotatedToAttack = false;
         }
     }
 
@@ -133,9 +125,13 @@ public class WeaponRanged : MonoBehaviour
 
             if ((Physics.SphereCast(e.owner.entity.mob.orientation.position, 5, e.owner.entity.mob.orientation.forward, out hit, e.owner.entity.mob.stats.visionRange)))
             {
-                if (EvoUtils.PercentChance(0.2f * e.owner.entity.mob.stats.level, true))
+                if (Random.Range(0f, 1f) < 0.01f * e.owner.entity.mob.stats.level)
                 {
-                    e.owner.entity.mob.primaryInput = !e.owner.entity.mob.primaryInput;
+                    e.owner.entity.mob.primaryInput = true;
+                }
+                else
+                {
+                    e.owner.entity.mob.primaryInput = false;
                 }
             }
             else

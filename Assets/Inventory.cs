@@ -168,11 +168,7 @@ public class Inventory : MonoBehaviour
       //  else
       //  {
             i.gameObject.layer = 6;
-            foreach (Transform t in i.transform)
-            {
-                t.gameObject.layer = 6;
-            }
-        //   }
+     //   }
     }
     public void DropItem(Item i)
     {
@@ -184,11 +180,6 @@ public class Inventory : MonoBehaviour
         i.transform.position = hand.transform.position;
         i.transform.rotation = hand.transform.rotation;
         i.gameObject.layer = 7;
-
-        foreach (Transform t in i.transform)
-        {
-            t.gameObject.layer = 7;
-        }
     }
 
 

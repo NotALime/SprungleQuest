@@ -249,16 +249,13 @@ MonoBehaviour:
     health: 100
     maxHealth: 0
     tookDamage: 0
-    healthbar: {fileID: 0}
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
   drops: []
-  renderer: []
   iframe: 0.2
   currentIframe: 0
   mob:
     stats:
-      health: 1
       moveSpeed: 1
       damage: 1
       attackSpeed: 0
@@ -277,8 +274,6 @@ MonoBehaviour:
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
-    scale: 1
-    species: {fileID: 0}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0
@@ -297,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b004de87568c2549a1b17df9c35149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 20
   sprintMultiplier: 2
   speedIncreaseMultiplier: 1
   slopeIncreaseMultiplier: 1
@@ -314,6 +309,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   entity: {fileID: 0}
   inv: {fileID: 0}
+  species: {fileID: 11400000, guid: 61a84256b1be9dc489b11f50bed9ad08, type: 2}
   rig:
     anim: {fileID: 1725705239216952608}
     renderer: {fileID: 3428143708593199664}

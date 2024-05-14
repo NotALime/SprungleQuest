@@ -286,7 +286,6 @@ MonoBehaviour:
     secondaryInput: 0
     interactInput: 0
     specialInput: 0
-  interior: 0
   player: 0
 --- !u!114 &8643342451883632510
 MonoBehaviour:

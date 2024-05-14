@@ -112,45 +112,39 @@ public class WeaponMelee : MonoBehaviour
         }
 
         inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput || blocked && !attacking);
-
-        previousFrameSecondInput = inv.owner.entity.mob.secondaryInput;
     }
 
     public float parryRadius = 4;
     public float parryCooldown = 0.5f;
 
     bool blocked;
-    bool previousFrameSecondInput;
 
     public void Parry(Inventory inv)
     {
-        if (previousFrameSecondInput == false && inv.owner.entity.mob.secondaryInput == true)
+        attacking = false;
+        Collider[] projectileCheck = Physics.OverlapSphere(inv.owner.entity.mob.orientation.position + inv.owner.entity.mob.orientation.forward, parryRadius);
+
+        bool detectedProjectile = false;
+
+        foreach (Collider col in projectileCheck)
         {
-            attacking = false;
-            Collider[] projectileCheck = Physics.OverlapSphere(inv.owner.entity.mob.orientation.position + inv.owner.entity.mob.orientation.forward, parryRadius);
-
-            bool detectedProjectile = false;
-
-            foreach (Collider col in projectileCheck)
+            if (col.GetComponent<Projectile>())
             {
-                if (col.GetComponent<Projectile>())
-                {
-                    Projectile proj = col.GetComponent<Projectile>();
+                Projectile proj = col.GetComponent<Projectile>();
 
-                    proj.origin = inv.owner.entity;
-                    proj.rb.velocity = inv.owner.entity.mob.orientation.forward * proj.rb.velocity.magnitude;
+                proj.origin = inv.owner.entity;
+                proj.rb.velocity = inv.owner.entity.mob.orientation.forward * proj.rb.velocity.magnitude * 1.5f;
 
-                    detectedProjectile = true;
-                }
+                detectedProjectile = true;
             }
+        }
 
-            if (detectedProjectile)
-            {
-                item.cooldown = parryCooldown;
-                inv.owner.entity.mob.secondaryInput = false;
-                parrySound.PlaySound();
-                Debug.Log("DEFLECTED!");
-            }
+        if (detectedProjectile)
+        {
+            item.cooldown = parryCooldown;
+            inv.owner.entity.mob.secondaryInput = false;
+            parrySound.PlaySound();
+            Debug.Log("DEFLECTED!");
         }
     }
 
@@ -198,24 +192,17 @@ public class WeaponMelee : MonoBehaviour
                         hitSound.PlaySound();
                         if (!hitEntity.player)
                         {
-                        //    StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
+                            StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
                         }
                     }
                 }
             }
         }
     }
-    // private void OnDrawGizmos()
-    // {
-    //         Gizmos.DrawWireCube(damageCollider.transform.position, damageCollider.size, damageCollider.transform.rotation);
-    // }
-
-    [Header("Projectile")]
-    public Projectile projectile;
-    public void FireProjectile(Inventory inv)
-    {
-            inv.owner.entity.SpawnProjectile(projectile, inv.owner.entity.mob.orientation.position, inv.owner.entity.mob.orientation.rotation);
-    }
+ // private void OnDrawGizmos()
+ // {
+ //         Gizmos.DrawWireCube(damageCollider.transform.position, damageCollider.size, damageCollider.transform.rotation);
+ // }
 
     public void MeleeAI(Inventory ai)
     {

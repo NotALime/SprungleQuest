@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashSpeed: 100
-  dashTime: 0.2
+  dashTime: 0.1
   dashCooldown: 1
 --- !u!4 &7701588416557952775 stripped
 Transform:
