@@ -111,17 +111,14 @@ public class Humanoid : MonoBehaviour
     }
     private void MovePlayer()
     {
-        if (isGrounded())
-        {
-            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
-        }
         // calculate movement direction
         Vector3 moveDirection = flatForwardOrientation() * entity.mob.input.z + flatRightOrientation() * entity.mob.input.x;
 
         // on slope
-        if (OnSlope() && !exitingSlope)
+        if ((OnSlope() && !exitingSlope) || isGrounded())
         {
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * desiredMoveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection(moveDirection) * desiredMoveSpeed * 10f, ForceMode.Force);
+            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
         }
         else
         {
