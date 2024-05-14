@@ -83,16 +83,14 @@ public class NameStructure
     public string GenerateName()
     {
         string chosenName = nameStructure[Random.Range(0, nameStructure.Length)];
-        string newName = chosenName;
-        newName.Replace("-", " ");
-        chosenName.Replace("-", "");
-        while(chosenName != "")
+
+        foreach(NamePiece p in pieces)
         {
-            NamePiece piece = pieces[Random.Range(0, pieces.Length)];
-            newName.Replace(piece.toReplace, piece.pieces[Random.Range(0, piece.pieces.Length)]);
-            chosenName.Replace(piece.toReplace, "");
+            Debug.Log("Generating name...");
+            chosenName.Replace(p.toReplace, p.pieces[Random.Range(0, p.pieces.Length)]);
         }
-        return newName;
+        Debug.Log("Generated name " + chosenName);
+        return chosenName;
     }
 }
 [System.Serializable]

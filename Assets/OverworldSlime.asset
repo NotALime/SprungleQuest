@@ -47,9 +47,13 @@ MonoBehaviour:
   stats:
     minHealth: 0.9
     maxHealth: 1.1
-    minDamage: 0.9
-    maxDamage: 1.1
+    minDamage: 1
+    maxDamage: 2
     minSpeed: 0.9
     maxSpeed: 1.1
     minAttackSpeed: 0.9
     maxAttackSpeed: 1.1
+  generatesName: 0
+  nameStructure:
+    nameStructure: []
+    pieces: []
