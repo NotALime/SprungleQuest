@@ -102,10 +102,7 @@ public class jumperAI : MonoBehaviour
         }
         else
         {
-            if (ai.GetClosestTarget() != null)
-            {
-                ai.mob.target = ai.GetClosestTarget();
-            }
+            Entity.PatrolAI(ai);
         }
 
     }
@@ -141,6 +138,6 @@ public class jumperAI : MonoBehaviour
 
     public bool IsGrounded()
     { 
-    return Physics.CheckSphere(groundCheck.position, 1f * transform.localScale.y, ground);
+        return Physics.CheckSphere(groundCheck.position, 1f * transform.localScale.y, ground);
     }
 }

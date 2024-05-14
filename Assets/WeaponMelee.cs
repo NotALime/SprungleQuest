@@ -219,13 +219,7 @@ public class WeaponMelee : MonoBehaviour
 
     public void MeleeAI(Inventory ai)
     {
-        if (ai.owner.entity.mob.target == null)
-        {
-            if (ai.owner.entity.GetClosestTarget() != null)
-                ai.owner.entity.mob.target = ai.owner.entity.GetClosestTarget();
-                ai.owner.entity.mob.input = Vector3.forward;
-        }
-        else
+        if (ai.owner.entity.mob.target != null)
         {
             ai.owner.entity.mob.orientation.LookAt(ai.owner.entity.mob.target.mob.orientation);
 
@@ -288,15 +282,6 @@ public class WeaponMelee : MonoBehaviour
             {
                 ai.owner.entity.mob.input.z = 1f;
             }
-            //   }
-
-            //  if (ai.owner.entity.mob.input.z != 0)
-            //  {
-            //      ai.owner.entity.mob.secondaryInput = false;
-            //  }
-
-
-
         }
     }
 }

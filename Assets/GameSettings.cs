@@ -39,4 +39,21 @@ public class GameSettings : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
     }
+
+    public static void DetectionField(Entity origin, float radius = 10)
+    {
+        Collider[] detect = Physics.OverlapSphere(origin.transform.position, radius);
+
+        foreach (Collider c in detect)
+        {
+            if (c.GetComponent<Entity>())
+            {
+                Entity e = c.GetComponent<Entity>();
+                if (Entity.CompareTeams(e, origin))
+                {
+                    e.mob.target = origin;
+                }
+            }
+        }
+    }
 }

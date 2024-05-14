@@ -125,10 +125,6 @@ public class WeaponRanged : MonoBehaviour
                     e.owner.entity.mob.input.y = 0;
                 }
             }
-            else
-            {
-                e.owner.entity.mob.target = e.owner.entity.GetClosestTarget();
-            }
             RaycastHit hit = new RaycastHit();
 
             if ((Physics.SphereCast(e.owner.entity.mob.orientation.position, 5, e.owner.entity.mob.orientation.forward, out hit, e.owner.entity.mob.stats.visionRange)))

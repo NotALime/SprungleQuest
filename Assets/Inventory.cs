@@ -61,23 +61,27 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
+        owner.entity.AI();
         if (items[hotbarIndex] != null)
         {
             items[hotbarIndex].transform.position = hand.transform.position;
             items[hotbarIndex].transform.rotation = hand.transform.rotation;
             if (owner.entity.player == false && owner.entity.mob.aiEnabled)
             {
+                if (owner.entity.mob.target != null)
+                {
+                    if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
+                    {
+                        items[hotbarIndex].gameObject.SetActive(false);
+                        hotbarIndex = Random.Range(0, items.Length);
+                        HoldItem(items[hotbarIndex]);
+                    }
+                }
+
                 items[hotbarIndex].ai.Invoke(this);
                 foreach (Item item in accessories)
                 {
                         item.ai.Invoke(this);
-                }
-
-                if (Random.Range(0f, 1f) < 0.01f * owner.entity.mob.stats.level)
-                {
-                    items[hotbarIndex].gameObject.SetActive(false);
-                    hotbarIndex = Random.Range(0, items.Length);
-                    HoldItem(items[hotbarIndex]);
                 }
             }
             if (owner.entity.mob.aiEnabled)

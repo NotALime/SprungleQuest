@@ -80,6 +80,38 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public static void PatrolAI(Entity ai)
+    {
+        if (ai.mob.target == null)
+        {
+            if (EvoUtils.PercentChance(0.1f, true))
+            {
+                if (ai.mob.input.z != 0)
+                {
+                    ai.mob.input.z = 0;
+                }
+                else
+                {
+                    ai.mob.input.z = 1;
+                }
+            }
+            if (ai.mob.input.z == 0)
+            {
+                if (EvoUtils.PercentChance(0.2f, true))
+                {
+                    ai.mob.orientation.rotation = Quaternion.LookRotation(Random.insideUnitSphere.normalized);
+                }
+                else
+
+                    Debug.Log((int)(((Mathf.PerlinNoise1D(Time.deltaTime) * Mathf.PerlinNoise1D(Time.deltaTime) * 2) - 2)));
+                if (ai.GetClosestTarget() != null && ai.mob.target == null)
+                {
+                        ai.mob.target = ai.GetClosestTarget();
+                }
+            }
+        }
+    }
+
     public static IEnumerator Stun(Entity e, float stunTime = 0.5f)
     {
             e.mob.aiEnabled = false;
