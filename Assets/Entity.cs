@@ -18,6 +18,9 @@ public class Entity : MonoBehaviour
     [Header("Mob Settings")]
     public Mob mob;
 
+    [HideInInspector]
+    public bool interior;
+
     public bool player;
 
     private void Awake()
@@ -90,19 +93,10 @@ public class Entity : MonoBehaviour
     public void SetChunk()
     {
 
-        if (!player && mob.rb != null)
+        if (!player && mob.rb != null && !interior)
         {
             mob.rb.isKinematic = Vector2.Distance(transform.position, GameSettings.player.transform.position) > GameSettings.chunkRange * 0.4f;
             mob.aiEnabled = Vector2.Distance(transform.position, GameSettings.player.transform.position) < GameSettings.chunkRange * 0.4f;
-
-            //    if (Physics.Raycast(transform.position + new Vector3(0, 100, 0), Vector3.down, out groundRay, Mathf.Infinity, 3))
-            //    {
-            //        Debug.Log(groundRay.collider);
-            //        if(groundRay.collider != null)
-            //        {
-            //             transform.SetParent(groundRay.collider.transform, true);
-            //        }
-            //    }
         }
     }
 

@@ -43,11 +43,11 @@ GameObject:
   - component: {fileID: 6561869135436969427}
   - component: {fileID: 6118298075581286660}
   - component: {fileID: 6393934908459014213}
-  - component: {fileID: 2823260987619550112}
   - component: {fileID: 8465281397949382414}
   - component: {fileID: 5683852334539896522}
   - component: {fileID: 6672328890275569044}
   - component: {fileID: 8617646265253465985}
+  - component: {fileID: 3682913712688678969}
   m_Layer: 6
   m_Name: Horse
   m_TagString: Untagged
@@ -149,7 +149,128 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!153 &2823260987619550112
+--- !u!114 &8465281397949382414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593053300882498930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cce7f2a0f3be6f4fbcccee72677a134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseEntity:
+    gameName: Horse
+    health: 200
+    maxHealth: 0
+    tookDamage: 0
+    healthbar: {fileID: 0}
+    deathEffect: {fileID: 0}
+    hurtSound: {fileID: 0}
+  drops: []
+  renderer: []
+  iframe: 0
+  currentIframe: 0
+  mob:
+    stats:
+      health: 1
+      moveSpeed: 7
+      damage: 1
+      attackSpeed: 1
+      level: 0
+      visionRange: 20
+    orientation: {fileID: 4342086376065559155}
+    rb: {fileID: 6393934908459014213}
+    behavior:
+      ai:
+        m_PersistentCalls:
+          m_Calls: []
+    aiEnabled: 0
+    target: {fileID: 0}
+    team: player
+    leader: {fileID: 0}
+    mountable: 0
+    passenger: {fileID: 0}
+    mountSeat: {fileID: 3682913712688678969}
+    scale: 1
+    species: {fileID: 0}
+    input: {x: 0, y: 0, z: 0}
+    primaryInput: 0
+    secondaryInput: 0
+    interactInput: 0
+    specialInput: 0
+  interior: 0
+  player: 0
+--- !u!114 &5683852334539896522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593053300882498930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb80514a46f2db4a99974c9d7ed4c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2500
+  turnSpeed: 1.5
+  jumpForce: 100
+  gravity: 50
+  friction: 0.9
+  visual: {fileID: 2370929979168132393}
+  accelerationSpeed: 0.5
+--- !u!114 &6672328890275569044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593053300882498930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e629a1115bf33d4fb3c46e4b3323714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8465281397949382414}
+        m_TargetAssemblyTypeName: Entity, Assembly-CSharp
+        m_MethodName: Mount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &8617646265253465985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593053300882498930}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4, y: 0.76, z: 1}
+  m_Center: {x: 0, y: -0.37, z: 0}
+--- !u!153 &3682913712688678969
 ConfigurableJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,112 +372,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8465281397949382414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593053300882498930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cce7f2a0f3be6f4fbcccee72677a134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseEntity:
-    gameName: Horse
-    health: 200
-    maxHealth: 0
-  iframe: 0
-  mob:
-    stats:
-      moveSpeed: 7
-      damage: 1
-      attackCooldown: 10
-      visionRange: 20
-    target: {fileID: 0}
-    input: {x: 0, y: 0, z: 0}
-    primaryInput: 0
-    secondaryInput: 0
-    interactInput: 0
-    orientation: {fileID: 4342086376065559155}
-    rb: {fileID: 6393934908459014213}
-    mountable: 0
-    passenger: {fileID: 0}
-    mountSeat: {fileID: 2823260987619550112}
-    team: player
-    behavior:
-      ai:
-        m_PersistentCalls:
-          m_Calls: []
-  player: 0
---- !u!114 &5683852334539896522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593053300882498930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb80514a46f2db4a99974c9d7ed4c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2500
-  turnSpeed: 1.5
-  jumpForce: 100
-  gravity: 50
-  friction: 0.9
-  visual: {fileID: 2370929979168132393}
-  accelerationSpeed: 0.5
---- !u!114 &6672328890275569044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593053300882498930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e629a1115bf33d4fb3c46e4b3323714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8465281397949382414}
-        m_TargetAssemblyTypeName: Entity, Assembly-CSharp
-        m_MethodName: Mount
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!65 &8617646265253465985
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593053300882498930}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.76, z: 1}
-  m_Center: {x: 0, y: -0.37, z: 0}
 --- !u!1001 &2841073434381347522
 PrefabInstance:
   m_ObjectHideFlags: 0
