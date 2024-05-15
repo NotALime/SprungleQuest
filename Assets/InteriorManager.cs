@@ -8,9 +8,10 @@ public class InteriorManager : MonoBehaviour
 
     public InteriorDoor entranceOutside;
     public InteriorDoor entranceInside;
-    private void Start()
+    private void Awake()
     {
-        interior.transform.position = new Vector3(transform.position.x, -10000, transform.position.z);
+        interior.transform.position = new Vector3(transform.position.x, -5000, transform.position.z);
+        interior.transform.rotation = Quaternion.identity;
         interior.SetActive(false);
 
         entranceOutside.interior = this;

@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
         {
             if (item != null)
             {
-                item.transform.parent = itemHolder;
+                item.transform.SetParent(itemHolder, true);
                 item.gameObject.SetActive(false);
             }
         }
@@ -133,6 +133,7 @@ public class Inventory : MonoBehaviour
         // Print selected items for demonstration
         foreach (var item in selectedItems)
         {
+            if(item != null)
             DropItem(item);
         }
     }

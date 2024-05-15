@@ -15,30 +15,46 @@ public class MapObject : MonoBehaviour
     public Vector3 maxRot = Vector3.one;
 
     public LayerMask groundLayer = 3;
-    void Start()
+    IEnumerator Start()
     {
         RaycastHit hit;
+        yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer));
         Debug.Log("Spawned");
         if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))
         {
-            Debug.Log(hit.ToString());
             if (grounds)
             {
-                // Move the object up slightly to avoid clipping into the ground
                 transform.position = hit.point + offset;
+                Debug.Log("Grounded " + name);
             }
 
             if (groundRotate)
             {
                 // Get the normal of the ground
                 Vector3 groundNormal = hit.normal;
-
+                Debug.Log("Ground rotated " + name);
                 // Rotate the object to match the ground normal
-                transform.up = groundNormal;
+                transform.right = groundNormal;
             }
         }
 
         transform.localScale *= Random.Range(minScale, maxScale);
-        transform.rotation = transform.rotation * Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
+        transform.rotation = Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
     }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+        Debug.Log("Spawned");
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+        {
+            if (grounds)
+            {
+                transform.position = hit.point + offset;
+                Debug.Log("Grounded " + name);
+                grounds = false;
+            }
+        }
+    }
+
 }

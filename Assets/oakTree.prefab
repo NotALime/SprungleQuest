@@ -220,13 +220,16 @@ MonoBehaviour:
     health: 300
     maxHealth: 0
     tookDamage: 0
+    healthbar: {fileID: 0}
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
   drops: []
-  iframe: 0.5
+  renderer: []
+  iframe: 0.2
   currentIframe: 0
   mob:
     stats:
+      health: 1
       moveSpeed: 0
       damage: 0
       attackSpeed: 0
@@ -245,9 +248,12 @@ MonoBehaviour:
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
+    scale: 1
+    species: {fileID: 0}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0
     interactInput: 0
     specialInput: 0
+  interior: 0
   player: 0

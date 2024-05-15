@@ -138,6 +138,6 @@ public class jumperAI : MonoBehaviour
 
     public bool IsGrounded()
     { 
-        return Physics.CheckSphere(groundCheck.position, 1f * transform.localScale.y, ground);
+        return Physics.CheckSphere(groundCheck.position, 1f, ground);
     }
 }
