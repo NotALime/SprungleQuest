@@ -8,65 +8,130 @@ public class WorldManager : MonoBehaviour
 
     public float spawnRadius = 300;
 
-    public MobSpawn[] spawning;
+    public MobSpawn[] spawnPool;
+    List<MobSpawn> spawns = new List<MobSpawn>();
+    public WeatherEvent defaultWeather;
+    WeatherEvent currentWeather;
+    public WeatherEvent[] weather;
 
     public LayerMask groundLayer;
 
     [Header("Time And Weather")]
-    public float time;
+    public static float time;
     [Tooltip("In minutes")]
-    public float dayTime = 12;
+    public float worldTime = 12;
     public int days;
-
+    public float timeScale = 1;
 
     public Material skyMaterial;
 
     public Light skyLight;
-    public Gradient SkyColor;
+
+    float weatherCooldown;
+
+    private void Start()
+    {
+        SetWeather(defaultWeather);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        foreach (MobSpawn spawn in spawning)
-        { 
-            if(EvoUtils.PercentChance(spawn.chanceToSpawn, true))
+        Spawning();
+        Lighting();
+        ManageTime();
+        CycleWeather();
+    }
+    public void Spawning()
+    {
+        foreach (MobSpawn spawn in spawns)
+        {
+            if (time > spawn.conditions.minTime * 60 && time < spawn.conditions.maxTime * 60)
             {
-                Vector3 spawnPos = GameSettings.player.transform.position + Random.insideUnitSphere.normalized * spawnRadius;
-                spawnPos.y = 50000;
-                RaycastHit hit;
-                if (Physics.Raycast(spawnPos, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+                if (EvoUtils.PercentChance(spawn.chanceToSpawn, true))
                 {
-                    spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
-                    Entity leader = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
-                    leader.mob.stats.level += (Random.Range(2, 4));
-
-                    if (spawn.autoTarget)
-                    {
-                        leader.mob.target = GameSettings.player;
-                    }
-                    for (int i = 0; i < Random.Range(1, spawn.maxGroupSize); i++)
+                    Vector3 spawnPos = GameSettings.player.transform.position + Random.insideUnitSphere.normalized * spawnRadius;
+                    spawnPos.y = 50000;
+                    RaycastHit hit;
+                    if (Physics.Raycast(spawnPos, Vector3.down, out hit, Mathf.Infinity, groundLayer))
                     {
                         spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
-                        Entity mob = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
-                        mob.mob.leader = leader;
+                        Entity leader = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                        leader.mob.stats.level += (Random.Range(2, 4));
 
                         if (spawn.autoTarget)
                         {
-                            mob.mob.target = GameSettings.player;
+                            leader.mob.target = GameSettings.player;
+                        }
+                        for (int i = 0; i < Random.Range(1, spawn.maxGroupSize); i++)
+                        {
+                            spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
+                            Entity mob = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                            mob.mob.leader = leader;
+
+                            if (spawn.autoTarget)
+                            {
+                                mob.mob.target = GameSettings.player;
+                            }
                         }
                     }
                 }
             }
-        }
+       }
+    }
 
-        time += Time.deltaTime;
-        skyMaterial.SetFloat("_DayTime", time / (dayTime * 60));
-
-        skyLight.color = SkyColor.Evaluate(time / (dayTime * 60));
-        skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (dayTime * 60)) * 360) - 90, 50, 0));
-        if (time >= dayTime * 60)
+    public void ManageTime()
+    {
+        time += Time.deltaTime * timeScale;
+        if (time >= worldTime * 60)
         {
             time = 0;
             days++;
+        }
+    }
+    public void Lighting()
+    {
+        skyMaterial.SetFloat("_DayTime", time / (worldTime * 60));
+        skyMaterial.SetColor("_HorizonColor", currentWeather.horizonColor.Evaluate(time / (worldTime * 60)));
+        skyMaterial.SetColor("_ZenithColor", currentWeather.zenithColor.Evaluate(time / (worldTime * 60)));
+
+        skyLight.color = currentWeather.lightColor.Evaluate(time / (worldTime * 60));
+        skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+
+        RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue, 0.1f * Time.deltaTime);
+    }
+
+    public void CycleWeather()
+    {
+        if (weatherCooldown <= 0)
+        {
+            currentWeather = null;
+            foreach (WeatherEvent w in weather)
+            {
+                if (EvoUtils.PercentChance(w.chanceToHappen))
+                {
+                    SetWeather(w);
+                }
+            }
+            if (currentWeather == null)
+            {
+                SetWeather(defaultWeather);
+            }
+        }
+        weatherCooldown -= Time.deltaTime * timeScale;
+    }
+
+    public void SetWeather(WeatherEvent weather)
+    {
+        currentWeather = weather;
+        weatherCooldown = Random.Range(weather.minTime, weather.maxTime) * 60;
+        spawns.Clear();
+        foreach (MobSpawn spawn in spawnPool)
+        {
+            spawns.Add(spawn);
+        }
+        foreach (MobSpawn spawn in weather.spawnPool)
+        {
+            spawns.Add(spawn);
         }
     }
 }
@@ -79,4 +144,13 @@ public class MobSpawn
     public bool leader;
     public bool autoTarget;
     public float chanceToSpawn;
+
+    public MobSpawnConditions conditions;
+}
+
+[System.Serializable]
+public class MobSpawnConditions
+{
+    public float minTime = 0;
+    public float maxTime = 12;
 }

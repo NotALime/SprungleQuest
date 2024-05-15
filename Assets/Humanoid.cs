@@ -122,7 +122,7 @@ public class Humanoid : MonoBehaviour
 
             if (rb.velocity.y > 0)
             {
-                rb.AddForce(Vector3.down * gravity, ForceMode.Force);
+                rb.AddForce(Vector3.down * gravity * 2, ForceMode.Force);
             }
         }
         else
@@ -198,7 +198,7 @@ public class Humanoid : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * entity.mob.scale * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * entity.mob.scale * 0.5f + 0.2f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;

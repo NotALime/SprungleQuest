@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddac7c1fe6d2424092359e2124bd33c, type: 3}
+  m_Name: Rain
+  m_EditorClassIdentifier: 
+  horizonColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0.101960786, a: 1}
+    key1: {r: 0.12156863, g: 0.26759946, b: 0.48235294, a: 1}
+    key2: {r: 0.48771805, g: 0.55095464, b: 0.754717, a: 0}
+    key3: {r: 0.28159487, g: 0.3358863, b: 0.5283019, a: 0}
+    key4: {r: 0.125534, g: 0.14588997, b: 0.2924528, a: 0}
+    key5: {r: 0, g: 0, b: 0.1, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 9445
+    ctime2: 27178
+    ctime3: 42212
+    ctime4: 54741
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  zenithColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0.101960786, a: 1}
+    key1: {r: 0.12156863, g: 0.26759946, b: 0.48235294, a: 1}
+    key2: {r: 0.48771805, g: 0.55095464, b: 0.754717, a: 0}
+    key3: {r: 0.28159487, g: 0.3358863, b: 0.5283019, a: 0}
+    key4: {r: 0.125534, g: 0.14588997, b: 0.2924528, a: 0}
+    key5: {r: 0, g: 0, b: 0.1, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 9445
+    ctime2: 27178
+    ctime3: 42212
+    ctime4: 54741
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  lightColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0.101960786, a: 1}
+    key1: {r: 0.12156863, g: 0.26759946, b: 0.48235294, a: 1}
+    key2: {r: 0.48771805, g: 0.55095464, b: 0.754717, a: 0}
+    key3: {r: 0.28159487, g: 0.3358863, b: 0.5283019, a: 0}
+    key4: {r: 0.125534, g: 0.14588997, b: 0.2924528, a: 0}
+    key5: {r: 0, g: 0, b: 0.1, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 9445
+    ctime2: 27178
+    ctime3: 42212
+    ctime4: 54741
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  minTime: 6
+  maxTime: 24
+  fogValue: 0.002
+  chanceToHappen: 0.3
+  spawnPool:
+  - mob: {fileID: 9031539433346217838, guid: bcf94d0a38e5cdb41b94d9f39ba5f39c, type: 3}
+    maxGroupSize: 15
+    leader: 1
+    autoTarget: 1
+    chanceToSpawn: 0.01
+    conditions:
+      minTime: 0
+      maxTime: 12
