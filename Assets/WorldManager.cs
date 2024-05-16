@@ -27,6 +27,8 @@ public class WorldManager : MonoBehaviour
 
     public Light skyLight;
 
+    public Material window;
+
     float weatherCooldown;
 
     private void Start()
@@ -45,7 +47,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach (MobSpawn spawn in spawns)
         {
-            if (time > spawn.conditions.minTime * 60 && time < spawn.conditions.maxTime * 60)
+            if (time > spawn.conditions.minTime * 60 || time < spawn.conditions.maxTime * 60)
             {
                 if (EvoUtils.PercentChance(spawn.chanceToSpawn, true))
                 {
@@ -90,14 +92,19 @@ public class WorldManager : MonoBehaviour
     }
     public void Lighting()
     {
+        window.color = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
         skyMaterial.SetFloat("_DayTime", time / (worldTime * 60));
-        skyMaterial.SetColor("_HorizonColor", currentWeather.horizonColor.Evaluate(time / (worldTime * 60)));
-        skyMaterial.SetColor("_ZenithColor", currentWeather.zenithColor.Evaluate(time / (worldTime * 60)));
+        skyMaterial.SetColor("_HorizonColor", Color.LerpUnclamped(skyMaterial.GetColor("_HorizonColor"), currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale));
+        skyMaterial.SetColor("_ZenithColor", Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale));
 
-        skyLight.color = currentWeather.lightColor.Evaluate(time / (worldTime * 60));
-        skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+        skyMaterial.SetFloat("StarOpacity", Mathf.LerpUnclamped(skyMaterial.GetFloat("_StarOpacity"), System.Convert.ToInt32(currentWeather.starsEnabled), Time.deltaTime * timeScale));
 
-        RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue, 0.1f * Time.deltaTime);
+        RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
+       // skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+       // RenderSettings.ambientLight = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
+
+        RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue,  Time.deltaTime);
+        RenderSettings.fogColor = Color.LerpUnclamped(RenderSettings.fogColor, currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
     }
 
     public void CycleWeather()

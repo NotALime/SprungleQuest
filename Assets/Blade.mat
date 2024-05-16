@@ -86,15 +86,15 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GlowHighlight: 0
-    - _Glowspread: 0.2
+    - _Glowspread: 0
     - _Hueshift: 0
-    - _Metallic: 0
+    - _Metallic: 0.2
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Parallax: 0.02
     - _Saturation: 1
-    - _Smoothness: 0
+    - _Smoothness: 0.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

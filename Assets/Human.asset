@@ -46,11 +46,11 @@ MonoBehaviour:
   maxScale: 1.2
   stats:
     minHealth: 0.9
-    maxHealth: 1.1
+    maxHealth: 1.4
     minDamage: 0.9
     maxDamage: 1.1
     minSpeed: 0.9
-    maxSpeed: 1.1
+    maxSpeed: 1.3
     minAttackSpeed: 0.9
     maxAttackSpeed: 1.1
   generatesName: 1

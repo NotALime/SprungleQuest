@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using System.Diagnostics.Tracing;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Entity : MonoBehaviour
 {
@@ -48,6 +51,11 @@ public class Entity : MonoBehaviour
         if (currentIframe <= 0)
         {
             baseEntity.tookDamage = false;
+        }
+
+        if (mob.effects.onIdle != null)
+        {
+            mob.effects.onIdle.Invoke(this);
         }
     }
 
@@ -106,12 +114,10 @@ public class Entity : MonoBehaviour
                     ai.mob.input.z = 1;
                 }
             }
-            if (ai.mob.input.z == 0)
+
+            if (ai.GetClosestTarget() != null)
             {
-                if (ai.GetClosestTarget() != null && ai.mob.target == null)
-                {
-                        ai.mob.target = ai.GetClosestTarget();
-                }
+                ai.mob.target = ai.GetClosestTarget();
             }
         }
     }
@@ -124,6 +130,41 @@ public class Entity : MonoBehaviour
             e.mob.secondaryInput = false;
             yield return new WaitForSeconds(stunTime);
             e.mob.aiEnabled = true;
+    }
+
+    public static void DetectionField(Entity origin, float radius = 10)
+    {
+        Collider[] detect = Physics.OverlapSphere(origin.transform.position, radius);
+
+        foreach (Collider c in detect)
+        {
+            if (c.GetComponent<Entity>())
+            {
+                Entity e = c.GetComponent<Entity>();
+                if (Entity.CompareTeams(e, origin))
+                {
+                    e.mob.target = origin;
+                }
+            }
+        }
+    }
+
+    public static IEnumerator TalkCycle(Entity entity, string dialogue)
+    {
+        if (entity.baseEntity.dialogue == null)
+        {
+            TextMeshPro text = Instantiate(GameSettings.dialogue, entity.transform.position + Vector3.up * 1.5f, entity.transform.rotation);
+            text.transform.parent = entity.transform;
+            entity.baseEntity.dialogue = text;
+            for (int i = 0; i < dialogue.Length; i++)
+            {
+                text.text += dialogue[i];
+                entity.baseEntity.idleSound.PlaySound();
+                yield return new WaitForSeconds(0.05f);
+            }
+            yield return new WaitForSeconds(2);
+            Destroy(text.gameObject);
+        }
     }
 
     public void SetChunk()
@@ -218,16 +259,23 @@ public class Entity : MonoBehaviour
     IEnumerator destroyHealthBarCountdown;
     virtual public bool TakeDamage(float damage, Entity damager = null, bool ignoreIFrames = false)
     {
-        baseEntity.tookDamage = true;
         if (!dead && (currentIframe <= 0 || ignoreIFrames))
         {
             GameSettings.hitSound.PlaySound();
             currentIframe = iframe;
+            if (mob.effects.onHurt != null)
+            {
+                mob.effects.onHurt.Invoke(this);
+            }
 
             float damageMultiplier = 1;
 
             if (damager != null)
             {
+                if (damager.mob.effects.onHit != null)
+                {
+                    damager.mob.effects.onHit.Invoke(this);
+                }
                 damageMultiplier = damager.mob.stats.damage;
 
                 if (baseEntity.healthbar == null)
@@ -271,6 +319,13 @@ public class Entity : MonoBehaviour
                         }
                     }
                 }
+                if (damager != null)
+                {
+                    if (mob.effects.onKill != null)
+                    {
+                        damager.mob.effects.onKill.Invoke(this);
+                    }
+                }
                 Destroy(this.gameObject);
             }
 
@@ -279,8 +334,15 @@ public class Entity : MonoBehaviour
                 return true;
             }
         }
+        baseEntity.tookDamage = true;
         return false;
     }
+}
+[System.Serializable]
+public class DialogueLine
+{
+    public string[] lines;
+    public float chance = 0.1f;
 }
 
 [System.Serializable]
@@ -295,9 +357,14 @@ public class BaseEntity
     public bool tookDamage;
 
     public Healthbar healthbar;
+    public TextMeshPro dialogue;
 
     public GameObject deathEffect;
+
+    [Header("Sounds")]
     public AudioPlayer hurtSound;
+    public AudioPlayer idleSound;
+
 }
 
 [System.Serializable]
@@ -311,6 +378,7 @@ public class Mob
     public AIModule behavior;
     public bool aiEnabled;
 
+    public FunctionEffects effects;
     [Header("Team")]
     public Entity target;
     public string team = ""; //"" = hostile, "player" = player,
@@ -349,8 +417,16 @@ public class MobStats
 
     public float visionRange = 1;
 }
-
 [System.Serializable]
+public class FunctionEffects
+{
+    public UnityEvent<Entity> onHit;
+    public UnityEvent<Entity> onIdle;
+    public UnityEvent<Entity> onHurt;
+    public UnityEvent<Entity> onKill;
+}
+
+    [System.Serializable]
 public class MobDrop
 {
     public Item item;

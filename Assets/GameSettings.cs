@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Terra.Terrain;
 using UnityEngine;
+using TMPro;
 
 public class GameSettings : MonoBehaviour
 {
@@ -18,8 +19,23 @@ public class GameSettings : MonoBehaviour
     public Entity playerReference;
     public static Entity player;
     public static float chunkRange;
+
+    public TextMeshProUGUI titleText;
+    public static Animator titleAnim;
+    public static AudioPlayer titleSound;
+    public TextMeshPro dialogueText;
+    public static TextMeshProUGUI title;
+    public static TextMeshPro dialogue;
+
     private void Start()
     {
+        title = titleText;
+        dialogue = dialogueText;
+
+        title.text = "";
+        dialogue.text = "";
+        titleAnim = title.GetComponent<Animator>();
+        titleSound = title.GetComponent<AudioPlayer>();
         player = playerReference;
         hitBar = onHitHealthbar;
         chunkRange = FindObjectOfType<TerraSettings>().ColliderGenerationExtent;
@@ -40,20 +56,10 @@ public class GameSettings : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public static void DetectionField(Entity origin, float radius = 10)
+    public static void ShowTitle(string text, AudioSource sound = null)
     {
-        Collider[] detect = Physics.OverlapSphere(origin.transform.position, radius);
-
-        foreach (Collider c in detect)
-        {
-            if (c.GetComponent<Entity>())
-            {
-                Entity e = c.GetComponent<Entity>();
-                if (Entity.CompareTeams(e, origin))
-                {
-                    e.mob.target = origin;
-                }
-            }
-        }
+        title.text = text;
+        titleAnim.SetTrigger("Play");
+        titleSound.PlaySound();
     }
 }

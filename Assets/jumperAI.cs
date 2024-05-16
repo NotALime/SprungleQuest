@@ -123,12 +123,12 @@ public class jumperAI : MonoBehaviour
             Vector3 forwardForceInput = entity.mob.orientation.forward * entity.mob.input.z + entity.mob.orientation.right * entity.mob.input.x;
 
             rb.AddForce(forwardForceInput * jumpForward * entity.mob.stats.moveSpeed * Random.Range(0.8f, 1.2f));
+            yield return new WaitUntil(() => !IsGrounded());
             yield return new WaitUntil(() => IsGrounded());
             for (int i = 0; i < projectileAmount; i++)
             {
                 entity.SpawnProjectile(landProjectile, transform.position, Quaternion.Euler(new Vector3(Random.Range(-projectileSpread, projectileSpread), Random.Range(-projectileSpread, projectileSpread), Random.Range(-projectileSpread, projectileSpread))));
             }
-            yield return new WaitForSeconds(0.1f);
             attacking = false;
             canAttack = true;
         }

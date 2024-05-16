@@ -167,8 +167,10 @@ MonoBehaviour:
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
+    dialogue: {fileID: 0}
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
+    idleSound: {fileID: 0}
   drops: []
   renderer: []
   iframe: 0
@@ -200,6 +202,19 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     aiEnabled: 0
+    effects:
+      onHit:
+        m_PersistentCalls:
+          m_Calls: []
+      onIdle:
+        m_PersistentCalls:
+          m_Calls: []
+      onHurt:
+        m_PersistentCalls:
+          m_Calls: []
+      onKill:
+        m_PersistentCalls:
+          m_Calls: []
     target: {fileID: 0}
     team: player
     leader: {fileID: 0}

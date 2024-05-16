@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Humanoid))]
@@ -56,60 +58,62 @@ public class Inventory : MonoBehaviour
             items[hotbarIndex].gameObject.SetActive(false);
             HoldItem(items[hotbarIndex]);
         }
-
     }
 
-    public void Update()
-    {
-        owner.entity.AI();
-        if (items[hotbarIndex] != null)
+        void Update()
         {
-            items[hotbarIndex].transform.position = hand.transform.position;
-            items[hotbarIndex].transform.rotation = hand.transform.rotation;
-            if (owner.entity.player == false && owner.entity.mob.aiEnabled)
+            if (items[hotbarIndex] != null)
             {
-                if (owner.entity.mob.target != null)
-                {
-                    if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
-                    {
-                        items[hotbarIndex].gameObject.SetActive(false);
-                        hotbarIndex = Random.Range(0, items.Length);
-                        HoldItem(items[hotbarIndex]);
-                    }
-                }
+                items[hotbarIndex].transform.position = hand.transform.position;
+                items[hotbarIndex].transform.rotation = hand.transform.rotation;
+            }
+        }
+        private void FixedUpdate()
+        {
+            if (items[hotbarIndex] != null)
+            {
+                items[hotbarIndex].onIdle.Invoke(this);
+            }
 
-                items[hotbarIndex].ai.Invoke(this);
-                foreach (Item item in accessories)
+            owner.entity.AI();
+            if (items[hotbarIndex] != null)
+            {
+                if (owner.entity.player == false && owner.entity.mob.aiEnabled)
                 {
+                    if (owner.entity.mob.target != null)
+                    {
+                        if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
+                        {
+                            items[hotbarIndex].gameObject.SetActive(false);
+                            hotbarIndex = Random.Range(0, items.Length);
+                            HoldItem(items[hotbarIndex]);
+                        }
+                    }
+
+                    items[hotbarIndex].ai.Invoke(this);
+                    foreach (Item item in accessories)
+                    {
                         item.ai.Invoke(this);
-                }
-            }
-            if (owner.entity.mob.aiEnabled)
-            {
-                if (items[hotbarIndex].cooldown < 0)
-                {
-                    if (owner.entity.mob.primaryInput)
-                    {
-                        items[hotbarIndex].onUsePrimary.Invoke(this);
                     }
                 }
-                if (owner.entity.mob.secondaryInput && items[hotbarIndex])
+                if (owner.entity.mob.aiEnabled)
                 {
-                    items[hotbarIndex].onUseSecondary.Invoke(this);
+                    if (items[hotbarIndex].cooldown < 0)
+                    {
+                        if (owner.entity.mob.primaryInput)
+                        {
+                            items[hotbarIndex].onUsePrimary.Invoke(this);
+                        }
+                    }
+                    if (owner.entity.mob.secondaryInput && items[hotbarIndex])
+                    {
+                        items[hotbarIndex].onUseSecondary.Invoke(this);
+                    }
                 }
             }
-        }
 
-        handAnimator.SetBool("Holding", (items[hotbarIndex] != null));
-    }
-
-    private void FixedUpdate()
-    {
-        if (items[hotbarIndex] != null)
-        {
-            items[hotbarIndex].onIdle.Invoke(this);
+            handAnimator.SetBool("Holding", (items[hotbarIndex] != null));
         }
-    }
 
     private void OnDestroy()
     {
