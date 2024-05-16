@@ -106,6 +106,7 @@ MonoBehaviour:
   maxTime: 12
   fogValue: 0.01
   starsEnabled: 0
+  wetness: 0.3
   chanceToHappen: 0.1
   spawnPool:
   - mob: {fileID: 3847118176123637949, guid: 7b9048d0e66ef8e409f83e5580e54076, type: 3}

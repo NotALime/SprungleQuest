@@ -12,6 +12,7 @@ public class WeatherEvent : ScriptableObject
     public float maxTime = 24;
     public float fogValue = 0;
     public bool starsEnabled;
+    public float wetness;
     public float chanceToHappen = 0.01f;
     public MobSpawn[] spawnPool;
 }

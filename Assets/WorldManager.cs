@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class WorldManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class WorldManager : MonoBehaviour
     public float timeScale = 1;
 
     public Material skyMaterial;
+    public static float wetness;
+
+    public Shader[] wetShader;
 
     public Light skyLight;
 
@@ -34,6 +38,21 @@ public class WorldManager : MonoBehaviour
     private void Start()
     {
         SetWeather(defaultWeather);
+
+        window.color = currentWeather.lightColor.Evaluate(time / (worldTime * 60));
+        skyMaterial.SetFloat("_DayTime", time / (worldTime * 60));
+        skyMaterial.SetColor("_HorizonColor", currentWeather.horizonColor.Evaluate(time / (worldTime * 60)));
+        skyMaterial.SetColor("_ZenithColor", currentWeather.zenithColor.Evaluate(time / (worldTime * 60)));
+
+        skyMaterial.SetFloat("StarOpacity", System.Convert.ToInt32(currentWeather.starsEnabled));
+        wetness = currentWeather.wetness;
+        Shader.SetGlobalFloat("_Wetness", wetness);
+        RenderSettings.ambientLight =currentWeather.lightColor.Evaluate(time / (worldTime * 60));
+        // skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+        // RenderSettings.ambientLight = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
+
+        RenderSettings.fogDensity = currentWeather.fogValue;
+        RenderSettings.fogColor = currentWeather.horizonColor.Evaluate(time / (worldTime * 60));
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -98,7 +117,8 @@ public class WorldManager : MonoBehaviour
         skyMaterial.SetColor("_ZenithColor", Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale));
 
         skyMaterial.SetFloat("StarOpacity", Mathf.LerpUnclamped(skyMaterial.GetFloat("_StarOpacity"), System.Convert.ToInt32(currentWeather.starsEnabled), Time.deltaTime * timeScale));
-
+        wetness = Mathf.LerpUnclamped(wetness, currentWeather.wetness, Time.deltaTime * timeScale);
+        Shader.SetGlobalFloat("_Wetness", wetness);
         RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
        // skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
        // RenderSettings.ambientLight = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);

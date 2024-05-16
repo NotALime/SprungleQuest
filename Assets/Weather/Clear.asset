@@ -102,10 +102,11 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
-  minTime: 3
-  maxTime: 12
+  minTime: 6
+  maxTime: 24
   fogValue: 0
   starsEnabled: 1
+  wetness: 0
   chanceToHappen: 1
   spawnPool:
   - mob: {fileID: 0}
