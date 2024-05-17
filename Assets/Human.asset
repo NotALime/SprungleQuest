@@ -49,8 +49,8 @@ MonoBehaviour:
     maxHealth: 1.4
     minDamage: 0.9
     maxDamage: 1.1
-    minSpeed: 0.9
-    maxSpeed: 1.3
+    minSpeed: 0.8
+    maxSpeed: 1.2
     minAttackSpeed: 0.9
     maxAttackSpeed: 1.1
   generatesName: 1
@@ -63,9 +63,7 @@ MonoBehaviour:
       pieces: []
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
-  - {fileID: 5115609169192176431, guid: 846fbe0316766444d86d24b582870aa7, type: 3}
-  - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
-  - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
+  - {fileID: 4714690964577246778, guid: 54d28019f7f468145bf8f858f717bb7f, type: 3}
   loadoutSize: 2
   accessoryPool:
   - {fileID: 2963063923627930831, guid: c1990503ef0b9ba4eaa94531374d22f0, type: 3}

@@ -97,14 +97,7 @@ public class WeaponMelee : MonoBehaviour
             inv.owner.movementEnabled = true;
             attacking = false;
             damageCollider.enabled = false;
-            if (inv.owner.entity.mob.secondaryInput)
-            {
-                inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), 10 * Time.deltaTime);
-            }
-            else
-            {
-                inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 5 * Time.deltaTime);
-            }
+            inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 5 * Time.deltaTime);
         }
         if(blocked)
         {
@@ -155,6 +148,8 @@ public class WeaponMelee : MonoBehaviour
     public void Block(Inventory inv)
     {
         rotDir.z = -90;
+        inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), 20 * Time.deltaTime);
+
         inv.owner.entity.currentIframe = 0.05f;
         inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput || blocked && !attacking);
         if (inv.owner.entity.baseEntity.tookDamage == true && item.cooldown <= 0)

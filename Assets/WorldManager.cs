@@ -48,8 +48,8 @@ public class WorldManager : MonoBehaviour
         skyMaterial.SetColor("_ZenithColor", currentWeather.zenithColor.Evaluate(time / (worldTime * 60)));
 
         skyMaterial.SetFloat("StarOpacity", System.Convert.ToInt32(currentWeather.starsEnabled));
-        wetness = currentWeather.wetness;
-        Shader.SetGlobalFloat("_Wetness", wetness);
+     //   wetness = currentWeather.wetness;
+     //   Shader.SetGlobalFloat("_Wetness", wetness);
         RenderSettings.ambientLight =currentWeather.lightColor.Evaluate(time / (worldTime * 60));
         // skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
         // RenderSettings.ambientLight = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);

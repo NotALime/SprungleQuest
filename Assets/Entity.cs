@@ -88,6 +88,16 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public static void WalkToPos(Entity ai)
+    {
+        Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
+
+        ai.mob.orientation.rotation = Quaternion.LookRotation(dir);
+    }
+    public static void WalkForward(Entity ai)
+    {
+        ai.mob.input = Vector3.forward;
+    }
     public static void PatrolAI(Entity ai)
     {
         if (ai.mob.target == null)
@@ -105,9 +115,9 @@ public class Entity : MonoBehaviour
                     {
                         Vector3 lookDir = Random.insideUnitSphere;
                         lookDir.y = 0;
-                        ai.mob.orientation.localRotation = Quaternion.LookRotation(lookDir);
+                        ai.mob.orientation.forward = lookDir.normalized;
+                        Debug.Log("rotated patroller");
                     }
-                    Debug.Log("rotated patroller");
                 }
                 else
                 {
@@ -379,6 +389,8 @@ public class Mob
     public bool aiEnabled;
 
     public FunctionEffects effects;
+    [HideInInspector]
+    public Vector3 targetPoint;
     [Header("Team")]
     public Entity target;
     public string team = ""; //"" = hostile, "player" = player,
