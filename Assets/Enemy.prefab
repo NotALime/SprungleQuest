@@ -5672,6 +5672,9 @@ MonoBehaviour:
     - Die!
     - Perish!
     - Feel my wrath! Huzzah!
+    - I eat adventurers like you for breakfast!
+    - You stand no chance!
+    - Meet your demise!
     chance: 0.4
   overTime: 0
   differentOnAttacking: 0
@@ -5696,7 +5699,6 @@ MonoBehaviour:
     - Owie!
     - Oof!
     - Yowza!
-    - Ouchie!
     - Ouchie!
     chance: 0.5
   overTime: 0

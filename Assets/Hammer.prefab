@@ -755,8 +755,8 @@ MonoBehaviour:
   item: {fileID: 6592131370702825242}
   attackCombo:
   - animation: SwingOver
-    attackCooldown: 0.6
-    thrust: 40
+    attackCooldown: 0.4
+    thrust: 25
     locks: 0
     damage: 50
     knockback: 5000
@@ -773,6 +773,7 @@ MonoBehaviour:
   attacking: 0
   parryRadius: 0
   parryCooldown: 0
+  projectile: {fileID: 0}
 --- !u!65 &1816851510739174796
 BoxCollider:
   m_ObjectHideFlags: 0

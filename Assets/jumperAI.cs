@@ -74,10 +74,13 @@ public class jumperAI : MonoBehaviour
                 {
                     if (Entity.CompareTeams(entity, e.GetComponent<Entity>()))
                     {
-                        e.GetComponent<Entity>().TakeDamage(damage, entity);
-                        if (hitSound != null)
+                        if (e.GetComponent<Entity>().TakeDamage(damage, entity))
                         {
-                            hitSound.PlaySound();
+                            e.GetComponent<Entity>().TakeDamage(damage, entity);
+                            if (hitSound != null)
+                            {
+                                hitSound.PlaySound();
+                            }
                         }
                     }
                 }

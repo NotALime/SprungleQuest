@@ -111,8 +111,6 @@ public class WeaponMelee : MonoBehaviour
             inv.owner.entity.mob.rb.AddForce(inv.owner.flatForwardOrientation() * -500);
         }
 
-        inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput || blocked && !attacking);
-
         previousFrameSecondInput = inv.owner.entity.mob.secondaryInput;
     }
 
@@ -158,6 +156,7 @@ public class WeaponMelee : MonoBehaviour
     {
         rotDir.z = -90;
         inv.owner.entity.currentIframe = 0.05f;
+        inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput || blocked && !attacking);
         if (inv.owner.entity.baseEntity.tookDamage == true && item.cooldown <= 0)
         {
             inv.owner.entity.baseEntity.tookDamage = false;

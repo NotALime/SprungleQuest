@@ -160,7 +160,7 @@ public class Entity : MonoBehaviour
             {
                 text.text += dialogue[i];
                 entity.baseEntity.idleSound.PlaySound();
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
             yield return new WaitForSeconds(2);
             Destroy(text.gameObject);
