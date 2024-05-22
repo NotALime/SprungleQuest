@@ -1182,9 +1182,15 @@ MonoBehaviour:
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
+    dialogue: {fileID: 0}
     deathEffect: {fileID: 7264500134733542290}
     hurtSound: {fileID: 3420235616783140608}
-  drops: []
+    idleSound: {fileID: 0}
+  drops:
+  - item: {fileID: 8637673701268767203, guid: 63dbf36613d3299409e18674dee6069e, type: 3}
+    dropChance: 0.01
+    minAmount: 1
+    maxAmount: 1
   renderer:
   - {fileID: 4518383633555934093}
   - {fileID: 2005428040153362030}
@@ -1199,6 +1205,11 @@ MonoBehaviour:
       attackSpeed: 1
       level: 0
       visionRange: 30
+      effects:
+        onHit: []
+        onIdle: []
+        onHurt: []
+        onKill: []
     orientation: {fileID: 4698878296083377941}
     rb: {fileID: 1098454203492961033}
     behavior:
@@ -1218,6 +1229,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     aiEnabled: 1
+    targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
     team: monster
     leader: {fileID: 0}

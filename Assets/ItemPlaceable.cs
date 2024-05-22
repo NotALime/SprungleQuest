@@ -24,6 +24,7 @@ public class ItemPlaceable : MonoBehaviour
             {
                 placed = Instantiate(placeable, hit.point, Quaternion.LookRotation(hit.normal));
             }
+           inv.owner.entity.mob.primaryInput = false;
     }
 
     GameObject placed;

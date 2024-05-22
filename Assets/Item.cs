@@ -24,6 +24,8 @@ public class Item : MonoBehaviour
     [HideInInspector]
     public Rigidbody rb;
 
+    public string itemTag;
+
     private void Start()
     {
         TryGetComponent<Rigidbody>(out rb);

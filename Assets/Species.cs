@@ -78,15 +78,15 @@ public class NameStructure
 
     public string GenerateName()
     {
-        string chosenName = nameStructure[Random.Range(0, nameStructure.Length)];
-
-        foreach(NamePiece p in pieces)
-        {
-            Debug.Log("Generating name...");
-            chosenName.Replace(p.toReplace, p.pieces[Random.Range(0, p.pieces.Length)]);
-        }
-        Debug.Log("Generated name " + chosenName);
-        return chosenName;
+ //     string chosenName = nameStructure[Random.Range(0, nameStructure.Length)];
+ //
+ //     foreach(NamePiece p in pieces)
+ //     {
+ //         Debug.Log("Generating name...");
+ //         chosenName.Replace(p.toReplace, p.pieces[Random.Range(0, p.pieces.Length)]);
+ //     }
+ //     Debug.Log("Generated name " + chosenName);
+      return "Gluh";
     }
 }
 [System.Serializable]

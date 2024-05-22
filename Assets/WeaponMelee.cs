@@ -1,141 +1,162 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
+using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
-using JetBrains.Annotations;
-using System.Security.Principal;
-using System.Collections.Concurrent;
 
 public class WeaponMelee : MonoBehaviour
 {
     public Item item;
     public List<Attack> attackCombo;
     public int attackIndex;
-
     public BoxCollider damageCollider;
-
     public bool holdAttack;
-
+    public bool canBlock;
     public AudioPlayer hitSound;
     public AudioPlayer parrySound;
+    public float parryRadius = 4;
+    public float parryCooldown = 0.5f;
+    public Projectile projectile;
+
+    public float swingRange;
+
+    private bool attacking;
+    private bool blocked;
+    private bool previousSecondaryInput;
+    private Vector3 thrustDir;
+    private Vector3 rotDir = Vector3.zero;
 
     private void Start()
     {
-        item = GetComponent<Item>();    
+        item = GetComponent<Item>();
     }
+    bool charging;
+
     public void Attack(Inventory inv)
     {
-        inv.owner.entity.mob.secondaryInput = false;
-        if (!holdAttack)
+        if (!inv.owner.entity.mob.secondaryInput)
         {
-            inv.owner.entity.mob.primaryInput = false;
+            inv.owner.entity.mob.secondaryInput = false;
+            if (attackIndex < attackCombo.Count - 1 && item.cooldown < 0 && item.cooldown > -0.1)
+            {
+                attackIndex++;
+            }
+            else
+            {
+                attackIndex = 0;
+            }
+
+            attacking = true;
+            rotDir.z = Random.Range(-90 - swingRange, -110 + swingRange);
+
+            Attack currentAttack = attackCombo[attackIndex];
+
+            inv.handAnimator.SetTrigger(currentAttack.animation);
+            if (!currentAttack.charge || inv.owner.entity.mob.primaryInput == false)
+            {
+                ExecuteAttack(inv, currentAttack);
+            }
+            else
+            {
+                ChargeAttack(inv, currentAttack);
+            }
         }
-        if (attackIndex < attackCombo.Count - 1 && item.cooldown < 0 && item.cooldown > -0.2)
-        {
-            attackIndex++;
-        }
-        else
-        {
-            attackIndex = 0;
-        }
+    }
 
-        rotDir.z = Random.Range(-50, -130);
+    private void ExecuteAttack(Inventory inv, Attack attack)
+    {
+        inv.owner.entity.mob.primaryInput = false;
 
-        inv.handAnimator.speed = (1 / attackCombo[attackIndex].attackCooldown) * inv.owner.entity.mob.stats.attackSpeed;
-        inv.handAnimator.SetTrigger(attackCombo[attackIndex].animation);
+        attack.sound.PlaySound();
+        item.cooldown = attack.attackCooldown / inv.owner.entity.mob.stats.attackSpeed;
+        attack.attack.Invoke(inv);
 
-        attackCombo[attackIndex].sound.PlaySound();
-
-        item.cooldown = (attackCombo[attackIndex].attackCooldown) / inv.owner.entity.mob.stats.attackSpeed;
-        attackCombo[attackIndex].attack.Invoke(inv);
+        inv.handAnimator.speed = ((1 / attack.attackCooldown) * inv.owner.entity.mob.stats.attackSpeed);
 
         thrustDir = inv.owner.flatForwardOrientation();
-
         inv.owner.rig.armRight.shoulder.transform.rotation = inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir);
 
-        if (inv.owner.entity.player && attackCombo[attackIndex].locks)
+        if (inv.owner.entity.player && attack.locks)
         {
-            inv.owner.entity.currentIframe = (attackCombo[attackIndex].attackCooldown) / inv.owner.entity.mob.stats.attackSpeed + 0.2f;
+            inv.owner.entity.currentIframe = attack.attackCooldown / inv.owner.entity.mob.stats.attackSpeed + 0.2f;
         }
-        attacking = true;
+        attack.currentChargeTime = 0;
     }
-    [HideInInspector]
-    public bool attacking;
-    Vector3 thrustDir;
 
-    Vector3 rotDir = Vector3.zero;
+    float chargeMultiplier;
+    private void ChargeAttack(Inventory inv, Attack attack)
+    {
+        charging = true;
+        inv.handAnimator.speed = Mathf.Clamp01(1 - (attack.currentChargeTime / attack.chargeTime));
+        attack.currentChargeTime += Time.deltaTime * inv.owner.entity.mob.stats.attackSpeed;
+    }
 
-    bool previousSecondaryInput;
     public void Idle(Inventory inv)
     {
         if (item.cooldown >= 0)
         {
             if (attacking)
             {
-                if (attackCombo[attackIndex].locks)
-                {
-                    inv.owner.movementEnabled = false;
-                }
-                else
-                {
-                    inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), 5 * Time.deltaTime);
-                }
-                inv.owner.entity.mob.rb.AddForce(thrustDir * attackCombo[attackIndex].thrust);
-                DamageCheck(inv);
+                HandleAttackIdle(inv);
             }
             else
             {
-                inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), 10 * Time.deltaTime);
+                RotateShoulder(inv, 10);
             }
         }
         else
         {
-            blocked = false;
-            inv.handAnimator.speed = 1;
-            inv.owner.movementEnabled = true;
-            attacking = false;
-            damageCollider.enabled = false;
-            inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 5 * Time.deltaTime);
+            ResetIdleState(inv);
         }
-        if(blocked)
+
+        if (blocked)
         {
             inv.owner.entity.mob.rb.AddForce(inv.owner.flatForwardOrientation() * -500);
         }
 
-        previousFrameSecondInput = inv.owner.entity.mob.secondaryInput;
+        previousSecondaryInput = inv.owner.entity.mob.secondaryInput;
     }
 
-    public float parryRadius = 4;
-    public float parryCooldown = 0.5f;
+    private void HandleAttackIdle(Inventory inv)
+    {
+        var currentAttack = attackCombo[attackIndex];
+        if (currentAttack.locks)
+        {
+            inv.owner.movementEnabled = false;
+        }
+        else
+        {
+            RotateShoulder(inv, 5);
+        }
 
-    bool blocked;
-    bool previousFrameSecondInput;
+        inv.owner.entity.mob.rb.AddForce(thrustDir * currentAttack.thrust);
+        DamageCheck(inv);
+    }
+
+    private void RotateShoulder(Inventory inv, float speed)
+    {
+        inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), speed * Time.deltaTime);
+    }
+
+    private void ResetIdleState(Inventory inv)
+    {
+        inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput && canBlock && !attacking);
+        blocked = false;
+        charging = false;
+        inv.handAnimator.speed = 1;
+        inv.owner.movementEnabled = true;
+        attacking = false;
+        damageCollider.enabled = false;
+        inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 5 * Time.deltaTime);
+    }
 
     public void Parry(Inventory inv)
     {
-        if (previousFrameSecondInput == false && inv.owner.entity.mob.secondaryInput == true)
+        if (!previousSecondaryInput && inv.owner.entity.mob.secondaryInput)
         {
             attacking = false;
-            Collider[] projectileCheck = Physics.OverlapSphere(inv.owner.entity.mob.orientation.position + inv.owner.entity.mob.orientation.forward, parryRadius);
-
-            bool detectedProjectile = false;
-
-            foreach (Collider col in projectileCheck)
-            {
-                if (col.GetComponent<Projectile>())
-                {
-                    Projectile proj = col.GetComponent<Projectile>();
-
-                    proj.origin = inv.owner.entity;
-                    proj.rb.velocity = inv.owner.entity.mob.orientation.forward * proj.rb.velocity.magnitude;
-
-                    detectedProjectile = true;
-                }
-            }
-
-            if (detectedProjectile)
+            if (TryDeflectProjectile(inv))
             {
                 item.cooldown = parryCooldown;
                 inv.owner.entity.mob.secondaryInput = false;
@@ -145,138 +166,147 @@ public class WeaponMelee : MonoBehaviour
         }
     }
 
-    public void Block(Inventory inv)
+    private bool TryDeflectProjectile(Inventory inv)
     {
-        rotDir.z = -90;
-        inv.owner.rig.armRight.shoulder.transform.rotation = Quaternion.SlerpUnclamped(inv.owner.rig.armRight.shoulder.transform.rotation, inv.owner.entity.mob.orientation.rotation * Quaternion.Euler(rotDir), 20 * Time.deltaTime);
-
-        inv.owner.entity.currentIframe = 0.05f;
-        inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput || blocked && !attacking);
-        if (inv.owner.entity.baseEntity.tookDamage == true && item.cooldown <= 0)
+        Collider[] projectileCheck = Physics.OverlapSphere(inv.owner.entity.mob.orientation.position + inv.owner.entity.mob.orientation.forward, parryRadius);
+        foreach (Collider col in projectileCheck)
         {
-            inv.owner.entity.baseEntity.tookDamage = false;
-            if (!blocked)
+            if (col.GetComponent<Projectile>() is Projectile proj)
             {
-                rotDir.z = -70;
-                inv.owner.entity.currentIframe = parryCooldown;
-
-                Entity.Stun(inv.owner.entity, parryCooldown);
-                item.cooldown = parryCooldown;
-                inv.owner.entity.mob.secondaryInput = false;
-                blocked = true;
-                parrySound.PlaySound();
+                proj.origin = inv.owner.entity;
+                proj.rb.velocity = inv.owner.entity.mob.orientation.forward * proj.rb.velocity.magnitude;
+                return true;
             }
         }
+        return false;
+    }
+
+    public void Block(Inventory inv)
+    {
+        if (item.cooldown <= 0 && !attacking)
+        {
+            rotDir.z = -90;
+            RotateShoulder(inv, 20);
+            inv.owner.entity.currentIframe = 0.05f;
+
+            if (inv.owner.entity.baseEntity.tookDamage && item.cooldown <= 0)
+            {
+                inv.owner.entity.baseEntity.tookDamage = false;
+                if (!blocked)
+                {
+                    ExecuteBlock(inv);
+                }
+            }
+        }
+    }
+
+    private void ExecuteBlock(Inventory inv)
+    {
+        rotDir.z = -70;
+        inv.owner.entity.currentIframe = parryCooldown;
+        item.cooldown = parryCooldown;
+        Entity.Stun(inv.owner.entity, parryCooldown);
+        inv.owner.entity.mob.secondaryInput = false;
+        blocked = true;
+        parrySound.PlaySound();
     }
 
     public void DamageCheck(Inventory inv)
     {
         Collider[] damageCheck = Physics.OverlapBox(damageCollider.transform.position, damageCollider.size * 1.5f, damageCollider.transform.rotation);
-
         foreach (Collider col in damageCheck)
         {
-            if (!attacking)
+            if (!attacking) break;
+
+            if (col.GetComponent<Entity>() is Entity hitEntity && Entity.CompareTeams(inv.owner.entity, hitEntity))
             {
-                break;
-            }
-            if (col.GetComponent<Entity>())
-            {
-                Entity hitEntity = col.GetComponent<Entity>();
-                if (Entity.CompareTeams(inv.owner.entity, hitEntity))
+                Vector3 dir = inv.owner.flatForwardOrientation();
+                hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
+                if (hitEntity.TakeDamage(attackCombo[attackIndex].damage, inv.owner.entity))
                 {
-                    Vector3 dir = inv.owner.flatForwardOrientation();
-                    hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
-                    if (hitEntity.TakeDamage(attackCombo[attackIndex].damage, inv.owner.entity))
-                    {
-                        hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
-                        hitSound.PlaySound();
-                        if (!hitEntity.player)
-                        {
-                        //    StartCoroutine(Entity.Stun(hitEntity, attackCombo[attackIndex].stunTime));
-                        }
-                    }
+                    hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
+                    hitSound.PlaySound();
                 }
             }
         }
     }
-    // private void OnDrawGizmos()
-    // {
-    //         Gizmos.DrawWireCube(damageCollider.transform.position, damageCollider.size, damageCollider.transform.rotation);
-    // }
 
-    [Header("Projectile")]
-    public Projectile projectile;
     public void FireProjectile(Inventory inv)
     {
-            inv.owner.entity.SpawnProjectile(projectile, inv.owner.entity.mob.orientation.position, inv.owner.entity.mob.orientation.rotation);
+        inv.owner.entity.SpawnProjectile(projectile, inv.owner.entity.mob.orientation.position, inv.owner.entity.mob.orientation.rotation);
     }
 
     public void MeleeAI(Inventory ai)
     {
-        if (ai.owner.entity.mob.target != null)
-        {
-            ai.owner.entity.mob.orientation.LookAt(ai.owner.entity.mob.target.mob.orientation);
+        var target = ai.owner.entity.mob.target;
+        if (target == null) return;
 
-            if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= 1f)
+        ai.owner.entity.mob.orientation.LookAt(target.mob.orientation);
+        float distance = Vector2.Distance(ai.transform.position, target.transform.position);
+
+        if (distance <= 1f)
+        {
+            HandleCloseCombat(ai);
+        }
+        else if (distance <= 5)
+        {
+            HandleMidRangeCombat(ai);
+        }
+        else if (distance > 10 * ai.owner.entity.mob.scale)
+        {
+            HandleLongRangeCombat(ai);
+        }
+        else
+        {
+            ai.owner.entity.mob.input.z = 1f;
+        }
+    }
+
+    private void HandleCloseCombat(Inventory ai)
+    {
+        if (ai.owner.entity.mob.input.z > 0)
+        {
+            ai.owner.entity.mob.primaryInput = true;
+        }
+
+        if (EvoUtils.PercentChance(0.5f, true))
+        {
+            ai.owner.entity.mob.input.z = -1;
+        }
+    }
+
+    private void HandleMidRangeCombat(Inventory ai)
+    {
+        ai.owner.entity.mob.primaryInput = false;
+
+        if (ai.owner.entity.mob.input.x != 0)
+        {
+            ai.owner.entity.mob.input.z = 0;
+            if (EvoUtils.PercentChance(0.3f, true))
             {
-                if (ai.owner.entity.mob.input.z > 0)
+                if (EvoUtils.PercentChance(0.5f * ai.owner.entity.mob.stats.level, false))
                 {
-                    ai.owner.entity.mob.primaryInput = true;
+                    ai.owner.entity.mob.secondaryInput = true;
                 }
-                if (EvoUtils.PercentChance(0.5f, true))
-                {
-                    ai.owner.entity.mob.input.z = -1;
-                }
+                ai.owner.entity.mob.input.x = EvoUtils.PercentChance(0.5f, false) ? -0.5f : 0.5f;
             }
-            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) <= 5)
+
+            if (EvoUtils.PercentChance(0.1f * (1 + ai.owner.entity.mob.stats.level), true))
             {
-                ai.owner.entity.mob.primaryInput = false;
-                if (ai.owner.entity.mob.input.x != 0)
-                {
-                    ai.owner.entity.mob.input.z = 0;
-                    if (EvoUtils.PercentChance(0.3f, true))
-                    {
-                        if (EvoUtils.PercentChance(0.5f * ai.owner.entity.mob.stats.level, false))
-                        {
-                            ai.owner.entity.mob.secondaryInput = true;
-                        }
-                        if (EvoUtils.PercentChance(0.5f, false))
-                        {
-                            ai.owner.entity.mob.input.x = -0.5f;
-                        }
-                        else
-                        {
-                            ai.owner.entity.mob.input.x = 0.5f;
-                        }
-                    }
-                    if (EvoUtils.PercentChance(0.1f * (1 + ai.owner.entity.mob.stats.level), true))
-                    {
-                        ai.owner.entity.mob.input = Vector3.forward;
-                        ai.owner.entity.mob.secondaryInput = false;
-                    }
-                }
-            }
-            else if (Vector2.Distance(ai.transform.position, ai.owner.entity.mob.target.transform.position) > 10 * ai.owner.entity.mob.scale)
-            {
-                ai.owner.entity.mob.primaryInput = false;
-                if (ai.owner.entity.mob.input.x == 0)
-                {
-                    if (EvoUtils.PercentChance(0.5f, false))
-                    {
-                        ai.owner.entity.mob.input.x = -0.5f;
-                    }
-                    else
-                    {
-                        ai.owner.entity.mob.input.x = 0.5f;
-                    }
-                }
-                ai.owner.entity.mob.input.z = 0.5f;
-            }
-            else
-            {
-                ai.owner.entity.mob.input.z = 1f;
+                ai.owner.entity.mob.input = Vector3.forward;
+                ai.owner.entity.mob.secondaryInput = false;
             }
         }
+    }
+
+    private void HandleLongRangeCombat(Inventory ai)
+    {
+        ai.owner.entity.mob.primaryInput = false;
+        if (ai.owner.entity.mob.input.x == 0)
+        {
+            ai.owner.entity.mob.input.x = EvoUtils.PercentChance(0.5f, false) ? -0.5f : 0.5f;
+        }
+        ai.owner.entity.mob.input.z = 0.5f;
     }
 }
 [System.Serializable]
@@ -285,14 +315,13 @@ public class Attack
     public string animation;
     public float attackCooldown;
     public float thrust;
-
     public bool locks;
-
     public float damage;
     public float knockback;
     public float stunTime = 0.5f;
-
+    public bool charge;
+    public float chargeTime;
+    public float currentChargeTime;
     public AudioPlayer sound;
-
     public UnityEvent<Inventory> attack;
 }

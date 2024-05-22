@@ -2,9 +2,11 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class Entity : MonoBehaviour
 {
@@ -14,8 +16,10 @@ public class Entity : MonoBehaviour
     public MobDrop[] drops;
     public Renderer[] renderer;
 
+    float initialHealth;
+
     public float iframe = 0.2f;
-    [HideInInspector]
+
     public float currentIframe;
     bool dead;
     [Header("Mob Settings")]
@@ -32,17 +36,20 @@ public class Entity : MonoBehaviour
         {
             baseEntity.deathEffect.SetActive(false);
         }
+
     }
 
     private void Start()
     {
-        baseEntity.maxHealth = baseEntity.health;
-        UpdateHealth();
-
         if (mob.species != null)
         {
             mob.species.ApplySpecies(this);
         }
+
+        baseEntity.maxHealth = baseEntity.health;
+        initialHealth = baseEntity.maxHealth;
+        UpdateHealth();
+
         transform.localScale *= mob.scale;
     }
     private void FixedUpdate()
@@ -53,9 +60,12 @@ public class Entity : MonoBehaviour
             baseEntity.tookDamage = false;
         }
 
-        if (mob.effects.onIdle != null)
+        if (mob.stats.effects.onIdle != null)
         {
-            mob.effects.onIdle.Invoke(this);
+            foreach (UnityEvent<Entity> e in mob.stats.effects.onIdle)
+            {
+                e.Invoke(this);
+            }
         }
     }
 
@@ -163,7 +173,7 @@ public class Entity : MonoBehaviour
     {
         if (entity.baseEntity.dialogue == null)
         {
-            TextMeshPro text = Instantiate(GameSettings.dialogue, entity.transform.position + Vector3.up * 1.5f, entity.transform.rotation);
+            TextMeshPro text = Instantiate(GameSettings.dialogue, entity.transform.position + Vector3.up * 2f, entity.transform.rotation);
             text.transform.parent = entity.transform;
             entity.baseEntity.dialogue = text;
             for (int i = 0; i < dialogue.Length; i++)
@@ -263,7 +273,7 @@ public class Entity : MonoBehaviour
 
     public void UpdateHealth()
     {
-        baseEntity.maxHealth *= mob.stats.health;    
+        baseEntity.maxHealth = initialHealth * mob.stats.health;    
     }
 
     IEnumerator destroyHealthBarCountdown;
@@ -273,18 +283,24 @@ public class Entity : MonoBehaviour
         {
             GameSettings.hitSound.PlaySound();
             currentIframe = iframe;
-            if (mob.effects.onHurt != null)
+            if (mob.stats.effects.onHurt != null)
             {
-                mob.effects.onHurt.Invoke(this);
+                foreach (UnityEvent<Entity> e in mob.stats.effects.onHurt)
+                {
+                    e.Invoke(this);
+                }
             }
 
             float damageMultiplier = 1;
 
             if (damager != null)
             {
-                if (damager.mob.effects.onHit != null)
+                if (damager.mob.stats.effects.onHit != null)
                 {
-                    damager.mob.effects.onHit.Invoke(this);
+                    foreach (UnityEvent<Entity> e in mob.stats.effects.onHit)
+                    {
+                        e.Invoke(this);
+                    }
                 }
                 damageMultiplier = damager.mob.stats.damage;
 
@@ -331,9 +347,12 @@ public class Entity : MonoBehaviour
                 }
                 if (damager != null)
                 {
-                    if (mob.effects.onKill != null)
+                    if (mob.stats.effects.onKill != null)
                     {
-                        damager.mob.effects.onKill.Invoke(this);
+                        foreach (UnityEvent<Entity> e in mob.stats.effects.onKill)
+                        {
+                            e.Invoke(this);
+                        }
                     }
                 }
                 Destroy(this.gameObject);
@@ -346,6 +365,65 @@ public class Entity : MonoBehaviour
         }
         baseEntity.tookDamage = true;
         return false;
+    }
+
+    public static void ApplyStats(Entity entity, MobStats mod)
+    {
+        entity.mob.stats.health += mod.health;
+        entity.UpdateHealth();
+        entity.mob.stats.moveSpeed += mod.moveSpeed;
+        entity.mob.stats.damage += mod.damage;
+        entity.mob.stats.attackSpeed += mod.attackSpeed;
+        entity.mob.stats.attackSpeed += mod.attackSpeed;
+        entity.mob.stats.level += mod.level;
+
+        FunctionEffects effects = mod.effects;
+
+        if (effects.onKill.Count > 0)
+        {
+            effects.onKill.Add(effects.onKill[0]);
+        }
+        if (effects.onHurt.Count > 0)
+        {
+            effects.onHurt.Add(effects.onHurt[0]);
+        }
+        if (effects.onHit.Count > 0)
+        {
+            effects.onHit.Add(effects.onHit[0]);
+        }
+        if (effects.onIdle.Count > 0)
+        {
+            effects.onIdle.Add(effects.onIdle[0]);
+        }
+    }
+    public static void RemoveStats(Entity entity, MobStats mod)
+    {
+        entity.mob.stats.health -= mod.health;
+        entity.UpdateHealth();
+        entity.mob.stats.moveSpeed -= mod.moveSpeed;
+        entity.mob.stats.damage -= mod.damage;
+        entity.mob.stats.attackSpeed -= mod.attackSpeed;
+        entity.mob.stats.attackSpeed -= mod.attackSpeed;
+        entity.mob.stats.level -= mod.level;
+
+        FunctionEffects effects = mod.effects;
+
+        if (effects.onKill.Count > 0)
+        {
+            effects.onKill.Remove(effects.onKill[0]);
+        }
+        if (effects.onHurt.Count > 0)
+        {
+            effects.onHurt.Remove(effects.onHurt[0]);
+        }
+        if (effects.onHit.Count > 0)
+        {
+            effects.onHit.Remove(effects.onHit[0]);
+        }
+        if (effects.onIdle.Count > 0)
+        {
+            effects.onIdle.Remove(effects.onIdle[0]);
+        }
     }
 }
 [System.Serializable]
@@ -388,7 +466,6 @@ public class Mob
     public AIModule behavior;
     public bool aiEnabled;
 
-    public FunctionEffects effects;
     [HideInInspector]
     public Vector3 targetPoint;
     [Header("Team")]
@@ -428,17 +505,20 @@ public class MobStats
     public int level = 0;
 
     public float visionRange = 1;
+
+    public FunctionEffects effects;
 }
 [System.Serializable]
 public class FunctionEffects
 {
-    public UnityEvent<Entity> onHit;
-    public UnityEvent<Entity> onIdle;
-    public UnityEvent<Entity> onHurt;
-    public UnityEvent<Entity> onKill;
+    public List<UnityEvent<Entity>> onHit;
+    public List<UnityEvent<Entity>> onIdle;
+    public List<UnityEvent<Entity>> onHurt;
+    public List<UnityEvent<Entity>> onKill;
 }
 
-    [System.Serializable]
+
+[System.Serializable]
 public class MobDrop
 {
     public Item item;

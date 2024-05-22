@@ -10,6 +10,7 @@ public class HumanoidSpecies : Species
     [Header("-----------------")]
     public Item[] weaponPool;
     public int loadoutSize;
+    public Item[] predefinedAccessories;
     public Item[] accessoryPool;
     public int wardrobeSize;
 
@@ -57,7 +58,7 @@ public class HumanoidSpecies : Species
 
         if (hairPool.Length > 0)
         {
-            mob.inv.VisualEquip(hairPool[Random.Range(0, hairPool.Length)]);
+            mob.inv.EquipItem(hairPool[Random.Range(0, hairPool.Length)]);
         }
         if (facePool.Length > 0)
         {
@@ -69,11 +70,17 @@ public class HumanoidSpecies : Species
         {
             mob.inv.items[i] = Instantiate(weaponPool[Random.Range(0, weaponPool.Length)]);
         }
-        mob.inv.accessories = new Item[wardrobeSize];
+        mob.inv.accessories = new Item[wardrobeSize + predefinedAccessories.Length];
         for (int i = 0; i < wardrobeSize; i++)
         {
             mob.inv.accessories[i] = Instantiate(accessoryPool[Random.Range(0, accessoryPool.Length)]);
-            mob.inv.VisualEquip(mob.inv.accessories[i]);
+            mob.inv.EquipItem(mob.inv.accessories[i]);
+        }
+
+        for (int i = 0; i < predefinedAccessories.Length; i++)
+        {
+            mob.inv.accessories[i + wardrobeSize] = Instantiate((predefinedAccessories[i]));
+            mob.inv.EquipItem(mob.inv.accessories[i + wardrobeSize]);
         }
     }
 }

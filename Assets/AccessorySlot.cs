@@ -8,39 +8,17 @@ public class AccessorySlot : ItemSlot
     Item previousItem;
     public void ApplyVisual()
     {
-        if (item != null)
+        if (inv.itemHeld != null)
         {
-            if (previousItem != null)
+            inv.inv.UnequipItem(inv.itemHeld);
+            if (item != null)
             {
-                inv.inv.VisualUnequip(previousItem);
+                inv.inv.EquipItem(item);
             }
-            previousItem = item;
-            inv.inv.VisualEquip(item);
         }
-        else if (previousItem != null)
+        else if (item != null)
         {
-            inv.inv.VisualUnequip(previousItem);
-            previousItem = null;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (item != null)
-        {
-            item.onIdle.Invoke(inv.inv);
-
-            if (item.cooldown < 0)
-            {
-                if (inv.inv.owner.entity.mob.primaryInput)
-                {
-                    item.onUsePrimary.Invoke(inv.inv);
-                }
-            }
-            if (inv.inv.owner.entity.mob.secondaryInput )
-            {
-                item.onUseSecondary.Invoke(inv.inv);
-            }
+            inv.inv.EquipItem(item);
         }
     }
 }

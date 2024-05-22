@@ -29,7 +29,6 @@ public class ItemSlot : MonoBehaviour
             item = invItem;
 
             if(slotIndex <= inv.inv.items.Length)
-            inv.inv.items[slotIndex] = item;
             holdingItem = true;
         }
         else if (item != null)
@@ -37,7 +36,6 @@ public class ItemSlot : MonoBehaviour
             inv.itemHeld = item;
             inv.SetItemToInventory(item);
             item = null;
-            inv.inv.items[slotIndex] = null;
         }
     }
 

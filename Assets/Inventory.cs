@@ -1,8 +1,11 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using static UnityEditor.Progress;
 using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Humanoid))]
@@ -12,6 +15,10 @@ public class Inventory : MonoBehaviour
     public Item[] items;
 
     public Item[] accessories;
+    public Item head;
+    public Item body;
+    public Item legs;
+    public Item feet;
 
     public Transform hand;
 
@@ -40,6 +47,7 @@ public class Inventory : MonoBehaviour
         {
             if (item != null)
             {
+                HoldItem(item);
                 item.transform.SetParent(itemHolder, true);
                 item.gameObject.SetActive(false);
             }
@@ -49,7 +57,8 @@ public class Inventory : MonoBehaviour
         {
             if (item != null)
             {
-                VisualEquip(item);
+                item.transform.SetParent(itemHolder, true);
+                item.gameObject.SetActive(false);
             }
         }
         hotbarIndex = Random.Range(0, items.Length);
@@ -75,35 +84,29 @@ public class Inventory : MonoBehaviour
                 items[hotbarIndex].onIdle.Invoke(this);
             }
 
-            owner.entity.AI();
+         //   owner.entity.AI();
             if (items[hotbarIndex] != null)
             {
                 if (owner.entity.player == false && owner.entity.mob.aiEnabled)
                 {
-                    if (owner.entity.mob.target != null)
-                    {
-                        if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
-                        {
-                            items[hotbarIndex].gameObject.SetActive(false);
-                            hotbarIndex = Random.Range(0, items.Length);
-                            HoldItem(items[hotbarIndex]);
-                        }
-                    }
-
                     items[hotbarIndex].ai.Invoke(this);
                     foreach (Item item in accessories)
                     {
+                        if (item != null)
                         item.ai.Invoke(this);
+                    }
+                    if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
+                    {
+                        items[hotbarIndex].gameObject.SetActive(false);
+                        hotbarIndex = Random.Range(0, items.Length);
+                        HoldItem(items[hotbarIndex]);
                     }
                 }
                 if (owner.entity.mob.aiEnabled)
                 {
-                    if (items[hotbarIndex].cooldown < 0)
+                    if (items[hotbarIndex].cooldown < 0 && owner.entity.mob.primaryInput)
                     {
-                        if (owner.entity.mob.primaryInput)
-                        {
-                            items[hotbarIndex].onUsePrimary.Invoke(this);
-                        }
+                    items[hotbarIndex].onUsePrimary.Invoke(this);
                     }
                     if (owner.entity.mob.secondaryInput && items[hotbarIndex])
                     {
@@ -160,6 +163,7 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
+    Item currentItem = null;
     public void HoldItem(Item i)
     {
         i.gameObject.SetActive(true);
@@ -170,18 +174,13 @@ public class Inventory : MonoBehaviour
             i.transform.position = hand.transform.position;
             i.transform.rotation = hand.transform.rotation;
         }
-      //  if (owner.entity.player)
-      //  {
-      //      i.gameObject.layer = 8;
-      //  }
-      //  else
-      //  {
             i.gameObject.layer = 6;
             foreach (Transform t in i.transform)
             {
                 t.gameObject.layer = 6;
             }
-        //   }
+
+        currentItem = i;
     }
     public void DropItem(Item i)
     {
@@ -200,17 +199,35 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
-    public void VisualEquip(Item i)
+    public void EquipItem(Item i)
     {
+        if (i.GetComponent<StatModifier>())
+        {
+            Entity.ApplyStats(owner.entity, i.GetComponent<StatModifier>().modifier);
+        }
         if (i.GetComponent<Accessory>())
         {
-            Accessory a = i.GetComponent<Accessory>();
+            VisualEquip(i.GetComponent<Accessory>());
+        }
+    }
+    public void UnequipItem(Item i)
+    {
+        if (i.GetComponent<StatModifier>())
+        {
+            Entity.RemoveStats(owner.entity, i.GetComponent<StatModifier>().modifier);
+        }
+        if (i.GetComponent<Accessory>())
+        {
+            VisualUnequip(i.GetComponent<Accessory>());
+        }
+    }
 
+    public void VisualEquip(Accessory a)
+    {
             if (a.bodyRenderer == null)
             {
                 GameObject obj = Object.Instantiate(new GameObject(), accessorization.bodyVisual.transform);
-                obj.name = i.itemName + " bodypart";
+                obj.name = "bodypart";
                 SkinnedMeshRenderer renderer = obj.AddComponent<SkinnedMeshRenderer>();
                 Debug.Log(renderer.ToString());
                 Debug.Log(accessorization.rootBone.ToString());
@@ -230,17 +247,13 @@ public class Inventory : MonoBehaviour
 
                 a.bodyRenderer = renderer;
             }
-        }
     }
-
-    public void VisualUnequip(Item i)
+    public void VisualUnequip(Accessory i)
     {
-        if (i.GetComponent<Accessory>())
-        {
-            Destroy(i.GetComponent<Accessory>().bodyRenderer);
-        }
+        Destroy(i.GetComponent<Accessory>().bodyRenderer);
     }
 }
+
 
 [System.Serializable]
 public class Accessorization

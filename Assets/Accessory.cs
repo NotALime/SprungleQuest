@@ -11,4 +11,11 @@ public class Accessory : MonoBehaviour
 
     [HideInInspector]
     public SkinnedMeshRenderer bodyRenderer;
+
+    public Item item;
+
+    private void Awake()
+    {
+        item = GetComponent<Item>();
+    }
 }

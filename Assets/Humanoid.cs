@@ -118,7 +118,10 @@ public class Humanoid : MonoBehaviour
         if ((OnSlope() && !exitingSlope) || isGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * desiredMoveSpeed * 10f, ForceMode.Force);
+            if (movementEnabled)
+            {
+                rb.AddForce(GetSlopeMoveDirection(moveDirection) * desiredMoveSpeed * 10f, ForceMode.Force);
+            }
 
             if (rb.velocity.y > 0)
             {
@@ -127,7 +130,10 @@ public class Humanoid : MonoBehaviour
         }
         else
         {
-            rb.AddForce(moveDirection.normalized * desiredMoveSpeed * 10f, ForceMode.Force);
+            if (movementEnabled)
+            {
+                rb.AddForce(moveDirection.normalized * desiredMoveSpeed * 10f, ForceMode.Force);
+            }
             rb.velocity = new Vector3(rb.velocity.x * drag, rb.velocity.y, rb.velocity.z * drag);
             rb.AddForce(Vector3.down * gravity);
         }

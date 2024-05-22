@@ -773,7 +773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77e96b20da845c94397502fe8db903cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.083333336
+      value: 0.020833336
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77e96b20da845c94397502fe8db903cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1018,6 +1018,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   rb: {fileID: 0}
+  itemTag: 
 --- !u!54 &6304241701879106408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1065,7 +1066,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.027668348, y: 0.12590334, z: 0.5101807}
-  m_Center: {x: 0, y: 0, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!114 &6375071025688621886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,6 +1088,9 @@ MonoBehaviour:
     damage: 25
     knockback: 200
     stunTime: 0.3
+    charge: 0
+    chargeTime: 0
+    currentChargeTime: 0
     sound: {fileID: 3383969766913035}
     attack:
       m_PersistentCalls:
@@ -1098,6 +1102,9 @@ MonoBehaviour:
     damage: 25
     knockback: 600
     stunTime: 0.3
+    charge: 0
+    chargeTime: 0
+    currentChargeTime: 0
     sound: {fileID: 3383969766913035}
     attack:
       m_PersistentCalls:
@@ -1109,6 +1116,9 @@ MonoBehaviour:
     damage: 30
     knockback: 300
     stunTime: 0.6
+    charge: 0
+    chargeTime: 0
+    currentChargeTime: 0
     sound: {fileID: 1197346214377619537}
     attack:
       m_PersistentCalls:
@@ -1116,12 +1126,13 @@ MonoBehaviour:
   attackIndex: 0
   damageCollider: {fileID: 7938656191870713264}
   holdAttack: 0
+  canBlock: 1
   hitSound: {fileID: 6520135282330972399}
   parrySound: {fileID: 588382900608342779}
-  attacking: 0
   parryRadius: 4
   parryCooldown: 0.5
   projectile: {fileID: 0}
+  swingRange: 40
 --- !u!4 &4332639275714094815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}

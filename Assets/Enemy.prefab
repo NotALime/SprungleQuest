@@ -418,6 +418,11 @@ MonoBehaviour:
       attackSpeed: 1
       level: 1
       visionRange: 30
+      effects:
+        onHit: []
+        onIdle: []
+        onHurt: []
+        onKill: []
     orientation: {fileID: 2653839969581760417}
     rb: {fileID: 2746966978004572258}
     behavior:
@@ -437,55 +442,6 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     aiEnabled: 1
-    effects:
-      onHit:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7433145943539477460}
-            m_TargetAssemblyTypeName: AIDialogue, Assembly-CSharp
-            m_MethodName: Talk
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      onIdle:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 616293783041552165}
-            m_TargetAssemblyTypeName: AIDialogue, Assembly-CSharp
-            m_MethodName: Talk
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      onHurt:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 9133445804562499975}
-            m_TargetAssemblyTypeName: AIDialogue, Assembly-CSharp
-            m_MethodName: Talk
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      onKill:
-        m_PersistentCalls:
-          m_Calls: []
     targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
     team: human
@@ -494,7 +450,7 @@ MonoBehaviour:
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
-    species: {fileID: 11400000, guid: f6c4952b8812039499283dd83adeb14a, type: 2}
+    species: {fileID: 11400000, guid: 24991a5414bc9894eaf08a5d37cedef2, type: 2}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0
@@ -604,6 +560,10 @@ MonoBehaviour:
   - {fileID: 0}
   accessories:
   - {fileID: 0}
+  head: {fileID: 0}
+  body: {fileID: 0}
+  legs: {fileID: 0}
+  feet: {fileID: 0}
   hand: {fileID: 9201972338615244112}
   handAnimator: {fileID: 900123808531855070}
   itemLayer:

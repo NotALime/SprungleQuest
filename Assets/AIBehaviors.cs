@@ -32,7 +32,7 @@ public class AIBehaviors : ScriptableObject
         {
             ai.mob.primaryInput = true;
         }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             ai.mob.primaryInput = false;
         }

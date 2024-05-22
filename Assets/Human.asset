@@ -63,14 +63,19 @@ MonoBehaviour:
       pieces: []
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
-  - {fileID: 4714690964577246778, guid: 54d28019f7f468145bf8f858f717bb7f, type: 3}
+  - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}
+  - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
+  - {fileID: 5356951726182001441, guid: 0813387129e567d4ebba5adeb57b9c70, type: 3}
   loadoutSize: 2
+  predefinedAccessories: []
   accessoryPool:
   - {fileID: 2963063923627930831, guid: c1990503ef0b9ba4eaa94531374d22f0, type: 3}
   - {fileID: 1929162685289141222, guid: f5c1579f323f7684ba5e3c8f8491a4e6, type: 3}
   - {fileID: 2095364291904359482, guid: 9bf417bd6cbe2ff4d9b7ae06905664f2, type: 3}
   - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
   - {fileID: 7087732451230298392, guid: 6ad5b643c46d7ea4e84aa8345058c4db, type: 3}
+  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
+  - {fileID: 600621710184068597, guid: d1a2e888f0ff9fa46877acbbc0016ffc, type: 3}
   wardrobeSize: 1
   hairPool: []
   facePool:

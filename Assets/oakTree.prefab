@@ -156,6 +156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: oakTree
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a8407addab671c41ae3e023c7a8395d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -199,8 +203,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.01
-  m_Height: 0.24
+  m_Radius: 0.025
+  m_Height: 0.28
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.063319966}
 --- !u!114 &6726031020001059005
@@ -221,8 +225,10 @@ MonoBehaviour:
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
+    dialogue: {fileID: 0}
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
+    idleSound: {fileID: 0}
   drops: []
   renderer: []
   iframe: 0.2
@@ -242,6 +248,20 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     aiEnabled: 0
+    effects:
+      onHit:
+        m_PersistentCalls:
+          m_Calls: []
+      onIdle:
+        m_PersistentCalls:
+          m_Calls: []
+      onHurt:
+        m_PersistentCalls:
+          m_Calls: []
+      onKill:
+        m_PersistentCalls:
+          m_Calls: []
+    targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
     team: 
     leader: {fileID: 0}

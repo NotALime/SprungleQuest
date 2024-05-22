@@ -713,6 +713,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   rb: {fileID: 0}
+  itemTag: 
 --- !u!54 &779109647729459469
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -755,12 +756,15 @@ MonoBehaviour:
   item: {fileID: 6592131370702825242}
   attackCombo:
   - animation: SwingOver
-    attackCooldown: 0.4
-    thrust: 25
-    locks: 0
-    damage: 50
-    knockback: 5000
+    attackCooldown: 0.5
+    thrust: 50
+    locks: 1
+    damage: 40
+    knockback: 3000
     stunTime: 1
+    charge: 0
+    chargeTime: 0.5
+    currentChargeTime: 0
     sound: {fileID: 2225834757940266336}
     attack:
       m_PersistentCalls:
@@ -768,12 +772,13 @@ MonoBehaviour:
   attackIndex: 0
   damageCollider: {fileID: 6122594872753664695}
   holdAttack: 0
+  canBlock: 0
   hitSound: {fileID: 7364916046510979334}
   parrySound: {fileID: 0}
-  attacking: 0
   parryRadius: 0
   parryCooldown: 0
   projectile: {fileID: 0}
+  swingRange: 0
 --- !u!65 &1816851510739174796
 BoxCollider:
   m_ObjectHideFlags: 0
