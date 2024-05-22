@@ -179,8 +179,6 @@ public class Humanoid : MonoBehaviour
     {
         if (isGrounded() && readyToJump)
         {
-            Debug.Log("Attemped Jump");
-
             // reset y velocity
 
             if (entity.mob.input.y > 0)

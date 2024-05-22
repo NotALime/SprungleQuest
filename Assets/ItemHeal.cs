@@ -16,7 +16,7 @@ public class ItemHeal : MonoBehaviour
         {
             e.baseEntity.health += healPerSecond * Time.deltaTime;
         }
-        healParticle.transform.position = e.mob.orientation.position;
+        healParticle.transform.position = Vector3.LerpUnclamped(healParticle.transform.position, e.mob.orientation.position, 10 * Time.deltaTime);
         healParticle.enableEmission = (e.currentIframe <= -timeAfterDamage) && e.baseEntity.health < e.baseEntity.maxHealth;
     }
 }

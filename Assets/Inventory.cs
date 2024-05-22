@@ -148,9 +148,7 @@ public class Inventory : MonoBehaviour
     public Item GetItemLookedAt()
     {
         Ray ray = new Ray(owner.entity.mob.orientation.position, owner.entity.mob.orientation.transform.forward);
-        RaycastHit hit;
-
-        Debug.Log("Trying to get item looked at");
+        RaycastHit hit;;
 
         if (Physics.Raycast(ray, out hit, owner.playerHeight, itemLayer))
         {

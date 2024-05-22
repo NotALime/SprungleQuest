@@ -381,19 +381,19 @@ public class Entity : MonoBehaviour
 
         if (effects.onKill.Count > 0)
         {
-            effects.onKill.Add(effects.onKill[0]);
+            entity.mob.stats.effects.onKill.Add(effects.onKill[0]);
         }
         if (effects.onHurt.Count > 0)
         {
-            effects.onHurt.Add(effects.onHurt[0]);
+            entity.mob.stats.effects.onHurt.Add(effects.onHurt[0]);
         }
         if (effects.onHit.Count > 0)
         {
-            effects.onHit.Add(effects.onHit[0]);
+            entity.mob.stats.effects.onHit.Add(effects.onHit[0]);
         }
         if (effects.onIdle.Count > 0)
         {
-            effects.onIdle.Add(effects.onIdle[0]);
+            entity.mob.stats.effects.onIdle.Add(effects.onIdle[0]);
         }
     }
     public static void RemoveStats(Entity entity, MobStats mod)
@@ -410,19 +410,19 @@ public class Entity : MonoBehaviour
 
         if (effects.onKill.Count > 0)
         {
-            effects.onKill.Remove(effects.onKill[0]);
+            entity.mob.stats.effects.onKill.Remove(effects.onKill[0]);
         }
         if (effects.onHurt.Count > 0)
         {
-            effects.onHurt.Remove(effects.onHurt[0]);
+            entity.mob.stats.effects.onHurt.Remove(effects.onHurt[0]);
         }
         if (effects.onHit.Count > 0)
         {
-            effects.onHit.Remove(effects.onHit[0]);
+            entity.mob.stats.effects.onHit.Remove(effects.onHit[0]);
         }
         if (effects.onIdle.Count > 0)
         {
-            effects.onIdle.Remove(effects.onIdle[0]);
+            entity.mob.stats.effects.onIdle.Remove(effects.onIdle[0]);
         }
     }
 }
