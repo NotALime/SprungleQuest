@@ -30,7 +30,13 @@ public class WorldManager : MonoBehaviour
 
     public GlobalKeyword wetKey;
 
-    public Light skyLight;
+    public Light sunLight;
+    float initialSunIntensity;
+    public Light moonLight;
+    float initialMoonIntensity;
+
+    public float sunset = 10;
+    public float sunrise = 2;
 
     public Material window;
 
@@ -38,6 +44,8 @@ public class WorldManager : MonoBehaviour
 
     private void Start()
     {
+        initialMoonIntensity = moonLight.intensity;
+        initialSunIntensity = sunLight.intensity;
         wetKey = Shader.globalKeywords[0];
 
         SetWeather(defaultWeather);
@@ -51,7 +59,7 @@ public class WorldManager : MonoBehaviour
      //   wetness = currentWeather.wetness;
      //   Shader.SetGlobalFloat("_Wetness", wetness);
         RenderSettings.ambientLight =currentWeather.lightColor.Evaluate(time / (worldTime * 60));
-        // skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+         sunLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
         // RenderSettings.ambientLight = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
 
         RenderSettings.fogDensity = currentWeather.fogValue;
@@ -125,8 +133,12 @@ public class WorldManager : MonoBehaviour
         Shader.SetKeyword(wetKey, wetness > 0);
 
         RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
-       // skyLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
-       // RenderSettings.ambientLight = Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
+        sunLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+        sunLight.intensity = Mathf.Lerp(sunLight.intensity, System.Convert.ToInt16(time < sunset && time > sunrise), Time.deltaTime * timeScale);
+        moonLight.intensity = initialMoonIntensity - sunLight.intensity;
+
+        sunLight.color = RenderSettings.ambientLight;
+        moonLight.color = RenderSettings.ambientLight;
 
         RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue,  Time.deltaTime);
         RenderSettings.fogColor = Color.LerpUnclamped(RenderSettings.fogColor, currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
