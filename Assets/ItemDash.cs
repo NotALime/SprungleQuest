@@ -15,9 +15,11 @@ public class ItemDash : MonoBehaviour
     Vector3 dashInput;
 
     Rigidbody rbApplied;
-    private void Start()
+    private void Awake()
     {
         item = GetComponent<Item>();
+
+        item.itemDescription += "\n" + dashSpeed.ToString() + " speed dash over " + dashTime.ToString() + " seconds with " + dashCooldown.ToString() + " cooldown";
     }
     public void Dash(Inventory inv)
     {

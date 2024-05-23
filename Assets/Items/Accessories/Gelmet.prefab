@@ -5200,6 +5200,7 @@ MonoBehaviour:
     damage: 0
     attackSpeed: 0
     level: 0
+    defense: 2
     visionRange: 0
     effects:
       onHit: []

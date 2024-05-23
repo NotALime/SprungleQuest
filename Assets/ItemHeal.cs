@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,15 @@ public class ItemHeal : MonoBehaviour
 
     public ParticleSystem healParticle;
 
+    private void Awake()
+    {
+        item = GetComponent<Item>();
+        item.itemDescription += "\n" + healPerSecond.ToString() + " HP/S regeneration ";
+        if (timeAfterDamage > 0)
+        {
+            item.itemDescription += timeAfterDamage.ToString() + "seconds after being damaged";
+        }
+    }
     public void Heal(Entity e)
     {
         if (e.currentIframe <= -timeAfterDamage)

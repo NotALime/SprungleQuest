@@ -302,7 +302,7 @@ public class Entity : MonoBehaviour
                         e.Invoke(this);
                     }
                 }
-                damageMultiplier = damager.mob.stats.damage;
+                damageMultiplier = GetDefensedDamage(damager.mob.stats.damage);
 
                 if (baseEntity.healthbar == null)
                 {
@@ -425,6 +425,11 @@ public class Entity : MonoBehaviour
             entity.mob.stats.effects.onIdle.Remove(effects.onIdle[0]);
         }
     }
+
+    public float GetDefensedDamage(float damage)
+    {
+        return (100 * damage) / (mob.stats.defense + 100);
+    }
 }
 [System.Serializable]
 public class DialogueLine
@@ -503,6 +508,7 @@ public class MobStats
     public float damage = 1;
     public float attackSpeed = 1;
     public int level = 0;
+    public float defense;
 
     public float visionRange = 1;
 

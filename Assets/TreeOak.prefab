@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &244827580129221081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5720492396219658889}
+  - component: {fileID: 999021900216787347}
+  - component: {fileID: 6366923051004985840}
+  - component: {fileID: 7725372112469831821}
+  - component: {fileID: 8030528299327610735}
+  - component: {fileID: 196438990718289333}
+  m_Layer: 0
+  m_Name: TreeOak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5720492396219658889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244827580129221081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -29.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!193 &999021900216787347
+Tree:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244827580129221081}
+  m_SpeedTreeWindAsset: {fileID: 0}
+  m_TreeData: {fileID: 5612745422235483634, guid: a6179e05de9e9e7478658c674fbda87b, type: 3}
+--- !u!33 &6366923051004985840
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244827580129221081}
+  m_Mesh: {fileID: 8671478909022298340, guid: a6179e05de9e9e7478658c674fbda87b, type: 3}
+--- !u!23 &7725372112469831821
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244827580129221081}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -1295700255805119316, guid: a6179e05de9e9e7478658c674fbda87b, type: 3}
+  - {fileID: -3445672767315254470, guid: a6179e05de9e9e7478658c674fbda87b, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8030528299327610735
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244827580129221081}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.37
+  m_Height: 26.45
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &196438990718289333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244827580129221081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cce7f2a0f3be6f4fbcccee72677a134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseEntity:
+    gameName: Oak Tree
+    health: 300
+    maxHealth: 0
+    tookDamage: 0
+    healthbar: {fileID: 0}
+    dialogue: {fileID: 0}
+    deathEffect: {fileID: 0}
+    hurtSound: {fileID: 0}
+    idleSound: {fileID: 0}
+  drops: []
+  renderer: []
+  iframe: 0.2
+  currentIframe: 0
+  mob:
+    stats:
+      health: 1
+      moveSpeed: 0
+      damage: 0
+      attackSpeed: 0
+      level: 0
+      defense: 0
+      visionRange: 0
+      effects:
+        onHit: []
+        onIdle: []
+        onHurt: []
+        onKill: []
+    orientation: {fileID: 0}
+    rb: {fileID: 0}
+    behavior:
+      ai:
+        m_PersistentCalls:
+          m_Calls: []
+    aiEnabled: 0
+    targetPoint: {x: 0, y: 0, z: 0}
+    target: {fileID: 0}
+    team: 
+    leader: {fileID: 0}
+    mountable: 0
+    passenger: {fileID: 0}
+    mountSeat: {fileID: 0}
+    scale: 1
+    species: {fileID: 0}
+    input: {x: 0, y: 0, z: 0}
+    primaryInput: 0
+    secondaryInput: 0
+    interactInput: 0
+    specialInput: 0
+  interior: 0
+  player: 0

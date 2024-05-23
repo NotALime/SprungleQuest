@@ -144,7 +144,7 @@ public class WeaponMelee : MonoBehaviour
         inv.handAnimator.SetBool("Block", inv.owner.entity.mob.secondaryInput && canBlock && !attacking);
         blocked = false;
         charging = false;
-        inv.handAnimator.speed = 1;
+       // inv.handAnimator.speed = 1;
         inv.owner.movementEnabled = true;
         attacking = false;
         damageCollider.enabled = false;

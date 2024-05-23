@@ -333,10 +333,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifier:
     health: 0.2
-    moveSpeed: 0
+    moveSpeed: -0.1
     damage: 0
     attackSpeed: 0
     level: 0
+    defense: 5
     visionRange: 0
     effects:
       onHit: []
