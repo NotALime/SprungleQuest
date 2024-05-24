@@ -335,7 +335,7 @@ MonoBehaviour:
     health: 0
     moveSpeed: 0
     damage: 0
-    attackSpeed: 0.2
+    attackSpeed: 0.1
     level: 0
     defense: 5
     visionRange: 0

@@ -4809,7 +4809,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 3
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_EnableGPUInstancing: 1
@@ -5099,7 +5099,7 @@ MonoBehaviour:
   size: {x: 1, y: 2}
   rotationOffset: {x: 0, y: 0, z: 0}
   itemName: Gelmet
-  itemDescription: Provides 0.5 HP/S health regeneration 10 seconds after being damaged.
+  itemDescription: 
   maxStack: 1
   cooldown: 0
   ai:
@@ -5233,7 +5233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd859147fe8a6ed47bdd8b53e8a633d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healPerSecond: 0.5
+  healPerSecond: 1
   timeAfterDamage: 10
   healParticle: {fileID: 5613899248154016098}
 --- !u!4 &6747319377405813217 stripped

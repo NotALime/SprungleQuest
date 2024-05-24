@@ -30,6 +30,7 @@ public class WorldManager : MonoBehaviour
 
     public GlobalKeyword wetKey;
 
+    public Transform celestialRot;
     public Light sunLight;
     float initialSunIntensity;
     public Light moonLight;
@@ -133,7 +134,7 @@ public class WorldManager : MonoBehaviour
         Shader.SetKeyword(wetKey, wetness > 0);
 
         RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
-        sunLight.transform.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 50, 0));
+        celestialRot.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 200, 0));
         sunLight.intensity = Mathf.Lerp(sunLight.intensity, System.Convert.ToInt16(time < sunset && time > sunrise), Time.deltaTime * timeScale);
         moonLight.intensity = initialMoonIntensity - sunLight.intensity;
 

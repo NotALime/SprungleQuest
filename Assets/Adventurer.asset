@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: addcf38eead911043a9ec1003bdfaae7, type: 3}
-  m_Name: Bandit
+  m_Name: Adventurer
   m_EditorClassIdentifier: 
   tint:
     serializedVersion: 2
-    key0: {r: 1, g: 0.9196285, b: 0.7877358, a: 1}
-    key1: {r: 0.9764706, g: 0.8156863, b: 0.69803923, a: 1}
+    key0: {r: 0.74809116, g: 1, b: 0.6556604, a: 1}
+    key1: {r: 0.9701294, g: 0.9764706, b: 0.69803923, a: 1}
     key2: {r: 0.9215687, g: 0.70980394, b: 0.5686275, a: 0}
-    key3: {r: 0.69803923, g: 0.44593573, b: 0.33333334, a: 0}
-    key4: {r: 0.23529413, g: 0.121568635, b: 0.10588236, a: 0}
+    key3: {r: 0.69803923, g: 0.33333334, b: 0.4271991, a: 0}
+    key4: {r: 0.23482403, g: 0.10588236, b: 0.23529412, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 6361
+    ctime1: 16191
     ctime2: 35852
     ctime3: 50115
     ctime4: 65535
@@ -42,17 +42,17 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  minScale: 0.9
-  maxScale: 1.2
+  minScale: 0.7
+  maxScale: 1.5
   stats:
-    minHealth: 0.9
-    maxHealth: 1.4
-    minDamage: 0.9
-    maxDamage: 1.1
-    minSpeed: 0.8
-    maxSpeed: 1.2
-    minAttackSpeed: 0.9
-    maxAttackSpeed: 1.1
+    minHealth: 1
+    maxHealth: 3
+    minDamage: 1
+    maxDamage: 1.5
+    minSpeed: 0.5
+    maxSpeed: 2
+    minAttackSpeed: 0.5
+    maxAttackSpeed: 1
   generatesName: 0
   nameStructure:
     nameStructure:
@@ -64,30 +64,27 @@ MonoBehaviour:
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}
-  - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
   - {fileID: 5356951726182001441, guid: 0813387129e567d4ebba5adeb57b9c70, type: 3}
-  loadoutSize: 2
-  predefinedAccessories:
-  - {fileID: 9064721976604691909, guid: a0a7880c655790149a8fc9d3ab26a777, type: 3}
-  - {fileID: 4375848825490122596, guid: e7a5903e77b904644a9705bca0c9a489, type: 3}
+  - {fileID: 6381770318502692581, guid: eb120a76ec198d94293b2fb70f53da70, type: 3}
+  - {fileID: 1867163047467039829, guid: ebb987369e9b609418a4c96c65e13ff3, type: 3}
+  - {fileID: 4713134734854291710, guid: fd7bc1ea76f7203408dd85436f3b898c, type: 3}
+  - {fileID: 5336555165865855292, guid: 537ccc2f543101a4badb64da387143ef, type: 3}
+  loadoutSize: 3
+  predefinedAccessories: []
   accessoryPool:
-  - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
-  - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
-  - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
-  - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
-  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
-  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
-  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
-  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
+  - {fileID: 4375848825490122596, guid: e7a5903e77b904644a9705bca0c9a489, type: 3}
   - {fileID: 2963063923627930831, guid: c1990503ef0b9ba4eaa94531374d22f0, type: 3}
-  - {fileID: 2095364291904359482, guid: 9bf417bd6cbe2ff4d9b7ae06905664f2, type: 3}
-  - {fileID: 7087732451230298392, guid: 6ad5b643c46d7ea4e84aa8345058c4db, type: 3}
+  - {fileID: 6681590203537739555, guid: 16146def85140404a8bd762c36754fd0, type: 3}
   - {fileID: 8637673701268767203, guid: 63dbf36613d3299409e18674dee6069e, type: 3}
-  - {fileID: 6681590203537739555, guid: 16146def85140404a8bd762c36754fd0, type: 3}
-  - {fileID: 6681590203537739555, guid: 16146def85140404a8bd762c36754fd0, type: 3}
+  - {fileID: 1929162685289141222, guid: f5c1579f323f7684ba5e3c8f8491a4e6, type: 3}
+  - {fileID: 600621710184068597, guid: d1a2e888f0ff9fa46877acbbc0016ffc, type: 3}
   - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
-  - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
-  wardrobeSize: 1
+  - {fileID: 9064721976604691909, guid: a0a7880c655790149a8fc9d3ab26a777, type: 3}
+  - {fileID: 2095364291904359482, guid: 9bf417bd6cbe2ff4d9b7ae06905664f2, type: 3}
+  - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
+  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
+  - {fileID: 7087732451230298392, guid: 6ad5b643c46d7ea4e84aa8345058c4db, type: 3}
+  wardrobeSize: 3
   hairPool: []
   facePool:
   - {fileID: -228328156, guid: c50c224c10b46054486afa535385c1e5, type: 3}
@@ -97,13 +94,13 @@ MonoBehaviour:
   - {fileID: -421643647, guid: c50c224c10b46054486afa535385c1e5, type: 3}
   - {fileID: 476048454, guid: c50c224c10b46054486afa535385c1e5, type: 3}
   rigScale:
-    spineLowerMin: 0.8
-    spineLowerMax: 1
+    spineLowerMin: 1
+    spineLowerMax: 2
     neckMin: 0.6
     neckMax: 1
     uniformShoulders: 1
     shoulderMin: 1
-    shoulderMax: 1.5
+    shoulderMax: 2
     uniformArms: 1
-    armMin: 0.8
-    armMax: 1.2
+    armMin: 1
+    armMax: 1.5

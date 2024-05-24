@@ -131,7 +131,7 @@ Rigidbody:
   m_GameObject: {fileID: 6593053300882498930}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -182,7 +182,13 @@ MonoBehaviour:
       damage: 1
       attackSpeed: 1
       level: 0
+      defense: 0
       visionRange: 20
+      effects:
+        onHit: []
+        onIdle: []
+        onHurt: []
+        onKill: []
     orientation: {fileID: 4342086376065559155}
     rb: {fileID: 6393934908459014213}
     behavior:
@@ -202,19 +208,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     aiEnabled: 0
-    effects:
-      onHit:
-        m_PersistentCalls:
-          m_Calls: []
-      onIdle:
-        m_PersistentCalls:
-          m_Calls: []
-      onHurt:
-        m_PersistentCalls:
-          m_Calls: []
-      onKill:
-        m_PersistentCalls:
-          m_Calls: []
+    targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
     team: player
     leader: {fileID: 0}
@@ -242,11 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb80514a46f2db4a99974c9d7ed4c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2500
+  speed: 1000
   turnSpeed: 1.5
   jumpForce: 100
   gravity: 50
-  friction: 0.9
+  friction: 0.99
   visual: {fileID: 2370929979168132393}
   accelerationSpeed: 0.5
 --- !u!114 &6672328890275569044
@@ -312,9 +306,9 @@ ConfigurableJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 0, z: 0}
-  m_XMotion: 0
-  m_YMotion: 1
-  m_ZMotion: 0
+  m_XMotion: 2
+  m_YMotion: 2
+  m_ZMotion: 2
   m_AngularXMotion: 0
   m_AngularYMotion: 0
   m_AngularZMotion: 0

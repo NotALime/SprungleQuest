@@ -17,7 +17,7 @@ public class ItemHeal : MonoBehaviour
         item.itemDescription += "\n" + healPerSecond.ToString() + " HP/S regeneration ";
         if (timeAfterDamage > 0)
         {
-            item.itemDescription += timeAfterDamage.ToString() + "seconds after being damaged";
+            item.itemDescription += timeAfterDamage.ToString() + "seconds outside of danger";
         }
     }
     public void Heal(Entity e)

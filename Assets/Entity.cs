@@ -254,6 +254,9 @@ public class Entity : MonoBehaviour
         mob.mountSeat.autoConfigureConnectedAnchor = false;
         mob.mountSeat.connectedAnchor = Vector3.zero;
         mob.mountSeat.connectedBody = e.mob.rb;
+        mob.mountSeat.xMotion = ConfigurableJointMotion.Locked;
+        mob.mountSeat.yMotion = ConfigurableJointMotion.Limited;
+        mob.mountSeat.zMotion = ConfigurableJointMotion.Locked;
     }
     public void Unmount()
     {
@@ -261,6 +264,9 @@ public class Entity : MonoBehaviour
         mob.passenger = null;
         mob.mountSeat.autoConfigureConnectedAnchor = true;
         mob.mountSeat.connectedBody = null;
+        mob.mountSeat.xMotion = ConfigurableJointMotion.Free;
+        mob.mountSeat.yMotion = ConfigurableJointMotion.Free;
+        mob.mountSeat.zMotion = ConfigurableJointMotion.Free;
     }
 
     public Projectile SpawnProjectile(Projectile p, Vector3 pos, Quaternion rot)

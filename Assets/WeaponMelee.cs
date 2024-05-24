@@ -38,7 +38,7 @@ public class WeaponMelee : MonoBehaviour
         if (!inv.owner.entity.mob.secondaryInput)
         {
             inv.owner.entity.mob.secondaryInput = false;
-            if (attackIndex < attackCombo.Count - 1 && item.cooldown < 0 && item.cooldown > -0.1)
+            if (attackIndex < attackCombo.Count - 1 && item.cooldown < 0 && item.cooldown > -0.2)
             {
                 attackIndex++;
             }

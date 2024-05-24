@@ -122,19 +122,19 @@ public class Inventory : MonoBehaviour
     {
         List<Item> selectedItems = new List<Item>();
 
-        int numItemsToSelect = Mathf.RoundToInt(items.Length * deathDecay);
-
-        List<int> indices = new List<int>();
-        for (int i = 0; i < items.Length; i++)
+        foreach (Item i in items)
         {
-            indices.Add(i);
+            if (EvoUtils.PercentChance(deathDecay))
+            {
+                selectedItems.Add(i);
+            }
         }
-
-        for (int i = 0; i < numItemsToSelect; i++)
+        foreach (Item i in accessories)
         {
-            int randomIndex = Random.Range(0, indices.Count);
-            selectedItems.Add(items[indices[randomIndex]]);
-            indices.RemoveAt(randomIndex);
+            if (EvoUtils.PercentChance(deathDecay))
+            {
+                selectedItems.Add(i);
+            }
         }
 
         // Print selected items for demonstration

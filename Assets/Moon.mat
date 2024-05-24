@@ -90,7 +90,7 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _BumpScale: 1
-    - _Contrast: 5
+    - _Contrast: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -100,13 +100,13 @@ Material:
     - _GlowHighlight: 1
     - _Glowspread: 1
     - _Hueshift: 0
-    - _Metallic: 0.8
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Parallax: 0.02
     - _Saturation: 1000
-    - _Smoothness: 0.8
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

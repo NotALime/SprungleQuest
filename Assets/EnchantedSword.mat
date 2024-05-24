@@ -88,13 +88,13 @@ Material:
     - _GlowHighlight: 1
     - _Glowspread: 1
     - _Hueshift: -1.02
-    - _Metallic: 1
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Parallax: 0.02
     - _Saturation: 5
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
