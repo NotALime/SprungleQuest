@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5673344665727084830}
   - component: {fileID: 5613899248154016098}
   - component: {fileID: 5404735708656367578}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4839,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8621124788686321592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EffectLayerOffset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4874,7 +4874,7 @@ GameObject:
   - component: {fileID: 8619023967726669236}
   - component: {fileID: 5290897287121874764}
   - component: {fileID: 5589866182525654278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

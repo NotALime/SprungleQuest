@@ -53,4 +53,38 @@ public class EvoUtils : MonoBehaviour
         yield return new WaitForSeconds(time);
         Destroy(obj);
     }
+
+    public static Vector2[] GenerateVoronoi(int cellCount, float width, float height)
+    {
+        Vector2[] cellPoints = new Vector2[cellCount];
+        // Generate random cell points
+        for (int i = 0; i < cellCount; i++)
+        {
+            cellPoints[i] = new Vector2(Random.Range(0, width), Random.Range(0, height));
+        }
+
+        // Generate Voronoi texture
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                float minDistance = float.MaxValue;
+                int nearestCell = 0;
+
+                for (int i = 0; i < cellCount; i++)
+                {
+                    float distance = Vector2.Distance(new Vector2(x, y), cellPoints[i]);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        nearestCell = i;
+                    }
+                }
+
+                return cellPoints;
+            }
+        }
+        return null;
+    }
+
 }

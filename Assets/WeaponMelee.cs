@@ -213,7 +213,8 @@ public class WeaponMelee : MonoBehaviour
 
     public void DamageCheck(Inventory inv)
     {
-        Collider[] damageCheck = Physics.OverlapBox(damageCollider.transform.position, damageCollider.size * 1.5f, damageCollider.transform.rotation);
+        float sizeMultiplier = 1 + System.Convert.ToInt16(inv.owner.entity.player);
+        Collider[] damageCheck = Physics.OverlapBox(damageCollider.transform.position, damageCollider.size * sizeMultiplier, damageCollider.transform.rotation);
         foreach (Collider col in damageCheck)
         {
             if (!attacking) break;

@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 6288493820576049879}
   - component: {fileID: 6743794972167849767}
   - component: {fileID: 8405109864755369138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,6 +486,7 @@ MonoBehaviour:
     damage: 0
     attackSpeed: 0.1
     level: 0
+    defense: 0
     visionRange: 0
     effects:
       onHit: []
