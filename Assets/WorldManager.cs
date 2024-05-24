@@ -45,6 +45,8 @@ public class WorldManager : MonoBehaviour
 
     private void Start()
     {
+        time = 4;
+
         initialMoonIntensity = moonLight.intensity;
         initialSunIntensity = sunLight.intensity;
         wetKey = Shader.globalKeywords[0];

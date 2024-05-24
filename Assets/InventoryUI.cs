@@ -119,7 +119,7 @@ public class InventoryUI : MonoBehaviour
         if (GetRectUnderCursor() != null && GetRectUnderCursor().GetComponent<ItemSlot>() && GetRectUnderCursor().GetComponent<ItemSlot>().item != null)
         {
                 Item item = GetRectUnderCursor().GetComponent<ItemSlot>().item;
-                tooltipTitle.text = item.itemName;
+                tooltipTitle.text = item.itemName + " [E TO PICK UP]";
                 tooltipDescription.text = item.itemDescription;
         }
         else if (inv.GetItemLookedAt() != null)

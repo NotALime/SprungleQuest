@@ -571,7 +571,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hotbarIndex: 0
-  deathDecay: 0.2
+  deathDecay: 0.3
   itemHolder: {fileID: 5909524980249707397}
   accessorization:
     rootBone: {fileID: 8162321531871008921}

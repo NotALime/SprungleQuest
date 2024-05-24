@@ -19,6 +19,10 @@ public class MapObject : MonoBehaviour
     {
         RaycastHit hit;
         yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer));
+
+        transform.localScale *= Random.Range(minScale, maxScale);
+        transform.rotation = Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
+
         Debug.Log("Spawned");
         if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))
         {
@@ -34,12 +38,9 @@ public class MapObject : MonoBehaviour
                 Vector3 groundNormal = hit.normal;
                 Debug.Log("Ground rotated " + name);
                 // Rotate the object to match the ground normal
-                transform.right = groundNormal;
+                transform.forward = groundNormal;
             }
         }
-
-        transform.localScale *= Random.Range(minScale, maxScale);
-        transform.rotation = Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
     }
 
     private void FixedUpdate()

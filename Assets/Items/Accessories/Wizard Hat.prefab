@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6580394897944089418}
   - component: {fileID: 8545406355525217326}
   - component: {fileID: 4862611278615832151}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,6 +395,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb: {fileID: 0}
+  itemTag: 
 --- !u!54 &8598837902459313786
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -439,6 +440,7 @@ MonoBehaviour:
   textureOverlay: {fileID: 0}
   alphaMask: {fileID: 0}
   bodyRenderer: {fileID: 0}
+  item: {fileID: 0}
 --- !u!135 &5424828914205600122
 SphereCollider:
   m_ObjectHideFlags: 0
