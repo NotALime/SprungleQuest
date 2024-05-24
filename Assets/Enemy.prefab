@@ -397,7 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity:
     gameName: Bandit
-    health: 200
+    health: 100
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}

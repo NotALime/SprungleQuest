@@ -61,6 +61,9 @@ MonoBehaviour:
     pieces:
     - toReplace: '[first]'
       pieces: []
+  chanceToMount: 0.2
+  possibleMounts:
+  - {fileID: 9031539433346217838, guid: 3eb29a78aab396e4c82779611bc39499, type: 3}
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}

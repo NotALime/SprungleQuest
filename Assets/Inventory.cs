@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
                 item.gameObject.SetActive(false);
             }
         }
-        hotbarIndex = Random.Range(0, items.Length);
+        hotbarIndex = Random.Range(0, items.Length - 1);
         if (items[hotbarIndex] != null)
         {
             items[hotbarIndex].gameObject.SetActive(false);

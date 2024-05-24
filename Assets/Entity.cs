@@ -249,6 +249,7 @@ public class Entity : MonoBehaviour
     public void Mount(Entity e)
     {
         Debug.Log(e.baseEntity.gameName + " is mounting " + baseEntity.gameName);
+        mob.team = e.mob.team;
         mob.passenger = e;
 
         mob.mountSeat.autoConfigureConnectedAnchor = false;

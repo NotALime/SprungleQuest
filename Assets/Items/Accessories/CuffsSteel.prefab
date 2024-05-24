@@ -334,7 +334,7 @@ MonoBehaviour:
   modifier:
     health: 0
     moveSpeed: 0
-    damage: 0.1
+    damage: 0.05
     attackSpeed: -0.1
     level: 0
     defense: 5

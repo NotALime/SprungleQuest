@@ -19,6 +19,10 @@ public class Species : ScriptableObject
     public bool generatesName;
     public NameStructure nameStructure;
 
+    [Header("Mounting")]
+    public float chanceToMount;
+    public Entity[] possibleMounts;
+
     public void ApplySpecies(Entity mob)
     {
         mob.mob.scale *= Random.Range(minScale, maxScale);
@@ -42,6 +46,12 @@ public class Species : ScriptableObject
         if (generatesName)
         {
             mob.baseEntity.gameName = nameStructure.GenerateName();
+        }
+
+        if (possibleMounts.Length > 0 && EvoUtils.PercentChance(chanceToMount))
+        {
+            Entity e = Instantiate(possibleMounts[Random.Range(0, possibleMounts.Length)]);
+            e.Mount(mob);
         }
     }
 

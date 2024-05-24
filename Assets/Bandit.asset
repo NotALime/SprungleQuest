@@ -61,12 +61,18 @@ MonoBehaviour:
     pieces:
     - toReplace: '[first]'
       pieces: []
+  chanceToMount: 0.1
+  possibleMounts:
+  - {fileID: 8465281397949382414, guid: 4df3cbd3e73af784f9f01ebedd3ccff6, type: 3}
+  - {fileID: 8465281397949382414, guid: 4df3cbd3e73af784f9f01ebedd3ccff6, type: 3}
+  - {fileID: 8465281397949382414, guid: 4df3cbd3e73af784f9f01ebedd3ccff6, type: 3}
+  - {fileID: 9031539433346217838, guid: 3eb29a78aab396e4c82779611bc39499, type: 3}
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}
   - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
   - {fileID: 5356951726182001441, guid: 0813387129e567d4ebba5adeb57b9c70, type: 3}
-  loadoutSize: 2
+  loadoutSize: 1
   predefinedAccessories:
   - {fileID: 9064721976604691909, guid: a0a7880c655790149a8fc9d3ab26a777, type: 3}
   - {fileID: 4375848825490122596, guid: e7a5903e77b904644a9705bca0c9a489, type: 3}

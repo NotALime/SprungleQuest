@@ -41,7 +41,7 @@ public class MobHorse : MonoBehaviour
         }
 
         Vector3 lookInput = transform.forward * entity.mob.input.z + transform.right * entity.mob.input.x;
-
+        entity.mob.orientation.forward = lookInput;
         entity.mob.rb.AddForce(Vector3.down * gravity);
 
         entity.mob.rb.velocity = new Vector3(entity.mob.rb.velocity.x * friction, entity.mob.rb.velocity.y, entity.mob.rb.velocity.z * friction);

@@ -172,7 +172,8 @@ MonoBehaviour:
     hurtSound: {fileID: 0}
     idleSound: {fileID: 0}
   drops: []
-  renderer: []
+  renderer:
+  - {fileID: 6118298075581286660}
   iframe: 0
   currentIframe: 0
   mob:
@@ -194,19 +195,7 @@ MonoBehaviour:
     behavior:
       ai:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 8465281397949382414}
-            m_TargetAssemblyTypeName: Entity, Assembly-CSharp
-            m_MethodName: PatrolAI
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     aiEnabled: 0
     targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
@@ -216,7 +205,7 @@ MonoBehaviour:
     passenger: {fileID: 0}
     mountSeat: {fileID: 3682913712688678969}
     scale: 1
-    species: {fileID: 0}
+    species: {fileID: 11400000, guid: 0ddc28383ad9a0d428f12bb065134511, type: 2}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0
@@ -236,11 +225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb80514a46f2db4a99974c9d7ed4c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
+  speed: 750
   turnSpeed: 1.5
   jumpForce: 100
   gravity: 50
-  friction: 0.99
+  friction: 0.9
   visual: {fileID: 2370929979168132393}
   accelerationSpeed: 0.5
 --- !u!114 &6672328890275569044
@@ -289,7 +278,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.76, z: 1}
+  m_Size: {x: 0.4, y: 1, z: 2.5}
   m_Center: {x: 0, y: -0.37, z: 0}
 --- !u!153 &3682913712688678969
 ConfigurableJoint:
@@ -303,7 +292,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.7, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.78, y: 7.0099998, z: 2.354}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 0, z: 0}
   m_XMotion: 2
