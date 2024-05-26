@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class MapObject : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MapObject : MonoBehaviour
     public Vector3 maxRot = Vector3.one;
 
     public LayerMask groundLayer = 3;
+
     IEnumerator Start()
     {
         RaycastHit hit;

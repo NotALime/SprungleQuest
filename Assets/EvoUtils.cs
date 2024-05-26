@@ -60,7 +60,7 @@ public class EvoUtils : MonoBehaviour
         // Generate random cell points
         for (int i = 0; i < cellCount; i++)
         {
-            cellPoints[i] = new Vector2(Random.Range(0, width), Random.Range(0, height));
+            cellPoints[i] = new Vector2(Random.Range(-width * 0.5f, width * 0.5f), Random.Range(-height * 0.5f, height * 0.5f));
         }
 
         // Generate Voronoi texture

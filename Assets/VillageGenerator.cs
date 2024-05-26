@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
+
 
 public class VillageGenerator : MonoBehaviour
 {
     public Building[] townHalls;
     public Building[] buildings;
 
+    Spline villagePath = new Spline();
+    public SplineInstantiate villagePathRender;
     GameObject townHall;
 
     public float size;
@@ -16,23 +20,35 @@ public class VillageGenerator : MonoBehaviour
 
     public float budget;
 
-    List<GameObject> placedBuildings;
+    List<GameObject> placedBuildings = new List<GameObject>();
     private void Start()
     {
         PlaceBuilding(townHalls[Random.Range(0, townHalls.Length)], transform.position);
 
         List<Vector2> spots = new List<Vector2>();
         spots.AddRange(EvoUtils.GenerateVoronoi(maxBuildingAmount, spread, spread));
-        while (budget > 0 || placedBuildings.Count >= maxBuildingAmount)
+
+        villagePath.Clear();
+        for (int i = 0; i < maxBuildingAmount; i++)
         {
-            Building b = buildings[Random.Range(0, buildings.Length)];
-            if (b.price >= budget)
+            if (budget > 0)
             {
+                Building b = buildings[Random.Range(0, buildings.Length)];
                 int spot = Random.Range(0, spots.Count);
-                PlaceBuilding(b, new Vector3(spots[spot].x, 1000, spots[spot].y));
+                PlaceBuilding(b, transform.position + new Vector3(spots[spot].x * size, 1000, spots[spot].y * size));
+                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(spots[spot].x, 1000, spots[spot].y));
+                villagePath.Add(knot);
                 spots.Remove(spots[spot]);
             }
+            else
+            {
+                break;
+            }
         }
+
+        villagePathRender.Container.Spline = villagePath;
+        villagePathRender.transform.localScale = size; 
+        villagePathRender.Randomize();
     }
 
     public void PlaceBuilding(Building b, Vector3 pos)
