@@ -47,13 +47,14 @@ public class VillageGenerator : MonoBehaviour
         }
 
         villagePathRender.Container.Spline = villagePath;
-        villagePathRender.transform.localScale = size; 
+        villagePathRender.transform.localScale = Vector3.one * size; 
         villagePathRender.Randomize();
     }
 
     public void PlaceBuilding(Building b, Vector3 pos)
     {
             GameObject built = Instantiate(b.building, pos, Quaternion.identity);
+        built.transform.parent = transform;
             budget -= b.price;
             placedBuildings.Add(built);
     }

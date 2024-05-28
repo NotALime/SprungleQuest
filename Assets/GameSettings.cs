@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terra.Terrain;
 using UnityEngine;
 using TMPro;
+using Terra.CoherentNoise.Generation.Voronoi;
 
 public class GameSettings : MonoBehaviour
 {
@@ -42,6 +43,19 @@ public class GameSettings : MonoBehaviour
         hitSound = hit;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public static void LockMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        player.mob.aiEnabled = true;
+    }
+    public static void UnlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        player.mob.aiEnabled = false;
     }
 
     private void Update()

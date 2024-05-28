@@ -112,29 +112,26 @@ public class Entity : MonoBehaviour
     {
         if (ai.mob.target == null)
         {
-            if (EvoUtils.PercentChance(0.1f, true))
+            if (ai.mob.leader != null)
             {
-                if (ai.mob.input.z != 0)
+                ai.mob.orientation.LookAt(ai.mob.leader.transform);
+                if (Vector2.Distance(ai.transform.position, ai.mob.leader.transform.position) > 5)
                 {
-                    ai.mob.input.z = 0;
-                    if (ai.mob.leader != null)
-                    {
-                        ai.mob.orientation.LookAt(ai.mob.leader.transform);
-                    }
-                    else
-                    {
-                        Vector3 lookDir = Random.insideUnitSphere;
-                        lookDir.y = 0;
-                        ai.mob.orientation.forward = lookDir.normalized;
-                        Debug.Log("rotated patroller");
-                    }
+                    ai.mob.input = Vector3.forward;
                 }
                 else
                 {
-                    ai.mob.input.z = 1;
+                    ai.mob.input = Vector3.zero;
+                }
+
+                if (ai.mob.leader.player)
+                {
+                    if (Vector2.Distance(ai.transform.position, ai.mob.leader.transform.position) > 100)
+                    {
+                        ai.transform.position = Vector3.Normalize(new Vector3(ai.mob.leader.mob.orientation.forward.x, 0, ai.mob.leader.mob.orientation.forward.z)) * -10 + Vector3.up * 5;
+                    }
                 }
             }
-
             if (ai.GetClosestTarget() != null)
             {
                 ai.mob.target = ai.GetClosestTarget();
@@ -216,7 +213,7 @@ public class Entity : MonoBehaviour
             if (c.GetComponent<Entity>())
             {
                 Entity e = c.GetComponent<Entity>();
-                if (CompareTeams(this, e))
+                if (CompareTeams(this, e) && e.mob.team != "" && this.mob.team != "")
                 {
                     if (e.player)
                     {
@@ -246,6 +243,15 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public GameObject GetObjectLookedAt()
+    {
+        if (Physics.Raycast(transform.position, mob.orientation.forward, out interactRay, 4))
+        {
+            return interactRay.collider.gameObject;
+        }
+        return null;
+    }
+
     public void Mount(Entity e)
     {
         Debug.Log(e.baseEntity.gameName + " is mounting " + baseEntity.gameName);
@@ -259,6 +265,14 @@ public class Entity : MonoBehaviour
         mob.mountSeat.yMotion = ConfigurableJointMotion.Limited;
         mob.mountSeat.zMotion = ConfigurableJointMotion.Locked;
     }
+
+    public void Tame(Entity e)
+    {
+        mob.leader = e;
+        mob.team = e.mob.team;
+        mob.target = null;
+    }
+
     public void Unmount()
     {
         Debug.Log(mob.passenger.baseEntity.gameName + " unmounted " + baseEntity.gameName);
@@ -309,7 +323,11 @@ public class Entity : MonoBehaviour
                         e.Invoke(this);
                     }
                 }
-                damageMultiplier = GetDefensedDamage(damager.mob.stats.damage);
+                if (mob.revengeful)
+                {
+                    mob.target = damager;
+                }
+                damageMultiplier = damager.mob.stats.damage;
 
                 if (baseEntity.healthbar == null)
                 {
@@ -324,7 +342,7 @@ public class Entity : MonoBehaviour
                 }
             }   
 
-            baseEntity.health -= damage * damageMultiplier;
+            baseEntity.health -= GetDefensedDamage(damage * damageMultiplier);
             Debug.Log(name + " took " + damage.ToString() + " damage");
             if (baseEntity.hurtSound != null)
             {
@@ -484,6 +502,8 @@ public class Mob
     public Entity target;
     public string team = ""; //"" = hostile, "player" = player,
     public Entity leader;
+    [Tooltip("Does the entity attack an entity back when damaged")]
+    public bool revengeful = true;
 
     [HideInInspector]
     public bool mountable;

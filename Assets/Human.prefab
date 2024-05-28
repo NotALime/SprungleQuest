@@ -277,9 +277,9 @@ GameObject:
   - component: {fileID: 8643342451883632510}
   - component: {fileID: 5545154934358913427}
   - component: {fileID: 7744152201218192227}
-  - component: {fileID: 3836920593300617166}
+  - component: {fileID: 280400077848441736}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,8 +445,9 @@ MonoBehaviour:
     aiEnabled: 1
     targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
-    team: human
+    team: 
     leader: {fileID: 0}
+    revengeful: 1
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
@@ -577,7 +578,7 @@ MonoBehaviour:
     rootBone: {fileID: 8162321531871008921}
     bodyVisual: {fileID: 3428143708593199664}
   ui: {fileID: 0}
---- !u!114 &3836920593300617166
+--- !u!114 &280400077848441736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -586,9 +587,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2276734207087740398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0714f10252c24e438e6ec0472acf50d, type: 3}
+  m_Script: {fileID: 11500000, guid: a97382a6ba07c3f419c9e8e5c59aacb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  ai: {fileID: 0}
+  introText:
+  - What's up
+  - Awaaaga
+  - Yeah?
 --- !u!1 &2496266768272151268
 GameObject:
   m_ObjectHideFlags: 0

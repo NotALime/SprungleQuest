@@ -90,8 +90,6 @@ public class WeaponRanged : MonoBehaviour
 
     public void AIShootWhenSaw(Inventory e)
     {
-        if (e.owner.entity.mob.leader == null || Vector2.Distance(e.transform.position, e.owner.entity.mob.leader.transform.position) <= e.owner.entity.mob.stats.visionRange)
-        {
             if (e.owner.entity.mob.target != null)
             {
                 e.owner.entity.mob.orientation.LookAt(e.owner.entity.mob.target.mob.orientation);
@@ -124,14 +122,14 @@ public class WeaponRanged : MonoBehaviour
                 {
                     e.owner.entity.mob.input.y = 0;
                 }
-            }
+
             RaycastHit hit = new RaycastHit();
 
             if ((Physics.SphereCast(e.owner.entity.mob.orientation.position, 5, e.owner.entity.mob.orientation.forward, out hit, e.owner.entity.mob.stats.visionRange)))
             {
-                if (EvoUtils.PercentChance(0.2f * e.owner.entity.mob.stats.level, true))
+                if (EvoUtils.PercentChance(0.3f * e.owner.entity.mob.stats.level, true))
                 {
-                    e.owner.entity.mob.primaryInput = !e.owner.entity.mob.primaryInput;
+                    e.owner.entity.mob.primaryInput = true;
                 }
             }
             else
@@ -139,32 +137,5 @@ public class WeaponRanged : MonoBehaviour
                 e.owner.entity.mob.primaryInput = false;
             }
         }
-        else
-        {
-            e.owner.entity.mob.orientation.LookAt(e.owner.entity.mob.leader.mob.orientation);
-            e.owner.entity.mob.input.z = 1;
-
-            if (Random.Range(0f, 1f) < 0.05f)
-            {
-                e.owner.entity.mob.input.y = 1;
-            }
-            else
-            {
-                e.owner.entity.mob.input.y = 0;
-            }
-
-            if (Random.Range(0f, 1f) < 0.01f)
-            {
-                if (Random.Range(0f, 1f) <= 0.5f)
-                {
-                    e.owner.entity.mob.input.x = 1;
-                }
-                else
-                {
-                    e.owner.entity.mob.input.x = -1;
-                }
-            }
-        }
-
     }
 }

@@ -39,6 +39,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject tooltip;
     public TextMeshProUGUI tooltipTitle;
     public TextMeshProUGUI tooltipDescription;
+
+    public Dialogue dialogue;
     // Start is called before the first frame update
     void Awake()
     {
@@ -99,6 +101,17 @@ public class InventoryUI : MonoBehaviour
 
             invOpened = !invOpened;
 
+            if (invOpened)
+            {
+                GameSettings.UnlockMouse();
+                inventory.transform.localPosition = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                GameSettings.LockMouse();
+                inventory.transform.localPosition = new Vector3(9999, 9999, 0);
+            }
+
             if (invOpened && itemHeld != null)
             {
                 inv.DropItem(itemHeld);
@@ -113,6 +126,17 @@ public class InventoryUI : MonoBehaviour
             {
                 //   inv.hand.connectedBody = null;
                 AddItem(inv.GetItemLookedAt());
+            }
+
+            if (inv.owner.entity.GetObjectLookedAt() != null)
+            {
+                if (inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>())
+                {
+                    dialogue.gameObject.SetActive(true);
+                    dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
+                    Entity.TalkCycle(dialogue.currentNPC.ai, dialogue.currentNPC.introText[Random.Range(0, dialogue.currentNPC.introText.Length)]);
+                    GameSettings.UnlockMouse();
+                }
             }
         }
 
