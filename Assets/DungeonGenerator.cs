@@ -3,64 +3,47 @@ using System.Collections.Generic;
 
 public class DungeonGenerator : MonoBehaviour
 {
-    public int dungeonWidth = 5;
-    public int dungeonLength = 5;
-    public float roomWidth = 5f;
-    public float roomLength = 5f;
-    public float wallHeight = 5f;
-    public Material material;
+    public DungeonRoom[] rooms;
+    public int size;
+    public float roomAmount;
 
-    void Start()
+    GameObject[,,] grid;
+    private void Start()
     {
-        GenerateDungeon();
-    }
-
-    void GenerateDungeon()
-    {
-        for (int x = 0; x < dungeonWidth; x++)
+        grid = new GameObject[size, size, size];
+        Vector3 offset = transform.position;
+        Vector3 previousOffset = Vector3.zero;
+        for (int i = 0; i < roomAmount; i++)
         {
-            for (int z = 0; z < dungeonLength; z++)
-            {
-                Vector3 roomPosition = new Vector3(x * roomWidth, 0, z * roomLength);
-                GenerateRoom(roomPosition);
-            }
+            DungeonRoom room = rooms[Random.Range(0, rooms.Length)];
+
+            bool rotated = EvoUtils.PercentChance(0.5f);
+
+            Vector3 roomOffset = new Vector3(room.size.x, 0, 0);
+            offset += roomOffset * 0.5f + previousOffset * 0.5f;
+
+            //  Vector3 orientation = new Vector3(0, Random.Range(0, 2) * 90, 0);
+            //  Vector3 sizeRotated = EvoUtils.RotateVector(room.size, orientation);
+            //  Vector3 rotateOffset = EvoUtils.RotateVector(new Vector3(0, 0, room.size.x), orientation);
+            GameObject spawnedRoom = Instantiate(room.obj, offset, Quaternion.identity);
+         //  for (int x = 0; x < room.size.x; x++)
+         //  {
+         //      for (int z = 0; z < sizeRotated.y; z++)
+         //      {
+         //          for (int y = 0; y < sizeRotated.y; y++)
+         //          {
+         //              grid[x, y, z] = spawnedRoom;
+         //          }
+         //      }
+         //  }
+            previousOffset = roomOffset;
         }
     }
+}
 
-    void GenerateRoom(Vector3 position)
-    {
-        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
-
-        Mesh mesh = new Mesh();
-        meshFilter.mesh = mesh;
-        meshRenderer.material = material;
-
-        // Vertices
-        List<Vector3> vertices = new List<Vector3>();
-        vertices.Add(new Vector3(-roomWidth / 2, 0, -roomLength / 2) + position); // Bottom Left
-        vertices.Add(new Vector3(roomWidth / 2, 0, -roomLength / 2) + position); // Bottom Right
-        vertices.Add(new Vector3(roomWidth / 2, 0, roomLength / 2) + position); // Top Right
-        vertices.Add(new Vector3(-roomWidth / 2, 0, roomLength / 2) + position); // Top Left
-
-        // Triangles
-        List<int> triangles = new List<int>();
-        triangles.Add(0);
-        triangles.Add(2);
-        triangles.Add(1);
-        triangles.Add(0);
-        triangles.Add(3);
-        triangles.Add(2);
-
-        // Normals
-        List<Vector3> normals = new List<Vector3>();
-        for (int i = 0; i < 4; i++)
-        {
-            normals.Add(Vector3.up);
-        }
-
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-        mesh.normals = normals.ToArray();
-    }
+[System.Serializable]
+public class DungeonRoom
+{
+    public Vector3 size;
+    public GameObject obj;
 }

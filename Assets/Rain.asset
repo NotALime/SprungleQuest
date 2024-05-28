@@ -105,7 +105,7 @@ MonoBehaviour:
   minTime: 6
   maxTime: 24
   fogValue: 0.003
-  starsEnabled: 0
+  starStrength: 0
   wetness: 1
   chanceToHappen: 0.4
   spawnPool:

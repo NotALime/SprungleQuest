@@ -58,7 +58,7 @@ public class WorldManager : MonoBehaviour
         skyMaterial.SetColor("_HorizonColor", currentWeather.horizonColor.Evaluate(time / (worldTime * 60)));
         skyMaterial.SetColor("_ZenithColor", currentWeather.zenithColor.Evaluate(time / (worldTime * 60)));
 
-        skyMaterial.SetFloat("StarOpacity", System.Convert.ToInt32(currentWeather.starsEnabled));
+        skyMaterial.SetFloat("_StarOpacity", currentWeather.starStrength);
      //   wetness = currentWeather.wetness;
      //   Shader.SetGlobalFloat("_Wetness", wetness);
         RenderSettings.ambientLight =currentWeather.lightColor.Evaluate(time / (worldTime * 60));
@@ -130,7 +130,7 @@ public class WorldManager : MonoBehaviour
         skyMaterial.SetColor("_HorizonColor", Color.LerpUnclamped(skyMaterial.GetColor("_HorizonColor"), currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale));
         skyMaterial.SetColor("_ZenithColor", Color.LerpUnclamped(skyMaterial.GetColor("_ZenithColor"), currentWeather.zenithColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale));
 
-        skyMaterial.SetFloat("StarOpacity", Mathf.LerpUnclamped(skyMaterial.GetFloat("_StarOpacity"), System.Convert.ToInt32(currentWeather.starsEnabled), Time.deltaTime * timeScale));
+        skyMaterial.SetFloat("_StarOpacity", Mathf.LerpUnclamped(skyMaterial.GetFloat("_StarOpacity"), currentWeather.starStrength, Time.deltaTime * timeScale));
         wetness = Mathf.LerpUnclamped(wetness, currentWeather.wetness, 20 * Time.deltaTime * timeScale);
 
         Shader.SetKeyword(wetKey, wetness > 0);

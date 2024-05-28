@@ -74,12 +74,12 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   lightColor:
     serializedVersion: 2
-    key0: {r: 0.23584908, g: 0.20047171, b: 0.17688681, a: 1}
+    key0: {r: 0.066037714, g: 0.06028915, b: 0.057004254, a: 1}
     key1: {r: 0.33764705, g: 0.395844, b: 0.48235294, a: 1}
     key2: {r: 1, g: 1, b: 1, a: 0}
     key3: {r: 1, g: 1, b: 1, a: 0}
     key4: {r: 0.20588236, g: 0.21614228, b: 0.29411766, a: 0}
-    key5: {r: 0.23529412, g: 0.2, b: 0.1764706, a: 0}
+    key5: {r: 0.06666667, g: 0.05882353, b: 0.05882353, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   minTime: 3
   maxTime: 12
   fogValue: 0.01
-  starsEnabled: 0
+  starStrength: 0.1
   wetness: 0.3
   chanceToHappen: 0.1
   spawnPool:

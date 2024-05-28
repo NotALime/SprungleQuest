@@ -86,5 +86,9 @@ public class EvoUtils : MonoBehaviour
         }
         return null;
     }
-
+    public static Vector3 RotateVector(Vector3 vector, Vector3 eulerAngles)
+    {
+        Quaternion rotation = Quaternion.Euler(eulerAngles);
+        return rotation * vector;
+    }
 }
