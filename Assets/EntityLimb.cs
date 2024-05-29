@@ -10,6 +10,8 @@ public class EntityLimb : MonoBehaviour
     public Vector3 bodyScale = Vector3.one;
 
     public float damageMultiplier = 1;
+
+    public Entity entity;
     // Start is called before the first frame update
     void Start()
     {

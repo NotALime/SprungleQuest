@@ -219,7 +219,16 @@ public class WeaponMelee : MonoBehaviour
         {
             if (!attacking) break;
 
-            if (col.GetComponent<Entity>() is Entity hitEntity && Entity.CompareTeams(inv.owner.entity, hitEntity))
+            Entity hitEntity = null;
+            if (col.GetComponent<Entity>())
+            {
+                hitEntity = col.GetComponent<Entity>();
+            }
+            else if (col.GetComponent<EntityLimb>())
+            {
+                hitEntity = col.GetComponent<EntityLimb>().entity;
+            }
+            if (hitEntity != null && Entity.CompareTeams(inv.owner.entity, hitEntity))
             {
                 Vector3 dir = inv.owner.flatForwardOrientation();
                 hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);

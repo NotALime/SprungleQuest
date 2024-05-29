@@ -86,15 +86,18 @@ public class Entity : MonoBehaviour
                     Unmount();
                 }
             }
+
+            if (baseEntity.idleSound != null)
+            {
+                if (EvoUtils.PercentChance(0.05f, true))
+                {
+                    baseEntity.idleSound.PlaySound();
+                }
+            }
         }
         else
         {
             mob.input = Vector3.zero;
-        }
-
-        if (mob.rb != null && !player)
-        {
-            SetChunk();
         }
     }
 

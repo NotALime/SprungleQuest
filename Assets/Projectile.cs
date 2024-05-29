@@ -118,18 +118,29 @@ public class Projectile : MonoBehaviour
 		{
 			if (Entity.CompareTeams(origin, collision.gameObject.GetComponent<Entity>()))
 			{
-				collision.gameObject.GetComponent<Entity>().TakeDamage(damage * origin.mob.stats.damage, origin);
+				collision.gameObject.GetComponent<Entity>().TakeDamage(damage, origin);
 				if (!piercing)
 				{
 					BulletDestroy();
 				}
 			}
 		}
-	//	else if(!noclip)
-    //    {
-	//		BulletDestroy();
-	//	}
-	}
+        else if (collision.gameObject.GetComponent<EntityLimb>())
+        {
+            if (Entity.CompareTeams(origin, collision.gameObject.GetComponent<EntityLimb>().entity))
+            {
+                collision.gameObject.GetComponent<EntityLimb>().entity.TakeDamage(damage, origin);
+                if (!piercing)
+                {
+                    BulletDestroy();
+                }
+            }
+        }
+       	else if(!noclip)
+           {
+       		BulletDestroy();
+       	}
+    }
 
 	public void ApplyLevel(int l = 1)
 	{
