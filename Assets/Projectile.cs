@@ -21,6 +21,8 @@ public class Projectile : MonoBehaviour
 	public bool noclip;
 	public bool piercing;
 
+	public bool persistant;
+
 	[HideInInspector]
 	public Entity origin;
 
@@ -136,8 +138,8 @@ public class Projectile : MonoBehaviour
                 }
             }
         }
-       	else if(!noclip)
-           {
+       	else if(destroysOnImpact)
+        {
        		BulletDestroy();
        	}
     }

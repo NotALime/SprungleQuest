@@ -132,6 +132,7 @@ public class DragonAI : MonoBehaviour
         anim.SetBool("Ground", true);
         yield return new WaitForSeconds(15);
         ai.mob.input = Vector3.up;
+        ai.mob.rb.AddForce(Vector3.up * upSpeed * 30);
         state = AIState.Idle;
         anim.SetBool("Ground", false);
         yield return new WaitForSeconds(4);

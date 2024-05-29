@@ -21,18 +21,18 @@ public class ItemDash : MonoBehaviour
 
         item.itemDescription += "\n" + dashSpeed.ToString() + " speed dash over " + dashTime.ToString() + " seconds with " + dashCooldown.ToString() + " cooldown";
     }
-    public void Dash(Inventory inv)
+    public void Dash(Entity inv)
     {
-        Debug.Log(inv.owner.entity.baseEntity.gameName + " tried dashing");
-        if (item.cooldown <= 0 && inv.owner.entity.mob.specialInput)
+        Debug.Log(inv.baseEntity.gameName + " tried dashing");
+        if (item.cooldown <= 0 && inv.mob.specialInput)
         {
-            inv.owner.entity.mob.rb.useGravity = false;
-            inv.owner.entity.mob.rb.velocity = Vector3.zero;
+            inv.mob.rb.useGravity = false;
+         //   inv.mob.rb.velocity = Vector3.zero;
 
 
-            dashInput = inv.owner.flatForwardOrientation() * inv.owner.entity.mob.input.z + inv.owner.flatRightOrientation() * inv.owner.entity.mob.input.x;
+            dashInput = inv.mob.input.z * inv.mob.orientation.forward + inv.mob.input.x * inv.mob.orientation.right;
             dashInput.y = 0;
-            rbApplied = inv.owner.entity.mob.rb;
+            rbApplied = inv.mob.rb;
             dashing = true;
 
             item.cooldown = dashCooldown;
@@ -48,10 +48,10 @@ public class ItemDash : MonoBehaviour
         }
     }
 
-    IEnumerator StopDash(Inventory inv)
+    IEnumerator StopDash(Entity inv)
     {
         yield return new WaitForSeconds(dashTime);
-        inv.owner.entity.mob.rb.useGravity = true;
+        inv.mob.rb.useGravity = true;
         dashing = false;
     }
 
@@ -71,7 +71,7 @@ public class ItemDash : MonoBehaviour
         if (detectedProjectile && Random.Range(0f, 1f) <= 0.05f * inv.owner.entity.mob.stats.level)
         {
             inv.owner.entity.mob.input = Random.insideUnitSphere.normalized;
-            Dash(inv);
+            Dash(inv.owner.entity);
         }
 
         if (inv.owner.entity.mob.target != null)
@@ -82,7 +82,7 @@ public class ItemDash : MonoBehaviour
                 {
                     inv.owner.entity.mob.input = Vector3.forward;
                     inv.owner.entity.mob.specialInput = true;
-                    Dash(inv);
+                    Dash(inv.owner.entity);
                     inv.owner.entity.mob.specialInput = false;
                 }
             }
@@ -91,7 +91,7 @@ public class ItemDash : MonoBehaviour
         {
             inv.owner.entity.mob.input = Vector3.forward;
             inv.owner.entity.mob.specialInput = true;
-            Dash(inv);
+            Dash(inv.owner.entity);
             inv.owner.entity.mob.specialInput = false;
         }
     }

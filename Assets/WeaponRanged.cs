@@ -8,6 +8,7 @@ public class WeaponRanged : MonoBehaviour
     public Item item;
 
     public Projectile projectile;
+    public Hitscan hitscan;
 
     public float projectilesPerShot = 1;
 
@@ -21,6 +22,7 @@ public class WeaponRanged : MonoBehaviour
 
     public AudioPlayer castSound;
 
+
     [Header("Overheat")]
     public int shotsToBig;
     public int overHeatLevel;
@@ -33,32 +35,42 @@ public class WeaponRanged : MonoBehaviour
     {
         shotsFired++;
 
-        Projectile proj = null;
         inv.handAnimator.SetBool("Active", true);
 
-        if (rotatedToAttack)
+        if (projectile != null)
         {
-            for (int i = 0; i < projectilesPerShot; i++)
+            Projectile proj = null;
+            if (rotatedToAttack)
             {
-                proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
-                proj.ApplyLevel(proj.level.level);
-                if (shotsFired == shotsToBig)
+                for (int i = 0; i < projectilesPerShot; i++)
                 {
-                    proj.ApplyLevel(overHeatLevel);
-                    shotsFired = 0;
+                    proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
+                    proj.ApplyLevel(proj.level.level);
+                    if (shotsFired == shotsToBig)
+                    {
+                        proj.ApplyLevel(overHeatLevel);
+                        shotsFired = 0;
+                    }
                 }
+                if (shotsToBig > 0)
+                {
+                    castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
+                }
+                else
+                {
+                    castSound.PlaySound();
+                }
+                item.cooldown = (cooldown * proj.cooldown) / inv.owner.entity.mob.stats.attackSpeed;
             }
-            if (shotsToBig > 0)
-            {
-                castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
-            }
-            else
-            {
-                castSound.PlaySound();
-            }
-            item.cooldown = (cooldown * proj.cooldown) / inv.owner.entity.mob.stats.attackSpeed;
+        }
+        else if (hitscan != null)
+        {
+            hitscan.HitscanCast(inv.owner.entity);
+         //   item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
         }
     }
+
+
 
     [Header("Player Specific")]
     public float aimFOV;
@@ -83,6 +95,10 @@ public class WeaponRanged : MonoBehaviour
         }
         else
         {
+            if (hitscan != null)
+            {
+                hitscan.line.enabled = false;
+            }
             inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.Slerp(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 10 * Time.deltaTime);
             rotatedToAttack = false;
         }

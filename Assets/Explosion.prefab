@@ -70,8 +70,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  centerDamage: 50
-  knockback: 2000
+  centerDamage: 30
+  knockback: 5000
   origin: {fileID: 0}
 --- !u!1 &8423480800068991821
 GameObject:
