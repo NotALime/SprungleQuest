@@ -10,37 +10,84 @@ public class Hitscan : MonoBehaviour
     public int extraJoints;
     public float extraJointNoiseSpeed;
     public float extraJointNoiseMagnitude;
+    public AudioSource sound;
 
     private void Start()
     {
-    //    line.positionCount = extraJoints + 1;
+        line.enabled = false;
+        sound.enabled = false;
     }
+
+    void Update()
+    {
+        line.SetPosition(0, transform.position);
+    }
+
+    public int numPoints = 10; // Number of in-between points
+    public float noiseIntensity = 0.1f; // Intensity of noise
+    public float noiseSpeed = 1f; // Speed of noise over time
+    public float timeSnap = 0;
+
     public void HitscanCast(Entity ai)
     {
         RaycastHit hit;
         line.enabled = true;
-        line.SetPosition(0, Vector3.LerpUnclamped(line.GetPosition(0), transform.position, 50 * Time.deltaTime));
-        if (Physics.Raycast(transform.position, transform.forward, out hit, range))
-        {
-            if (hit.transform.gameObject.GetComponent<EntityLimb>())
-            {
-                if(Entity.CompareTeams(ai, hit.transform.gameObject.GetComponent<EntityLimb>().entity))
-                hit.transform.gameObject.GetComponent<EntityLimb>().entity.TakeDamage(damage * hit.transform.gameObject.GetComponent<EntityLimb>().damageMultiplier, ai);
-            }
-            else if (hit.transform.gameObject.GetComponent<Entity>())
-            {
-                if (Entity.CompareTeams(ai, hit.transform.gameObject.GetComponent<Entity>()))
-                    hit.transform.gameObject.GetComponent<Entity>().TakeDamage(damage, ai);
-            }
-            line.SetPosition(1, transform.position + transform.forward * hit.distance);
-        }
-        line.SetPosition(1, transform.position + transform.forward * range);
+        sound.enabled = true;
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = startPosition + transform.forward * range;
 
-     //   Invoke("DisableRay", 0.1f);
+        if (Physics.Raycast(startPosition, transform.forward, out hit, range))
+        {
+            EntityLimb hitLimb = hit.transform.GetComponent<EntityLimb>();
+            Entity hitEntity = hit.transform.GetComponent<Entity>();
+
+            if (hitLimb && Entity.CompareTeams(ai, hitLimb.entity))
+            {
+                hitLimb.entity.TakeDamage(damage * hitLimb.damageMultiplier, ai);
+            }
+            else if (hitEntity && Entity.CompareTeams(ai, hitEntity))
+            {
+                hitEntity.TakeDamage(damage, ai);
+            }
+            endPosition = hit.point;
+        }
+
+        Vector3[] positions = new Vector3[numPoints + 2];
+        positions[0] = startPosition;
+        positions[numPoints + 1] = endPosition;
+        line.positionCount = positions.Length;
+
+        float lineLength = Vector3.Distance(startPosition, endPosition);
+        float segmentLength = lineLength;
+
+        // Generate the initial positions with noise
+        for (int i = 1; i <= numPoints; i++)
+        {
+            float t = (float)i / (numPoints + 1);
+            Vector3 interpolatedPoint = Vector3.Lerp(startPosition, endPosition, t);
+
+            // Generate Perlin noise
+            float noiseX = Mathf.PerlinNoise(i * 0.1f, EvoUtils.RoundToMultiple(Time.time * noiseSpeed, timeSnap));
+            float noiseY = Mathf.PerlinNoise(i * 0.1f + 1, EvoUtils.RoundToMultiple(Time.time * noiseSpeed, timeSnap));
+            float noiseZ = Mathf.PerlinNoise(i * 0.1f + 2, EvoUtils.RoundToMultiple(Time.time * noiseSpeed, timeSnap));
+
+            // Normalize noise to range [-1, 1]
+            noiseX = (noiseX - 0.5f) * 2;
+            noiseY = (noiseY - 0.5f) * 2;
+            noiseZ = (noiseZ - 0.5f) * 2;
+
+            // Apply uniform noise based on segment length
+            Vector3 noise = (new Vector3(noiseX, noiseY, noiseZ) * noiseIntensity) * segmentLength;
+            positions[i] = interpolatedPoint + noise;
+        }
+
+        line.SetPositions(positions);
     }
 
-    public void DisableRay()
+
+public void DisableRay()
     {
         line.enabled = false;
     }
 }
+

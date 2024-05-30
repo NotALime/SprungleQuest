@@ -9,6 +9,8 @@ public class WeaponRanged : MonoBehaviour
 
     public Projectile projectile;
     public Hitscan hitscan;
+    public int hitscanFrames;
+    int currentHitscanFrames;
 
     public float projectilesPerShot = 1;
 
@@ -21,6 +23,8 @@ public class WeaponRanged : MonoBehaviour
     public float recoil;
 
     public AudioPlayer castSound;
+
+    public bool automatic = true;
 
 
     [Header("Overheat")]
@@ -60,13 +64,25 @@ public class WeaponRanged : MonoBehaviour
                 {
                     castSound.PlaySound();
                 }
-                item.cooldown = (cooldown * proj.cooldown) / inv.owner.entity.mob.stats.attackSpeed;
             }
+            inv.owner.entity.mob.primaryInput = automatic;
+            item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
         }
         else if (hitscan != null)
         {
             hitscan.HitscanCast(inv.owner.entity);
-         //   item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
+            if (castSound != null)
+            {
+                castSound.PlaySound();
+            }
+            currentHitscanFrames++;
+
+            if (currentHitscanFrames >= hitscanFrames)
+            {
+                currentHitscanFrames = 0;
+                inv.owner.entity.mob.primaryInput = automatic;
+                item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
+            }
         }
     }
 
@@ -98,6 +114,7 @@ public class WeaponRanged : MonoBehaviour
             if (hitscan != null)
             {
                 hitscan.line.enabled = false;
+                hitscan.sound.enabled = false;
             }
             inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.Slerp(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 10 * Time.deltaTime);
             rotatedToAttack = false;
