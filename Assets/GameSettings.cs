@@ -28,10 +28,15 @@ public class GameSettings : MonoBehaviour
     public static TextMeshProUGUI title;
     public static TextMeshPro dialogue;
 
+    //terrible system
+    public Renderer terrainRender;
+    public static Renderer tRender;
     private void Start()
     {
         title = titleText;
         dialogue = dialogueText;
+
+        tRender = terrainRender;
 
         title.text = "";
         dialogue.text = "";

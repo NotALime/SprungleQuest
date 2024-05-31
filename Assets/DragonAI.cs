@@ -42,6 +42,11 @@ public class DragonAI : MonoBehaviour
     {
         flapSound.PlaySound();
     }
+
+    private void Start()
+    {
+        ai.mob.targetPoint = transform.position;
+    }
     public void FixedUpdate()
     {
         ai.AI();

@@ -20,6 +20,8 @@ public class VillageGenerator : MonoBehaviour
 
     public float budget;
 
+    public GameObject path;
+
     List<GameObject> placedBuildings = new List<GameObject>();
     private void Start()
     {
@@ -36,7 +38,7 @@ public class VillageGenerator : MonoBehaviour
                 Building b = buildings[Random.Range(0, buildings.Length)];
                 int spot = Random.Range(0, spots.Count);
                 PlaceBuilding(b, transform.position + new Vector3(spots[spot].x * size, 1000, spots[spot].y * size));
-                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(spots[spot].x, 1000, spots[spot].y));
+                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(spots[spot].x, 100, spots[spot].y));
                 villagePath.Add(knot);
                 spots.Remove(spots[spot]);
             }
@@ -54,6 +56,8 @@ public class VillageGenerator : MonoBehaviour
     public void PlaceBuilding(Building b, Vector3 pos)
     {
             GameObject built = Instantiate(b.building, pos, Quaternion.identity);
+        GameObject p = Instantiate(path, pos, Quaternion.identity);
+        p.transform.localScale *= Random.Range(2, 4);
         built.transform.parent = transform;
             budget -= b.price;
             placedBuildings.Add(built);

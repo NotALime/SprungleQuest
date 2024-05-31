@@ -3,6 +3,7 @@ using Terra.Graph.Noise;
 using Terra.Terrain.Util;
 using Terra.Terrain;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Terra.Terrain {
 	[System.Serializable, ExecuteInEditMode]
@@ -63,7 +64,8 @@ namespace Terra.Terrain {
 		public float GrassAngleMin = 0f;
 		public float GrassAngleMax = 25f;
 		public Texture2D GrassTexture = null;
-		
+
+
 		//Object Placement Tab
 		public List<ObjectPlacementType> ObjectPlacementSettings = new List<ObjectPlacementType>();
 

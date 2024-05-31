@@ -26,11 +26,12 @@ namespace Terra.Terrain {
 			public int[] triangles;
 		}
 
+		MeshRenderer render;
+
 		void OnEnable() {
 			Details = new DetailManager(this);
 
-			gameObject.layer = layer;
-
+			gameObject.layer = layer;			
 			Settings = TerraSettings.Instance;
 			if (Settings == null) {
 				Debug.LogError("Cannot find a TerraSettings object in the scene");
@@ -142,6 +143,7 @@ namespace Terra.Terrain {
 			MeshRenderer renderer = gameObject.AddComponent<MeshRenderer>();
 			renderer.material = new Material(Shader.Find("Diffuse"));
 			renderer.enabled = renderOnCreation;
+			render = renderer;
 			Terrain = gameObject.AddComponent<MeshFilter>().mesh;
 
 			MeshData md = CreateRawMesh(position, generator);
@@ -174,6 +176,7 @@ namespace Terra.Terrain {
 			TerraEvent.TriggerOnCustomMaterialWillApply(gameObject);
 
 			MeshRenderer mr = GetComponent<MeshRenderer>();
+			mr.renderingLayerMask += 2;
 			mr.sharedMaterial = Settings.CustomMaterial;
 			TerraEvent.TriggerOnCustomMaterialDidApply(gameObject);
 		}

@@ -45,7 +45,7 @@ public class WorldManager : MonoBehaviour
 
     private void Start()
     {
-        time = 4;
+        time = 6;
 
         initialMoonIntensity = moonLight.intensity;
         initialSunIntensity = sunLight.intensity;

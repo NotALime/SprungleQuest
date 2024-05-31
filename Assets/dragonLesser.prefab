@@ -198,7 +198,7 @@ MonoBehaviour:
       attackSpeed: 1
       level: 1
       defense: 0
-      visionRange: 500
+      visionRange: 1000
       effects:
         onHit: []
         onIdle: []
@@ -275,6 +275,7 @@ MonoBehaviour:
   sleepSound: {fileID: 0}
   flapSound: {fileID: 7594733985654610650}
   visual: {fileID: 3962962109785294252}
+  treasuresToDestroy: []
   anim: {fileID: 7036256917778137761}
 --- !u!95 &7036256917778137761
 Animator:
