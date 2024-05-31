@@ -80,6 +80,8 @@ public class WeaponRanged : MonoBehaviour
             if (currentHitscanFrames >= hitscanFrames)
             {
                 currentHitscanFrames = 0;
+                hitscan.line.enabled = false;
+                hitscan.sound.enabled = false;
                 inv.owner.entity.mob.primaryInput = automatic;
                 item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
             }
@@ -111,11 +113,6 @@ public class WeaponRanged : MonoBehaviour
         }
         else
         {
-            if (hitscan != null)
-            {
-                hitscan.line.enabled = false;
-                hitscan.sound.enabled = false;
-            }
             inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.Slerp(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 10 * Time.deltaTime);
             rotatedToAttack = false;
         }

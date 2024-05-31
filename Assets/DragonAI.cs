@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
 
 public class DragonAI : MonoBehaviour
 {
@@ -31,9 +32,16 @@ public class DragonAI : MonoBehaviour
     public Explosion landExplosion;
     public Projectile idleProjectile;
 
+    public AudioPlayer sleepSound;
+    public AudioPlayer flapSound;
+
     public Transform visual;
 
     Ray groundRay;
+    public void Flap()
+    {
+        flapSound.PlaySound();
+    }
     public void FixedUpdate()
     {
         ai.AI();
@@ -70,26 +78,54 @@ public class DragonAI : MonoBehaviour
         //   }
     }
 
+    public GameObject[] treasuresToDestroy;
     public void DragonAILogic(Entity ai)
     {
         if (state == AIState.Idle)
         {
             if (ai.mob.target != null)
             {
-                Vector3 dir = (ai.mob.target.transform.position + Vector3.up * 50) - ai.mob.orientation.position;
-                ai.mob.orientation.rotation = Quaternion.RotateTowards(ai.mob.orientation.rotation, Quaternion.LookRotation(dir), rotateSpeed * Time.deltaTime);
-                ai.mob.input.z = 1;
+                ai.mob.targetPoint = ai.mob.target.transform.position;
 
-                visual.forward = Vector3.LerpUnclamped(visual.forward, ai.mob.rb.velocity.normalized, rotateSpeed * Time.deltaTime);
+                if (EvoUtils.PercentChance(0.075f, true))
+                    ai.SpawnProjectile(idleProjectile, firePoint.position, Quaternion.LookRotation(ai.mob.targetPoint - ai.mob.orientation.position));
 
                 if (Vector2.Distance(ai.mob.target.transform.position, ai.transform.position) <= BreathRange && canAttack)
                 {
                     StartCoroutine(Attack());
                 }
-
-                if(EvoUtils.PercentChance(0.075f, true))
-                ai.SpawnProjectile(idleProjectile, firePoint.position, Quaternion.LookRotation(ai.mob.target.transform.position - ai.mob.orientation.position));
             }
+            else
+            {
+                if (treasuresToDestroy.Length > 0)
+                {
+                    foreach (GameObject obj in treasuresToDestroy)
+                    {
+                        if (obj == null)
+                        {
+                            if (ai.GetClosestTarget())
+                            {
+                                ai.mob.target = ai.GetClosestTarget();
+                            }
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    if (ai.GetClosestTarget())
+                    {
+                        ai.mob.target = ai.GetClosestTarget();
+                    }
+                }
+            }
+
+            Vector3 dir = (ai.mob.targetPoint + Vector3.up * 50) - ai.mob.orientation.position;
+            ai.mob.orientation.rotation = Quaternion.RotateTowards(ai.mob.orientation.rotation, Quaternion.LookRotation(dir), rotateSpeed * Time.deltaTime);
+            ai.mob.input.z = 1;
+
+            visual.forward = Vector3.LerpUnclamped(visual.forward, ai.mob.rb.velocity.normalized, rotateSpeed * Time.deltaTime);
+
         }
         else if (state == AIState.Attack)
         {

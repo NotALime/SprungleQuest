@@ -28,11 +28,7 @@ public class Structure : MonoBehaviour
         }
         foreach (Entity e in structureMobs)
         {
-            e.gameObject.SetActive(false);
-            if (Random.Range(0f, 1f) <= chanceToSpawnMob * level)
-            {
-                e.gameObject.SetActive(true);
-            }
+            e.gameObject.SetActive(true);
         }
     }
 }

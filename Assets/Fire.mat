@@ -108,8 +108,8 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _CastShadows: 0
-    - _Clip: 0
-    - _Contrast: 6.39
+    - _Clip: 1.05
+    - _Contrast: 1000
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -117,8 +117,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GlowHighlight: -0.36
-    - _GlowSpread: 0
+    - _GlowHighlight: 100
+    - _GlowSpread: 100
     - _Glowspread: 0.88
     - _Hue: 0
     - _Hueshift: 0
@@ -145,8 +145,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlowColor: {r: 1, g: 0.35442397, b: 0, a: 1}
-    - _Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _GlowColor: {r: 1, g: 0.37736017, b: 0, a: 1}
+    - _Tint: {r: 1, g: 0.5624927, b: 0.4009434, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4142623404895802065
 MonoBehaviour:
