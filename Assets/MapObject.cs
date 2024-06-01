@@ -23,7 +23,7 @@ public class MapObject : MonoBehaviour
         yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer));
 
         transform.localScale *= Random.Range(minScale, maxScale);
-        transform.rotation = Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
+        transform.rotation *= Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
 
         Debug.Log("Spawned");
         if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))

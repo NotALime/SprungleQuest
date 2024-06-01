@@ -21,6 +21,12 @@ public class DragonAI : MonoBehaviour
 
     public float onCrashDamage;
 
+    public float groundHeight = 30;
+    public float chanceToShootIdleProjectile = 0.075f;
+    public float recoverTime = 15;
+
+    public float animSpeed = 1;
+
 
     public Projectile projectile;
     public int projectileAmount = 20;
@@ -45,6 +51,7 @@ public class DragonAI : MonoBehaviour
 
     private void Start()
     {
+        anim.speed = animSpeed;
         ai.mob.targetPoint = transform.position;
     }
     public void FixedUpdate()
@@ -63,7 +70,7 @@ public class DragonAI : MonoBehaviour
             anim.SetBool("Hover", false);
             ai.mob.rb.velocity *= 0.98f;
         }
-        if (Physics.Raycast(transform.position, Vector3.down, 30, ground) && state != AIState.Grounded)
+        if (Physics.Raycast(transform.position, Vector3.down, groundHeight, ground) && state != AIState.Grounded)
         {
             ai.mob.input.y = 1;
         }
@@ -88,11 +95,16 @@ public class DragonAI : MonoBehaviour
     {
         if (state == AIState.Idle)
         {
+            Vector3 dir = (ai.mob.targetPoint + Vector3.up * 50) - ai.mob.orientation.position;
+            ai.mob.orientation.rotation = Quaternion.RotateTowards(ai.mob.orientation.rotation, Quaternion.LookRotation(dir), rotateSpeed * Time.deltaTime);
+            ai.mob.input.z = 1;
+
+            visual.forward = Vector3.LerpUnclamped(visual.forward, ai.mob.rb.velocity.normalized, rotateSpeed * Time.deltaTime);
             if (ai.mob.target != null)
             {
                 ai.mob.targetPoint = ai.mob.target.transform.position;
 
-                if (EvoUtils.PercentChance(0.075f, true))
+                if (EvoUtils.PercentChance(chanceToShootIdleProjectile, true))
                     ai.SpawnProjectile(idleProjectile, firePoint.position, Quaternion.LookRotation(ai.mob.targetPoint - ai.mob.orientation.position));
 
                 if (Vector2.Distance(ai.mob.target.transform.position, ai.transform.position) <= BreathRange && canAttack)
@@ -124,12 +136,6 @@ public class DragonAI : MonoBehaviour
                     }
                 }
             }
-
-            Vector3 dir = (ai.mob.targetPoint + Vector3.up * 50) - ai.mob.orientation.position;
-            ai.mob.orientation.rotation = Quaternion.RotateTowards(ai.mob.orientation.rotation, Quaternion.LookRotation(dir), rotateSpeed * Time.deltaTime);
-            ai.mob.input.z = 1;
-
-            visual.forward = Vector3.LerpUnclamped(visual.forward, ai.mob.rb.velocity.normalized, rotateSpeed * Time.deltaTime);
 
         }
         else if (state == AIState.Attack)
@@ -171,10 +177,10 @@ public class DragonAI : MonoBehaviour
         state = AIState.Grounded;
         ai.mob.input = Vector3.zero;
         anim.SetBool("Ground", true);
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(recoverTime);
         ai.mob.input = Vector3.up;
-        ai.mob.rb.AddForce(Vector3.up * upSpeed * 30);
         state = AIState.Idle;
+        ai.mob.rb.AddForce(Vector3.up * upSpeed * 30);
         anim.SetBool("Ground", false);
         yield return new WaitForSeconds(4);
         yield return new WaitUntil(() => !Physics.Raycast(transform.position, Vector3.down, 50, ground));

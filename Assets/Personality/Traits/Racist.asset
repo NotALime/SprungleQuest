@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: Racist
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - Sometimes I think to myself, "man, magic is so cool". And then I remember what
+      the mages did to us.
+    - All goblins are thieves, this is simply a fact.
+    - I heard the village over the mountain got a wizard, living as if he was a regular
+      dweller, terrible how far our society has fallen...
+    - I hate wizards so much, it's not even funny.
+    - You know how all goblins are green? I heard it's because they eat the gold
+      that they steal from us... dyes their skin...
+    - First your kid wants to go adventuring, then he finds some magic wand, then
+      some hermit wizard offers him some peddler's pickles... Next thing you know,
+      he's studying the arcane arts! It's a pipeline, I pipeline I tell you!
+    - Nobody tells you that mages are only good at magic because they're severely
+      inbred... I'd be magical too if my family tree was a circle...
+  threatenReaction:
+    dialogue:
+    - You are acting very goblin-like right now. That's not a good thing.
+    - Oh yeah? And I bet you're a wizard!
+    - We are the same species, what's with the aggression?!
+  engageReaction:
+    dialogue:
+    - I serve all non-magic and non-green individuals.

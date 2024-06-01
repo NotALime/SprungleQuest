@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Splines;
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.UIElements;
 
 
 public class VillageGenerator : MonoBehaviour
@@ -9,7 +12,6 @@ public class VillageGenerator : MonoBehaviour
     public Building[] townHalls;
     public Building[] buildings;
 
-    Spline villagePath = new Spline();
     public SplineInstantiate villagePathRender;
     GameObject townHall;
 
@@ -23,44 +25,81 @@ public class VillageGenerator : MonoBehaviour
     public GameObject path;
 
     List<GameObject> placedBuildings = new List<GameObject>();
+
+    public float branchChance;
+
+    public int branchLength;
+    public int originBranchAmount = 4;
+    
     private void Start()
     {
-        PlaceBuilding(townHalls[Random.Range(0, townHalls.Length)], transform.position);
+        Vector3 origin = transform.position;
+        PlaceBuilding(townHalls[Random.Range(0, townHalls.Length)], origin);
 
-        List<Vector2> spots = new List<Vector2>();
-        spots.AddRange(EvoUtils.GenerateVoronoi(maxBuildingAmount, spread, spread));
+        Vector3 previousDir = Vector3.zero;
+        Vector3 dir = Random.insideUnitSphere.normalized;
+        dir.y = 0;
 
-        villagePath.Clear();
-        for (int i = 0; i < maxBuildingAmount; i++)
+        for (int i = 0; i < originBranchAmount; i++)
+        {
+            GenerateBranch(origin);
+        }
+    }
+    public void GenerateBranch(Vector3 origin)
+    {
+        Vector3 previousDir = origin;
+        Vector3 dir = Random.insideUnitSphere.normalized;
+        dir.y = 0;
+        Spline villagePath = new Spline();
+        SplineInstantiate pathRender = Instantiate(villagePathRender, Vector3.zero, Quaternion.identity);
+        pathRender.transform.parent = transform;
+
+        BezierKnot initialKnot = new BezierKnot(new Unity.Mathematics.float3(origin.x, 100, origin.z));
+        villagePath.Add(initialKnot);
+
+        bool branched = false;
+        for (int i = 0; i < branchLength; i++)
         {
             if (budget > 0)
             {
+                Vector3 placePos = previousDir += dir * size + Random.insideUnitSphere * spread;
+                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(placePos.x, placePos.y + 100, placePos.z));
                 Building b = buildings[Random.Range(0, buildings.Length)];
-                int spot = Random.Range(0, spots.Count);
-                PlaceBuilding(b, transform.position + new Vector3(spots[spot].x * size, 1000, spots[spot].y * size));
-                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(spots[spot].x, 100, spots[spot].y));
+                Vector3 offset = Random.insideUnitSphere.normalized * 40;
+                GameObject placed = PlaceBuilding(b, placePos + offset);
+                placed.transform.parent = pathRender.transform;
                 villagePath.Add(knot);
-                spots.Remove(spots[spot]);
+                previousDir = placePos;
+
+               if (EvoUtils.PercentChance(branchChance) && !branched)
+               {
+                    GenerateBranch(placePos);
+                    branched = true;
+                    i += (int)(branchLength * 0.3f);
+               }
             }
             else
             {
                 break;
             }
         }
-
-        villagePathRender.Container.Spline = villagePath;
-        villagePathRender.transform.localScale = Vector3.one * size; 
-        villagePathRender.Randomize();
+        pathRender.Container.Spline = villagePath;
+        pathRender.Randomize();
     }
 
-    public void PlaceBuilding(Building b, Vector3 pos)
+
+    public GameObject PlaceBuilding(Building b, Vector3 pos)
     {
+        if (budget > 0)
+        {
             GameObject built = Instantiate(b.building, pos, Quaternion.identity);
-        GameObject p = Instantiate(path, pos, Quaternion.identity);
-        p.transform.localScale *= Random.Range(2, 4);
-        built.transform.parent = transform;
+            built.transform.parent = transform;
             budget -= b.price;
             placedBuildings.Add(built);
+
+            return built;
+        }
+        return null;
     }
 }
 

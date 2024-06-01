@@ -13,6 +13,8 @@ public class HumanoidSpecies : Species
     public Item[] predefinedAccessories;
     public Item[] accessoryPool;
     public int wardrobeSize;
+    public EmotionTrait[] traits;
+    public int traitAmount = 3;
 
     public Item[] hairPool;
     public Sprite[] facePool;
@@ -81,6 +83,16 @@ public class HumanoidSpecies : Species
         {
             mob.inv.accessories[i + wardrobeSize] = Instantiate((predefinedAccessories[i]));
             mob.inv.EquipItem(mob.inv.accessories[i + wardrobeSize]);
+        }
+
+        if (traits.Length > 0)
+        {
+            NPCEmotion d = mob.GetComponent<NPCEmotion>();
+            for (int i = 0; i < traitAmount; i++)
+            {
+                d.traits.Add(traits[Random.Range(0, traits.Length)]);
+            }
+            d.UpdatePersonality();
         }
     }
 }

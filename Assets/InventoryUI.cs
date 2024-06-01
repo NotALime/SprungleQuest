@@ -120,7 +120,7 @@ public class InventoryUI : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (inv.GetItemLookedAt() != null)
             {
@@ -134,7 +134,8 @@ public class InventoryUI : MonoBehaviour
                 {
                     dialogue.gameObject.SetActive(true);
                     dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
-                    Entity.TalkCycle(dialogue.currentNPC.ai, dialogue.currentNPC.introText[Random.Range(0, dialogue.currentNPC.introText.Length)]);
+                    dialogue.StopAllCoroutines();
+                    StartCoroutine(dialogue.ReadString(dialogue.currentNPC.talkDialogue[Random.Range(0, dialogue.currentNPC.talkDialogue.Count)], 0.05f));
                     GameSettings.UnlockMouse();
                 }
             }

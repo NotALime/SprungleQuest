@@ -231,12 +231,12 @@ public class WeaponMelee : MonoBehaviour
             if (hitEntity != null && Entity.CompareTeams(inv.owner.entity, hitEntity))
             {
                 Vector3 dir = inv.owner.flatForwardOrientation();
-                hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
                 if (hitEntity.TakeDamage(attackCombo[attackIndex].damage, inv.owner.entity))
                 {
                     hitEntity.TakeDamage(attackCombo[attackIndex].damage * inv.owner.entity.mob.stats.damage, inv.owner.entity);
                     hitSound.PlaySound();
                 }
+                hitEntity.mob.rb.AddForce(dir * attackCombo[attackIndex].knockback);
             }
         }
     }

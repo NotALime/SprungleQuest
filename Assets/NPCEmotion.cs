@@ -7,15 +7,24 @@ public class NPCEmotion : MonoBehaviour
 {
     public UnityEvent<Entity> action;
     public Entity ai;
+    public List<EmotionTrait> traits;
 
-    public string[] introText;
-}
-[System.Serializable]
-public class Emotion
-{
-    public float mood;
-    public float energy;
-    public float trust;
-    public float annoy;
-    public float ignorance;
+    public List<string> talkDialogue;
+    public List<string> threatDialogue;
+    public List<string> engageDialogue;
+
+    private void Start()
+    {
+        UpdatePersonality();
+    }
+
+    public void UpdatePersonality()
+    {
+        foreach (EmotionTrait t in traits)
+        {
+            talkDialogue.AddRange(t.talkReaction.dialogue);
+            threatDialogue.AddRange(t.threatenReaction.dialogue);
+            engageDialogue.AddRange(t.engageReaction.dialogue);
+        }
+    }
 }

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: Simple
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - I'm a simple person... lived here all my life, and I hope to keep that streak.
+    - You're an adventurer..? Yeah sorry it's just that I'm not into being a broke
+      homeless vagrant who risks my his own life for the tiniest possibility of treasure
+      on the daily. I'm just not about that kind of life.
+    - We don't want none of you adventurers around here.
+    - I wouldn't serve adventurers if I could, but money is money...
+    - Today's youth cannot fathom the satisfaction of a hard day's work, all they
+      know is adventure, sword-fighting, and peddler's pickle
+  threatenReaction:
+    dialogue:
+    - I make, you buy, got it? Do not bother me with your petty insults.
+    - Typical adventurer... no manners... savage and barbaric...
+  engageReaction:
+    dialogue:
+    - I make, you buy, got it?
+    - I make it all fresh.
+    - Admire some of this proper, hard work, unlike you... freeloading treasure-trading
+      deliquent...

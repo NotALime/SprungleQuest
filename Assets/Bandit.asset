@@ -94,6 +94,12 @@ MonoBehaviour:
   - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
   - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
   wardrobeSize: 1
+  traits:
+  - {fileID: 11400000, guid: d5cc18c6116cccf4d86e5cf607f14ac0, type: 2}
+  - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
+  - {fileID: 11400000, guid: 35494eb3d032f434e939877721ad5ba0, type: 2}
+  - {fileID: 11400000, guid: 397c4fb20e986254eb292524851adcf1, type: 2}
+  traitAmount: 3
   hairPool: []
   facePool:
   - {fileID: -228328156, guid: c50c224c10b46054486afa535385c1e5, type: 3}

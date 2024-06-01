@@ -70,7 +70,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 3
+  m_RenderingLayerMask: 5
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -1295700255805119316, guid: a6179e05de9e9e7478658c674fbda87b, type: 3}

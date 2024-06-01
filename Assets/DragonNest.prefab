@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6578616090554015154}
   - component: {fileID: 8402539233634215378}
-  - component: {fileID: 2071671812506143022}
   m_Layer: 0
   m_Name: Decal Projector
   m_TagString: Untagged
@@ -52,33 +51,11 @@ MonoBehaviour:
   m_EndAngleFade: 180
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 2
+  m_DecalLayerMask: 6
   m_ScaleMode: 1
   m_Offset: {x: 0, y: 0, z: 500}
   m_Size: {x: 1, y: 1, z: 1000}
   m_FadeFactor: 1
---- !u!114 &2071671812506143022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900197435902298363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5678b0035a555e429f94f7766e53be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grounds: 0
-  offset: {x: 0, y: 0, z: 0}
-  groundRotate: 0
-  minScale: 0.5
-  maxScale: 2
-  minRot: {x: 90, y: 0, z: 0}
-  maxRot: {x: 90, y: 1, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &8036037258048927727
 GameObject:
   m_ObjectHideFlags: 0

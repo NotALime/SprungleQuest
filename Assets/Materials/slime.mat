@@ -8,21 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: slime
-  m_Shader: {fileID: -6465566751694194690, guid: 75aab77e249d6ae4a93d07d9db8ffffc, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: aa1caf5f4baa24e4eb21a07d58c3434e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _BUILTIN_ALPHAPREMULTIPLY_ON
-  - _BUILTIN_ALPHATEST_ON
-  - _BUILTIN_AlphaClip
-  - _BUILTIN_SURFACE_TYPE_TRANSPARENT
+  - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: Transparent
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -32,9 +29,23 @@ Material:
         m_Texture: {fileID: 2800000, guid: 00497bb083794dd42aa2560ee338a3b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
     - _AlphaClipThreshold: 0
+    - _AlphaToMask: 1
     - _BUILTIN_AlphaClip: 1
     - _BUILTIN_Blend: 1
     - _BUILTIN_CullMode: 0
@@ -46,15 +57,32 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _CastShadows: 1
+    - _Clip: 0
     - _Contrast: 1.69
+    - _Cull: 2
+    - _DstBlend: 0
     - _GlowHighlight: 0
+    - _GlowSpread: 0
     - _Glowspread: 0
+    - _Hue: 0
     - _Hueshift: 0
     - _Metallic: 0.1
     - _Opacity: 0.4
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _Saturation: 0
     - _Smoothness: 0.9
+    - _SrcBlend: 1
+    - _Surface: 0
     - _Wet: 0
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _GlowColor: {r: 0.015218942, g: 0.05660379, b: 0.026299648, a: 1}
     - _Tint: {r: 0.5372549, g: 1, b: 0.56078434, a: 1}
@@ -72,3 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 0
+--- !u!114 &8394528998768662115
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
