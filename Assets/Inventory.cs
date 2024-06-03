@@ -164,6 +164,8 @@ public class Inventory : MonoBehaviour
     Item currentItem = null;
     public void HoldItem(Item i)
     {
+        handAnimator.SetBool("Active", false);
+
         i.gameObject.SetActive(true);
         if (i.rb != null)
         {

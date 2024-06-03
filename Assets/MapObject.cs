@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
+using Terra;
+using Terra.Terrain;
+using Terra.CoherentNoise;
 
 public class MapObject : MonoBehaviour
 {
@@ -20,7 +23,8 @@ public class MapObject : MonoBehaviour
     IEnumerator Start()
     {
         RaycastHit hit;
-        yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer));
+       // FindObjectOfType<Generator>().GetValue(transform.position.x, 10, transform.position.z);
+        yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer) || !grounds);
 
         transform.localScale *= Random.Range(minScale, maxScale);
         transform.rotation *= Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));

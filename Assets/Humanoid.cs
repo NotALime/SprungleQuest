@@ -264,6 +264,8 @@ public class Humanoid : MonoBehaviour
         {
             rig.anim.SetTrigger("Jump");
         }
+
+        rig.anim.SetBool("Stun", !entity.mob.aiEnabled);
     }
 
     public void ArmCalculation(Vector3 handPos,EntityLimb hand, EntityLimb forearm, EntityLimb arm, EntityLimb shoulder)

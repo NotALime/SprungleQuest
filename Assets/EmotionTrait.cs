@@ -8,6 +8,7 @@ public class EmotionTrait : ScriptableObject
     public Reaction talkReaction;
     public Reaction threatenReaction;
     public Reaction engageReaction;
+    public Reaction engageCompleteReaction;
 }
 [System.Serializable]
 public class Reaction

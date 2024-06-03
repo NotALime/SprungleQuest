@@ -43,6 +43,9 @@ public class WorldManager : MonoBehaviour
 
     float weatherCooldown;
 
+    [Header("Questing")]
+    public static List<Quest> activeQuests;
+
     private void Start()
     {
         time = 6;
@@ -101,6 +104,7 @@ public class WorldManager : MonoBehaviour
                         {
                             spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
                             Entity mob = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                            DistanceEnabler.NewDistanceEnabler(mob.transform);
                             mob.mob.leader = leader;
 
                             if (spawn.autoTarget)

@@ -61,6 +61,10 @@ MonoBehaviour:
     pieces:
     - toReplace: '[first]'
       pieces: []
+  chanceToMount: 0
+  possibleMounts: []
+  minIdleAdd: -0.5
+  maxIdleAdd: 0.5
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}
@@ -96,3 +100,6 @@ MonoBehaviour:
     uniformArms: 1
     armMin: 0.8
     armMax: 1.2
+  traits: []
+  traitAmount: 3
+  job: 3

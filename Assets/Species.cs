@@ -23,6 +23,10 @@ public class Species : ScriptableObject
     public float chanceToMount;
     public Entity[] possibleMounts;
 
+    [Header("Sound")]
+    public float minIdleAdd = -0.5f;
+    public float maxIdleAdd = 0.5f;
+
     public void ApplySpecies(Entity mob)
     {
         mob.mob.scale *= Random.Range(minScale, maxScale);
@@ -52,6 +56,13 @@ public class Species : ScriptableObject
         {
             Entity e = Instantiate(possibleMounts[Random.Range(0, possibleMounts.Length)]);
             e.Mount(mob);
+        }
+
+        if (mob.baseEntity.idleSound != null)
+        {
+            float tone = Random.Range(minIdleAdd, maxIdleAdd);
+            mob.baseEntity.idleSound.minPitch += tone;
+            mob.baseEntity.idleSound.maxPitch += tone;
         }
     }
 

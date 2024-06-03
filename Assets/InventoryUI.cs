@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.XR;
 using UnityEngine.Rendering;
 using TMPro;
+using System.Buffers;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -108,6 +109,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
+                dialogue.gameObject.SetActive(false);
+                dialogue.currentNPC = null;
                 GameSettings.LockMouse();
                 inventory.transform.localPosition = new Vector3(9999, 9999, 0);
             }
@@ -132,11 +135,19 @@ public class InventoryUI : MonoBehaviour
             {
                 if (inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>())
                 {
-                    dialogue.gameObject.SetActive(true);
-                    dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
-                    dialogue.StopAllCoroutines();
-                    StartCoroutine(dialogue.ReadString(dialogue.currentNPC.talkDialogue[Random.Range(0, dialogue.currentNPC.talkDialogue.Count)], 0.05f));
-                    GameSettings.UnlockMouse();
+                    dialogue.gameObject.SetActive(!dialogue.gameObject.activeInHierarchy);
+                    if (dialogue.gameObject.activeInHierarchy)
+                    {
+                        dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
+                        dialogue.OnTalk();
+                        GameSettings.UnlockMouse();
+                    }
+                    else
+                    {
+                        GameSettings.LockMouse();
+                        dialogue.currentNPC = null;
+                    }
+
                 }
             }
         }

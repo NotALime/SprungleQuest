@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public class NPCEmotion : MonoBehaviour
 {
-    public UnityEvent<Entity> action;
+    public UnityEvent<Entity> hireFunction;
+    public UnityEvent<Entity> tradeFunction;
+    public Quest quest;
+    public UnityEvent<Entity> questFunction;
     public Entity ai;
     public List<EmotionTrait> traits;
 
@@ -13,6 +16,7 @@ public class NPCEmotion : MonoBehaviour
     public List<string> threatDialogue;
     public List<string> engageDialogue;
 
+    public HumanoidSpecies.Job job;
     private void Start()
     {
         UpdatePersonality();
@@ -25,6 +29,7 @@ public class NPCEmotion : MonoBehaviour
             talkDialogue.AddRange(t.talkReaction.dialogue);
             threatDialogue.AddRange(t.threatenReaction.dialogue);
             engageDialogue.AddRange(t.engageReaction.dialogue);
+            ai.baseEntity.idleDialogue = talkDialogue.ToArray();
         }
     }
 }

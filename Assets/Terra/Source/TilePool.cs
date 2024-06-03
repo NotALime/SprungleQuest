@@ -61,7 +61,7 @@ namespace Terra.Terrain {
 				Settings.StartCoroutine(UpdateTiles());
 			}
 
-			Settings.StartCoroutine(UpdateColliders(0.5f));
+			Settings.StartCoroutine(UpdateColliders(0));
 		}
 
 		public static List<Vector2> GetTilePositionsFromRadius(int radius, Vector3 position, int length) {

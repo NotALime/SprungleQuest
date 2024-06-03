@@ -67,6 +67,8 @@ MonoBehaviour:
   - {fileID: 8465281397949382414, guid: 4df3cbd3e73af784f9f01ebedd3ccff6, type: 3}
   - {fileID: 8465281397949382414, guid: 4df3cbd3e73af784f9f01ebedd3ccff6, type: 3}
   - {fileID: 9031539433346217838, guid: 3eb29a78aab396e4c82779611bc39499, type: 3}
+  minIdleAdd: -0.2
+  maxIdleAdd: 1
   weaponPool:
   - {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
   - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}

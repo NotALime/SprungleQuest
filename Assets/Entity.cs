@@ -30,6 +30,7 @@ public class Entity : MonoBehaviour
 
     public bool player;
 
+    public bool practiceDeath;
     private void Awake()
     {
         if (baseEntity.deathEffect != null)
@@ -87,11 +88,23 @@ public class Entity : MonoBehaviour
                 }
             }
 
+            if (mob.leader != null)
+            {
+                if (mob.leader.mob.target != null)
+                {
+                    mob.target = mob.leader.mob.target;
+                }
+            }
+
             if (baseEntity.idleSound != null)
             {
                 if (EvoUtils.PercentChance(0.05f, true))
                 {
                     baseEntity.idleSound.PlaySound();
+                    if (baseEntity.idleDialogue.Length > 0)
+                    {
+                        Entity.TalkCycle(this, baseEntity.idleDialogue[Random.Range(0, baseEntity.idleDialogue.Length)]);
+                    }
                 }
             }
         }
@@ -383,7 +396,15 @@ public class Entity : MonoBehaviour
                         }
                     }
                 }
-                Destroy(this.gameObject);
+                if (practiceDeath)
+                {
+                    Entity.Stun(this, 5);
+                    baseEntity.health = baseEntity.maxHealth;
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                }
             }
 
             if (damage > 0)
@@ -485,6 +506,7 @@ public class BaseEntity
     [Header("Sounds")]
     public AudioPlayer hurtSound;
     public AudioPlayer idleSound;
+    public string[] idleDialogue;
 
 }
 

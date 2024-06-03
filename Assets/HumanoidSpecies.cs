@@ -13,13 +13,24 @@ public class HumanoidSpecies : Species
     public Item[] predefinedAccessories;
     public Item[] accessoryPool;
     public int wardrobeSize;
-    public EmotionTrait[] traits;
-    public int traitAmount = 3;
 
     public Item[] hairPool;
     public Sprite[] facePool;
 
     public RigScale rigScale;
+
+    [Header("Personality")]
+    public EmotionTrait[] traits;
+    public int traitAmount = 3;
+    public enum Job
+    {
+        Hire,
+        Trade,
+        Quest,
+        Battle
+    };
+
+    public Job job;
 
     public override void ApplyOverride(Entity mob)
     {
@@ -93,6 +104,8 @@ public class HumanoidSpecies : Species
                 d.traits.Add(traits[Random.Range(0, traits.Length)]);
             }
             d.UpdatePersonality();
+
+            d.job = job;
         }
     }
 }

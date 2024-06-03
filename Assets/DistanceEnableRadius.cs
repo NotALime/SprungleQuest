@@ -6,10 +6,12 @@ public class DistanceEnableRadius : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<DistanceEnabler>().Activate();
+        if(other.GetComponent<DistanceEnabler>())
+            other.GetComponent<DistanceEnabler>().Activate();
     }
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<DistanceEnabler>().Deactivate();
+        if (other.GetComponent<DistanceEnabler>())
+            other.GetComponent<DistanceEnabler>().Deactivate();
     }
 }

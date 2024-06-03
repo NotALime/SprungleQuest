@@ -8,6 +8,8 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI dialogue;
 
     public NPCEmotion currentNPC;
+
+    public TextMeshProUGUI engageText;
     public IEnumerator ReadString(string text, float delay)
     {
         dialogue.text = "";
@@ -18,42 +20,52 @@ public class Dialogue : MonoBehaviour
         }
     }
 
- //  public void OnTalk()
- //  {
- //      foreach (EmotionTrait trait in currentNPC.traits)
- //      {
- //          currentNPC.UpdateEmotion(trait.talkReaction.emotion);
- //      }
- //     // StartCoroutine(currentNPC.traits[currentNPC.traits.Count].talkReaction.dialogue[Random.Range(0, currentNPC.traits[currentNPC.traits.Count].talkReaction.dialogue.Length)], 0.05f);
- //  }
- //
- //  public void OnCompliment()
- //  {
- //      foreach (EmotionTrait trait in currentNPC.traits)
- //      {
- //          currentNPC.UpdateEmotion(trait.complimentReaction.emotion);
- //      }
- //      StartCoroutine(currentNPC.traits[currentNPC.traits.Count].complimentReaction.dialogue[Random.Range(0, currentNPC.traits[currentNPC.traits.Count].complimentReaction.dialogue.Length)], 0.05f);
- //  }
- //
- //  public void OnThreaten()
- //  {
- //      foreach (EmotionTrait trait in currentNPC.traits)
- //      {
- //          currentNPC.UpdateEmotion(trait.threatenReaction.emotion);
- //      }
- //      StartCoroutine(currentNPC.traits[currentNPC.traits.Count].threatenReaction.dialogue[Random.Range(0, currentNPC.traits[currentNPC.traits.Count].threatenReaction.dialogue.Length)], 0.05f);
- //  }
-  //  public void OnGift()
-  //  {
-  //      foreach (EmotionTrait trait in currentNPC.traits)
-  //      {
-  //          currentNPC.UpdateEmotion(trait.threatenReaction.emotion);
-  //      }
-  //      StartCoroutine(currentNPC.traits[currentNPC.traits.Count].threatenReaction.dialogue[Random.Range(0, currentNPC.traits[currentNPC.traits.Count].threatenReaction.dialogue.Length)], 0.05f);
-  //  }
+    private void Update()
+    {
+        if (currentNPC != null)
+        {
+            currentNPC.ai.mob.orientation.LookAt(GameSettings.player.mob.orientation);
+            engageText.text = currentNPC.job.ToString();
+        }
+    }
+
+    public void OnTalk()
+    {
+       currentNPC.ai.baseEntity.idleSound.PlaySound();
+        StopAllCoroutines();
+        StartCoroutine(ReadString(currentNPC.talkDialogue[Random.Range(0, currentNPC.talkDialogue.Count)], 0.01f));
+    }
+  
+    public void OnThreaten()
+    {
+        currentNPC.ai.baseEntity.hurtSound.PlaySound();
+        currentNPC.ai.baseEntity.idleSound.PlaySound();
+        StopAllCoroutines();
+        StartCoroutine(ReadString(currentNPC.threatDialogue[Random.Range(0, currentNPC.threatDialogue.Count)], 0.01f));
+    }
     public void OnEngage()
     {
-        currentNPC.action.Invoke(GameSettings.player);
+        currentNPC.ai.baseEntity.idleSound.PlaySound();
+        StopAllCoroutines();
+        StartCoroutine(ReadString(currentNPC.engageDialogue[Random.Range(0, currentNPC.engageDialogue.Count)], 0.01f));
+
+        if (currentNPC.job == HumanoidSpecies.Job.Hire)
+        {
+            currentNPC.hireFunction.Invoke(GameSettings.player);
+        }
+        else if (currentNPC.job == HumanoidSpecies.Job.Trade)
+        {
+            currentNPC.tradeFunction.Invoke(GameSettings.player);
+        }
+        else if (currentNPC.job == HumanoidSpecies.Job.Quest)
+        {
+            Quest q = Quest.AddQuest(currentNPC.quest);
+            q.source = currentNPC;
+        }
+        else if (currentNPC.job == HumanoidSpecies.Job.Battle)
+        {
+            currentNPC.ai.practiceDeath = true;
+            currentNPC.ai.mob.target = GameSettings.player;
+        }
     }
 }

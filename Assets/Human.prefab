@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 1155463313005093367}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.00361, z: 0.0049}
+  m_LocalPosition: {x: 0, y: 0.00361, z: 0.005}
   m_LocalScale: {x: 0.030000001, y: 0.030000003, z: 0.030000005}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 1397758431172636746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.7, y: 499.95444, z: 23.869999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -160,7 +160,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -168,7 +168,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 10
+  MinDistance: 1
   MaxDistance: 100
   Pan2D: 0
   rolloffMode: 1
@@ -258,9 +258,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPitch: 0.8
   maxPitch: 1.2
-  audio: {fileID: 0}
+  audio: {fileID: 7922806006592656258}
   clipVarients:
-  - {fileID: 8300000, guid: 1d01ffe7a29017142a8f4c28ffbe9151, type: 3}
+  - {fileID: 8300000, guid: 7e99e95268ef12448adf04aef25dfb2c, type: 3}
+  - {fileID: 8300000, guid: cbd0fa2ff8051964fb99586a9c1558c9, type: 3}
+  - {fileID: 8300000, guid: 3b80603a25a46b442891b21e14d9a984, type: 3}
+  - {fileID: 8300000, guid: 201cc61b1a156614b81ae0430f4eb686, type: 3}
+  - {fileID: 8300000, guid: 4fb031552245b6c4c905db6fca77a7c0, type: 3}
+  - {fileID: 8300000, guid: d4d0368c5a93088409a76159acaac058, type: 3}
+  - {fileID: 8300000, guid: 99fdac1a047c50c48b37d930aaf26ef0, type: 3}
+  - {fileID: 8300000, guid: e3749464509c8f549b37398768510a0c, type: 3}
+  - {fileID: 8300000, guid: a47bfac8583e12c4fb4f88bcf82cae0d, type: 3}
 --- !u!1 &2276734207087740398
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +413,7 @@ MonoBehaviour:
     deathEffect: {fileID: 2496266768272151268}
     hurtSound: {fileID: 3209310641019051963}
     idleSound: {fileID: 3858573792852973769}
+    idleDialogue: []
   drops: []
   renderer:
   - {fileID: 3428143708593199664}
@@ -590,14 +599,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97382a6ba07c3f419c9e8e5c59aacb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action:
+  hireFunction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3847118176123637949}
+        m_TargetAssemblyTypeName: Entity, Assembly-CSharp
+        m_MethodName: Tame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tradeFunction:
     m_PersistentCalls:
       m_Calls: []
+  quest: {fileID: 11400000, guid: a91a148aabde586419327c919ef234c7, type: 2}
+  questFunction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3847118176123637949}
+        m_TargetAssemblyTypeName: Entity, Assembly-CSharp
+        m_MethodName: Tame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ai: {fileID: 3847118176123637949}
   traits: []
   talkDialogue: []
   threatDialogue: []
   engageDialogue: []
+  job: 0
 --- !u!1 &2496266768272151268
 GameObject:
   m_ObjectHideFlags: 0
@@ -5486,7 +5527,7 @@ Transform:
   m_GameObject: {fileID: 3270598720275964726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.7, y: 499.95444, z: 23.869999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5504,7 +5545,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5515,7 +5556,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5602,9 +5643,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPitch: 0.8
   maxPitch: 1.2
-  audio: {fileID: 0}
+  audio: {fileID: 2230498427732455099}
   clipVarients:
-  - {fileID: 8300000, guid: ae5b28899e3b73948942ca024f4868d9, type: 3}
+  - {fileID: 8300000, guid: 8b947da99c5a4d9409d2c632cd317b71, type: 3}
+  - {fileID: 8300000, guid: 60205f8c7474e384b87d6c17872d3706, type: 3}
+  - {fileID: 8300000, guid: 8de42dcddef2921419af727906a9c06f, type: 3}
+  - {fileID: 8300000, guid: 1a13713b0dae69e459b9f3afd4432c3a, type: 3}
+  - {fileID: 8300000, guid: 6a0511db2c65e4842a81addfac95ead8, type: 3}
+  - {fileID: 8300000, guid: bef341c65b2ac604781b93c24696f325, type: 3}
 --- !u!1 &5406317732187613510
 GameObject:
   m_ObjectHideFlags: 0
