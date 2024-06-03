@@ -150,6 +150,16 @@ public class Entity : MonoBehaviour
             }
             if (ai.GetClosestTarget() != null)
             {
+                if (Vector2.Distance(ai.transform.position, ai.mob.targetPoint) < 2f)
+                {
+                    ai.mob.targetPoint = ai.mob.targetPoint + Random.insideUnitSphere * ai.mob.stats.visionRange;
+                }
+                else
+                {
+                    Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
+                    ai.mob.orientation.forward = dir;
+                    ai.mob.input.z = 1;
+                }
                 ai.mob.target = ai.GetClosestTarget();
             }
         }
@@ -399,11 +409,17 @@ public class Entity : MonoBehaviour
                 if (practiceDeath)
                 {
                     Entity.Stun(this, 5);
+                    practiceDeath = false;
                     baseEntity.health = baseEntity.maxHealth;
+                }
+                else if (!player)
+                {
+                    Destroy(this.gameObject);
                 }
                 else
                 {
-                    Destroy(this.gameObject);
+                    RagdollCamera();
+                    GameSettings.player.gameObject.SetActive(false);
                 }
             }
 
@@ -414,6 +430,16 @@ public class Entity : MonoBehaviour
         }
         baseEntity.tookDamage = true;
         return false;
+    }
+
+    public static void RagdollCamera()
+    { 
+        Camera cam = Camera.main;
+        cam.transform.parent = null;
+        cam.gameObject.AddComponent<BoxCollider>();
+        Rigidbody rb = cam.gameObject.AddComponent<Rigidbody>();
+        rb.AddForce((Vector3.up * 2 + Random.insideUnitSphere.normalized) * 1000);
+        rb.AddTorque(Random.insideUnitSphere.normalized * 300);
     }
 
     public static void ApplyStats(Entity entity, MobStats mod)

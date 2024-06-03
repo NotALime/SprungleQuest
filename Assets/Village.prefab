@@ -171,19 +171,24 @@ MonoBehaviour:
   townHalls:
   - building: {fileID: 5847989098134705444, guid: 7abe3604426d05d4d88e34ee6c57125c, type: 3}
     price: 0
+    population: 1
     perVillage: 0
   buildings:
   - building: {fileID: 8179409117856080414, guid: aa846d509961b334aae3c4533f6b6c23, type: 3}
     price: 10
+    population: 1
     perVillage: 0
   - building: {fileID: 8179409117856080414, guid: aa846d509961b334aae3c4533f6b6c23, type: 3}
     price: 10
+    population: 1
     perVillage: 0
   - building: {fileID: 292481598059289204, guid: 5ebca1ad8e50297499615ff01b3b1f3a, type: 3}
     price: 20
+    population: 1
     perVillage: 0
   - building: {fileID: 1056761260470874112, guid: 2c4dffa0b3f962e448e57842ba5fa962, type: 3}
     price: 5
+    population: 1
     perVillage: 0
   villagePathRender: {fileID: 1663189178979816080}
   size: 100
@@ -194,3 +199,7 @@ MonoBehaviour:
   branchChance: 0.2
   branchLength: 4
   originBranchAmount: 4
+  villagerPrefab: {fileID: 280400077848441736, guid: 7b9048d0e66ef8e409f83e5580e54076, type: 3}
+  villagerTypes:
+  - {fileID: 11400000, guid: 7d45c34e34b209a47a6adaad86a0f285, type: 2}
+  - {fileID: 11400000, guid: ea789fefa0d2bb842aa0df6c17857c9f, type: 2}

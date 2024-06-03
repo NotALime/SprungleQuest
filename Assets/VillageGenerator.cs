@@ -30,6 +30,9 @@ public class VillageGenerator : MonoBehaviour
 
     public int branchLength;
     public int originBranchAmount = 4;
+
+    public NPCEmotion villagerPrefab;
+    public HumanoidSpecies[] villagerTypes;
     
     private void Start()
     {
@@ -93,6 +96,10 @@ public class VillageGenerator : MonoBehaviour
         if (budget > 0)
         {
             GameObject built = Instantiate(b.building, pos, Quaternion.identity);
+            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere * 10, Quaternion.identity);
+            DistanceEnabler.NewDistanceEnabler(npc.transform);
+            npc.ai.mob.species = villagerTypes[Random.Range(0, villagerTypes.Length)];
+            npc.ai.mob.targetPoint = pos;
             built.transform.parent = transform;
             budget -= b.price;
             placedBuildings.Add(built);
@@ -108,6 +115,7 @@ public class Building
 {
     public GameObject building;
     public float price;
+    public int population = 1;
     [Tooltip("If perVillage == 0, no limit")]
     public int perVillage;
     int currentCount;

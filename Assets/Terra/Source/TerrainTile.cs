@@ -36,6 +36,8 @@ namespace Terra.Terrain {
 			if (Settings == null) {
 				Debug.LogError("Cannot find a TerraSettings object in the scene");
 			}
+
+			GenerateCollider();
 		}
 
 		void Update() {

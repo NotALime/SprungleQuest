@@ -156,10 +156,10 @@ namespace Terra.Terrain {
 			float extent = Settings.GenAllColliders ? float.MaxValue : Settings.ColliderGenerationExtent;
 			List<TerrainTile> tiles = GetTilesInExtent(Settings.TrackedObject.transform.position, extent);
 
-			foreach (TerrainTile t in tiles) {
-				t.GenerateCollider();
-				yield return null;
-			}
+		//	foreach (TerrainTile t in tiles) {
+		//		t.GenerateCollider();
+		//		yield return null;
+		//	}
 
 			yield return new WaitForSeconds(delay);
 		}

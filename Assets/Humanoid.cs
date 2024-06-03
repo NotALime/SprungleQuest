@@ -265,7 +265,7 @@ public class Humanoid : MonoBehaviour
             rig.anim.SetTrigger("Jump");
         }
 
-        rig.anim.SetBool("Stun", !entity.mob.aiEnabled);
+     //   rig.anim.SetBool("Stun", !entity.mob.aiEnabled);
     }
 
     public void ArmCalculation(Vector3 handPos,EntityLimb hand, EntityLimb forearm, EntityLimb arm, EntityLimb shoulder)
@@ -291,11 +291,13 @@ public class Humanoid : MonoBehaviour
         //       moveLimb.transform.position = Vector3.MoveTowards(moveLimb.transform.localPosition, rootLimb.transform.position + moveLimb.initialPos, limbGroundSpeed * Time.deltaTime);
         //   }
     }
-    public void ProcessDialogue(string dialogue)
+    public string ProcessDialogue(string dialogue)
     {
         dialogue.Replace("[item]", inv.items[inv.hotbarIndex].itemName);
         dialogue.Replace("[me]", entity.baseEntity.gameName);
         dialogue.Replace("[target]", entity.mob.target.baseEntity.gameName);
+
+        return dialogue;
     }
 }
 [System.Serializable]
