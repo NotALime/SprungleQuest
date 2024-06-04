@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -29.5}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity:
     gameName: Oak Tree
+    pureName: 
     health: 300
     maxHealth: 0
     tookDamage: 0
@@ -141,9 +142,10 @@ MonoBehaviour:
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
     idleSound: {fileID: 0}
+    idleDialogue: []
   drops: []
   renderer: []
-  iframe: 0.2
+  iframe: 0.5
   currentIframe: 0
   mob:
     stats:
@@ -183,3 +185,4 @@ MonoBehaviour:
     specialInput: 0
   interior: 0
   player: 0
+  practiceDeath: 0

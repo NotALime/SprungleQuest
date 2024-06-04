@@ -66,7 +66,7 @@ public class VillageGenerator : MonoBehaviour
             if (budget > 0)
             {
                 Vector3 placePos = previousDir += dir * size + Random.insideUnitSphere * spread;
-                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(placePos.x, placePos.y + 100, placePos.z));
+                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(placePos.x, placePos.y - 2000, placePos.z));
                 Building b = buildings[Random.Range(0, buildings.Length)];
                 Vector3 offset = Random.insideUnitSphere.normalized * 40;
                 GameObject placed = PlaceBuilding(b, placePos + offset);
@@ -95,9 +95,10 @@ public class VillageGenerator : MonoBehaviour
     {
         if (budget > 0)
         {
-            GameObject built = Instantiate(b.building, pos, Quaternion.identity);
-            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere * 10, Quaternion.identity);
+            GameObject built = Instantiate(b.building, pos + Vector3.up * 2000, Quaternion.identity);
+            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere * 10 + Vector3.up * 1000, Quaternion.identity);
             DistanceEnabler.NewDistanceEnabler(npc.transform);
+            npc.transform.parent = transform;
             npc.ai.mob.species = villagerTypes[Random.Range(0, villagerTypes.Length)];
             npc.ai.mob.targetPoint = pos;
             built.transform.parent = transform;

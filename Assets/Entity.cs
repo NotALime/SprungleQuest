@@ -33,6 +33,7 @@ public class Entity : MonoBehaviour
     public bool practiceDeath;
     private void Awake()
     {
+        baseEntity.pureName = baseEntity.gameName;
         if (baseEntity.deathEffect != null)
         {
             baseEntity.deathEffect.SetActive(false);
@@ -148,18 +149,18 @@ public class Entity : MonoBehaviour
                     }
                 }
             }
+            if (Vector2.Distance(ai.transform.position, ai.mob.targetPoint) < 2f)
+            {
+                ai.mob.targetPoint = ai.mob.targetPoint + Random.insideUnitSphere * ai.mob.stats.visionRange;
+            }
+            else
+            {
+                Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
+                ai.mob.orientation.forward = dir;
+                ai.mob.input.z = 1;
+            }
             if (ai.GetClosestTarget() != null)
             {
-                if (Vector2.Distance(ai.transform.position, ai.mob.targetPoint) < 2f)
-                {
-                    ai.mob.targetPoint = ai.mob.targetPoint + Random.insideUnitSphere * ai.mob.stats.visionRange;
-                }
-                else
-                {
-                    Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
-                    ai.mob.orientation.forward = dir;
-                    ai.mob.input.z = 1;
-                }
                 ai.mob.target = ai.GetClosestTarget();
             }
         }
@@ -255,6 +256,23 @@ public class Entity : MonoBehaviour
             }
         }
         return tMin;
+    }
+
+    public Entity GetSpecificEntity(Entity entity)
+    {
+        Collider[] targets = Physics.OverlapSphere(transform.position, mob.stats.visionRange);
+        foreach (Collider c in targets)
+        {
+            if (c.GetComponent<Entity>())
+            {
+                Entity e = c.GetComponent<Entity>();
+                if (e.baseEntity.gameName == entity.baseEntity.gameName)
+                {
+                    return e;
+                }
+            }
+        }
+        return null;
     }
 
     RaycastHit interactRay;
@@ -410,6 +428,7 @@ public class Entity : MonoBehaviour
                 {
                     Entity.Stun(this, 5);
                     practiceDeath = false;
+                    mob.target = null;
                     baseEntity.health = baseEntity.maxHealth;
                 }
                 else if (!player)
@@ -438,8 +457,8 @@ public class Entity : MonoBehaviour
         cam.transform.parent = null;
         cam.gameObject.AddComponent<BoxCollider>();
         Rigidbody rb = cam.gameObject.AddComponent<Rigidbody>();
-        rb.AddForce((Vector3.up * 2 + Random.insideUnitSphere.normalized) * 1000);
-        rb.AddTorque(Random.insideUnitSphere.normalized * 300);
+        rb.AddForce((Vector3.up + Random.insideUnitSphere.normalized) * 500);
+        rb.AddTorque(Random.insideUnitSphere.normalized * 100);
     }
 
     public static void ApplyStats(Entity entity, MobStats mod)
@@ -517,6 +536,8 @@ public class DialogueLine
 public class BaseEntity
 {
     public string gameName;
+    [HideInInspector]
+    public string pureName;
     public float health;
 
     public float maxHealth;

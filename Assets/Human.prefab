@@ -405,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity:
     gameName: Bandit
+    pureName: 
     health: 100
     maxHealth: 0
     tookDamage: 0
@@ -423,8 +424,8 @@ MonoBehaviour:
     stats:
       health: 1
       moveSpeed: 1
-      damage: 0.5
-      attackSpeed: 0.5
+      damage: 1
+      attackSpeed: 1
       level: 1
       defense: 0
       visionRange: 30
@@ -438,19 +439,7 @@ MonoBehaviour:
     behavior:
       ai:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3847118176123637949}
-            m_TargetAssemblyTypeName: Entity, Assembly-CSharp
-            m_MethodName: PatrolAI
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     aiEnabled: 1
     targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
@@ -461,7 +450,7 @@ MonoBehaviour:
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
-    species: {fileID: 11400000, guid: 24991a5414bc9894eaf08a5d37cedef2, type: 2}
+    species: {fileID: 11400000, guid: 2005888af993dcd47b9eb12a7bf6900b, type: 2}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0

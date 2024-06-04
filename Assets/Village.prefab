@@ -203,3 +203,4 @@ MonoBehaviour:
   villagerTypes:
   - {fileID: 11400000, guid: 7d45c34e34b209a47a6adaad86a0f285, type: 2}
   - {fileID: 11400000, guid: ea789fefa0d2bb842aa0df6c17857c9f, type: 2}
+  - {fileID: 11400000, guid: 2005888af993dcd47b9eb12a7bf6900b, type: 2}

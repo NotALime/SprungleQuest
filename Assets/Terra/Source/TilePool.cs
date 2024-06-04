@@ -105,11 +105,30 @@ namespace Terra.Terrain {
 			return tiles;
 		}
 
-		/// <summary>
-		/// Updates tiles that are surrounding the tracked GameObject 
-		/// asynchronously
-		/// </summary>
-		public IEnumerator UpdateTiles() {
+        public TerrainTile GetTileAtPos(Vector3 trackedPos)
+        {
+            foreach (TerrainTile t in Cache.ActiveTiles)
+            {
+                MeshRenderer renderer = t.GetComponent<MeshRenderer>();
+
+                if (renderer != null)
+                {
+                    Vector3 tilePos = new Vector3(trackedPos.x, renderer.bounds.center.y, trackedPos.z);
+                    Bounds trackedBounds = new Bounds(tilePos, new Vector3(1, renderer.bounds.max.y, 1));
+
+					if (renderer.bounds.Intersects(trackedBounds))
+						return t;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Updates tiles that are surrounding the tracked GameObject 
+        /// asynchronously
+        /// </summary>
+        public IEnumerator UpdateTiles() {
 			List<Vector2> nearbyPositions = GetTilePositionsFromRadius();
 			List<Vector2> newPositions = Cache.GetNewTilePositions(nearbyPositions);
 
@@ -153,15 +172,15 @@ namespace Terra.Terrain {
 		private IEnumerator UpdateColliders(float delay) {
 			//If we're generating all colliders the extent of collision generation is 
 			//technically infinity (max value works just as well though)
-			float extent = Settings.GenAllColliders ? float.MaxValue : Settings.ColliderGenerationExtent;
-			List<TerrainTile> tiles = GetTilesInExtent(Settings.TrackedObject.transform.position, extent);
+		 	float extent = Settings.GenAllColliders ? float.MaxValue : Settings.ColliderGenerationExtent;
+		 	List<TerrainTile> tiles = GetTilesInExtent(Settings.TrackedObject.transform.position, extent);
+		 
+		 	foreach (TerrainTile t in tiles) {
+		 		t.GenerateCollider();
+		 		yield return null;
+		 	}
 
-		//	foreach (TerrainTile t in tiles) {
-		//		t.GenerateCollider();
-		//		yield return null;
-		//	}
-
-			yield return new WaitForSeconds(delay);
+		//	yield return new WaitForSeconds(delay);
 		}
 
 		/// <summary>
@@ -218,6 +237,8 @@ namespace Terra.Terrain {
 				else
 					tile.Details.ApplySplatmap();
 				tile.gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+				tile.GenerateCollider();
 
 				Cache.AddActiveTile(tile);
 

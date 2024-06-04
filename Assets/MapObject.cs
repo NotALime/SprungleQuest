@@ -23,7 +23,7 @@ public class MapObject : MonoBehaviour
     IEnumerator Start()
     {
         RaycastHit hit;
-       // FindObjectOfType<Generator>().GetValue(transform.position.x, 10, transform.position.z);
+        // FindObjectOfType<Generator>().GetValue(transform.position.x, 10, transform.position.z);
         yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer) || !grounds);
 
         transform.localScale *= Random.Range(minScale, maxScale);
@@ -49,19 +49,5 @@ public class MapObject : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        RaycastHit hit;
-        Debug.Log("Spawned");
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))
-        {
-            if (grounds)
-            {
-                transform.position = hit.point + offset;
-                Debug.Log("Grounded " + name);
-                grounds = false;
-            }
-        }
-    }
 
 }

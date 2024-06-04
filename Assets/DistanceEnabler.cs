@@ -7,7 +7,14 @@ public class DistanceEnabler : MonoBehaviour
     public Transform follow;
     public void Update()
     {
-        transform.position = follow.position;
+        if (follow != null)
+        {
+            transform.position = follow.position;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void Activate()
     {

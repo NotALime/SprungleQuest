@@ -37,7 +37,6 @@ namespace Terra.Terrain {
 				Debug.LogError("Cannot find a TerraSettings object in the scene");
 			}
 
-			GenerateCollider();
 		}
 
 		void Update() {
@@ -78,8 +77,7 @@ namespace Terra.Terrain {
 			mesh.normals = md.normals;
 			mesh.uv = md.uvs;
 			mesh.triangles = md.triangles;
-
-			return mesh;
+            return mesh;
 		}
 
 		/// <summary>
@@ -154,7 +152,7 @@ namespace Terra.Terrain {
 			Terrain.uv = md.uvs;
 			Terrain.normals = md.normals;
 
-			UpdatePosition(position);
+            UpdatePosition(position);
 		}
 
 		/// <summary>
@@ -277,11 +275,13 @@ namespace Terra.Terrain {
 		/// by creating a MeshRenderer and MeshFilter.
 		/// </summary>
 		/// <param name="data">Mesh information to apply</param>
+		/// 
+		public float[,] heights;
 		public void RenderRawMeshData(MeshData data) {
 			MeshRenderer renderer = gameObject.AddComponent<MeshRenderer>();
 			renderer.material = new Material(Shader.Find("Diffuse"));
 			Terrain = gameObject.AddComponent<MeshFilter>().mesh;
-			
+
 			Terrain.vertices = data.vertices;
 			Terrain.triangles = data.triangles;
 			Terrain.uv = data.uvs;
