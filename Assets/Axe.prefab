@@ -403,9 +403,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6658431324534608375}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6414050752623364382}
   m_SourcePrefab: {fileID: 100100000, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
 --- !u!4 &4998372838090016136 stripped
 Transform:
@@ -438,18 +435,6 @@ MonoBehaviour:
   ai:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6414050752623364382}
-        m_TargetAssemblyTypeName: AITarget, Assembly-CSharp
-        m_MethodName: TargetEntity
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 6658431324534608375}
         m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
         m_MethodName: MeleeAI
@@ -479,7 +464,19 @@ MonoBehaviour:
         m_CallState: 2
   onUseSecondary:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6658431324534608375}
+        m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
+        m_MethodName: Block
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onIdle:
     m_PersistentCalls:
       m_Calls:
@@ -543,8 +540,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.027668348, y: 0.11534992, z: 0.30757928}
-  m_Center: {x: 0, y: 0.022674963, z: 0.15408051}
+  m_Size: {x: 0.027668348, y: 0.11534992, z: 0.43}
+  m_Center: {x: 0, y: 0.022674963, z: 0.21}
 --- !u!114 &6658431324534608375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,8 +559,8 @@ MonoBehaviour:
   - animation: SwingRight
     attackCooldown: 0.5
     thrust: 100
-    locks: 1
-    damage: 40
+    locks: 0
+    damage: 30
     knockback: 200
     stunTime: 0.3
     charge: 0
@@ -576,8 +573,8 @@ MonoBehaviour:
   - animation: SwingLeft
     attackCooldown: 0.5
     thrust: 100
-    locks: 1
-    damage: 40
+    locks: 0
+    damage: 50
     knockback: 600
     stunTime: 0.3
     charge: 0
@@ -590,26 +587,13 @@ MonoBehaviour:
   attackIndex: 0
   damageCollider: {fileID: 5823619289316247946}
   holdAttack: 0
-  canBlock: 0
+  canBlock: 1
   hitSound: {fileID: 1861562062768237105}
   parrySound: {fileID: 0}
-  parryRadius: 0
-  parryCooldown: 0
+  parryRadius: 2
+  parryCooldown: 1
   projectile: {fileID: 0}
   swingRange: 0
---- !u!114 &6414050752623364382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626712484969799474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e9e8cda22660a4e933785f388a1ebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetEntity: {fileID: 196438990718289333, guid: cc8184a0bd51d1d48b7ab700db78cd77, type: 3}
 --- !u!1001 &7543218232989343865
 PrefabInstance:
   m_ObjectHideFlags: 0

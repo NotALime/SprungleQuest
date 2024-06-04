@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
@@ -69,7 +70,28 @@ public class Inventory : MonoBehaviour
         }
     }
 
-        void Update()
+    public Item GetItem(Item item, int amount = 1)
+    {
+        foreach(Item i in items)
+        {
+            if (i.namePure == item.itemName && i.stack == amount)
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+    public Item TakeItem(Item item, int amount = 1)
+    {
+        item.stack -= amount;
+        if (item.stack < 1)
+        {
+            Destroy(item.gameObject);
+        }
+        return null;
+    }
+
+    void Update()
         {
             if (items[hotbarIndex] != null)
             {

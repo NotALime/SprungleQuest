@@ -48,7 +48,7 @@ public class InventoryUI : MonoBehaviour
         slotWidth = gridSizeX;
         slotHeight = gridSizeY;
 
-     //   slotGrid = new ItemSlot[slotWidth, slotHeight];
+        //   slotGrid = new ItemSlot[slotWidth, slotHeight];
         inv = GetComponent<Inventory>();
 
         //  for (int x = 0; x < slotWidth; x++)
@@ -65,13 +65,13 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < slotGrid.Length; i++)
         {
-                slotGrid[i].inv = this;
-                slotGrid[i].slotIndex = i;
+            slotGrid[i].inv = this;
+            slotGrid[i].slotIndex = i;
         }
         for (int i = 0; i < accessorySlots.Length; i++)
         {
-                accessorySlots[i].inv = this;
-                slotGrid[i].slotIndex = slotGrid.Length + i;
+            accessorySlots[i].inv = this;
+            slotGrid[i].slotIndex = slotGrid.Length + i;
         }
 
         inv.items = new Item[slotGrid.Length];
@@ -154,9 +154,9 @@ public class InventoryUI : MonoBehaviour
 
         if (GetRectUnderCursor() != null && GetRectUnderCursor().GetComponent<ItemSlot>() && GetRectUnderCursor().GetComponent<ItemSlot>().item != null)
         {
-                Item item = GetRectUnderCursor().GetComponent<ItemSlot>().item;
-                tooltipTitle.text = item.itemName + " [E TO PICK UP]";
-                tooltipDescription.text = item.itemDescription;
+            Item item = GetRectUnderCursor().GetComponent<ItemSlot>().item;
+            tooltipTitle.text = item.itemName + " [E TO PICK UP]";
+            tooltipDescription.text = item.itemDescription;
         }
         else if (inv.GetItemLookedAt() != null)
         {
@@ -217,6 +217,29 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
+    }
+
+    public GameObject craftingGrid;
+    public CraftingSlot[] craftingSlots;
+    public void GenerateCraftingLayout(Recipe[] recipes)
+    {
+        craftingGrid.SetActive(true);
+        for (int i = 0; i < recipes.Length; i++)
+        {
+            craftingSlots[i].recipe = recipes[i];
+            craftingSlots[i].item = Instantiate(recipes[i].output);
+            SetItemToInventory(craftingSlots[i].item);
+        }
+    }
+
+    public void CloseCraftingLayout()
+    {
+        craftingGrid.SetActive(false);
+        foreach (CraftingSlot c in craftingSlots)
+        {
+            Destroy(c.item.gameObject);
+            c.recipe = null;
+        }
     }
 
     //  public static bool IsPossibleSlot(ItemSlot slot, Item item)

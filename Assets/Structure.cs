@@ -29,6 +29,7 @@ public class Structure : MonoBehaviour
         foreach (Entity e in structureMobs)
         {
             e.gameObject.SetActive(true);
+            DistanceEnabler.NewDistanceEnabler(e.transform);
         }
     }
 }

@@ -10,8 +10,11 @@ public class Item : MonoBehaviour
     public Vector3 rotationOffset;
 
     public string itemName;
+    [HideInInspector]
+    public string namePure;
     public string itemDescription;
     public int maxStack;
+    public int stack;
     [HideInInspector]
     public float cooldown;
 
@@ -28,6 +31,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
+        namePure = itemName;
         TryGetComponent<Rigidbody>(out rb);
     }
 

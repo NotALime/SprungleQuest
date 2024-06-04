@@ -19,7 +19,7 @@ public class ItemSlot : MonoBehaviour
         button = GetComponent<Button>();
     }
 
-    public void SelectItem()
+    public virtual void SelectItem()
     {
         if (inv.itemHeld != null)
         {
