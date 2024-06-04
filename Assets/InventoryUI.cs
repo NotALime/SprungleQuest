@@ -45,8 +45,6 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        slotWidth = gridSizeX;
-        slotHeight = gridSizeY;
 
         //   slotGrid = new ItemSlot[slotWidth, slotHeight];
         inv = GetComponent<Inventory>();
@@ -63,15 +61,20 @@ public class InventoryUI : MonoBehaviour
         //      }
         //  }
 
+        inv.items = new Item[slotGrid.Length + slotGrid.Length];
         for (int i = 0; i < slotGrid.Length; i++)
         {
             slotGrid[i].inv = this;
             slotGrid[i].slotIndex = i;
         }
-        for (int i = 0; i < accessorySlots.Length; i++)
+    //  for (int i = 0; i < accessorySlots.Length; i++)
+    //  {
+    //      accessorySlots[i].inv = this;
+    //      slotGrid[i].slotIndex = slotGrid.Length + i;
+    //  }
+        for (int i = 0; i < craftingSlots.Length; i++)
         {
-            accessorySlots[i].inv = this;
-            slotGrid[i].slotIndex = slotGrid.Length + i;
+            craftingSlots[i].inv = this;
         }
 
         inv.items = new Item[slotGrid.Length];
@@ -95,31 +98,7 @@ public class InventoryUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Cursor.lockState = !invOpened ? CursorLockMode.Locked : CursorLockMode.None;
-            Cursor.visible = !invOpened ? false : true;
-
-            inventory.transform.localPosition = !invOpened ? new Vector3(9999, 9999, 0) : new Vector3(0, 0, 0);
-
-            invOpened = !invOpened;
-
-            if (invOpened)
-            {
-                GameSettings.UnlockMouse();
-                inventory.transform.localPosition = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                dialogue.gameObject.SetActive(false);
-                dialogue.currentNPC = null;
-                GameSettings.LockMouse();
-                inventory.transform.localPosition = new Vector3(9999, 9999, 0);
-            }
-
-            if (invOpened && itemHeld != null)
-            {
-                inv.DropItem(itemHeld);
-                itemHeld = null;
-            }
+            OpenInventory();
         }
 
 
@@ -128,7 +107,7 @@ public class InventoryUI : MonoBehaviour
             if (inv.GetItemLookedAt() != null)
             {
                 //   inv.hand.connectedBody = null;
-                AddItem(inv.GetItemLookedAt());
+                inv.AddItem(inv.GetItemLookedAt());
             }
 
             if (inv.owner.entity.GetObjectLookedAt() != null)
@@ -173,6 +152,36 @@ public class InventoryUI : MonoBehaviour
         if (!inv.owner.entity.mob.primaryInput && !inv.owner.entity.mob.primaryInput)
         {
             HotbarScrollLogic();
+        }
+    }
+
+    public void OpenInventory()
+    {
+        Cursor.lockState = !invOpened ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !invOpened ? false : true;
+
+        inventory.transform.localPosition = !invOpened ? new Vector3(9999, 9999, 0) : new Vector3(0, 0, 0);
+
+        invOpened = !invOpened;
+
+        if (invOpened)
+        {
+            GameSettings.UnlockMouse();
+            inventory.transform.localPosition = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            dialogue.gameObject.SetActive(false);
+            CloseCraftingLayout();
+            dialogue.currentNPC = null;
+            GameSettings.LockMouse();
+            inventory.transform.localPosition = new Vector3(9999, 9999, 0);
+        }
+
+        if (invOpened && itemHeld != null)
+        {
+            inv.DropItem(itemHeld);
+            itemHeld = null;
         }
     }
     public void HotbarScrollLogic()
@@ -237,8 +246,11 @@ public class InventoryUI : MonoBehaviour
         craftingGrid.SetActive(false);
         foreach (CraftingSlot c in craftingSlots)
         {
-            Destroy(c.item.gameObject);
-            c.recipe = null;
+            if (c.item != null)
+            {
+                Destroy(c.item.gameObject);
+                c.recipe = null;
+            }
         }
     }
 
@@ -275,13 +287,17 @@ public class InventoryUI : MonoBehaviour
 
     public void SetItemToInventory(Item i, ItemSlot slot = null)
     {
-        i.rb.constraints = RigidbodyConstraints.FreezeAll;
+        if (i.rb != null)
+        { 
+                i.rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
 
         if (slot != null)
         {
             i.transform.position = slot.transform.position;
             i.transform.parent = slot.transform;
-            slot.item = i;
+          //  inv.items[slot.slotIndex] = i;
+            slot.item = i;           
             slot.holdingItem = true;
         }
 
@@ -290,37 +306,6 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform child in i.transform)
         {
             child.gameObject.layer = 5;
-        }
-    }
-
-    public void AddItem(Item item)
-    {
-        bool added = false;
-        //    for (int x = 0; x < slotWidth; x++)
-        //    {
-        //        for (int y = 0; y < slotHeight; y++)
-        //        {
-        //            if (!added)
-        //            {
-        //                if (slotGrid[x, y].item == null)
-        //                {
-        //                    SetItemToInventory(item, slotGrid[x, y]);
-        //                    added = true;
-        //                 //   break;
-        //                }
-        //            }
-        //        }
-        //    }
-
-        for(int i = 0; i < slotGrid.Length; i++)
-        {
-                if (slotGrid[i].item == null && !added)
-                {
-                    inv.items[i] = item;
-                    SetItemToInventory(item, slotGrid[i]);
-                    added = true;
-                    break;
-                } 
         }
     }
 

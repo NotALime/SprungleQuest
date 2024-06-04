@@ -10,6 +10,8 @@ public class Dialogue : MonoBehaviour
     public NPCEmotion currentNPC;
 
     public TextMeshProUGUI engageText;
+
+    public InventoryUI invPlayer;
     public IEnumerator ReadString(string text, float delay)
     {
         dialogue.text = "";
@@ -49,20 +51,21 @@ public class Dialogue : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(ReadString(currentNPC.engageDialogue[Random.Range(0, currentNPC.engageDialogue.Count)], 0.01f));
 
-        if (currentNPC.job == HumanoidSpecies.Job.Hire)
+        if (currentNPC.job == NPCEmotion.Job.Hire)
         {
             currentNPC.hireFunction.Invoke(GameSettings.player);
         }
-        else if (currentNPC.job == HumanoidSpecies.Job.Trade)
+        else if (currentNPC.job == NPCEmotion.Job.Trade)
         {
-            currentNPC.tradeFunction.Invoke(GameSettings.player);
+            invPlayer.OpenInventory();
+            invPlayer.GenerateCraftingLayout(currentNPC.purchases);
         }
-        else if (currentNPC.job == HumanoidSpecies.Job.Quest)
+        else if (currentNPC.job == NPCEmotion.Job.Quest)
         {
             Quest q = Quest.AddQuest(currentNPC.quest);
             q.source = currentNPC;
         }
-        else if (currentNPC.job == HumanoidSpecies.Job.Battle)
+        else if (currentNPC.job == NPCEmotion.Job.Battle)
         {
             currentNPC.ai.practiceDeath = true;
             currentNPC.ai.mob.target = GameSettings.player;

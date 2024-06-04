@@ -259,16 +259,18 @@ MonoBehaviour:
   size: {x: 1, y: 2}
   rotationOffset: {x: -90, y: 0, z: 0}
   itemName: Wand Of Sparking
+  namePure: 
   itemDescription: Hurls small fireballs at your enemies. Releases large, slow-moving
     fireball when overheating.
   maxStack: 1
+  stack: 1
   cooldown: 0
   ai:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2542557654917704261}
         m_TargetAssemblyTypeName: WeaponRanged, Assembly-CSharp
-        m_MethodName: AIShootWhenSaw
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -283,7 +285,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2542557654917704261}
         m_TargetAssemblyTypeName: WeaponRanged, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -308,7 +310,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  secondaryHold: 1
   onIdle:
     m_PersistentCalls:
       m_Calls:
@@ -325,6 +326,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   rb: {fileID: 0}
+  itemTag: 
 --- !u!114 &2542557654917704261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,12 +341,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   projectile: {fileID: 5173917967708836559, guid: 58fe2436e9faa3b45a7d17f88ed1b144, type: 3}
+  hitscan: {fileID: 0}
+  hitscanFrames: 0
   projectilesPerShot: 1
   spread: 0
   cooldown: 0.2
   shootPoint: {fileID: 2810728016860327048}
   recoil: 0
   castSound: {fileID: 8385655429613208099}
+  automatic: 1
   shotsToBig: 20
   overHeatLevel: 5
   aimFOV: 50

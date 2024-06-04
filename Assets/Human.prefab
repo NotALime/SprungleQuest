@@ -625,10 +625,15 @@ MonoBehaviour:
         m_CallState: 2
   ai: {fileID: 3847118176123637949}
   traits: []
+  purchases:
+  - recipe:
+    - item: {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
+      amount: 1
+    output: {fileID: 6381770318502692581, guid: eb120a76ec198d94293b2fb70f53da70, type: 3}
   talkDialogue: []
   threatDialogue: []
   engageDialogue: []
-  job: 0
+  job: 1
 --- !u!1 &2496266768272151268
 GameObject:
   m_ObjectHideFlags: 0

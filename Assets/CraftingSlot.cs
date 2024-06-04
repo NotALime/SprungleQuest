@@ -16,17 +16,20 @@ public class CraftingSlot : ItemSlot
                 if (!inv.inv.GetItem(r.item, r.amount))
                 {
                     canCraft = false;
+                    Debug.Log("Not enough resources to craft!");
                 }
             }
             if (canCraft)
             {
-                inv.itemHeld = item;
-                inv.SetItemToInventory(item);
+                Debug.Log("Crafted " + item);
+                Item givenItem = Instantiate(item);
+                inv.itemHeld = givenItem;
+                inv.SetItemToInventory(givenItem);
                 item = null;
 
                 foreach (RecipeEntry r in recipe.recipe)
                 {
-                    inv.inv.TakeItem(r.item, r.amount);
+                    inv.inv.TakeItem(inv.inv.GetItem(r.item), r.amount);
                 }
             }
         }

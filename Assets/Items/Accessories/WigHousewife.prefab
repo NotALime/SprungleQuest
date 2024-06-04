@@ -127,8 +127,10 @@ MonoBehaviour:
   size: {x: 1, y: 2}
   rotationOffset: {x: 0, y: 0, z: 0}
   itemName: Housewife Wig
+  namePure: 
   itemDescription: 
   maxStack: 1
+  stack: 1
   cooldown: 0
   ai:
     m_PersistentCalls:
@@ -143,7 +145,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb: {fileID: 0}
-  type: 0
+  itemTag: 
 --- !u!54 &6808593992904826876
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -188,6 +190,7 @@ MonoBehaviour:
   textureOverlay: {fileID: 0}
   alphaMask: {fileID: 0}
   bodyRenderer: {fileID: 0}
+  item: {fileID: 0}
 --- !u!135 &2704870177838794474
 SphereCollider:
   m_ObjectHideFlags: 0

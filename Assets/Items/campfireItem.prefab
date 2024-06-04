@@ -139,15 +139,17 @@ MonoBehaviour:
   size: {x: 1, y: 1}
   rotationOffset: {x: 0, y: 0, z: 0}
   itemName: Campfire
+  namePure: 
   itemDescription: 
   maxStack: 1
+  stack: 1
   cooldown: 0
   ai:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7568116235239218615}
         m_TargetAssemblyTypeName: ItemPlaceable, Assembly-CSharp
-        m_MethodName: SetupAtNight
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -162,7 +164,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7568116235239218615}
         m_TargetAssemblyTypeName: ItemPlaceable, Assembly-CSharp
-        m_MethodName: Place
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -179,6 +181,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb: {fileID: 0}
+  itemTag: 
 --- !u!114 &7568116235239218615
 MonoBehaviour:
   m_ObjectHideFlags: 0

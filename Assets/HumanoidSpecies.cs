@@ -22,15 +22,8 @@ public class HumanoidSpecies : Species
     [Header("Personality")]
     public EmotionTrait[] traits;
     public int traitAmount = 3;
-    public enum Job
-    {
-        Hire,
-        Trade,
-        Quest,
-        Battle
-    };
 
-    public Job job;
+    public NPCEmotion.Job job;
 
     public override void ApplyOverride(Entity mob)
     {
@@ -81,7 +74,7 @@ public class HumanoidSpecies : Species
         mob.inv.items = new Item[loadoutSize];
         for (int i = 0; i < loadoutSize; i++)
         {
-            mob.inv.items[i] = Instantiate(weaponPool[Random.Range(0, weaponPool.Length)]);
+            mob.inv.AddItem(Instantiate(weaponPool[Random.Range(0, weaponPool.Length)]));
         }
         mob.inv.accessories = new Item[wardrobeSize + predefinedAccessories.Length];
         for (int i = 0; i < wardrobeSize; i++)

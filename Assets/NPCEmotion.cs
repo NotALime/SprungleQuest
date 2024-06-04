@@ -12,11 +12,21 @@ public class NPCEmotion : MonoBehaviour
     public Entity ai;
     public List<EmotionTrait> traits;
 
+    public Recipe[] purchases;
+
     public List<string> talkDialogue;
     public List<string> threatDialogue;
     public List<string> engageDialogue;
 
-    public HumanoidSpecies.Job job;
+    public Job job;
+
+    public enum Job
+    {
+        Hire,
+        Trade,
+        Quest,
+        Battle,
+    };
     private void Start()
     {
         UpdatePersonality();

@@ -876,8 +876,10 @@ MonoBehaviour:
   size: {x: 1, y: 2}
   rotationOffset: {x: -90, y: 0, z: 0}
   itemName: Katana
+  namePure: 
   itemDescription: For slicing fast...
   maxStack: 1
+  stack: 1
   cooldown: 0
   ai:
     m_PersistentCalls:

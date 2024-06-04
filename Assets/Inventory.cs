@@ -74,9 +74,12 @@ public class Inventory : MonoBehaviour
     {
         foreach(Item i in items)
         {
-            if (i.namePure == item.itemName && i.stack == amount)
+            if (i != null)
             {
-                return i;
+                if (i.namePure == item.itemName && i.stack == amount)
+                {
+                    return i;
+                }
             }
         }
         return null;
@@ -219,6 +222,54 @@ public class Inventory : MonoBehaviour
         {
             t.gameObject.layer = 7;
         }
+    }
+
+    public void AddItem(Item item)
+    {
+        bool found = false;
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                if (items[i].namePure == item.namePure && items[i].stack + item.stack <= item.maxStack)
+                {
+                    items[i].stack += item.stack;
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (!found)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null)
+                {
+                    items[i] = item;
+                    if (ui != null)
+                    {
+                        ui.SetItemToInventory(item, ui.slotGrid[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public bool StackedItem(Item item)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                if (items[i].itemName == item.itemName && items[i].stack <= item.maxStack - item.stack)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void EquipItem(Item i)
