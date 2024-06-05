@@ -114,7 +114,6 @@ public class InventoryUI : MonoBehaviour
             {
                 if (inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>())
                 {
-                    dialogue.gameObject.SetActive(!dialogue.gameObject.activeInHierarchy);
                     if (dialogue.gameObject.activeInHierarchy)
                     {
                         dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
@@ -126,16 +125,42 @@ public class InventoryUI : MonoBehaviour
                         GameSettings.LockMouse();
                         dialogue.currentNPC = null;
                     }
-
                 }
+                else if (inv.owner.entity.GetObjectLookedAt().GetComponent<CraftingStation>())
+                {
+                    OpenInventory();
+                    GameSettings.UnlockMouse();
+                    GenerateCraftingLayout(inv.owner.entity.GetObjectLookedAt().GetComponent<CraftingStation>().recipes);
+                }
+            }
+            else
+            {
+                GameSettings.LockMouse();
+                dialogue.currentNPC = null;
+                OpenInventory();
+                CloseCraftingLayout();
             }
         }
 
-        if (GetRectUnderCursor() != null && GetRectUnderCursor().GetComponent<ItemSlot>() && GetRectUnderCursor().GetComponent<ItemSlot>().item != null)
+        if (GetRectUnderCursor() != null)
         {
-            Item item = GetRectUnderCursor().GetComponent<ItemSlot>().item;
-            tooltipTitle.text = item.itemName + " [E TO PICK UP]";
-            tooltipDescription.text = item.itemDescription;
+            if (GetRectUnderCursor().GetComponent<ItemSlot>() && GetRectUnderCursor().GetComponent<ItemSlot>().item != null)
+            {
+                Item item = GetRectUnderCursor().GetComponent<ItemSlot>().item;
+                tooltipTitle.text = item.itemName;
+                tooltipDescription.text = item.itemDescription;
+            }
+            else if(GetRectUnderCursor().GetComponent<CraftingSlot>() && GetRectUnderCursor().GetComponent<CraftingSlot>().item != null)
+            {
+                CraftingSlot slot = GetRectUnderCursor().GetComponent<CraftingSlot>();
+                tooltipTitle.text = slot.item.itemName;
+                string recipeText = "";
+                foreach (RecipeEntry r in slot.recipe.recipe)
+                {
+                    recipeText += "\n" + "Requires " + r.amount + " " + r.item.itemName;
+                }
+                tooltipDescription.text = slot.item.itemDescription + recipeText;
+            }
         }
         else if (inv.GetItemLookedAt() != null)
         {
@@ -237,6 +262,10 @@ public class InventoryUI : MonoBehaviour
         {
             craftingSlots[i].recipe = recipes[i];
             craftingSlots[i].item = Instantiate(recipes[i].output);
+            if (recipes[i].amount > 0)
+            {
+                craftingSlots[i].item.stack = recipes[i].amount;
+            }
             SetItemToInventory(craftingSlots[i].item);
         }
     }

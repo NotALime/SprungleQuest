@@ -22,9 +22,9 @@ public class ItemPlaceable : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, inv.owner.playerHeight * 2, groundLayer))
             {
-                placed = Instantiate(placeable, hit.point, Quaternion.LookRotation(hit.normal));
+                placed = Instantiate(placeable, hit.point, Quaternion.LookRotation(hit.normal, placeable.transform.forward));
+                inv.owner.entity.mob.primaryInput = false;
             }
-           inv.owner.entity.mob.primaryInput = false;
     }
 
     GameObject placed;

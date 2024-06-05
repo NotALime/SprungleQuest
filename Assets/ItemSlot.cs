@@ -20,6 +20,7 @@ public class ItemSlot : MonoBehaviour
     private void Start()
     {
         button = GetComponent<Button>();
+        amountText.text = "";
     }
 
     public virtual void SelectItem()
@@ -50,7 +51,7 @@ public class ItemSlot : MonoBehaviour
         {
             item.transform.position = transform.position;
             amountText.text = (item.stack > 1 ? item.stack.ToString() : "");
-            item.transform.rotation = transform.rotation * Quaternion.Euler(item.rotationOffset);
+            item.transform.rotation = transform.rotation * Quaternion.Euler(item.rotationOffset + new Vector3(0, Time.unscaledDeltaTime, 0));
         }
     }
 }

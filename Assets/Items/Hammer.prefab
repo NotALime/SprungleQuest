@@ -671,7 +671,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4982602109768836657}
         m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: MeleeAI
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -686,7 +686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4982602109768836657}
         m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Attack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

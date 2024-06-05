@@ -76,7 +76,7 @@ public class Inventory : MonoBehaviour
         {
             if (i != null)
             {
-                if (i.namePure == item.itemName && i.stack == amount)
+                if (i.namePure == item.itemName && i.stack >= amount)
                 {
                     return i;
                 }
@@ -235,6 +235,7 @@ public class Inventory : MonoBehaviour
                 {
                     items[i].stack += item.stack;
                     found = true;
+                    Destroy(item.gameObject);
                     break;
                 }
             }

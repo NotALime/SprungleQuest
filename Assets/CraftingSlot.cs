@@ -25,7 +25,15 @@ public class CraftingSlot : ItemSlot
                 Item givenItem = Instantiate(item);
                 inv.itemHeld = givenItem;
                 inv.SetItemToInventory(givenItem);
-                item = null;
+
+                if (recipe.amount != -1)
+                {
+                    item.stack--;
+                    if (item.stack <= 0)
+                    {
+                        Destroy(item.gameObject);
+                    }
+                }
 
                 foreach (RecipeEntry r in recipe.recipe)
                 {
@@ -34,17 +42,13 @@ public class CraftingSlot : ItemSlot
             }
         }
     }
-
-    public static void GenerateCraftingUI(Recipe[] recipes)
-    {
-        
-    }
 }
 
 [System.Serializable]
 public class Recipe
 {
     public RecipeEntry[] recipe;
+    public int amount = -1;
     public Item output;
 }
 
