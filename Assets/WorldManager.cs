@@ -141,11 +141,8 @@ public class WorldManager : MonoBehaviour
 
         RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
         celestialRot.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 200, 0));
-        sunLight.intensity = Mathf.Lerp(sunLight.intensity, System.Convert.ToInt16(time < sunset && time > sunrise), Time.deltaTime * timeScale);
-        moonLight.intensity = initialMoonIntensity - sunLight.intensity;
 
         sunLight.color = RenderSettings.ambientLight;
-        moonLight.color = RenderSettings.ambientLight;
 
         RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue,  Time.deltaTime);
         RenderSettings.fogColor = Color.LerpUnclamped(RenderSettings.fogColor, currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
