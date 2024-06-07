@@ -85,7 +85,7 @@ Material:
     - _BumpScale: 1
     - _CastShadows: 1
     - _Clip: 0
-    - _Contrast: 100
+    - _Contrast: 1000
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -94,8 +94,8 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GlowHighlight: 100
-    - _GlowSpread: 100
-    - _Hue: 0
+    - _GlowSpread: 11
+    - _Hue: 1
     - _Metallic: 0
     - _Mode: 0
     - _NoiseSize: 10
@@ -106,7 +106,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Saturation: 1
-    - _Smoothness: 0
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.5
@@ -120,7 +120,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlowColor: {r: 0, g: 0.8958945, b: 1, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tint: {r: 0, g: 0.8768053, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5432787953063021218

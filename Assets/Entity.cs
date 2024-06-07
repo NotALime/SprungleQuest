@@ -384,9 +384,16 @@ public class Entity : MonoBehaviour
                         bar.entity = this;
                     }
                 }
-            }   
+            }
+            float netDamage = GetDefensedDamage(damage * damageMultiplier);
 
-            baseEntity.health -= GetDefensedDamage(damage * damageMultiplier);
+            baseEntity.health -= netDamage;
+
+            if (player)
+            {
+                GameSettings.ScreenShake(netDamage * 0.1f, 0.1f);
+            }
+
             Debug.Log(name + " took " + damage.ToString() + " damage");
             if (baseEntity.hurtSound != null)
             {
