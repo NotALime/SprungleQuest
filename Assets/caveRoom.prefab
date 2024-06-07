@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3314.4014, y: 3092.051, z: 5130.136}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7177452406795961603}
@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 7177452406795961603}
   - component: {fileID: 6554449321571909419}
   - component: {fileID: 7981239459483811654}
-  - component: {fileID: 7775424036110077447}
-  m_Layer: 0
+  - component: {fileID: 8111247208770685324}
+  m_Layer: 3
   m_Name: caveRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7775424036110077447
+--- !u!64 &8111247208770685324
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

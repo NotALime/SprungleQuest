@@ -23,6 +23,7 @@ public class ItemPlaceable : MonoBehaviour
             if (Physics.Raycast(ray, out hit, inv.owner.playerHeight * 2, groundLayer))
             {
                 placed = Instantiate(placeable, hit.point, Quaternion.LookRotation(hit.normal, placeable.transform.forward));
+                placed.transform.localScale = Vector3.one;
                 inv.owner.entity.mob.primaryInput = false;
             }
     }

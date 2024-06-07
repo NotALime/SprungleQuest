@@ -139,10 +139,13 @@ public class WorldManager : MonoBehaviour
 
         Shader.SetKeyword(wetKey, wetness > 0);
 
-        RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
-        celestialRot.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 200, 0));
+        if (!InteriorManager.playerOccupied)
+        {
+            RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
+            celestialRot.rotation = Quaternion.Euler(new Vector3(((time / (worldTime * 60)) * 360) - 90, 200, 0));
 
-        sunLight.color = RenderSettings.ambientLight;
+            sunLight.color = RenderSettings.ambientLight;
+        }
 
         RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue,  Time.deltaTime);
         RenderSettings.fogColor = Color.LerpUnclamped(RenderSettings.fogColor, currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);

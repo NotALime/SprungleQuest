@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class InteriorManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class InteriorManager : MonoBehaviour
         entranceInside.insideDoor = true;
         entranceInside.exit = entranceOutside;
 
+
         foreach (Transform t in interior.transform)
         {
             if (t.GetComponent<Entity>())
@@ -34,6 +36,7 @@ public class InteriorManager : MonoBehaviour
     {
         if (entity.player)
         {
+            RenderSettings.ambientLight = Color.black;
             interior.SetActive(true);
             playerOccupied = true;
         }
@@ -41,7 +44,7 @@ public class InteriorManager : MonoBehaviour
         entity.transform.position = entranceInside.transform.position;
     }
 
-    bool playerOccupied;
+    public static bool playerOccupied;
     public void ExitInterior(Entity entity)
     {
         if (entity.player)

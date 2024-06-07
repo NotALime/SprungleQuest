@@ -18,30 +18,12 @@ public class EvoUtils : MonoBehaviour
         }
         return Random.Range(0f, 1f) <= chancePerFrame;
     }
-    public static void ShakeObject(MonoBehaviour monoBehaviour, Transform objectTransform, float intensity, float duration)
+
+    public static int NormalizeInt(float input)
     {
-        monoBehaviour.StartCoroutine(ShakeCoroutine(objectTransform, intensity, duration));
+        return (int)(input / Mathf.Abs(input));
     }
 
-    private static IEnumerator ShakeCoroutine(Transform objectTransform, float intensity, float duration)
-    {
-        Vector3 originalPosition = objectTransform.localPosition;
-        float elapsed = 0.0f;
-
-        while (elapsed < duration)
-        {
-            float x = Random.Range(-1f, 1f) * intensity;
-            float y = Random.Range(-1f, 1f) * intensity;
-
-            objectTransform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        objectTransform.localPosition = originalPosition;
-    }
     public static float RoundToMultiple(float value, float nearest)
     {
         if (nearest == 0)
