@@ -56,7 +56,7 @@ public class GameSettings : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        maxThirdPersonDistance = thirdPersonCam.transform.localPosition;
+    //    maxThirdPersonDistance = thirdPersonCam.transform.localPosition;
     }
 
 
