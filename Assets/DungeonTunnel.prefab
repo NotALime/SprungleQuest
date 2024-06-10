@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6060741400932200028}
   - component: {fileID: 2047074486389866400}
   - component: {fileID: 1619549650641915069}
+  - component: {fileID: 145102765968365084}
   m_Layer: 3
   m_Name: DungeonTunnel
   m_TagString: Untagged
@@ -108,6 +109,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2694076101568873370, guid: 99ccd8df11d77364790ea810789a1cdd, type: 3}
+--- !u!114 &145102765968365084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5506660528333785057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ed874b023a43dbaf8a4a73ced13dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tags: []
+  CreatesTags: []
+  Exits: {fileID: 0}
+  Bounds: {fileID: 0}
+  DeadEndChance: 0
 --- !u!1 &5880417556541930108
 GameObject:
   m_ObjectHideFlags: 0

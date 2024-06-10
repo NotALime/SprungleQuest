@@ -25,7 +25,7 @@ public class ItemConsumable : MonoBehaviour
     {
         foreach (EntityEffect effect in effects)
         {
-            EntityEffect.ApplyEffect(ai.owner.entity, effect, effect.time);
+            EntityEffect.ApplyEffect(ai.owner.entity, effect, 10);
         }
         ai.handAnimator.SetTrigger("Drink");
         particle.enableEmission = true;

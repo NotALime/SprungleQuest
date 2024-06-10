@@ -11,8 +11,7 @@ public class EntityEffect : ScriptableObject
 {
     public VolumeProfile visualEffect;
     public float time = 60;
-    [HideInInspector]
-    public float currentTime = 60;
+    public float currentTime = 0;
     public AnimationCurve effectCurve = AnimationCurve.Constant(0, 1, 1);
     public MobStats effect;
 
@@ -22,7 +21,6 @@ public class EntityEffect : ScriptableObject
     public static void ApplyEffect(Entity entity, EntityEffect effect, float time)
     {
         EntityEffect effectInstance = Instantiate(effect);
-        Entity.RemoveStats(entity, effect.effect);
         effectInstance.time = time;
         if (entity.player && effect.visualEffect != null)
         {
@@ -32,6 +30,7 @@ public class EntityEffect : ScriptableObject
             effectInstance.postProcess.gameObject.layer = 9;
             effectInstance.postProcess.profile = effect.visualEffect;
         }
+        Entity.ApplyStats(entity, effectInstance.effect);
     }
 
     public void HandleEffect(Entity ai)
@@ -45,7 +44,12 @@ public class EntityEffect : ScriptableObject
 
         if (currentTime >= time)
         {
-
+            if (postProcess != null)
+            {
+                Destroy(postProcess.gameObject);
+            }
+            Entity.RemoveStats(ai, effect);
+            Destroy(this);
         }
     }
 

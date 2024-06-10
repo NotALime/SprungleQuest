@@ -497,19 +497,31 @@ public class Entity : MonoBehaviour
 
         if (effects.onKill.Count > 0)
         {
-            entity.mob.stats.effects.onKill.Add(effects.onKill[0]);
+            foreach (UnityEvent<Entity> e in effects.onKill)
+            {
+                entity.mob.stats.effects.onKill.Add(e);
+            }
         }
         if (effects.onHurt.Count > 0)
         {
-            entity.mob.stats.effects.onHurt.Add(effects.onHurt[0]);
+            foreach (UnityEvent<Entity> e in effects.onHurt)
+            {
+                entity.mob.stats.effects.onHurt.Add(e);
+            }
         }
         if (effects.onHit.Count > 0)
         {
-            entity.mob.stats.effects.onHit.Add(effects.onHit[0]);
+            foreach (UnityEvent<Entity> e in effects.onHit)
+            {
+                entity.mob.stats.effects.onHit.Add(e);
+            }
         }
         if (effects.onIdle.Count > 0)
         {
-            entity.mob.stats.effects.onIdle.Add(effects.onIdle[0]);
+            foreach (UnityEvent<Entity> e in effects.onIdle)
+            {
+                entity.mob.stats.effects.onIdle.Add(e);
+            }
         }
     }
     public static void RemoveStats(Entity entity, MobStats mod)
@@ -526,19 +538,31 @@ public class Entity : MonoBehaviour
 
         if (effects.onKill.Count > 0)
         {
-            entity.mob.stats.effects.onKill.Remove(effects.onKill[0]);
+            foreach (UnityEvent<Entity> e in effects.onKill)
+            {
+                entity.mob.stats.effects.onKill.Remove(e);
+            }
         }
         if (effects.onHurt.Count > 0)
         {
-            entity.mob.stats.effects.onHurt.Remove(effects.onHurt[0]);
+            foreach (UnityEvent<Entity> e in effects.onHurt)
+            {
+                entity.mob.stats.effects.onHurt.Remove(e);
+            }
         }
         if (effects.onHit.Count > 0)
         {
-            entity.mob.stats.effects.onHit.Remove(effects.onHit[0]);
+            foreach (UnityEvent<Entity> e in effects.onHit)
+            {
+                entity.mob.stats.effects.onHit.Remove(e);
+            }
         }
         if (effects.onIdle.Count > 0)
         {
-            entity.mob.stats.effects.onIdle.Remove(effects.onIdle[0]);
+            foreach (UnityEvent<Entity> e in effects.onIdle)
+            {
+                entity.mob.stats.effects.onIdle.Remove(e);
+            }
         }
     }
 

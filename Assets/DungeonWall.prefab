@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 754115795082345094}
   - component: {fileID: 5783288101559883891}
   - component: {fileID: -2593169470854230243}
+  - component: {fileID: 2398321656576479880}
   m_Layer: 0
   m_Name: DungeonWall
   m_TagString: Untagged
@@ -105,3 +106,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2398321656576479880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9194018206376004956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ed874b023a43dbaf8a4a73ced13dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tags: []
+  CreatesTags: []
+  Exits: {fileID: 0}
+  Bounds: {fileID: 0}
+  DeadEndChance: 0

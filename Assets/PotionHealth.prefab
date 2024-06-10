@@ -9871,9 +9871,6 @@ MonoBehaviour:
       m_Calls: []
   onUsePrimary:
     m_PersistentCalls:
-      m_Calls: []
-  onUseSecondary:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1832845158910169586}
         m_TargetAssemblyTypeName: ItemConsumable, Assembly-CSharp
@@ -9887,6 +9884,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onUseSecondary:
+    m_PersistentCalls:
+      m_Calls: []
   onIdle:
     m_PersistentCalls:
       m_Calls: []
