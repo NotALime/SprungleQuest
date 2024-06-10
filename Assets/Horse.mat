@@ -111,7 +111,7 @@ Material:
     - _CameraNearFadeDistance: 1
     - _CastShadows: 1
     - _Clip: 0
-    - _Contrast: 1
+    - _Contrast: 0.96
     - _Cull: 0
     - _Cutoff: 0.632
     - _DetailNormalMapScale: 1
@@ -128,7 +128,7 @@ Material:
     - _GlowHighlight: 0
     - _GlowSpread: 0
     - _Glowspread: 0
-    - _Hue: 0
+    - _Hue: -1.98
     - _Hueshift: 0
     - _LightingEnabled: 1
     - _Metallic: 0
@@ -139,7 +139,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Saturation: 1
+    - _Saturation: 1.48
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
@@ -160,7 +160,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
-    - _Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 0.7169812, g: 0.4530032, b: 0.32805273, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6338293003423854185
 MonoBehaviour:

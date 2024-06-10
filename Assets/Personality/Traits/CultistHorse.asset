@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: CultistHorse
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - Human, please do not bother us, we are busy.
+    - Stand back, human, or else our hex will falter.
+    - Stay away human, our current task is beyond mortal comprehension.
+  threatenReaction:
+    dialogue:
+    - Do not distract me, human.
+    - Silence, now is not the time for petty insults.
+    - You are risking the fate of the world by distracting me, human.
+  engageReaction:
+    dialogue: []
+  engageCompleteReaction:
+    dialogue: []

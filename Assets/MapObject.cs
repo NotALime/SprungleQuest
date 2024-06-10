@@ -10,6 +10,7 @@ public class MapObject : MonoBehaviour
 {
     public bool grounds = true;
     public Vector3 offset;
+    public Vector3 offsetRange;
     public bool groundRotate = false;
 
     public float minScale = 1;
@@ -35,6 +36,7 @@ public class MapObject : MonoBehaviour
             if (grounds)
             {
                 transform.position = hit.point + offset;
+                transform.parent = hit.transform;
                 Debug.Log("Grounded " + name);
             }
 
@@ -47,6 +49,8 @@ public class MapObject : MonoBehaviour
                 transform.forward = groundNormal;
             }
         }
+
+        transform.position += new Vector3(Random.Range(-offsetRange.x, offsetRange.x), Random.Range(-offsetRange.y, offsetRange.y), Random.Range(-offsetRange.z, offsetRange.z));
     }
 
 

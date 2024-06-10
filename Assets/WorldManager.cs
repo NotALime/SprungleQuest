@@ -139,6 +139,21 @@ public class WorldManager : MonoBehaviour
 
         Shader.SetKeyword(wetKey, wetness > 0);
 
+
+        if (fadingAudio)
+        {
+            ambientSound.volume = Mathf.Lerp(ambientSound.volume, -0.1f, Time.deltaTime * timeScale * 0.1f);
+
+            if(ambientSound.volume <= 0)
+            {
+                fadingAudio = false;
+            }
+        }
+        else
+        {
+            ambientSound.volume = Mathf.Lerp(ambientSound.volume, 0.3f, Time.deltaTime * timeScale * 0.1f);
+        }
+
         if (!InteriorManager.playerOccupied)
         {
             RenderSettings.ambientLight = Color.LerpUnclamped(RenderSettings.ambientLight, currentWeather.lightColor.Evaluate(time / (worldTime * 60)), Time.deltaTime * timeScale);
@@ -146,6 +161,7 @@ public class WorldManager : MonoBehaviour
 
             sunLight.color = RenderSettings.ambientLight;
         }
+        ambientSound.enabled = !InteriorManager.playerOccupied;
 
         RenderSettings.fogDensity = Mathf.LerpUnclamped(RenderSettings.fogDensity, currentWeather.fogValue,  Time.deltaTime);
         RenderSettings.fogColor = Color.LerpUnclamped(RenderSettings.fogColor, currentWeather.horizonColor.Evaluate(time / (worldTime * 60)), Time.deltaTime);
@@ -174,6 +190,9 @@ public class WorldManager : MonoBehaviour
     public void SetWeather(WeatherEvent weather)
     {
         currentWeather = weather;
+        ambientSound.clip = weather.ambience;
+        ambientSound.Play();
+        fadingAudio = true;
         weatherCooldown = Random.Range(weather.minTime, weather.maxTime) * 60;
         spawns.Clear();
         foreach (MobSpawn spawn in spawnPool)
@@ -185,6 +204,9 @@ public class WorldManager : MonoBehaviour
             spawns.Add(spawn);
         }
     }
+
+    bool fadingAudio;
+    public AudioSource ambientSound;
 }
 
 [System.Serializable]

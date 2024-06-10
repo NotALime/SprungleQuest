@@ -39,8 +39,6 @@ public class WeaponRanged : MonoBehaviour
     {
         shotsFired++;
 
-        inv.handAnimator.SetBool("Active", true);
-
         if (projectile != null)
         {
             Projectile proj = null;
@@ -105,7 +103,7 @@ public class WeaponRanged : MonoBehaviour
     bool rotatedToAttack;
     public void ArmAnim(Inventory inv)
     {
-        inv.handAnimator.SetBool("Active", (inv.owner.entity.mob.primaryInput || inv.owner.entity.mob.secondaryInput));
+        inv.handAnimator.SetBool("Active", true);
         if (inv.owner.entity.mob.primaryInput || inv.owner.entity.mob.secondaryInput)
         {
             inv.owner.rig.armRight.shoulder.transform.rotation = inv.owner.rig.spine.neck.transform.rotation * Quaternion.Euler(new Vector3(0, 0, -83.622f));
@@ -144,15 +142,6 @@ public class WeaponRanged : MonoBehaviour
                         e.owner.entity.mob.input.x = -1;
                     }
                 }
-                if (Random.Range(0f, 1f) < 0.05f)
-                {
-                    e.owner.entity.mob.input.y = 1;
-                }
-                else
-                {
-                    e.owner.entity.mob.input.y = 0;
-                }
-
             RaycastHit hit = new RaycastHit();
 
             if ((Physics.SphereCast(e.owner.entity.mob.orientation.position, 5, e.owner.entity.mob.orientation.forward, out hit, e.owner.entity.mob.stats.visionRange)))

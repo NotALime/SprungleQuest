@@ -15,4 +15,6 @@ public class WeatherEvent : ScriptableObject
     public float wetness;
     public float chanceToHappen = 0.01f;
     public MobSpawn[] spawnPool;
+
+    public AudioClip ambience;
 }

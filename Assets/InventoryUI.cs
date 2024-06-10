@@ -114,6 +114,7 @@ public class InventoryUI : MonoBehaviour
             {
                 if (inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>())
                 {
+                    dialogue.gameObject.SetActive(!dialogue.gameObject.activeInHierarchy);
                     if (dialogue.gameObject.activeInHierarchy)
                     {
                         dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();

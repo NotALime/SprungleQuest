@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structurePieces:
-  - structure: {fileID: 5279231853867051101}
+  - structure:
+    - {fileID: 5279231853867051101}
     chanceToSpawn: 0.3
   structureMobs:
   - {fileID: 7467661893225318767}

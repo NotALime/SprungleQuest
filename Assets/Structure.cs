@@ -20,10 +20,13 @@ public class Structure : MonoBehaviour
     {
         foreach (StructureObject s in structurePieces)
         {
-            s.structure.SetActive(false);
-            if (Random.Range(0f, 1f) <= s.chanceToSpawn)
+            foreach (GameObject obj in s.structure)
             {
-                s.structure.SetActive(true);
+                obj.SetActive(false);
+                if (Random.Range(0f, 1f) <= s.chanceToSpawn)
+                {
+                    obj.SetActive(true);
+                }
             }
         }
         foreach (Entity e in structureMobs)
@@ -36,7 +39,7 @@ public class Structure : MonoBehaviour
 [System.Serializable]
 public class StructureObject
 {
-    public GameObject structure;
+    public GameObject[] structure;
 
     public float chanceToSpawn = 1;
 }

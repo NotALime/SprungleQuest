@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addcf38eead911043a9ec1003bdfaae7, type: 3}
+  m_Name: Tavernkeep
+  m_EditorClassIdentifier: 
+  tint:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.9196285, b: 0.7877358, a: 1}
+    key1: {r: 0.9764706, g: 0.8156863, b: 0.69803923, a: 1}
+    key2: {r: 0.9215687, g: 0.70980394, b: 0.5686275, a: 0}
+    key3: {r: 0.69803923, g: 0.44593573, b: 0.33333334, a: 0}
+    key4: {r: 0.23529413, g: 0.121568635, b: 0.10588236, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 6361
+    ctime2: 35852
+    ctime3: 50115
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  minScale: 1.1
+  maxScale: 1.3
+  stats:
+    minHealth: 1
+    maxHealth: 1.3
+    minDamage: 1
+    maxDamage: 1.1
+    minSpeed: 0.8
+    maxSpeed: 1
+    minAttackSpeed: 0.9
+    maxAttackSpeed: 1.1
+  generatesName: 0
+  nameStructure:
+    nameStructure:
+    - '[first]-[last]'
+    - '[first]-the-[type]'
+    pieces:
+    - toReplace: '[first]'
+      pieces: []
+  chanceToMount: 0
+  possibleMounts: []
+  minIdleAdd: -0.2
+  maxIdleAdd: 0
+  weaponPool: []
+  loadoutSize: 1
+  predefinedAccessories:
+  - {fileID: 7820941649135222980, guid: b5f619c753a9ae94593d762359d356e1, type: 3}
+  accessoryPool:
+  - {fileID: 9064721976604691909, guid: a0a7880c655790149a8fc9d3ab26a777, type: 3}
+  - {fileID: 4375848825490122596, guid: e7a5903e77b904644a9705bca0c9a489, type: 3}
+  - {fileID: 6681590203537739555, guid: 16146def85140404a8bd762c36754fd0, type: 3}
+  - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
+  wardrobeSize: 1
+  hairPool: []
+  facePool:
+  - {fileID: -228328156, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: -349596632, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: -491160981, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 1219370889, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: -421643647, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 476048454, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  rigScale:
+    spineLowerMin: 1.1
+    spineLowerMax: 1.5
+    neckMin: 1
+    neckMax: 1
+    uniformShoulders: 1
+    shoulderMin: 1.2
+    shoulderMax: 1.5
+    uniformArms: 1
+    armMin: 0.9
+    armMax: 1.1
+  traits:
+  - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
+  - {fileID: 11400000, guid: 35494eb3d032f434e939877721ad5ba0, type: 2}
+  traitAmount: 3
+  job: 2

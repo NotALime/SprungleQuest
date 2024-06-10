@@ -23,19 +23,19 @@ public class DungeonGenerator : MonoBehaviour
         Vector3 previousOffset = Vector3.zero;
 
         Vector3 dir = new Vector3(size * 0.5f, 0, 0);
-        start.position = transform.position + dir;
         grid = new GameObject[size, size];
 
         for (int x = 0; x < mainPathLength; x++)
         {
             Vector3 dirAdd = (EvoUtils.PercentChance(0.5f)) ? Vector3.forward : Vector3.right * EvoUtils.NormalizeInt(Random.Range(-1f,1f));
-            for (int i = 0; i < hallLength; i++)
+            dir += dirAdd;
+            GameObject room = Instantiate(mainRooms[Random.Range(0, mainRooms.Length)].obj, transform.position + dir * roomSize, Quaternion.Euler(new Vector3(-90,0,0)));
+            if (x == 0)
             {
-                GameObject room = Instantiate(mainRooms[Random.Range(0, mainRooms.Length)].obj, transform.position + dir * i * roomSize, Quaternion.identity);
-                room.transform.parent = transform;
-                grid[(int)dir.x, (int)dir.z] = room;
+                start.position = room.transform.position;
             }
-            dir += dirAdd * hallLength;
+            room.transform.parent = transform;
+            grid[(int)dir.x, (int)dir.z] = room;
         }
 
 

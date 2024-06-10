@@ -62,31 +62,36 @@ public class HumanoidSpecies : Species
         mob.rig.armLeft.arm.ScaleLimb(Vector3.one * armScale);
         mob.rig.armRight.arm.ScaleLimb(Vector3.one * armScale);
 
-        if (hairPool.Length > 0)
+        if (mob.GetComponent<Inventory>())
         {
-            mob.inv.EquipItem(hairPool[Random.Range(0, hairPool.Length)]);
-        }
-        if (facePool.Length > 0)
-        {
-            mob.rig.faceRender.sprite = facePool[Random.Range(0, facePool.Length)];
-        }
+            Inventory inv = mob.GetComponent<Inventory>();
 
-        mob.inv.items = new Item[loadoutSize];
-        for (int i = 0; i < loadoutSize; i++)
-        {
-            mob.inv.AddItem(Instantiate(weaponPool[Random.Range(0, weaponPool.Length)]));
-        }
-        mob.inv.accessories = new Item[wardrobeSize + predefinedAccessories.Length];
-        for (int i = 0; i < wardrobeSize; i++)
-        {
-            mob.inv.accessories[i] = Instantiate(accessoryPool[Random.Range(0, accessoryPool.Length)]);
-            mob.inv.EquipItem(mob.inv.accessories[i]);
-        }
+            if (hairPool.Length > 0)
+            {
+                inv.EquipItem(hairPool[Random.Range(0, hairPool.Length)]);
+            }
+            if (facePool.Length > 0)
+            {
+                mob.rig.faceRender.sprite = facePool[Random.Range(0, facePool.Length)];
+            }
 
-        for (int i = 0; i < predefinedAccessories.Length; i++)
-        {
-            mob.inv.accessories[i + wardrobeSize] = Instantiate((predefinedAccessories[i]));
-            mob.inv.EquipItem(mob.inv.accessories[i + wardrobeSize]);
+            inv.items = new Item[loadoutSize];
+            for (int i = 0; i < loadoutSize; i++)
+            {
+                inv.AddItem(Instantiate(weaponPool[Random.Range(0, weaponPool.Length)]));
+            }
+            inv.accessories = new Item[wardrobeSize + predefinedAccessories.Length];
+            for (int i = 0; i < wardrobeSize; i++)
+            {
+                inv.accessories[i] = Instantiate(accessoryPool[Random.Range(0, accessoryPool.Length)]);
+                inv.EquipItem(inv.accessories[i]);
+            }
+
+            for (int i = 0; i < predefinedAccessories.Length; i++)
+            {
+                inv.accessories[i + wardrobeSize] = Instantiate((predefinedAccessories[i]));
+                inv.EquipItem(inv.accessories[i + wardrobeSize]);
+            }
         }
 
         if (traits.Length > 0)

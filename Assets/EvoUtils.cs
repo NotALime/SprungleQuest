@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EvoUtils : MonoBehaviour
@@ -19,6 +20,14 @@ public class EvoUtils : MonoBehaviour
         return Random.Range(0f, 1f) <= chancePerFrame;
     }
 
+    public static bool IsPrefab(GameObject obj)
+    {
+#if UNITY_EDITOR
+        return PrefabUtility.GetPrefabAssetType(obj) != PrefabAssetType.NotAPrefab;
+#else
+        return false;
+#endif
+    }
     public static int NormalizeInt(float input)
     {
         return (int)(input / Mathf.Abs(input));

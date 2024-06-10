@@ -22,6 +22,7 @@ public class NPCEmotion : MonoBehaviour
 
     public enum Job
     {
+        None,
         Hire,
         Trade,
         Quest,

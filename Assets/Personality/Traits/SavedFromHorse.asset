@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: SavedFromHorse
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - My goodness! You saved me from those evil cultists! They were trying to bind
+      my soul to a steed's!
+    - Neigh! Oh... uh... sorry, the horse's soul must've merged with mine to a certain
+      extent...
+    - Thank you brave adventurer! Without you, my brittle bones would have never
+      escaped the grips of them!
+    - Man, I am really craving some apples right now.
+    - I'm so hungry I could eat a horse... is what I would have said if a horse wasn't
+      gnawing away at my soul right now.
+    - Those cultists did a number on my psyche... I think the horse's soul is inside
+      me... I can still hear it...
+  threatenReaction:
+    dialogue: []
+  engageReaction:
+    dialogue: []
+  engageCompleteReaction:
+    dialogue: []

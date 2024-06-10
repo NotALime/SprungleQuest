@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tint:
     serializedVersion: 2
-    key0: {r: 0.93280685, g: 1, b: 0.7783019, a: 1}
-    key1: {r: 1, g: 0.98611253, b: 0.7877358, a: 1}
-    key2: {r: 1, g: 0.79339623, b: 0.6556604, a: 0}
-    key3: {r: 1, g: 0.67843837, b: 0.3820755, a: 0}
-    key4: {r: 0.3490566, g: 0.07409222, b: 0.17040223, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.3726415, g: 0.7895474, b: 1, a: 1}
+    key1: {r: 0.74695605, g: 1, b: 0.5896226, a: 1}
+    key2: {r: 1, g: 0.9103928, b: 0.5330188, a: 0}
+    key3: {r: 1, g: 0.79339623, b: 0.6556604, a: 0}
+    key4: {r: 1, g: 0.67843837, b: 0.3820755, a: 0}
+    key5: {r: 0.3490566, g: 0.07409222, b: 0.17040223, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 6361
-    ctime2: 43176
-    ctime3: 54163
-    ctime4: 65535
-    ctime5: 0
+    ctime2: 23323
+    ctime3: 42405
+    ctime4: 54163
+    ctime5: 65535
     ctime6: 0
     ctime7: 0
     atime0: 0
@@ -40,10 +40,10 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 5
+    m_NumColorKeys: 6
     m_NumAlphaKeys: 2
-  minScale: 0.9
-  maxScale: 1.5
+  minScale: 0.7
+  maxScale: 2
   stats:
     minHealth: 1
     maxHealth: 3
@@ -72,28 +72,37 @@ MonoBehaviour:
       - Fool
       - Powerful
       - Wise
+  chanceToMount: 0
+  possibleMounts: []
+  minIdleAdd: -0.5
+  maxIdleAdd: 0.5
   weaponPool:
   - {fileID: 5336555165865855292, guid: 537ccc2f543101a4badb64da387143ef, type: 3}
   - {fileID: 4713134734854291710, guid: fd7bc1ea76f7203408dd85436f3b898c, type: 3}
   - {fileID: 1867163047467039829, guid: ebb987369e9b609418a4c96c65e13ff3, type: 3}
+  - {fileID: 1867163047467039829, guid: 35a5d01d0c6a6f643bd4d78225682503, type: 3}
   loadoutSize: 2
-  accessoryPool:
+  predefinedAccessories:
   - {fileID: 7087732451230298392, guid: 6ad5b643c46d7ea4e84aa8345058c4db, type: 3}
-  - {fileID: 2963063923627930831, guid: c1990503ef0b9ba4eaa94531374d22f0, type: 3}
-  - {fileID: 2095364291904359482, guid: 9bf417bd6cbe2ff4d9b7ae06905664f2, type: 3}
+  - {fileID: 3022343165797147111, guid: 2bbae7e61bed57e43b4d5d8f22062c28, type: 3}
+  accessoryPool:
+  - {fileID: 7911734160781995457, guid: d389b652ed1cd3849b3ba739633c0347, type: 3}
+  - {fileID: 2963063923627930831, guid: bcff07223e52a794aadf0383b9c77846, type: 3}
+  - {fileID: 8637673701268767203, guid: 63dbf36613d3299409e18674dee6069e, type: 3}
+  - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
+  - {fileID: 6681590203537739555, guid: 16146def85140404a8bd762c36754fd0, type: 3}
   wardrobeSize: 1
-  hairPool: []
+  hairPool:
+  - {fileID: 5714044653548115539, guid: adc94a9940a51364f8cafb664b4d4c28, type: 3}
+  - {fileID: 1169222015110249202, guid: 85330ad56db41584da02d9d6b27f6e17, type: 3}
   facePool:
-  - {fileID: -228328156, guid: c50c224c10b46054486afa535385c1e5, type: 3}
   - {fileID: -349596632, guid: c50c224c10b46054486afa535385c1e5, type: 3}
-  - {fileID: -491160981, guid: c50c224c10b46054486afa535385c1e5, type: 3}
-  - {fileID: 1219370889, guid: c50c224c10b46054486afa535385c1e5, type: 3}
-  - {fileID: -421643647, guid: c50c224c10b46054486afa535385c1e5, type: 3}
-  - {fileID: 476048454, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: -228328156, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 1554851340, guid: c50c224c10b46054486afa535385c1e5, type: 3}
   rigScale:
     spineLowerMin: 0.8
     spineLowerMax: 1
-    neckMin: 0.6
+    neckMin: 1
     neckMax: 1
     uniformShoulders: 1
     shoulderMin: 0.8
@@ -101,3 +110,8 @@ MonoBehaviour:
     uniformArms: 1
     armMin: 0.8
     armMax: 1.4
+  traits:
+  - {fileID: 11400000, guid: 397c4fb20e986254eb292524851adcf1, type: 2}
+  - {fileID: 11400000, guid: 3d544f62b18048f41b2d34d3f302c843, type: 2}
+  traitAmount: 3
+  job: 0

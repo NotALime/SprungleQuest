@@ -117,3 +117,4 @@ MonoBehaviour:
     conditions:
       minTime: 0
       maxTime: 0
+  ambience: {fileID: 8300000, guid: 58b39e83d8e856440b12742fdf04ee83, type: 3}

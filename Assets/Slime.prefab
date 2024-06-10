@@ -1179,6 +1179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity:
     gameName: Slime
+    pureName: 
     health: 100
     maxHealth: 0
     tookDamage: 0
@@ -1187,6 +1188,7 @@ MonoBehaviour:
     deathEffect: {fileID: 7264500134733542290}
     hurtSound: {fileID: 3420235616783140608}
     idleSound: {fileID: 0}
+    idleDialogue: []
   drops:
   - item: {fileID: 8637673701268767203, guid: 63dbf36613d3299409e18674dee6069e, type: 3}
     dropChance: 0.01
@@ -1235,6 +1237,10 @@ MonoBehaviour:
     target: {fileID: 0}
     team: monster
     leader: {fileID: 0}
+    revengeful: 1
+    aggro: 1
+    flees: 0
+    fleeing: 0
     mountable: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 4827810262728318345}
@@ -1247,6 +1253,7 @@ MonoBehaviour:
     specialInput: 0
   interior: 0
   player: 0
+  practiceDeath: 0
 --- !u!114 &5829944596010670920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1275,7 @@ MonoBehaviour:
   rotateSpeed: 1
   viewDistance: 10
   damage: 10
-  attackRange: 2
+  attackRange: 1
   gravity: 20
   chargeUp: 0.5
   cooldown: 0.5
@@ -2367,7 +2374,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 500
       minScalar: 2000
       maxCurve:
         serializedVersion: 2

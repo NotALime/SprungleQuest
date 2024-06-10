@@ -29,5 +29,4 @@ public class Explosion : MonoBehaviour
 
         EvoUtils.DestroyObject(this, 10);
     }
-
 }

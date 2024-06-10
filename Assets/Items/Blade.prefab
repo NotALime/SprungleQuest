@@ -811,6 +811,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: blade
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77e96b20da845c94397502fe8db903cd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -843,31 +847,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.107
+      value: 105.64359
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.002
+      value: 1720.0708
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.572
+      value: -17.0835
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.59279853
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.46578664
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.16441415
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.6360823
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -958,7 +962,7 @@ MonoBehaviour:
   itemDescription: For slicing...
   maxStack: 1
   stack: 1
-  cooldown: 0
+  cooldown: 0.5
   ai:
     m_PersistentCalls:
       m_Calls:

@@ -934,7 +934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 8419985488389613606}
   attackCombo:
-  - animation: SwingLeft
+  - animation: SwingRight
     attackCooldown: 0.5
     thrust: 50
     locks: 0
@@ -948,10 +948,10 @@ MonoBehaviour:
     attack:
       m_PersistentCalls:
         m_Calls: []
-  - animation: SwingOver
+  - animation: SwingLeft
     attackCooldown: 0.5
     thrust: 50
-    locks: 0
+    locks: 1
     damage: 30
     knockback: 600
     stunTime: 0.3
@@ -962,7 +962,7 @@ MonoBehaviour:
     attack:
       m_PersistentCalls:
         m_Calls: []
-  - animation: SwingRight
+  - animation: SwingOver
     attackCooldown: 0.75
     thrust: 400
     locks: 1

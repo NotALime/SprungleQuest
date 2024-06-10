@@ -41,8 +41,6 @@ public class Humanoid : MonoBehaviour
     public Rigidbody rb;
     [HideInInspector]
     public Entity entity;
-    [HideInInspector]
-    public Inventory inv;
 
     public HumanoidRig rig;
 
@@ -56,7 +54,6 @@ public class Humanoid : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         entity = GetComponent<Entity>();
-        inv = GetComponent<Inventory>();
         rb.freezeRotation = true;
         readyToJump = true;
 
@@ -290,14 +287,6 @@ public class Humanoid : MonoBehaviour
         //   {
         //       moveLimb.transform.position = Vector3.MoveTowards(moveLimb.transform.localPosition, rootLimb.transform.position + moveLimb.initialPos, limbGroundSpeed * Time.deltaTime);
         //   }
-    }
-    public string ProcessDialogue(string dialogue)
-    {
-        dialogue.Replace("[item]", inv.items[inv.hotbarIndex].itemName);
-        dialogue.Replace("[me]", entity.baseEntity.gameName);
-        dialogue.Replace("[target]", entity.mob.target.baseEntity.gameName);
-
-        return dialogue;
     }
 }
 [System.Serializable]

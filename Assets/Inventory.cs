@@ -44,22 +44,32 @@ public class Inventory : MonoBehaviour
     {
         owner = GetComponent<Humanoid>();
 
-        foreach (Item item in items)
+        for (int i = 0; i < items.Length; i++)
         {
-            if (item != null)
+            if (items[i] != null)
             {
-                HoldItem(item);
-                item.transform.SetParent(itemHolder, true);
-                item.gameObject.SetActive(false);
+                if (EvoUtils.IsPrefab(items[i].gameObject))
+                {
+                    items[i] = Instantiate(items[i]);
+                }
+                HoldItem(items[i]);
+                items[i].transform.SetParent(itemHolder, true);
+                items[i].gameObject.SetActive(false);
             }
         }
 
-        foreach (Item item in accessories)
+        for(int i = 0; i < accessories.Length; i++)
         {
-            if (item != null)
+            if (accessories[i] != null)
             {
-                item.transform.SetParent(itemHolder, true);
-                item.gameObject.SetActive(false);
+                if (EvoUtils.IsPrefab(accessories[i].gameObject))
+                {
+                    accessories[i] = Instantiate(accessories[i]);
+                }
+                EquipItem(accessories[i]);
+                accessories[i].transform.SetParent(itemHolder, true);
+                accessories[i].gameObject.SetActive(false);
+                accessories[i].transform.position = Vector3.down * -5000;
             }
         }
         hotbarIndex = Random.Range(0, items.Length - 1);

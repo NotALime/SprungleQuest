@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEditor.Progress;
@@ -132,6 +133,12 @@ public class Entity : MonoBehaviour
             if (ai.mob.leader != null)
             {
                 ai.mob.orientation.LookAt(ai.mob.leader.transform);
+                if (ai.mob.leader.mob.target != null)
+                {
+                    ai.mob.target = ai.mob.leader.mob.target;
+                }
+
+                ai.mob.orientation.LookAt(ai.mob.leader.transform);
                 if (Vector2.Distance(ai.transform.position, ai.mob.leader.transform.position) > 5)
                 {
                     ai.mob.input = Vector3.forward;
@@ -159,9 +166,18 @@ public class Entity : MonoBehaviour
                 ai.mob.orientation.forward = dir;
                 ai.mob.input.z = 1;
             }
-            if (ai.GetClosestTarget() != null)
+            if (ai.GetClosestTarget() != null && ai.mob.aggro)
             {
                 ai.mob.target = ai.GetClosestTarget();
+            }
+        }
+        else
+        {
+            if (ai.mob.fleeing)
+            {
+                Vector3 dir = ai.mob.target.transform.position - ai.transform.position + new Vector3((Mathf.PerlinNoise(Time.deltaTime * 0.5f, 0) * 10) * 2 - 1, 0, (Mathf.PerlinNoise(0, Time.deltaTime * 0.5f) * 10) * 2 - 1);
+                ai.mob.orientation.rotation = Quaternion.SlerpUnclamped(ai.mob.orientation.rotation, Quaternion.LookRotation(dir), 1 * Time.deltaTime);
+                ai.mob.input = Vector3.forward;
             }
         }
     }
@@ -232,30 +248,33 @@ public class Entity : MonoBehaviour
 
     public Entity GetClosestTarget()
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position, mob.stats.visionRange);
-        Entity tMin = null;
-        float minDist = Mathf.Infinity;
-        foreach (Collider c in targets)
+        if (mob.aggro)
         {
-            if (c.GetComponent<Entity>())
+            Collider[] targets = Physics.OverlapSphere(transform.position, mob.stats.visionRange);
+            Entity tMin = null;
+            float minDist = Mathf.Infinity;
+            foreach (Collider c in targets)
             {
-                Entity e = c.GetComponent<Entity>();
-                if (CompareTeams(this, e) && e.mob.team != "" && this.mob.team != "")
+                if (c.GetComponent<Entity>())
                 {
-                    if (e.player)
+                    Entity e = c.GetComponent<Entity>();
+                    if (Entity.CompareTeams(this, e))
                     {
-                        return e;
-                    }
-                    float dist = Vector2.Distance(e.transform.position, transform.position);
-                    if (dist < minDist)
-                    {
-                        tMin = e;
-                        minDist = dist;
+                        if (e.player)
+                        {
+                            return e;
+                        }
+                        float dist = Vector2.Distance(e.transform.position, transform.position);
+                        if (dist < minDist)
+                        {
+                            tMin = e;
+                            minDist = dist;
+                        }
                     }
                 }
             }
         }
-        return tMin;
+        return null;
     }
 
     public Entity GetSpecificEntity(Entity entity)
@@ -367,9 +386,10 @@ public class Entity : MonoBehaviour
                         e.Invoke(this);
                     }
                 }
-                if (mob.revengeful)
+                if (mob.revengeful || mob.flees)
                 {
                     mob.target = damager;
+                    mob.fleeing = mob.flees;
                 }
                 damageMultiplier = damager.mob.stats.damage;
 
@@ -388,11 +408,6 @@ public class Entity : MonoBehaviour
             float netDamage = GetDefensedDamage(damage * damageMultiplier);
 
             baseEntity.health -= netDamage;
-
-            if (player)
-            {
-                GameSettings.ScreenShake(netDamage * 0.1f, 0.1f);
-            }
 
             Debug.Log(name + " took " + damage.ToString() + " damage");
             if (baseEntity.hurtSound != null)
@@ -531,6 +546,13 @@ public class Entity : MonoBehaviour
     {
         return (100 * damage) / (mob.stats.defense + 100);
     }
+
+    public static IEnumerator EffectActive(Entity entity, EntityEffect effect, float time)
+    {
+        Entity.ApplyStats(entity, effect.effect);
+        yield return new WaitForSeconds(time);
+        Entity.RemoveStats(entity, effect.effect);
+    }
 }
 [System.Serializable]
 public class DialogueLine
@@ -546,6 +568,8 @@ public class BaseEntity
     [HideInInspector]
     public string pureName;
     public float health;
+
+    public List<EntityEffect> effects;
 
     public float maxHealth;
 
@@ -583,6 +607,9 @@ public class Mob
     public Entity leader;
     [Tooltip("Does the entity attack an entity back when damaged")]
     public bool revengeful = true;
+    public bool aggro = true;
+    public bool flees = false;
+    public bool fleeing = false;
 
     [HideInInspector]
     public bool mountable;
