@@ -235,9 +235,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 1, y: 2}
   rotationOffset: {x: 0, y: 0, z: 0}
-  itemName: Reinforced Chainmail Armor
+  itemName: Zealot's Chestplate
   namePure: 
-  itemDescription: Gives you extra health and damage, but makes you slower.
+  itemDescription: 
   maxStack: 1
   stack: 1
   cooldown: 0
@@ -340,6 +340,7 @@ MonoBehaviour:
     attackSpeed: 0
     level: 0
     defense: 10
+    luck: 0
     visionRange: 0
     effects:
       onHit: []

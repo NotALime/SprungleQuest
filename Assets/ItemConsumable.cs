@@ -10,9 +10,12 @@ public class ItemConsumable : MonoBehaviour
     public float consumeTime;
 
     public ParticleSystem particle;
+
+    public AudioPlayer drinkSound;
     private void Start()
     {
         item = GetComponent<Item>();
+        drinkSound.gameObject.SetActive(false);
         particle.enableEmission = false;
     }
 
@@ -25,14 +28,15 @@ public class ItemConsumable : MonoBehaviour
     {
         foreach (EntityEffect effect in effects)
         {
-            EntityEffect.ApplyEffect(ai.owner.entity, effect, 10);
+            EntityEffect.ApplyEffect(ai.owner.entity, effect, effect.time);
         }
+        drinkSound.PlaySound();
+        drinkSound.gameObject.SetActive(true);
         ai.handAnimator.SetTrigger("Drink");
         particle.enableEmission = true;
         ai.handAnimator.speed = ((1 / consumeTime));
         item.cooldown = consumeTime;
         yield return new WaitForSeconds(consumeTime);
-
         particle.enableEmission = false;
         ai.handAnimator.speed = 1;
         ai.TakeItem(item);

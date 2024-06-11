@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Regeneration
   m_EditorClassIdentifier: 
   visualEffect: {fileID: 11400000, guid: e4964aede4d12a54abfc59060102d6eb, type: 2}
-  time: 10
+  time: 4
   currentTime: 0
   effectCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.55000305
-      inSlope: 8.65971
-      outSlope: 8.65971
+      value: 0
+      inSlope: 19.659771
+      outSlope: 19.659771
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
       inWeight: 0.6278855
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9083252
-      value: 0.495247
-      inSlope: -0.79553705
-      outSlope: -0.79553705
+      time: 0.9
+      value: 0
+      inSlope: -1.649746
+      outSlope: -1.649746
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -64,6 +64,7 @@ MonoBehaviour:
     attackSpeed: 0
     level: 0
     defense: 0
+    luck: 0
     visionRange: 1
     effects:
       onHit: []
@@ -99,4 +100,4 @@ MonoBehaviour:
       onHurt: []
       onKill: []
   postProcess: {fileID: 0}
-  regenAmount: 2
+  regenAmount: 5

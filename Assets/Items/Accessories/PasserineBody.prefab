@@ -364,6 +364,7 @@ MonoBehaviour:
     attackSpeed: 0
     level: 0
     defense: 10
+    luck: 0
     visionRange: 1
     effects:
       onHit: []

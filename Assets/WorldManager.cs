@@ -18,6 +18,9 @@ public class WorldManager : MonoBehaviour
 
     public LayerMask groundLayer;
 
+    [Header("Peddled")]
+    public List<MobSpawn> peddledSpawns = new List<MobSpawn>();
+    public AudioClip peddleAmbience;
     [Header("Time And Weather")]
     public static float time;
     [Tooltip("In minutes")]
@@ -46,8 +49,11 @@ public class WorldManager : MonoBehaviour
     [Header("Questing")]
     public static List<Quest> activeQuests;
 
+    [HideInInspector]
+    public static WorldManager instance;
     private void Start()
     {
+        instance = this;
         time = 6;
 
         initialMoonIntensity = moonLight.intensity;
@@ -81,41 +87,82 @@ public class WorldManager : MonoBehaviour
     }
     public void Spawning()
     {
-        foreach (MobSpawn spawn in spawns)
+        if (!EntityEffect.peddling)
         {
-            if (time > spawn.conditions.minTime * 60 || time < spawn.conditions.maxTime * 60)
+            foreach (MobSpawn spawn in spawns)
             {
-                if (EvoUtils.PercentChance(spawn.chanceToSpawn, true))
+                if (time > spawn.conditions.minTime * 60 || time < spawn.conditions.maxTime * 60)
                 {
-                    Vector3 spawnPos = GameSettings.player.transform.position + Random.insideUnitSphere.normalized * spawnRadius;
-                    spawnPos.y = 50000;
-                    RaycastHit hit;
-                    if (Physics.Raycast(spawnPos, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+                    if (EvoUtils.PercentChance(spawn.chanceToSpawn, true))
                     {
-                        spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
-                        Entity leader = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
-                        leader.mob.stats.level += (Random.Range(2, 4));
-
-                        if (spawn.autoTarget)
-                        {
-                            leader.mob.target = GameSettings.player;
-                        }
-                        for (int i = 0; i < Random.Range(1, spawn.maxGroupSize); i++)
+                        Vector3 spawnPos = GameSettings.player.transform.position + Random.insideUnitSphere.normalized * spawnRadius;
+                        spawnPos.y = 50000;
+                        RaycastHit hit;
+                        if (Physics.Raycast(spawnPos, Vector3.down, out hit, Mathf.Infinity, groundLayer))
                         {
                             spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
-                            Entity mob = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
-                            DistanceEnabler.NewDistanceEnabler(mob.transform);
-                            mob.mob.leader = leader;
+                            Entity leader = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                            leader.mob.stats.level += (Random.Range(2, 4));
 
                             if (spawn.autoTarget)
                             {
-                                mob.mob.target = GameSettings.player;
+                                leader.mob.target = GameSettings.player;
+                            }
+                            for (int i = 0; i < Random.Range(1, spawn.maxGroupSize); i++)
+                            {
+                                spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
+                                Entity mob = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                                DistanceEnabler.NewDistanceEnabler(mob.transform);
+                                mob.mob.leader = leader;
+
+                                if (spawn.autoTarget)
+                                {
+                                    mob.mob.target = GameSettings.player;
+                                }
                             }
                         }
                     }
                 }
             }
-       }
+        }
+        else
+        {
+            foreach (MobSpawn spawn in peddledSpawns)
+            {
+                if (time > spawn.conditions.minTime * 60 || time < spawn.conditions.maxTime * 60)
+                {
+                    if (EvoUtils.PercentChance(spawn.chanceToSpawn, true))
+                    {
+                        Vector3 spawnPos = GameSettings.player.transform.position + Random.insideUnitSphere.normalized * spawnRadius;
+                        spawnPos.y = 50000;
+                        RaycastHit hit;
+                        if (Physics.Raycast(spawnPos, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+                        {
+                            spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
+                            Entity leader = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                            leader.mob.stats.level += (Random.Range(2, 4));
+
+                            if (spawn.autoTarget)
+                            {
+                                leader.mob.target = GameSettings.player;
+                            }
+                            for (int i = 0; i < Random.Range(1, spawn.maxGroupSize); i++)
+                            {
+                                spawnPos = hit.point + Vector3.up * 5 + Random.insideUnitSphere * 3;
+                                Entity mob = Instantiate(spawn.mob, spawnPos, Quaternion.identity);
+                                DistanceEnabler.NewDistanceEnabler(mob.transform);
+                                mob.mob.leader = leader;
+
+                                if (spawn.autoTarget)
+                                {
+                                    mob.mob.target = GameSettings.player;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void ManageTime()

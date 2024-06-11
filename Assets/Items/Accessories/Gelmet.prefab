@@ -5203,6 +5203,7 @@ MonoBehaviour:
     attackSpeed: 0
     level: 0
     defense: 2
+    luck: 0
     visionRange: 0
     effects:
       onHit: []

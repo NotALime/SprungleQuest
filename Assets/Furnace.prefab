@@ -4890,14 +4890,34 @@ MonoBehaviour:
   recipes:
   - recipe:
     - item: {fileID: 8778192876610775251, guid: 2ba6738f0b04a6948bc3712e3e568936, type: 3}
-      amount: 5
+      amount: 20
     amount: -1
-    output: {fileID: 4644826019041072351, guid: cdf35f07ca88e634a89c3f3b922b0f4e, type: 3}
+    output: {fileID: 2157744354133627976, guid: 0eaa7b2ba66a168449c8e6ae20f77a7b, type: 3}
+  - recipe:
+    - item: {fileID: 1268126029276036679, guid: a6ef472da77d2a04e8b96dd91ddee00e, type: 3}
+      amount: 20
+    amount: -1
+    output: {fileID: 7176128160258495561, guid: e611cfa9007e4534eba5885aa7bfd340, type: 3}
   - recipe:
     - item: {fileID: 8778192876610775251, guid: 2ba6738f0b04a6948bc3712e3e568936, type: 3}
-      amount: 10
+      amount: 40
     amount: -1
-    output: {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
+    output: {fileID: 1131275082217580718, guid: 16d7b33c733652244b71480f6c0e6921, type: 3}
+  - recipe:
+    - item: {fileID: 8778192876610775251, guid: 2ba6738f0b04a6948bc3712e3e568936, type: 3}
+      amount: 30
+    amount: -1
+    output: {fileID: 8379397054436121857, guid: 0e3cbc4d36b8bc948bd7a1b300d9d5ff, type: 3}
+  - recipe:
+    - item: {fileID: 1268126029276036679, guid: a6ef472da77d2a04e8b96dd91ddee00e, type: 3}
+      amount: 40
+    amount: -1
+    output: {fileID: 5244510748953808254, guid: 4ae7235a160cf2849a704d05546ed0dc, type: 3}
+  - recipe:
+    - item: {fileID: 1268126029276036679, guid: a6ef472da77d2a04e8b96dd91ddee00e, type: 3}
+      amount: 30
+    amount: -1
+    output: {fileID: 1194794986075419471, guid: 1a21556b4fbb8ad408965efdef271868, type: 3}
 --- !u!136 &2422260738477762730
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4999,7 +5019,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c19dc0d68ed276b45b2cee23e08c7752, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 22216f9d87eb79d498c67318096af352, type: 2}
+      objectReference: {fileID: 2100000, guid: 1a315db43fd059a488d15605a7dbacb1, type: 2}
     - target: {fileID: 919132149155446097, guid: c19dc0d68ed276b45b2cee23e08c7752, type: 3}
       propertyPath: m_Name
       value: furnace

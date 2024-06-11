@@ -66,10 +66,10 @@ public class Humanoid : MonoBehaviour
         entity.AI();
         Jump();
 
-        if (entity.mob.interactInput)
-        {
-            entity.Interact();
-        }
+       // if (entity.mob.interactInput)
+       // {
+       //     entity.Interact();
+       // }
     }
 
     private void FixedUpdate()

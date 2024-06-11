@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -152,6 +153,18 @@ public class Inventory : MonoBehaviour
 
             handAnimator.SetBool("Holding", (items[hotbarIndex] != null));
         }
+
+    RaycastHit interactRay;
+    public void Interact()
+    {
+        if (Physics.Raycast(transform.position, owner.entity.mob.orientation.forward, out interactRay, 5))
+        {
+            if (interactRay.rigidbody != null && interactRay.collider.GetComponent<Interactable>())
+            {
+                interactRay.collider.GetComponent<Interactable>().Interact(this);
+            }
+        }
+    }
 
     private void OnDestroy()
     {

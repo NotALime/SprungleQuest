@@ -103,7 +103,7 @@ Material:
     - _CastShadows: 1
     - _Clip: 0
     - _ColorMode: 0
-    - _Contrast: 5
+    - _Contrast: 4
     - _Cull: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -123,7 +123,7 @@ Material:
     - _GlowSpread: 0
     - _Hue: 0
     - _LightingEnabled: 0
-    - _Metallic: 1.08
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Opacity: 1
@@ -132,7 +132,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Saturation: 1
-    - _Smoothness: 0.28
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
@@ -146,6 +146,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
+    - _glowStrength: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}

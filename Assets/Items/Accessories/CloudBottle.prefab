@@ -5225,6 +5225,7 @@ MonoBehaviour:
     attackSpeed: 0
     level: 0
     defense: 5
+    luck: 0
     visionRange: 0
     effects:
       onHit: []
@@ -5258,9 +5259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  flightTime: 4
+  flightTime: 3
   currentFlightTime: 0
-  flightForce: 75
+  flightForce: 50
   cooldownTime: 5
   floatParticles: {fileID: 3021852819877146474}
 --- !u!4 &6728103692863315312 stripped

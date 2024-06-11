@@ -112,6 +112,7 @@ public class InventoryUI : MonoBehaviour
 
             if (inv.owner.entity.GetObjectLookedAt() != null)
             {
+                inv.Interact();
                 if (inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>())
                 {
                     dialogue.gameObject.SetActive(!dialogue.gameObject.activeInHierarchy);
@@ -151,7 +152,7 @@ public class InventoryUI : MonoBehaviour
                 tooltipTitle.text = item.itemName;
                 tooltipDescription.text = item.itemDescription;
             }
-            else if(GetRectUnderCursor().GetComponent<CraftingSlot>() && GetRectUnderCursor().GetComponent<CraftingSlot>().item != null)
+            else if (GetRectUnderCursor().GetComponent<CraftingSlot>() && GetRectUnderCursor().GetComponent<CraftingSlot>().item != null)
             {
                 CraftingSlot slot = GetRectUnderCursor().GetComponent<CraftingSlot>();
                 tooltipTitle.text = slot.item.itemName;

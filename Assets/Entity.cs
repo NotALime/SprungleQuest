@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using Terra.CoherentNoise.Generation.Voronoi;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -116,6 +117,32 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public static void PickupOnProximity(Entity ai)
+    {
+        if (ai.mob.target != null)
+        {
+            if (Vector2.Distance(ai.transform.position, ai.mob.target.transform.position) < 2)
+            {
+                if (!ai.mob.target.mob.mounted && ai.mob.target.currentIframe < 0)
+                ai.mob.target.mob.mounted = true;
+                ai.mob.mountSeat.connectedBody = ai.mob.target.mob.rb;
+            }
+
+            if (ai.mob.mountSeat.connectedBody == ai.mob.target.mob.rb && (EvoUtils.PercentChance(0.5f, true) || ai.currentIframe > 0))
+            {
+                ai.mob.mountSeat.connectedBody = null;
+                if (ai.currentIframe < 0)
+                {
+                    ai.mob.target.TakeDamage(30, ai);
+                }
+                ai.mob.target.mob.rb.AddForce((ai.mob.orientation.forward + ai.mob.orientation.up * 0.5f) * 1500);
+                ai.mob.rb.AddForce(ai.mob.orientation.forward * -2000);
+                Entity.Stun(ai, 3);
+                ai.mob.target.mob.mounted = false;
+            }
+        }
+
+    }
     public static void WalkToPos(Entity ai)
     {
         Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
@@ -125,6 +152,10 @@ public class Entity : MonoBehaviour
     public static void WalkForward(Entity ai)
     {
         ai.mob.input = Vector3.forward;
+        if (ai.mob.target != null)
+        {
+            ai.mob.orientation.LookAt(ai.mob.target.transform);
+        }
     }
     public static void PatrolAI(Entity ai)
     {
@@ -295,17 +326,6 @@ public class Entity : MonoBehaviour
     }
 
     RaycastHit interactRay;
-    public void Interact()
-    {
-        if (Physics.Raycast(transform.position, mob.orientation.forward, out interactRay, 4))
-        {
-            if (interactRay.rigidbody != null && interactRay.collider.GetComponent<Interactable>())
-            {
-                interactRay.collider.GetComponent<Interactable>().Interact(this);
-            }
-        }
-    }
-
     public GameObject GetObjectLookedAt()
     {
         if (Physics.Raycast(transform.position, mob.orientation.forward, out interactRay, 4))
@@ -424,7 +444,7 @@ public class Entity : MonoBehaviour
                 }
                 foreach (MobDrop drop in drops)
                 {
-                    if (Random.Range(0f, 1f) <= drop.dropChance)
+                    if (Random.Range(0f, 1f) <= drop.dropChance * GameSettings.player.mob.stats.luck)
                     {
                         for (int i = 0; i < Random.Range(drop.minAmount, drop.maxAmount); i++)
                         {
@@ -637,6 +657,7 @@ public class Mob
 
     [HideInInspector]
     public bool mountable;
+    public bool mounted;
     [Header("Mount")]
     public Entity passenger;
     public ConfigurableJoint mountSeat;
@@ -666,6 +687,7 @@ public class MobStats
     public float attackSpeed = 1;
     public int level = 0;
     public float defense;
+    public float luck = 1;
 
     public float visionRange = 1;
 

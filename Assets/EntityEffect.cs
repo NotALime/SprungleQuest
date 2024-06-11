@@ -22,13 +22,34 @@ public class EntityEffect : ScriptableObject
     {
         EntityEffect effectInstance = Instantiate(effect);
         effectInstance.time = time;
+        effectInstance.currentTime = 0;
+        peddling = effectInstance.peddles;
         if (entity.player && effect.visualEffect != null)
         {
             GameObject obj = Instantiate(new GameObject());
             effectInstance.postProcess = obj.AddComponent<Volume>();
+            effectInstance.postProcess.weight = 0;
             effectInstance.postProcess.isGlobal = true;
             effectInstance.postProcess.gameObject.layer = 9;
             effectInstance.postProcess.profile = effect.visualEffect;
+        }
+        Entity.ApplyStats(entity, effectInstance.effect);
+    }
+
+    public void ApplyEffectDirect(Entity entity)
+    {
+        EntityEffect effectInstance = Instantiate(this);
+        effectInstance.time = time;
+        effectInstance.currentTime = 0;
+        peddling = effectInstance.peddles;
+        if (entity.player && visualEffect != null)
+        {
+            GameObject obj = Instantiate(new GameObject());
+            effectInstance.postProcess = obj.AddComponent<Volume>();
+            effectInstance.postProcess.weight = 0;
+            effectInstance.postProcess.isGlobal = true;
+            effectInstance.postProcess.gameObject.layer = 9;
+            effectInstance.postProcess.profile = visualEffect;
         }
         Entity.ApplyStats(entity, effectInstance.effect);
     }
@@ -39,7 +60,7 @@ public class EntityEffect : ScriptableObject
 
         if (postProcess != null)
         {
-            postProcess.weight = effectCurve.Evaluate(currentTime / time);
+            postProcess.weight = Mathf.LerpUnclamped(postProcess.weight, effectCurve.Evaluate(currentTime / time), 10 * Time.deltaTime);
         }
 
         if (currentTime >= time)
@@ -47,6 +68,10 @@ public class EntityEffect : ScriptableObject
             if (postProcess != null)
             {
                 Destroy(postProcess.gameObject);
+            }
+            if (peddles)
+            {
+                peddling = false;
             }
             Entity.RemoveStats(ai, effect);
             Destroy(this);
@@ -59,4 +84,8 @@ public class EntityEffect : ScriptableObject
     {
         ai.baseEntity.health += regenAmount * Time.deltaTime;
     }
+
+    [Header("Peddling")]
+    public bool peddles;
+    public static bool peddling;
 }
