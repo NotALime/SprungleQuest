@@ -226,21 +226,23 @@ public class Humanoid : MonoBehaviour
     float limbMaxDistance;
     public void HandleRig()
     {
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, entity.mob.orientation.eulerAngles.y, 0));
-       //  Quaternion torsoRotation = entity.mob.orientation.rotation;
-         rig.spine.spineMiddle.transform.rotation = Quaternion.Slerp(rig.spine.spineMiddle.transform.rotation, rotation, torsoRotateSpeed * Time.deltaTime);
-
-        Vector3 inputHorizontal = new Vector3(entity.mob.input.x, 0, Mathf.Abs(entity.mob.input.z)).normalized;
-        if (inputHorizontal.magnitude != 0)
+        if (rig.spine.spineLower != null)
         {
-            rig.spine.spineLower.transform.rotation = Quaternion.Slerp(rig.spine.spineLower.transform.rotation, rotation * Quaternion.LookRotation(inputHorizontal), BodyRotateSpeed * Time.deltaTime);
-        }
-        else
-        {
-            rig.spine.spineLower.transform.rotation = Quaternion.Slerp(rig.spine.spineLower.transform.rotation, rotation, BodyRotateSpeed * 0.5f * Time.deltaTime);
-        }
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, entity.mob.orientation.eulerAngles.y, 0));
+            rig.spine.spineMiddle.transform.rotation = Quaternion.Slerp(rig.spine.spineMiddle.transform.rotation, rotation, torsoRotateSpeed * Time.deltaTime);
 
-        rig.spine.neck.transform.rotation = Quaternion.Slerp(rig.spine.spineLower.transform.rotation, entity.mob.orientation.rotation, 500 * Time.deltaTime);
+            Vector3 inputHorizontal = new Vector3(entity.mob.input.x, 0, Mathf.Abs(entity.mob.input.z)).normalized;
+            if (inputHorizontal.magnitude != 0)
+            {
+                rig.spine.spineLower.transform.rotation = Quaternion.Slerp(rig.spine.spineLower.transform.rotation, rotation * Quaternion.LookRotation(inputHorizontal), BodyRotateSpeed * Time.deltaTime);
+            }
+            else
+            {
+                rig.spine.spineLower.transform.rotation = Quaternion.Slerp(rig.spine.spineLower.transform.rotation, rotation, BodyRotateSpeed * 0.5f * Time.deltaTime);
+            }
+
+            rig.spine.neck.transform.rotation = Quaternion.Slerp(rig.spine.spineLower.transform.rotation, entity.mob.orientation.rotation, 500 * Time.deltaTime);
+        }
 
         //   GroundLimb(rig.legLeft.leg, rig.legLeft.foot, rig.legLeft.hip);
         //   GroundLimb(rig.legRight.leg, rig.legRight.foot, rig.legRight.hip);

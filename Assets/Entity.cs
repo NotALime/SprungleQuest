@@ -91,14 +91,6 @@ public class Entity : MonoBehaviour
                 }
             }
 
-            if (mob.leader != null)
-            {
-                if (mob.leader.mob.target != null)
-                {
-                    mob.target = mob.leader.mob.target;
-                }
-            }
-
             if (baseEntity.idleSound != null)
             {
                 if (EvoUtils.PercentChance(0.05f, true))
@@ -121,23 +113,27 @@ public class Entity : MonoBehaviour
     {
         if (ai.mob.target != null)
         {
-            if (Vector2.Distance(ai.transform.position, ai.mob.target.transform.position) < 2)
+            if (Vector2.Distance(ai.transform.position, ai.mob.target.transform.position) < 1)
             {
-                if (!ai.mob.target.mob.mounted && ai.mob.target.currentIframe < 0)
-                ai.mob.target.mob.mounted = true;
-                ai.mob.mountSeat.connectedBody = ai.mob.target.mob.rb;
+                if (!ai.mob.target.mob.mounted && ai.mob.target.currentIframe < 0 && (EvoUtils.PercentChance(0.5f, true)))
+                {
+                    ai.mob.target.mob.mounted = true;
+                    ai.mob.mountSeat.connectedBody = ai.mob.target.mob.rb;
+                }
             }
 
             if (ai.mob.mountSeat.connectedBody == ai.mob.target.mob.rb && (EvoUtils.PercentChance(0.5f, true) || ai.currentIframe > 0))
             {
                 ai.mob.mountSeat.connectedBody = null;
+                Entity.Stun(ai, 4);
                 if (ai.currentIframe < 0)
                 {
                     ai.mob.target.TakeDamage(30, ai);
                 }
-                ai.mob.target.mob.rb.AddForce((ai.mob.orientation.forward + ai.mob.orientation.up * 0.5f) * 1500);
-                ai.mob.rb.AddForce(ai.mob.orientation.forward * -2000);
-                Entity.Stun(ai, 3);
+                ai.mob.target.currentIframe = 0.5f;
+                ai.mob.target.mob.rb.AddForce(Vector3.up * 2000);
+                ai.mob.target.mob.rb.AddForce(ai.mob.target.mob.orientation.forward * -5000);
+                ai.mob.rb.AddForce(ai.mob.orientation.forward * -3000);
                 ai.mob.target.mob.mounted = false;
             }
         }
@@ -163,13 +159,12 @@ public class Entity : MonoBehaviour
         {
             if (ai.mob.leader != null)
             {
-                ai.mob.orientation.LookAt(ai.mob.leader.transform);
                 if (ai.mob.leader.mob.target != null)
                 {
                     ai.mob.target = ai.mob.leader.mob.target;
                 }
 
-                ai.mob.orientation.LookAt(ai.mob.leader.transform);
+                ai.mob.orientation.LookAt(ai.mob.leader.mob.orientation.transform);
                 if (Vector2.Distance(ai.transform.position, ai.mob.leader.transform.position) > 5)
                 {
                     ai.mob.input = Vector3.forward;
@@ -178,16 +173,8 @@ public class Entity : MonoBehaviour
                 {
                     ai.mob.input = Vector3.zero;
                 }
-
-                if (ai.mob.leader.player)
-                {
-                    if (Vector2.Distance(ai.transform.position, ai.mob.leader.transform.position) > 100)
-                    {
-                        ai.transform.position = Vector3.Normalize(new Vector3(ai.mob.leader.mob.orientation.forward.x, 0, ai.mob.leader.mob.orientation.forward.z)) * -10 + Vector3.up * 5;
-                    }
-                }
             }
-            if (Vector2.Distance(ai.transform.position, ai.mob.targetPoint) < 2f)
+            else if (Vector2.Distance(ai.transform.position, ai.mob.targetPoint) < 2f)
             {
                 ai.mob.targetPoint = ai.mob.targetPoint + Random.insideUnitSphere * ai.mob.stats.visionRange;
             }
