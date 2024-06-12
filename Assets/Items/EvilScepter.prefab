@@ -83,6 +83,9 @@ MonoBehaviour:
   extraJointNoiseSpeed: 2
   extraJointNoiseMagnitude: 3
   sound: {fileID: 2150701589446187333}
+  layers:
+    serializedVersion: 2
+    m_Bits: 73
   numPoints: 1
   noiseIntensity: 0
   noiseSpeed: 0

@@ -140,6 +140,7 @@ public class Projectile : MonoBehaviour
         }
        	else if(destroysOnImpact)
         {
+			Debug.Log(collision.gameObject.name);
        		BulletDestroy();
        	}
     }

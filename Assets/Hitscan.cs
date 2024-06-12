@@ -12,6 +12,8 @@ public class Hitscan : MonoBehaviour
     public float extraJointNoiseMagnitude;
     public AudioSource sound;
 
+    public LayerMask layers;
+
     private void Start()
     {
         line.enabled = false;
@@ -36,7 +38,7 @@ public class Hitscan : MonoBehaviour
         Vector3 startPosition = transform.position;
         Vector3 endPosition = startPosition + transform.forward * range;
 
-        if (Physics.Raycast(startPosition, transform.forward, out hit, range))
+        if (Physics.Raycast(startPosition, transform.forward, out hit, range, layers))
         {
             EntityLimb hitLimb = hit.transform.GetComponent<EntityLimb>();
             Entity hitEntity = hit.transform.GetComponent<Entity>();

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 959539641756859856}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.004, z: 0.2772}
+  m_LocalPosition: {x: 0, y: -0.004000033, z: 1.776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,6 +146,88 @@ MonoBehaviour:
   audio: {fileID: 0}
   clipVarients:
   - {fileID: 8300000, guid: 1a27589d96a26cf4e94aaea24ce5c9a6, type: 3}
+--- !u!1001 &5081485239735287865
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4621737014102549213}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000000047401713
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.69002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ba8c07e98c392c4bb6698e4853bf2e3, type: 2}
+    - target: {fileID: 919132149155446097, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_Name
+      value: wand
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+--- !u!4 &4688166511459526610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63c7bc9e2e2f28a458fdb869e2a359f1, type: 3}
+  m_PrefabInstance: {fileID: 5081485239735287865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5163671842491598134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,15 +238,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.2000012
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.88065803
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.8449688
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,18 +290,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_Name
-      value: Firewand
+      value: wandSpark
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7511558181221131132, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
+    - {fileID: -5754084199372789682, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2810728016860327048}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4688166511459526610}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       insertIndex: -1
@@ -232,7 +319,10 @@ PrefabInstance:
       addedObject: {fileID: 5792530711697343871}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1818052521464547202}
+      addedObject: {fileID: 4019103627590301007}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4172169374373026127}
   m_SourcePrefab: {fileID: 100100000, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
 --- !u!4 &4621737014102549213 stripped
 Transform:
@@ -260,8 +350,7 @@ MonoBehaviour:
   rotationOffset: {x: -90, y: 0, z: 0}
   itemName: Wand Of Sparking
   namePure: 
-  itemDescription: Hurls small fireballs at your enemies. Releases large, slow-moving
-    fireball when overheating.
+  itemDescription: Shoots slow-moving, arcing sparks at enemies.
   maxStack: 1
   stack: 1
   cooldown: 0
@@ -340,18 +429,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  projectile: {fileID: 5173917967708836559, guid: 58fe2436e9faa3b45a7d17f88ed1b144, type: 3}
+  projectile: {fileID: 2833509532923792188, guid: 3a726a01e7c1e0a44be4ee9800f85e6b, type: 3}
   hitscan: {fileID: 0}
   hitscanFrames: 0
   projectilesPerShot: 1
   spread: 0
-  cooldown: 0.2
+  cooldown: 0.4
   shootPoint: {fileID: 2810728016860327048}
   recoil: 0
   castSound: {fileID: 8385655429613208099}
   automatic: 1
-  shotsToBig: 20
-  overHeatLevel: 5
+  shotsToBig: -1
+  overHeatLevel: -1
   aimFOV: 50
 --- !u!54 &5792530711697343871
 Rigidbody:
@@ -380,8 +469,29 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &1818052521464547202
-BoxCollider:
+--- !u!135 &4019103627590301007
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433705097662773351}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 1}
+--- !u!136 &4172169374373026127
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -398,6 +508,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.027668348, y: 0.12590334, z: 0.35833743}
-  m_Center: {x: 0, y: 0.0000000010164661, z: 0.13642778}
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 1}
