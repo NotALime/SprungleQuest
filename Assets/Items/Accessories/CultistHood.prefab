@@ -294,6 +294,7 @@ MonoBehaviour:
   alphaMask: {fileID: 0}
   bodyRenderer: {fileID: 0}
   item: {fileID: 0}
+  headItem: 1
 --- !u!135 &8299740672812123435
 SphereCollider:
   m_ObjectHideFlags: 0

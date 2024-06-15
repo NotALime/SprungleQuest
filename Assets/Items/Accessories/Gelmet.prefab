@@ -5163,6 +5163,7 @@ MonoBehaviour:
   alphaMask: {fileID: 0}
   bodyRenderer: {fileID: 0}
   item: {fileID: 0}
+  headItem: 1
 --- !u!135 &2455234189078553928
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5202,7 +5203,7 @@ MonoBehaviour:
     damage: 0
     attackSpeed: 0
     level: 0
-    defense: 2
+    defense: 0
     luck: 0
     visionRange: 0
     effects:

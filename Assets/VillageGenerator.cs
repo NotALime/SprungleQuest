@@ -66,7 +66,7 @@ public class VillageGenerator : MonoBehaviour
             if (budget > 0)
             {
                 Vector3 placePos = previousDir += dir * size + Random.insideUnitSphere * spread;
-                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(placePos.x, placePos.y - 2000, placePos.z));
+                BezierKnot knot = new BezierKnot(new Unity.Mathematics.float3(placePos.x, placePos.y + 1000, placePos.z));
                 Building b = buildings[Random.Range(0, buildings.Length)];
                 Vector3 offset = Random.insideUnitSphere.normalized * 40;
                 GameObject placed = PlaceBuilding(b, placePos + offset);

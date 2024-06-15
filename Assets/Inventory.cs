@@ -335,7 +335,14 @@ public class Inventory : MonoBehaviour
 
                 if (owner.entity.player)
                 {
-                    renderer.gameObject.layer = 8;
+                      if (a.headItem)
+                      {
+                    renderer.gameObject.layer = 11;
+                }
+                      else
+                      {
+                          renderer.gameObject.layer = 8;
+                      }
                 }
                 else
                 {

@@ -5530,6 +5530,7 @@ MonoBehaviour:
     gameName: Wizard
     pureName: 
     health: 800
+    effects: []
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
@@ -5551,6 +5552,7 @@ MonoBehaviour:
       attackSpeed: 1
       level: 1
       defense: 0
+      luck: 1
       visionRange: 30
       effects:
         onHit: []
@@ -5585,6 +5587,7 @@ MonoBehaviour:
     flees: 0
     fleeing: 0
     mountable: 0
+    mounted: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
@@ -5617,7 +5620,7 @@ MonoBehaviour:
   jumpForce: 15
   drag: 0.6
   gravity: 50
-  playerHeight: 2
+  playerHeight: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -36,6 +36,8 @@ public class GameSettings : MonoBehaviour
 
     public Transform firstPersonCam;
     public Transform thirdPersonCam;
+
+    public static bool renderHead;
     private void Start()
     {
         instance = this;

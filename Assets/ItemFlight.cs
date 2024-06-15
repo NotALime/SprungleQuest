@@ -12,14 +12,16 @@ public class ItemFlight : MonoBehaviour
     public float cooldownTime;
     float cooldown;
     public ParticleSystem floatParticles;
+
+    public AudioSource flySound;
     void Start()
     {
         item = GetComponent<Item>();
+        floatParticles.transform.parent = null;
     }
 
     public void Hover(Entity e)
     {
-        floatParticles.transform.position = e.mob.orientation.position += Vector3.up * -2f;
         if (cooldown <= 0 && currentFlightTime <= flightTime)
         {
             if (e.mob.input.y > 0)
@@ -27,17 +29,24 @@ public class ItemFlight : MonoBehaviour
                 e.mob.rb.AddForce(Vector3.up * flightForce);
                 floatParticles.enableEmission = true;
                 currentFlightTime += Time.deltaTime;
+                floatParticles.enableEmission = true;
+                flySound.enabled = true;
             }
             else
             {
                 floatParticles.enableEmission = false;
+                flySound.enabled = false;
             }
         }
         else if(currentFlightTime > flightTime)
         {
+            floatParticles.enableEmission = false;
+            flySound.enabled = false;
             cooldown = cooldownTime;
             currentFlightTime = 0;
         }
+        floatParticles.transform.position = Vector3.LerpUnclamped(floatParticles.transform.position, e.transform.position + Vector3.down * 2, 10 * Time.deltaTime);
+
         cooldown -= Time.deltaTime;
     }
 

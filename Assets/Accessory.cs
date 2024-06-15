@@ -14,6 +14,8 @@ public class Accessory : MonoBehaviour
 
     public Item item;
 
+    public bool headItem;
+
     private void Awake()
     {
         item = GetComponent<Item>();
