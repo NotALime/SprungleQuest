@@ -53,5 +53,9 @@ public class ItemSlot : MonoBehaviour
             amountText.text = (item.stack > 1 ? item.stack.ToString() : "");
             item.transform.rotation = transform.rotation * Quaternion.Euler(item.rotationOffset + new Vector3(0, Time.unscaledDeltaTime, 0));
         }
+        else
+        {
+            amountText.text = "";
+        }
     }
 }

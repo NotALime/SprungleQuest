@@ -23,7 +23,6 @@ public class ItemDash : MonoBehaviour
     }
     public void Dash(Entity inv)
     {
-        Debug.Log(inv.baseEntity.gameName + " tried dashing");
         if (item.cooldown <= 0 && inv.mob.specialInput)
         {
             inv.mob.rb.useGravity = false;

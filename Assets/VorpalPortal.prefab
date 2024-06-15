@@ -5068,10 +5068,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 1, y: 2}
   rotationOffset: {x: -90, y: 0, z: 0}
-  itemName: Vorpal Portal
+  itemName: Writhing Mass
   namePure: 
-  itemDescription: Too small for you to fit inside, thank goodness it's not a human
-    portal!
+  itemDescription: Otherwordly screams echo from within it...
   maxStack: 1
   stack: 1
   cooldown: 0
@@ -5154,8 +5153,8 @@ MonoBehaviour:
   hitscan: {fileID: 0}
   hitscanFrames: 0
   projectilesPerShot: 3
-  spread: 15
-  cooldown: 1
+  spread: 30
+  cooldown: 0.75
   shootPoint: {fileID: 1643155552528143312}
   recoil: 20
   castSound: {fileID: 7342361307775171018}

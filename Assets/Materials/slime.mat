@@ -64,7 +64,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Clip: 0
-    - _Contrast: 10
+    - _Contrast: 1
     - _Cull: 2
     - _DstBlend: 10
     - _GlowHighlight: 1
@@ -73,7 +73,7 @@ Material:
     - _Hue: 0
     - _Hueshift: 0
     - _Metallic: 0.1
-    - _Opacity: 0.3
+    - _Opacity: 0.6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

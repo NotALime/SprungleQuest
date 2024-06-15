@@ -28,6 +28,8 @@ public class Projectile : MonoBehaviour
 
 	public ProjectileLevel level;
 
+	public EntityEffect effectInflict;
+
 	public enum Behavior
 	{ 
 		Basic,
@@ -121,6 +123,11 @@ public class Projectile : MonoBehaviour
 			if (Entity.CompareTeams(origin, collision.gameObject.GetComponent<Entity>()))
 			{
 				collision.gameObject.GetComponent<Entity>().TakeDamage(damage, origin);
+
+				if (effectInflict != null)
+				{
+					EntityEffect.ApplyEffect(collision.gameObject.GetComponent<Entity>(), effectInflict, effectInflict.time);
+				}
 				if (!piercing)
 				{
 					BulletDestroy();
@@ -140,6 +147,7 @@ public class Projectile : MonoBehaviour
         }
        	else if(destroysOnImpact)
         {
+			Debug.Log(collision.gameObject.name);
        		BulletDestroy();
        	}
     }

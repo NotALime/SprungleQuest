@@ -30,6 +30,8 @@ public class Entity : MonoBehaviour
     [HideInInspector]
     public bool interior;
 
+    public List<EntityEffect> activeEffects;
+
     public bool player;
 
     public bool practiceDeath;
@@ -373,7 +375,10 @@ public class Entity : MonoBehaviour
         if (!dead && (currentIframe <= 0 || ignoreIFrames))
         {
             GameSettings.hitSound.PlaySound();
-            currentIframe = iframe;
+            if (!ignoreIFrames)
+            {
+                currentIframe = iframe;
+            }
             if (mob.stats.effects.onHurt != null)
             {
                 foreach (UnityEvent<Entity> e in mob.stats.effects.onHurt)
