@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2251260878746115523}
   - component: {fileID: 7118363019467585958}
   - component: {fileID: 7362239949535091303}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: projectileHotAir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 088b405f2e3a3384bbfded4e2ff8be2a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -95,7 +95,7 @@ public class VillageGenerator : MonoBehaviour
     {
         if (budget > 0)
         {
-            GameObject built = Instantiate(b.building, pos + Vector3.up * 2000, Quaternion.identity);
+            GameObject built = Instantiate(b.building, pos + Vector3.up * 10, Quaternion.identity);
             NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere * 10 + Vector3.up * 1000, Quaternion.identity);
             DistanceEnabler.NewDistanceEnabler(npc.transform);
             npc.transform.parent = transform;

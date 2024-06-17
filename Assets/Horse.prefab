@@ -44,10 +44,10 @@ GameObject:
   - component: {fileID: 6118298075581286660}
   - component: {fileID: 6393934908459014213}
   - component: {fileID: 8465281397949382414}
-  - component: {fileID: 5683852334539896522}
   - component: {fileID: 6672328890275569044}
   - component: {fileID: 8617646265253465985}
   - component: {fileID: 3682913712688678969}
+  - component: {fileID: -7127537552533091280}
   m_Layer: 6
   m_Name: Horse
   m_TagString: Untagged
@@ -163,7 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity:
     gameName: Horse
+    pureName: 
     health: 200
+    effects: []
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
@@ -171,6 +173,7 @@ MonoBehaviour:
     deathEffect: {fileID: 0}
     hurtSound: {fileID: 0}
     idleSound: {fileID: 0}
+    idleDialogue: []
   drops: []
   renderer:
   - {fileID: 6118298075581286660}
@@ -184,6 +187,7 @@ MonoBehaviour:
       attackSpeed: 1
       level: 0
       defense: 0
+      luck: 1
       visionRange: 20
       effects:
         onHit: []
@@ -196,12 +200,17 @@ MonoBehaviour:
       ai:
         m_PersistentCalls:
           m_Calls: []
-    aiEnabled: 0
+    aiEnabled: 1
     targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
     team: player
     leader: {fileID: 0}
+    revengeful: 1
+    aggro: 1
+    flees: 0
+    fleeing: 0
     mountable: 0
+    mounted: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 3682913712688678969}
     scale: 1
@@ -212,26 +221,9 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
---- !u!114 &5683852334539896522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593053300882498930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb80514a46f2db4a99974c9d7ed4c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 750
-  turnSpeed: 1.5
-  jumpForce: 100
-  gravity: 50
-  friction: 0.9
-  visual: {fileID: 2370929979168132393}
-  accelerationSpeed: 0.5
+  practiceDeath: 0
 --- !u!114 &6672328890275569044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +374,65 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &-7127537552533091280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593053300882498930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b004de87568c2549a1b17df9c35149d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  sprintMultiplier: 2
+  speedIncreaseMultiplier: 0
+  slopeIncreaseMultiplier: 0
+  friction: 0.99
+  jumpForce: 100
+  drag: 0.8
+  gravity: 100
+  playerHeight: 6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  maxSlopeAngle: 90
+  movementEnabled: 1
+  rb: {fileID: 6393934908459014213}
+  entity: {fileID: 0}
+  rig:
+    anim: {fileID: 0}
+    renderer: {fileID: 0}
+    baseTexture: {fileID: 0}
+    faceRender: {fileID: 0}
+    spine:
+      neck: {fileID: 0}
+      spineUpper: {fileID: 0}
+      spineMiddle: {fileID: 0}
+      spineLower: {fileID: 0}
+    armLeft:
+      shoulder: {fileID: 0}
+      arm: {fileID: 0}
+      forearm: {fileID: 0}
+      hand: {fileID: 0}
+    armRight:
+      shoulder: {fileID: 0}
+      arm: {fileID: 0}
+      forearm: {fileID: 0}
+      hand: {fileID: 0}
+    legLeft:
+      hip: {fileID: 0}
+      leg: {fileID: 0}
+      calf: {fileID: 0}
+      foot: {fileID: 0}
+    legRight:
+      hip: {fileID: 0}
+      leg: {fileID: 0}
+      calf: {fileID: 0}
+      foot: {fileID: 0}
+  state: 0
 --- !u!1001 &2841073434381347522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -476,19 +527,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -496,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -505,10 +556,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6895747588408120825}
   m_SourcePrefab: {fileID: 100100000, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
 --- !u!4 &2370929979168132393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
   m_PrefabInstance: {fileID: 2841073434381347522}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3147150744442132371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d33798450cc420d47919a7b01c1d83ee, type: 3}
+  m_PrefabInstance: {fileID: 2841073434381347522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6895747588408120825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147150744442132371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733f415240a99d43908960ac7509336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humanoid: {fileID: -7127537552533091280}
+  rotate: {fileID: 2370929979168132393}

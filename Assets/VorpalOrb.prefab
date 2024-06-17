@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7214216533949766768}
   - component: {fileID: 7992636937434603551}
   - component: {fileID: 8800727706785229187}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: VorpalOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
     cooldownPerLevel: 1.5
     lifeTimePerLevel: 1
     sizePerLevel: 1.5
+  effectInflict: {fileID: 0}
   behavior: 2
 --- !u!54 &4015861826143546114
 Rigidbody:

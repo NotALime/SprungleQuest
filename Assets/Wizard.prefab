@@ -5580,7 +5580,7 @@ MonoBehaviour:
     aiEnabled: 1
     targetPoint: {x: 0, y: 0, z: 0}
     target: {fileID: 0}
-    team: 
+    team: wizard
     leader: {fileID: 0}
     revengeful: 1
     aggro: 1
@@ -5598,6 +5598,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &1695243063853282917

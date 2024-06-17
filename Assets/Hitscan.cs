@@ -87,9 +87,10 @@ public class Hitscan : MonoBehaviour
     }
 
 
-public void DisableRay()
+    public void DisableRay()
     {
         line.enabled = false;
+        sound.enabled = false;
     }
 }
 

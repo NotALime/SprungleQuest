@@ -51,10 +51,12 @@ public class WorldManager : MonoBehaviour
 
     [HideInInspector]
     public static WorldManager instance;
+
+    public float startTime = 6;
     private void Start()
     {
         instance = this;
-        time = 6;
+        time = startTime * 60;
 
         initialMoonIntensity = moonLight.intensity;
         initialSunIntensity = sunLight.intensity;

@@ -75,7 +75,7 @@ public class WeaponRanged : MonoBehaviour
             }
             currentHitscanFrames++;
 
-            if (currentHitscanFrames >= hitscanFrames)
+            if (currentHitscanFrames >= hitscanFrames && hitscanFrames > 0)
             {
                 currentHitscanFrames = 0;
                 hitscan.line.enabled = false;
@@ -111,6 +111,10 @@ public class WeaponRanged : MonoBehaviour
         }
         else
         {
+            if (hitscan != null)
+            {
+                hitscan.DisableRay();
+            }
             inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.Slerp(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 10 * Time.deltaTime);
             rotatedToAttack = false;
         }

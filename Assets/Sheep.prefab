@@ -4876,7 +4876,7 @@ GameObject:
   - component: {fileID: 9067451722088216293}
   - component: {fileID: 8534446892962014121}
   - component: {fileID: 2057628977819406989}
-  - component: {fileID: 4318266853994614444}
+  - component: {fileID: 7470547059583636219}
   m_Layer: 6
   m_Name: Sheep
   m_TagString: Untagged
@@ -5053,7 +5053,7 @@ MonoBehaviour:
     leader: {fileID: 0}
     revengeful: 0
     aggro: 0
-    flees: 0
+    flees: 1
     fleeing: 0
     mountable: 0
     mounted: 0
@@ -5067,6 +5067,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &2057628977819406989
@@ -5081,7 +5082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b004de87568c2549a1b17df9c35149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2.5
   sprintMultiplier: 1
   speedIncreaseMultiplier: 1
   slopeIncreaseMultiplier: 1
@@ -5089,11 +5090,11 @@ MonoBehaviour:
   jumpForce: 50
   drag: 0.9
   gravity: 100
-  playerHeight: 5
+  playerHeight: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  maxSlopeAngle: 90
+  maxSlopeAngle: 60
   movementEnabled: 1
   rb: {fileID: 0}
   entity: {fileID: 0}
@@ -5128,14 +5129,14 @@ MonoBehaviour:
       calf: {fileID: 0}
       foot: {fileID: 0}
   state: 0
---- !u!136 &4318266853994614444
-CapsuleCollider:
+--- !u!135 &7470547059583636219
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4392479013624661397}
-  m_Material: {fileID: 13400000, guid: 174a7e87bb6442d4f8e979208458cc15, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5146,10 +5147,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.13
-  m_Height: 0.5
-  m_Direction: 2
+  serializedVersion: 3
+  m_Radius: 0.17
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8263172956623557338
 GameObject:
@@ -5227,7 +5226,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5236,7 +5235,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5323,13 +5322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02c29b882f39a47bbe38e4406f218c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPitch: 1.5
-  maxPitch: 2
+  minPitch: 1
+  maxPitch: 1.2
   audio: {fileID: 3890248126697969687}
   clipVarients:
-  - {fileID: 8300000, guid: 2fca99aa204d41e4398af528cf06454d, type: 3}
-  - {fileID: 8300000, guid: 74172385aa10ac14f90cd98f2fc10365, type: 3}
-  - {fileID: 8300000, guid: 18467a276b9bb3d4a94c5fabed1f37a6, type: 3}
+  - {fileID: 8300000, guid: e1ff65496fef8af4e973eb859536c4af, type: 3}
 --- !u!1 &8603378565181317160
 GameObject:
   m_ObjectHideFlags: 0
@@ -5422,7 +5419,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5431,7 +5428,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5522,9 +5519,7 @@ MonoBehaviour:
   maxPitch: 1.5
   audio: {fileID: 8386704667430296188}
   clipVarients:
-  - {fileID: 8300000, guid: 489263ab5fbcc3a459b7d6381f7d6a53, type: 3}
-  - {fileID: 8300000, guid: 53a2608556767fd47abaa084f5a921ae, type: 3}
-  - {fileID: 8300000, guid: 51e0ab869b0791043bb2a6d38ded7038, type: 3}
+  - {fileID: 8300000, guid: c57ddba88cea6be4390ac3ef9c67ba4c, type: 3}
 --- !u!1 &8684372274528581627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5775,6 +5770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LegLeftBack
       objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: b00c6fc4214cb3049bb8785f03f2d759, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4da7426726dec047b2637c1494bb3d3, type: 2}
     - target: {fileID: 8537652153308400733, guid: b00c6fc4214cb3049bb8785f03f2d759, type: 3}
       propertyPath: m_Name
       value: LegRightBack

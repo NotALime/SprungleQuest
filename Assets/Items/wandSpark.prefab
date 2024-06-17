@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 959539641756859856}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.004000033, z: 1.776}
+  m_LocalPosition: {x: 0, y: 0, z: 1.776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -145,7 +145,7 @@ MonoBehaviour:
   maxPitch: 1.1
   audio: {fileID: 0}
   clipVarients:
-  - {fileID: 8300000, guid: 1a27589d96a26cf4e94aaea24ce5c9a6, type: 3}
+  - {fileID: 8300000, guid: 29e48e17eb135e2448bc8f1886f8c7fe, type: 3}
 --- !u!1001 &5081485239735287865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   rotationOffset: {x: -90, y: 0, z: 0}
   itemName: Wand Of Sparking
   namePure: 
-  itemDescription: Shoots slow-moving, arcing sparks at enemies.
+  itemDescription: fires sparks at enemies.
   maxStack: 1
   stack: 1
   cooldown: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2542557654917704261}
         m_TargetAssemblyTypeName: WeaponRanged, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: AIShootWhenSaw
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

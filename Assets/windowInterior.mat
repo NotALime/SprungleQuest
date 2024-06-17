@@ -132,6 +132,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _Tiling: 1
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
@@ -139,7 +140,7 @@ Material:
     - _glowStrength: 0
     m_Colors:
     - _BaseColor: {r: 0.41768354, g: 0.77405816, b: 0.9999997, a: 1}
-    - _Color: {r: 0.08708744, g: 0.10704459, b: 0.18328628, a: 1}
+    - _Color: {r: 0.244514, g: 0.2899523, b: 0.43137154, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

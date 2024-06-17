@@ -120,36 +120,40 @@ public class Inventory : MonoBehaviour
                 items[hotbarIndex].onIdle.Invoke(this);
             }
 
-         //   owner.entity.AI();
-            if (items[hotbarIndex] != null)
+        //   owner.entity.AI();
+        if (items[hotbarIndex] != null)
+        {
+            if (owner.entity.player == false && owner.entity.mob.aiEnabled)
             {
-                if (owner.entity.player == false && owner.entity.mob.aiEnabled)
+                items[hotbarIndex].ai.Invoke(this);
+                foreach (Item item in accessories)
                 {
-                    items[hotbarIndex].ai.Invoke(this);
-                    foreach (Item item in accessories)
-                    {
-                        if (item != null)
+                    if (item != null)
                         item.ai.Invoke(this);
-                    }
-                    if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
-                    {
-                        items[hotbarIndex].gameObject.SetActive(false);
-                        hotbarIndex = Random.Range(0, items.Length);
-                        HoldItem(items[hotbarIndex]);
-                    }
                 }
-                if (owner.entity.mob.aiEnabled)
+                if (EvoUtils.PercentChance(0.1f * owner.entity.mob.stats.level, true))
                 {
-                    if (items[hotbarIndex].cooldown < 0 && owner.entity.mob.primaryInput)
-                    {
-                    items[hotbarIndex].onUsePrimary.Invoke(this);
-                    }
-                    if (owner.entity.mob.secondaryInput && items[hotbarIndex])
-                    {
-                        items[hotbarIndex].onUseSecondary.Invoke(this);
-                    }
+                    items[hotbarIndex].gameObject.SetActive(false);
+                    hotbarIndex = Random.Range(0, items.Length);
+                    HoldItem(items[hotbarIndex]);
                 }
             }
+            if (owner.entity.mob.aiEnabled)
+            {
+                if (items[hotbarIndex].cooldown < 0 && owner.entity.mob.primaryInput)
+                {
+                    items[hotbarIndex].onUsePrimary.Invoke(this);
+                }
+                if (owner.entity.mob.secondaryInput && items[hotbarIndex])
+                {
+                    items[hotbarIndex].onUseSecondary.Invoke(this);
+                }
+            }
+        }
+        else
+        {
+            handAnimator.SetBool("Active", false);
+        }
 
             handAnimator.SetBool("Holding", (items[hotbarIndex] != null));
         }

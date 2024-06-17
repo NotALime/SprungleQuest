@@ -38,9 +38,9 @@ public class FlyerAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!attacking)
+        if (!attacking && entity.mob.target != null)
         {
-            Vector3 directionToTarget = EvoUtils.GetDir(entity.mob.target.transform.position + offset, transform.position);
+            Vector3 directionToTarget = EvoUtils.GetDir(transform.position, entity.mob.target.transform.position + offset);
 
             // Calculate the rotation towards the target object
             Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
@@ -53,12 +53,13 @@ public class FlyerAI : MonoBehaviour
             {
                 rb.velocity = rb.velocity.normalized * maxVelocity;
             }
+
+            if (Vector2.Distance(transform.position, entity.mob.target.transform.position) <= viewDistance)
+            {
+                StartCoroutine(Attack());
+            }
         }
 
-        if (Vector2.Distance(transform.position, entity.mob.target.transform.position) <= viewDistance)
-        {
-            StartCoroutine(Attack());
-        }
 
         if (attacking)
         {

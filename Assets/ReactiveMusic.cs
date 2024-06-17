@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "World/Reactive Music")]
 public class ReactiveMusic : ScriptableObject
 {
-    public MusicLayer[] layers;
+    public AudioClip song;
     public float combat;
     public float travel;
     public float timeMin;

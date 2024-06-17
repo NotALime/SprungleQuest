@@ -42,7 +42,7 @@ public class Entity : MonoBehaviour
         {
             baseEntity.deathEffect.SetActive(false);
         }
-
+        mob.targetPoint = transform.position;
     }
 
     private void Start()
@@ -85,7 +85,8 @@ public class Entity : MonoBehaviour
             }
             else
             {
-                mob.passenger.mob.behavior.ai.Invoke(this);
+                mob.input.z = mob.passenger.mob.input.z;
+                mob.orientation.Rotate(0, mob.passenger.mob.input.x * 4, 0);
 
                 if (mob.passenger.mob.interactInput == true && mob.passenger.mob.input.y > 0)
                 {
@@ -149,7 +150,8 @@ public class Entity : MonoBehaviour
     }
     public static void WalkForward(Entity ai)
     {
-        ai.mob.input = Vector3.forward;
+        ai.mob.input.z = 1;
+        ai.mob.input.x = EvoUtils.NormalizeInt(Mathf.PerlinNoise(Time.deltaTime * 0.5f, 0));
         if (ai.mob.target != null)
         {
             ai.mob.orientation.LookAt(ai.mob.target.transform);
@@ -176,7 +178,7 @@ public class Entity : MonoBehaviour
                     ai.mob.input = Vector3.zero;
                 }
             }
-            else if (Vector2.Distance(ai.transform.position, ai.mob.targetPoint) < 2f)
+            else if (Vector2.Distance(new Vector2(ai.transform.position.x, ai.transform.position.z), new Vector2(ai.mob.targetPoint.x, ai.mob.targetPoint.z)) < 2f)
             {
                 ai.mob.targetPoint = ai.mob.targetPoint + Random.insideUnitSphere * ai.mob.stats.visionRange;
             }
@@ -184,7 +186,7 @@ public class Entity : MonoBehaviour
             {
                 Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
                 ai.mob.orientation.forward = dir;
-                ai.mob.input.z = 1;
+                ai.mob.input.z = 0.5f;
             }
             if (ai.GetClosestTarget() != null && ai.mob.aggro)
             {
@@ -374,9 +376,13 @@ public class Entity : MonoBehaviour
     {
         if (!dead && (currentIframe <= 0 || ignoreIFrames))
         {
-            GameSettings.hitSound.PlaySound();
             if (!ignoreIFrames)
             {
+                GameSettings.hitSound.PlaySound();
+                if (baseEntity.hurtSound != null)
+                {
+                    baseEntity.hurtSound.PlaySound();
+                }
                 currentIframe = iframe;
             }
             if (mob.stats.effects.onHurt != null)
@@ -422,10 +428,6 @@ public class Entity : MonoBehaviour
             baseEntity.health -= netDamage;
 
             Debug.Log(name + " took " + damage.ToString() + " damage");
-            if (baseEntity.hurtSound != null)
-            {
-                baseEntity.hurtSound.PlaySound();
-            }
             if (baseEntity.health <= 0)
             {
                 if (baseEntity.deathEffect != null)

@@ -25,7 +25,7 @@ public class MapObject : MonoBehaviour
     {
         RaycastHit hit;
         // FindObjectOfType<Generator>().GetValue(transform.position.x, 10, transform.position.z);
-        yield return new WaitUntil(() => Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer) || !grounds);
+        yield return new WaitUntil(() => (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer) || Physics.Raycast(transform.position, Vector3.up, out hit, Mathf.Infinity, groundLayer)) || !grounds);
 
         transform.localScale *= Random.Range(minScale, maxScale);
         transform.rotation *= Quaternion.Euler(new Vector3(Random.Range(minRot.x, maxRot.x), Random.Range(minRot.y, maxRot.y), Random.Range(minRot.z, maxRot.z)));
