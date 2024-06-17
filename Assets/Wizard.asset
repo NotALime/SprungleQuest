@@ -77,9 +77,9 @@ MonoBehaviour:
   minIdleAdd: -0.5
   maxIdleAdd: 0.5
   weaponPool:
-  - {fileID: 5336555165865855292, guid: 537ccc2f543101a4badb64da387143ef, type: 3}
   - {fileID: 4713134734854291710, guid: fd7bc1ea76f7203408dd85436f3b898c, type: 3}
   - {fileID: 5187781354417796578, guid: 3ede488c356a3c3468f277791f7835d0, type: 3}
+  - {fileID: 808809453189940449, guid: 6dfefc7f30fe5214faba9bea6243777e, type: 3}
   loadoutSize: 2
   predefinedAccessories:
   - {fileID: 3022343165797147111, guid: 2bbae7e61bed57e43b4d5d8f22062c28, type: 3}

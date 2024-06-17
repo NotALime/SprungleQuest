@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 1, y: 2}
-  rotationOffset: {x: 0, y: 0, z: 1}
+  rotationOffset: {x: 0, y: 0, z: 3}
   itemName: Strength Potion
   namePure: Health Potion
   itemDescription: 

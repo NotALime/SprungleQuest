@@ -122,35 +122,35 @@ public class WeaponRanged : MonoBehaviour
 
     public void AIShootWhenSaw(Inventory e)
     {
-            if (e.owner.entity.mob.target != null)
+        if (e.owner.entity.mob.target != null)
+        {
+            e.owner.entity.mob.orientation.LookAt(e.owner.entity.mob.target.mob.orientation);
+            if (Vector2.Distance(e.transform.position, e.owner.entity.mob.target.transform.position) <= e.owner.entity.mob.stats.visionRange * 0.25f)
             {
-                e.owner.entity.mob.orientation.LookAt(e.owner.entity.mob.target.mob.orientation);
-                if (Vector2.Distance(e.transform.position, e.owner.entity.mob.target.transform.position) <= e.owner.entity.mob.stats.visionRange * 0.25f)
-                {
-                    e.owner.entity.mob.input.z = -1;
-                    e.owner.entity.mob.input = (e.owner.entity.mob.orientation.right * Random.Range(-1, 1));
-                }
+                e.owner.entity.mob.input.z = -1;
+                e.owner.entity.mob.input = (e.owner.entity.mob.orientation.right * Random.Range(-1, 1));
+            }
 
-                if (Vector2.Distance(e.transform.position, e.owner.entity.mob.target.transform.position) > e.owner.entity.mob.stats.visionRange * 1.2f)
+            if (Vector2.Distance(e.transform.position, e.owner.entity.mob.target.transform.position) > e.owner.entity.mob.stats.visionRange * 1.2f)
+            {
+                e.owner.entity.mob.input.z = 1;
+            }
+            if (Random.Range(0f, 1f) < 0.01f)
+            {
+                if (Random.Range(0f, 1f) <= 0.5f)
                 {
-                    e.owner.entity.mob.input.z = 1;
+                    e.owner.entity.mob.input.x = 1;
                 }
-                if (Random.Range(0f, 1f) < 0.01f)
+                else
                 {
-                    if (Random.Range(0f, 1f) <= 0.5f)
-                    {
-                        e.owner.entity.mob.input.x = 1;
-                    }
-                    else
-                    {
-                        e.owner.entity.mob.input.x = -1;
-                    }
+                    e.owner.entity.mob.input.x = -1;
                 }
+            }
             RaycastHit hit = new RaycastHit();
 
             if ((Physics.SphereCast(e.owner.entity.mob.orientation.position, 5, e.owner.entity.mob.orientation.forward, out hit, e.owner.entity.mob.stats.visionRange)))
             {
-                if (EvoUtils.PercentChance(0.3f * e.owner.entity.mob.stats.level, true))
+                if (EvoUtils.PercentChance(0.2f * e.owner.entity.mob.stats.level, true))
                 {
                     e.owner.entity.mob.primaryInput = true;
                 }
@@ -158,6 +158,12 @@ public class WeaponRanged : MonoBehaviour
             else
             {
                 e.owner.entity.mob.primaryInput = false;
+            }
+
+            if (shotsFired % 10 == 0)
+            {
+                e.owner.entity.mob.primaryInput = false;
+                e.hotbarIndex = Random.Range(0, e.items.Length);
             }
         }
     }

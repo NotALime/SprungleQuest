@@ -116,15 +116,17 @@ public class InventoryUI : MonoBehaviour
                 if (inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>())
                 {
                     dialogue.gameObject.SetActive(!dialogue.gameObject.activeInHierarchy);
-                    if (dialogue.gameObject.activeInHierarchy)
+                    if (dialogue.gameObject.activeInHierarchy && inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>().ai.mob.target == null)
                     {
                         dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
                         dialogue.OnTalk();
+                        dialogue.currentNPC.ai.mob.aiEnabled = false;
                         GameSettings.UnlockMouse();
                     }
                     else
                     {
                         GameSettings.LockMouse();
+                        dialogue.currentNPC.ai.mob.aiEnabled = true;
                         dialogue.currentNPC = null;
                     }
                 }

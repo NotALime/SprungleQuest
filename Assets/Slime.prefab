@@ -1181,6 +1181,7 @@ MonoBehaviour:
     gameName: Slime
     pureName: 
     health: 100
+    effects: []
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
@@ -1194,6 +1195,10 @@ MonoBehaviour:
     dropChance: 0.01
     minAmount: 1
     maxAmount: 1
+  - item: {fileID: 5457939238999830764, guid: 3fa805a7eaabfab47ba8b8474eb51b55, type: 3}
+    dropChance: 0.3
+    minAmount: 1
+    maxAmount: 3
   renderer:
   - {fileID: 4518383633555934093}
   - {fileID: 2005428040153362030}
@@ -1208,6 +1213,7 @@ MonoBehaviour:
       attackSpeed: 1
       level: 0
       defense: 0
+      luck: 1
       visionRange: 30
       effects:
         onHit: []
@@ -1242,6 +1248,7 @@ MonoBehaviour:
     flees: 0
     fleeing: 0
     mountable: 0
+    mounted: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 4827810262728318345}
     scale: 1
@@ -1252,6 +1259,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &5829944596010670920

@@ -10,6 +10,10 @@ public class ItemPlaceable : MonoBehaviour
 
     public LayerMask groundLayer;
 
+    public bool rotates;
+
+    public Vector3 offset;
+
     private void Start()
     {
         placed.SetActive(false);
@@ -24,8 +28,9 @@ public class ItemPlaceable : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, inv.owner.playerHeight * 2, groundLayer))
             {
-                placed = Instantiate(placeable, hit.point, Quaternion.LookRotation(hit.normal, placeable.transform.forward));
-            placed.SetActive(true);
+                Quaternion rotation = rotates ? Quaternion.identity : Quaternion.LookRotation(hit.normal, placeable.transform.forward);
+                placed = Instantiate(placeable, hit.point + offset, rotation);
+                placed.SetActive(true);
                 placed.transform.localScale = Vector3.one;
                 inv.owner.entity.mob.primaryInput = false;
             }

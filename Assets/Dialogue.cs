@@ -26,6 +26,7 @@ public class Dialogue : MonoBehaviour
     {
         if (currentNPC != null)
         {
+            currentNPC.ai.mob.aiEnabled = false;
             currentNPC.ai.mob.orientation.LookAt(GameSettings.player.mob.orientation);
             engageText.text = currentNPC.job.ToString();
         }
@@ -49,6 +50,7 @@ public class Dialogue : MonoBehaviour
     {
         currentNPC.ai.baseEntity.idleSound.PlaySound();
         StopAllCoroutines();
+        if(currentNPC.engageDialogue.Count > 0)
         StartCoroutine(ReadString(currentNPC.engageDialogue[Random.Range(0, currentNPC.engageDialogue.Count)], 0.01f));
 
         if (currentNPC.job == NPCEmotion.Job.Hire)
