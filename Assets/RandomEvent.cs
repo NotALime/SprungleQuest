@@ -82,7 +82,7 @@ public class RandomEvent : MonoBehaviour
     }
     public static void QueueMusic(TimelineEvent check)
     {
-        MusicManager.instance.PlaySong(check.variables.song, true);
+        MusicManager.instance.StartSong(check.variables.song.song);
     }
 }
 

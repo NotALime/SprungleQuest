@@ -9,11 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5613716d217fc8b4586d4e4b7d4a4ec3, type: 3}
-  m_Name: Finland
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: WizardDefeated
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: 06f067cb547c32749b3d96b51b807731, type: 3}
-  combat: 0
-  travel: 0
-  timeMin: 0
-  timeMax: 0
+  talkReaction:
+    dialogue:
+    - You've
+  threatenReaction:
+    dialogue: []
+  engageReaction:
+    dialogue: []
+  engageCompleteReaction:
+    dialogue: []

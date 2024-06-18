@@ -43,4 +43,12 @@ public class NPCEmotion : MonoBehaviour
             ai.baseEntity.idleDialogue = talkDialogue.ToArray();
         }
     }
+    public void AddToPersonality(EmotionTrait trait)
+    {
+        talkDialogue.AddRange(trait.talkReaction.dialogue);
+        threatDialogue.AddRange(trait.threatenReaction.dialogue);
+        engageDialogue.AddRange(trait.engageReaction.dialogue);
+        ai.baseEntity.idleDialogue = talkDialogue.ToArray();
+        UpdatePersonality();
+    }
 }

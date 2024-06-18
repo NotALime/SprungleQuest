@@ -124,6 +124,7 @@ public class WeaponRanged : MonoBehaviour
     {
         if (e.owner.entity.mob.target != null)
         {
+            e.owner.entity.mob.input.y = 0;
             e.owner.entity.mob.orientation.LookAt(e.owner.entity.mob.target.mob.orientation);
             if (Vector2.Distance(e.transform.position, e.owner.entity.mob.target.transform.position) <= e.owner.entity.mob.stats.visionRange * 0.25f)
             {
@@ -152,18 +153,13 @@ public class WeaponRanged : MonoBehaviour
             {
                 if (EvoUtils.PercentChance(0.2f * e.owner.entity.mob.stats.level, true))
                 {
-                    e.owner.entity.mob.primaryInput = true;
+                    e.hotbarIndex = Random.Range(0, e.items.Length);
+                    e.owner.entity.mob.primaryInput = !e.owner.entity.mob.primaryInput;
                 }
             }
             else
             {
                 e.owner.entity.mob.primaryInput = false;
-            }
-
-            if (shotsFired % 10 == 0)
-            {
-                e.owner.entity.mob.primaryInput = false;
-                e.hotbarIndex = Random.Range(0, e.items.Length);
             }
         }
     }

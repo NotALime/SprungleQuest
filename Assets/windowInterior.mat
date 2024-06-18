@@ -140,7 +140,7 @@ Material:
     - _glowStrength: 0
     m_Colors:
     - _BaseColor: {r: 0.41768354, g: 0.77405816, b: 0.9999997, a: 1}
-    - _Color: {r: 0.3665677, g: 0.75292385, b: 1, a: 1}
+    - _Color: {r: 0.36650032, g: 0.75303364, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

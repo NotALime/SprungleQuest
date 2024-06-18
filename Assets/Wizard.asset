@@ -90,6 +90,7 @@ MonoBehaviour:
   - {fileID: 8637673701268767203, guid: 63dbf36613d3299409e18674dee6069e, type: 3}
   - {fileID: 4375848825490122596, guid: e7a5903e77b904644a9705bca0c9a489, type: 3}
   - {fileID: 7911734160781995457, guid: d389b652ed1cd3849b3ba739633c0347, type: 3}
+  - {fileID: 7911734160781995457, guid: d389b652ed1cd3849b3ba739633c0347, type: 3}
   wardrobeSize: 1
   hairPool:
   - {fileID: 5714044653548115539, guid: adc94a9940a51364f8cafb664b4d4c28, type: 3}
@@ -111,6 +112,6 @@ MonoBehaviour:
     armMax: 1.4
   traits:
   - {fileID: 11400000, guid: 397c4fb20e986254eb292524851adcf1, type: 2}
-  - {fileID: 11400000, guid: 3d544f62b18048f41b2d34d3f302c843, type: 2}
+  - {fileID: 11400000, guid: 5d300434b67b36747885af29d17809d4, type: 2}
   traitAmount: 3
   job: 4

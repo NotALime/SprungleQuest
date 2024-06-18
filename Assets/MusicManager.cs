@@ -27,47 +27,30 @@ public class MusicManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        foreach (ReactiveMusic m in songList)
-        {
-            if (!playingSong && EvoUtils.PercentChance(chanceToPlay, true))
-            {
-                if (m.travel >= travel || m.timeMin >= WorldManager.time || m.timeMax <= WorldManager.time)
-                {
-                    PlaySong(m);
-                }
-            }
-            else if (m.combat >= combat)
-            {
-                PlaySong(m, true);
-            }
-        }
+       foreach (ReactiveMusic m in songList)
+       {
+           if (!musicPlayer.isPlaying && EvoUtils.PercentChance(chanceToPlay, true))
+           {
+               if (m.travel >= travel || m.timeMin >= WorldManager.time || m.timeMax <= WorldManager.time || m.combat >= combat)
+               {
+                    StartSong(m.song);
+               }
+           }
+       }
     }
 
     AudioSource audioPrefab;
     AudioSource[] musicAudio;
     MusicLayer[] musicLayers;
-    public void PlaySong(ReactiveMusic music, bool overwrites = false)
-    {
-        if (currentSong == null || (overwrites && !overwriteSong))
-        {
-            playingSong = true;
-            currentSong = music;
-            musicPlayer.clip = music.song;
-            overwriteSong = overwrites;
 
-            Invoke("EndSong", music.song.length);
+    public void StartSong(AudioClip music)
+    {
+        if (!musicPlayer.isPlaying)
+        {
+            musicPlayer.clip = music;
+            musicPlayer.Play();
         }
     }
-    public void PlaySongPublic(ReactiveMusic music)
-    {
-            playingSong = true;
-            currentSong = music;
-            musicPlayer.clip = music.song;
-            overwriteSong = true;
-
-            Invoke("EndSong", music.song.length);
-    }
-
     public void EndSong()
     {
         currentSong = null;

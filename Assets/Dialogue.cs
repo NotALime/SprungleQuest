@@ -48,19 +48,30 @@ public class Dialogue : MonoBehaviour
     }
     public void OnEngage()
     {
-        currentNPC.ai.baseEntity.idleSound.PlaySound();
         StopAllCoroutines();
-        if(currentNPC.engageDialogue.Count > 0)
-        StartCoroutine(ReadString(currentNPC.engageDialogue[Random.Range(0, currentNPC.engageDialogue.Count)], 0.01f));
+        StartCoroutine(Engage());
+    }
 
-        if (currentNPC.job == NPCEmotion.Job.Hire)
-        {
-            currentNPC.hireFunction.Invoke(GameSettings.player);
-        }
-        else if (currentNPC.job == NPCEmotion.Job.Trade)
+    IEnumerator Engage()
+    {
+        currentNPC.ai.baseEntity.idleSound.PlaySound();
+        string text = currentNPC.engageDialogue[Random.Range(0, currentNPC.engageDialogue.Count)];
+
+        if (currentNPC.job == NPCEmotion.Job.Trade)
         {
             invPlayer.OpenInventory();
             invPlayer.GenerateCraftingLayout(currentNPC.purchases);
+        }
+
+        dialogue.text = "";
+        for (int i = 0; i < text.Length; i++)
+        {
+            dialogue.text += text[i];
+            yield return new WaitForSeconds(0.01f);
+        }
+        if (currentNPC.job == NPCEmotion.Job.Hire)
+        {
+            currentNPC.hireFunction.Invoke(GameSettings.player);
         }
         else if (currentNPC.job == NPCEmotion.Job.Quest)
         {
@@ -69,8 +80,13 @@ public class Dialogue : MonoBehaviour
         }
         else if (currentNPC.job == NPCEmotion.Job.Battle)
         {
+            yield return new WaitForSeconds(1f);
+            GameSettings.LockMouse();
+            currentNPC.ai.mob.aiEnabled = true;
+            invPlayer.dialogue.gameObject.SetActive(false);
             currentNPC.ai.practiceDeath = true;
             currentNPC.ai.mob.target = GameSettings.player;
+            currentNPC = null;
         }
     }
 }

@@ -407,6 +407,7 @@ MonoBehaviour:
     gameName: Bandit
     pureName: 
     health: 100
+    effects: []
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
@@ -427,7 +428,8 @@ MonoBehaviour:
       damage: 1
       attackSpeed: 1
       level: 1
-      defense: 0
+      defense: 20
+      luck: 1
       visionRange: 30
       effects:
         onHit: []
@@ -446,7 +448,11 @@ MonoBehaviour:
     team: 
     leader: {fileID: 0}
     revengeful: 1
+    aggro: 1
+    flees: 0
+    fleeing: 0
     mountable: 0
+    mounted: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
@@ -457,6 +463,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &8643342451883632510
@@ -487,7 +494,6 @@ MonoBehaviour:
   movementEnabled: 1
   rb: {fileID: 0}
   entity: {fileID: 0}
-  inv: {fileID: 0}
   rig:
     anim: {fileID: 1725705239216952608}
     renderer: {fileID: 3428143708593199664}
@@ -627,8 +633,9 @@ MonoBehaviour:
   traits: []
   purchases:
   - recipe:
-    - item: {fileID: 6381770318502692581, guid: cf296598ccb98154e9edce6ddc55937a, type: 3}
+    - item: {fileID: 0}
       amount: 1
+    amount: -1
     output: {fileID: 6381770318502692581, guid: eb120a76ec198d94293b2fb70f53da70, type: 3}
   talkDialogue: []
   threatDialogue: []

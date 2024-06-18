@@ -278,7 +278,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3234283242370810820}
         m_TargetAssemblyTypeName: WeaponRanged, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: AIShootWhenSaw
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -5549,7 +5549,7 @@ MonoBehaviour:
       health: 1
       moveSpeed: 1
       damage: 1
-      attackSpeed: 1
+      attackSpeed: 0.75
       level: 1
       defense: 0
       luck: 1
@@ -5558,7 +5558,21 @@ MonoBehaviour:
         onHit: []
         onIdle: []
         onHurt: []
-        onKill: []
+        onKill:
+        - m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8238945952316481493}
+              m_TargetAssemblyTypeName: NPCEmotion, Assembly-CSharp
+              m_MethodName: AddToPersonality
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: EmotionTrait, Assembly-CSharp
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     orientation: {fileID: 488398940599009149}
     rb: {fileID: 8222598343460547596}
     behavior:

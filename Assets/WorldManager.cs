@@ -40,6 +40,8 @@ public class WorldManager : MonoBehaviour
     public Light moonLight;
     float initialMoonIntensity;
 
+    public Volume flashbang;
+
     public float sunset = 10;
     public float sunrise = 2;
 
@@ -87,6 +89,8 @@ public class WorldManager : MonoBehaviour
         Lighting();
         ManageTime();
         CycleWeather();
+
+        flashbang.weight = Mathf.Lerp(flashbang.weight, 0, 0.5f * Time.deltaTime);
     }
 
 
@@ -95,6 +99,10 @@ public class WorldManager : MonoBehaviour
     {
         titleText.text = text;
         Invoke("ResetTitle", 10);
+    }
+    public void FlashBang()
+    {
+        flashbang.weight = 1;
     }
     public void ResetTitle()
     {
