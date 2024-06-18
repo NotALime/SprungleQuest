@@ -99,5 +99,8 @@ MonoBehaviour:
             m_CallState: 2
       onHurt: []
       onKill: []
+  particleEffect: {fileID: 0}
+  particleInstance: {fileID: 0}
   postProcess: {fileID: 0}
-  regenAmount: 5
+  health: 5
+  peddles: 0

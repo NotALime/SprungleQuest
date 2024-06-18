@@ -58,6 +58,15 @@ public class MusicManager : MonoBehaviour
             Invoke("EndSong", music.song.length);
         }
     }
+    public void PlaySongPublic(ReactiveMusic music)
+    {
+            playingSong = true;
+            currentSong = music;
+            musicPlayer.clip = music.song;
+            overwriteSong = true;
+
+            Invoke("EndSong", music.song.length);
+    }
 
     public void EndSong()
     {

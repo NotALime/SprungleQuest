@@ -1196,7 +1196,7 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 1
   - item: {fileID: 5457939238999830764, guid: 3fa805a7eaabfab47ba8b8474eb51b55, type: 3}
-    dropChance: 0.3
+    dropChance: 1
     minAmount: 1
     maxAmount: 3
   renderer:

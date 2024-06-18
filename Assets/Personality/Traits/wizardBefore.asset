@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: wizardBefore
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - You like wizards? I sure hope you don't, my little brother was kidnapped by
+      the one living not far from here.
+    - If you wanna do this town a favor, go slay that darn wizard, he lives not far
+      from here.
+    - I hate wizards so much, the one that lives near here stole my sheep, poor thing
+      came back 3 days later with it's skin flipped inside out, including the wool.
+  threatenReaction:
+    dialogue: []
+  engageReaction:
+    dialogue: []
+  engageCompleteReaction:
+    dialogue: []

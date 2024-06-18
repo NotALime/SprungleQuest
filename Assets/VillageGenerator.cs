@@ -12,6 +12,11 @@ public class VillageGenerator : MonoBehaviour
     public Building[] townHalls;
     public Building[] buildings;
 
+    public VillageProblem[] problems;
+    public float problemRange = 1000;
+
+    public List<NPCEmotion> population;
+
     public SplineInstantiate villagePathRender;
     GameObject townHall;
 
@@ -47,6 +52,8 @@ public class VillageGenerator : MonoBehaviour
         {
             GenerateBranch(origin);
         }
+
+        StartCoroutine(GenerateProblem());
     }
     public void GenerateBranch(Vector3 origin)
     {
@@ -90,14 +97,43 @@ public class VillageGenerator : MonoBehaviour
         pathRender.Randomize();
     }
 
+    public IEnumerator GenerateProblem()
+    {
+        chosenProblem = problems[Random.Range(0, problems.Length)];
+
+        chosenProblem.problem.transform.position = Random.insideUnitSphere.normalized * problemRange + Vector3.up * 1000;
+
+        foreach (VillageProblem p in problems)
+        {
+            if (p != chosenProblem)
+            {
+                Destroy(p.problem);
+            }
+        }
+        foreach (NPCEmotion ai in population)
+        {
+            ai.traits.Add(chosenProblem.before);
+            ai.UpdatePersonality();
+        }
+
+        yield return new WaitUntil(() => chosenProblem.thingToDestroy == null);
+        foreach (NPCEmotion ai in population)
+        {
+            ai.traits.Remove(chosenProblem.before);
+            ai.traits.Add(chosenProblem.after);
+            ai.UpdatePersonality();
+        }
+    }
+    VillageProblem chosenProblem;
 
     public GameObject PlaceBuilding(Building b, Vector3 pos)
     {
         if (budget > 0)
         {
             GameObject built = Instantiate(b.building, pos + Vector3.up * 10, Quaternion.identity);
-            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere * 10 + Vector3.up * 1000, Quaternion.identity);
+            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere.normalized * 10 + Vector3.up * 1000, Quaternion.identity);
             DistanceEnabler.NewDistanceEnabler(npc.transform);
+            population.Add(npc);
             npc.transform.parent = transform;
             npc.ai.mob.species = villagerTypes[Random.Range(0, villagerTypes.Length)];
             npc.ai.mob.targetPoint = pos;
@@ -121,3 +157,12 @@ public class Building
     public int perVillage;
     int currentCount;
 }
+[System.Serializable]
+public class VillageProblem
+{
+    public GameObject problem;
+    public GameObject thingToDestroy;
+    public EmotionTrait before;
+    public EmotionTrait after;
+}
+

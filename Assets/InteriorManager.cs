@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteriorManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class InteriorManager : MonoBehaviour
 
     public InteriorDoor entranceOutside;
     public InteriorDoor entranceInside;
+
+    public UnityEvent eventOnExit;
     private void Awake()
     {
         interior.transform.position = new Vector3(transform.position.x, -5000, transform.position.z);
@@ -51,6 +54,11 @@ public class InteriorManager : MonoBehaviour
         {
             playerOccupied = false;
             Invoke("InteriorDisableDelay", 20);
+
+            if (eventOnExit != null)
+            {
+                eventOnExit.Invoke();
+            }
         }
         entity.interior = false;
         entity.transform.position = entranceOutside.transform.position;

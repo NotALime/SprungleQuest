@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -86,6 +87,19 @@ public class WorldManager : MonoBehaviour
         Lighting();
         ManageTime();
         CycleWeather();
+    }
+
+
+    public TextMeshProUGUI titleText;
+    public void SendTitleMessage(string text)
+    {
+        titleText.text = text;
+        Invoke("ResetTitle", 10);
+    }
+    public void ResetTitle()
+    {
+        titleText.text = "";
+
     }
     public void Spawning()
     {

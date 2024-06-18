@@ -109,11 +109,11 @@ MonoBehaviour:
   wetness: 0.3
   chanceToHappen: 0.1
   spawnPool:
-  - mob: {fileID: 3847118176123637949, guid: 7b9048d0e66ef8e409f83e5580e54076, type: 3}
-    maxGroupSize: 5
-    leader: 1
-    autoTarget: 1
-    chanceToSpawn: 0.005
+  - mob: {fileID: 8364820833942772864, guid: 1bae45feef743b844b86479db6297213, type: 3}
+    maxGroupSize: 1
+    leader: 0
+    autoTarget: 0
+    chanceToSpawn: 0.01
     conditions:
       minTime: 0
       maxTime: 12

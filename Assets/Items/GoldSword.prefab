@@ -855,6 +855,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2348056734337415877}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 164290336449359528}
   m_SourcePrefab: {fileID: 100100000, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
 --- !u!1 &5175327405149652767 stripped
 GameObject:
@@ -1054,9 +1057,30 @@ MonoBehaviour:
   hitSound: {fileID: 2099921832154236985}
   parrySound: {fileID: 1235458797204989587}
   parryRadius: 4
-  parryCooldown: 0.5
+  parryCooldown: 0.25
   projectile: {fileID: 0}
   swingRange: 40
+--- !u!135 &164290336449359528
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175327405149652767}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &5519623646223162789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}

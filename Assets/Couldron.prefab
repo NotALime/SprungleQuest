@@ -4898,7 +4898,7 @@ MonoBehaviour:
     output: {fileID: 9114004775840258816, guid: c7a9c2f5a474e854393bef5181340b4b, type: 3}
   - recipe:
     - item: {fileID: 2596498270038355374, guid: 083629afcc054e748bd8d18d06c3207c, type: 3}
-      amount: 3
+      amount: 1
     amount: 1
     output: {fileID: 6776509231054241616, guid: 6a771b028564f9b46a68a2a67aa0d5b0, type: 3}
 --- !u!136 &5992751730144935217
@@ -5004,15 +5004,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c278d0f813690114ea7a71675da48d62, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c278d0f813690114ea7a71675da48d62, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c278d0f813690114ea7a71675da48d62, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c278d0f813690114ea7a71675da48d62, type: 3}
       propertyPath: m_LocalPosition.x
