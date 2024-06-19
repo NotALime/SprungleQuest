@@ -59,7 +59,7 @@ public class AIBehaviors : ScriptableObject
 
         verticalRotation -= mouseY;
         horizontalRotation += mouseX;
-        verticalRotation = Mathf.Clamp(verticalRotation, -89, 89);
+        verticalRotation = Mathf.Clamp(verticalRotation, -80, 80);
        
     //    Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         ai.mob.orientation.localRotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0);

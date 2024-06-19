@@ -10,6 +10,11 @@ public class ReactiveMusic : ScriptableObject
     public float travel;
     public float timeMin;
     public float timeMax;
+
+    public void PlaySong()
+    {
+        MusicManager.instance.StartSong(song);
+    }
 }
 [System.Serializable]
 public class MusicLayer

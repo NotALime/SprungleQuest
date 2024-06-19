@@ -51,13 +51,13 @@ MonoBehaviour:
   speed: 150
   damage: 10
   cooldown: 1
-  rb: {fileID: 0}
+  rb: {fileID: 9186235588618638555}
   lifetime: 15
-  destroysOnImpact: 1
+  destroysOnImpact: 0
   keepsOriginSpeed: 0
   destroyEffect: {fileID: 0}
   noclip: 1
-  piercing: 0
+  piercing: 1
   persistant: 0
   origin: {fileID: 0}
   level:
@@ -67,6 +67,7 @@ MonoBehaviour:
     cooldownPerLevel: 1.5
     lifeTimePerLevel: 1
     sizePerLevel: 1.5
+  effectInflict: {fileID: 0}
   behavior: 0
 --- !u!54 &9186235588618638555
 Rigidbody:

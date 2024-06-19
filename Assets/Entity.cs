@@ -18,6 +18,10 @@ public class Entity : MonoBehaviour
     public MobDrop[] drops;
     public Renderer[] renderer;
 
+    [HideInInspector]
+    public int significance;
+    public static Entity mostSignificantEntity;
+
     float initialHealth;
 
     public float iframe = 0.2f;
@@ -469,7 +473,15 @@ public class Entity : MonoBehaviour
                 }
                 else if (!player)
                 {
-                    Destroy(this.gameObject);
+                    if (mostSignificantEntity == null || mostSignificantEntity.significance <= significance)
+                    {
+                        mostSignificantEntity = this;
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        Destroy(this.gameObject);
+                    }
                 }
                 else
                 {
@@ -485,6 +497,12 @@ public class Entity : MonoBehaviour
         }
         baseEntity.tookDamage = true;
         return false;
+    }
+
+    public static void SpawnMostSignificant(Vector3 position)
+    {
+        mostSignificantEntity.transform.position = position;
+        mostSignificantEntity.gameObject.SetActive(true);
     }
 
     public static void RagdollCamera()

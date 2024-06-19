@@ -10337,7 +10337,11 @@ MonoBehaviour:
     hurtSound: {fileID: 4254931952081743060}
     idleSound: {fileID: 1351713354929970596}
     idleDialogue: []
-  drops: []
+  drops:
+  - item: {fileID: 6729606837374220820, guid: f45fcf664e9580a4aa44761dbc113d26, type: 3}
+    dropChance: 0.3
+    minAmount: 1
+    maxAmount: 5
   renderer:
   - {fileID: 3809320120168551191}
   - {fileID: 7931979781490726621}
@@ -10421,6 +10425,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &7131314527664928174

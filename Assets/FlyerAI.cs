@@ -27,6 +27,8 @@ public class FlyerAI : MonoBehaviour
     bool canAttack = true;
     bool attacking;
 
+    public ParticleSystem warnParticle;
+
     public Transform attackPoint;
 
     private void Start()
@@ -83,6 +85,12 @@ public class FlyerAI : MonoBehaviour
         {
             canAttack = false;
             rb.velocity = Vector3.zero;
+            if (warnParticle != null)
+            {
+                GameObject particleInstance = Instantiate(warnParticle.gameObject, transform.position, Quaternion.identity);
+                particleInstance.SetActive(true);
+                EvoUtils.DestroyObject(particleInstance, 10);
+            }
             yield return new WaitForSeconds(chargeUp);
             rb.AddForce(transform.forward * dashSpeed);
             attacking = true;

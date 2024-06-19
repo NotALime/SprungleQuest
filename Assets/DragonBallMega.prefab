@@ -206,7 +206,7 @@ MonoBehaviour:
   keepsOriginSpeed: 0
   destroyEffect: {fileID: 2214858581731827638, guid: fe35d33dcb5c42d4db4b8010724e5334, type: 3}
   noclip: 0
-  piercing: 0
+  piercing: 1
   persistant: 0
   origin: {fileID: 0}
   level:
@@ -216,6 +216,7 @@ MonoBehaviour:
     cooldownPerLevel: 1.5
     lifeTimePerLevel: 1
     sizePerLevel: 1.5
+  effectInflict: {fileID: 0}
   behavior: 0
 --- !u!54 &4836787191087256527
 Rigidbody:

@@ -5008,9 +5008,14 @@ MonoBehaviour:
     hurtSound: {fileID: 4351078580446683753}
     idleSound: {fileID: 4615499857491855075}
     idleDialogue: []
-  drops: []
+  drops:
+  - item: {fileID: 8278502562782976443, guid: fd15aa3ee3ceb664bae53bd04847f5d1, type: 3}
+    dropChance: 1
+    minAmount: 2
+    maxAmount: 5
   renderer:
   - {fileID: 8873715811227778744}
+  significance: 0
   iframe: 0.2
   currentIframe: 0
   mob:

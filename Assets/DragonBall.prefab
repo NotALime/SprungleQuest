@@ -202,11 +202,12 @@ MonoBehaviour:
   cooldown: 1
   rb: {fileID: 0}
   lifetime: 15
-  destroysOnImpact: 1
+  destroysOnImpact: 0
   keepsOriginSpeed: 0
   destroyEffect: {fileID: 0}
-  noclip: 0
-  piercing: 0
+  noclip: 1
+  piercing: 1
+  persistant: 0
   origin: {fileID: 0}
   level:
     level: 1
@@ -215,6 +216,7 @@ MonoBehaviour:
     cooldownPerLevel: 1.5
     lifeTimePerLevel: 1
     sizePerLevel: 1.5
+  effectInflict: {fileID: 0}
   behavior: 0
 --- !u!54 &4161205927625320696
 Rigidbody:
@@ -285,7 +287,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c79fd14a28296e4097298e72d76fbaa, type: 2}
+  - {fileID: 2100000, guid: 8eecc3a501d839e47ad1425739c68203, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -137,13 +137,6 @@ public class InventoryUI : MonoBehaviour
                     GenerateCraftingLayout(inv.owner.entity.GetObjectLookedAt().GetComponent<CraftingStation>().recipes);
                 }
             }
-            else
-            {
-                GameSettings.LockMouse();
-                dialogue.currentNPC = null;
-                OpenInventory();
-                CloseCraftingLayout();
-            }
         }
 
         if (GetRectUnderCursor() != null)

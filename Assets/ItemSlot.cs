@@ -49,7 +49,7 @@ public class ItemSlot : MonoBehaviour
     {
         if (item != null && holdingItem)
         {
-            item.transform.position = transform.position;
+            item.transform.position = transform.position + transform.forward * -0.5f;
             amountText.text = (item.stack > 1 ? item.stack.ToString() : "");
             item.transform.rotation = transform.rotation * Quaternion.Euler(item.rotationOffset + new Vector3(0, Time.unscaledDeltaTime, 0));
         }

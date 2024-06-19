@@ -4851,7 +4851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  maxVelocity: 20
+  maxVelocity: 10
   rotationSpeed: 5
   offsetRange: 5
   offsetInterval: 3

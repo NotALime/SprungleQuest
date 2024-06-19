@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6762131454638464713}
   - component: {fileID: 3984596177354722270}
   - component: {fileID: 5655165176517701396}
-  - component: {fileID: 5975619500938628798}
   - component: {fileID: 3837657592066770700}
   m_Layer: 6
   m_Name: Paragon
@@ -54,8 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3334f305c5521fb45a42ad1fe426a902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  maxVelocity: 50
+  moveSpeed: 0
+  maxVelocity: 0
   rotationSpeed: 100
   offsetRange: 10
   offsetInterval: 10
@@ -63,10 +62,11 @@ MonoBehaviour:
   damage: 30
   dashSpeed: 4000
   dashTime: 0.2
-  chargeUp: 1
+  chargeUp: 2
   attackSound: {fileID: 6357549865769620339}
-  attackRange: 2
-  cooldown: 0
+  attackRange: 5
+  cooldown: 2
+  warnParticle: {fileID: 427802820119858458}
   attackPoint: {fileID: 726904048263800923}
 --- !u!135 &3984596177354722270
 SphereCollider:
@@ -75,7 +75,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271910964329221019}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e5a2cf1b01126df45ab5aeee1c1f3f5a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -116,25 +116,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &5975619500938628798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271910964329221019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86eeba9595f99d4db1e773213d21ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 2535951096274577993, guid: 9690963f1a7c7eb43bab967fc4fe0127, type: 3}
-  shootPoint: {fileID: 726904048263800923}
-  cooldown: 2
-  amount: 1
-  spread: 0
-  warn: 1
-  warnParticle: {fileID: 2185546454744376233}
 --- !u!114 &3837657592066770700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +131,7 @@ MonoBehaviour:
   baseEntity:
     gameName: Paragon
     pureName: 
-    health: 150
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -160,7 +141,11 @@ MonoBehaviour:
     hurtSound: {fileID: 1045045258249171904}
     idleSound: {fileID: 0}
     idleDialogue: []
-  drops: []
+  drops:
+  - item: {fileID: 6729606837374220820, guid: f45fcf664e9580a4aa44761dbc113d26, type: 3}
+    dropChance: 0.5
+    minAmount: 1
+    maxAmount: 5
   renderer:
   - {fileID: 4415009311095943947}
   - {fileID: 4050834334257940480}
@@ -199,7 +184,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 5975619500938628798}
+          - m_Target: {fileID: 0}
             m_TargetAssemblyTypeName: EntityShoot, Assembly-CSharp
             m_MethodName: Shoot
             m_Mode: 0
@@ -503,7 +488,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -621,7 +606,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -938,7 +923,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1
+    maxNumParticles: 100
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -1085,7 +1070,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 0.3
       mode: 0
       spread: 0
       speed:
@@ -1204,7 +1189,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3019,7 +3004,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -3180,7 +3165,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 1
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -3189,7 +3174,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5450,9 +5435,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5632dad4972ba16458ec77dc5f6d52c5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 436fef17ea0058943afb3026673d6ca6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 0.76589197
   Loop: 1
   Mute: 0
@@ -5791,11 +5776,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02c29b882f39a47bbe38e4406f218c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPitch: 0.8
-  maxPitch: 1.2
+  minPitch: 2
+  maxPitch: 2.5
   audio: {fileID: 5631794619777994136}
   clipVarients:
-  - {fileID: 8300000, guid: ae5b28899e3b73948942ca024f4868d9, type: 3}
+  - {fileID: 8300000, guid: f8d9c2629d7a37a45b6f8666d6e7acd7, type: 3}
 --- !u!1 &8626833959931045488
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5824,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5e30a8eb4f5bf1f45ad2c7cf4a359a4e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 32b28def74a21d648944202689d11d13, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 0.87266386
@@ -5941,4 +5926,4 @@ MonoBehaviour:
   maxPitch: 1.2
   audio: {fileID: 1009119877613170296}
   clipVarients:
-  - {fileID: 8300000, guid: 5e30a8eb4f5bf1f45ad2c7cf4a359a4e, type: 3}
+  - {fileID: 8300000, guid: 32b28def74a21d648944202689d11d13, type: 3}

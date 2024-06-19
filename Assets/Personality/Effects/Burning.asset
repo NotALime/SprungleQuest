@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edcc2e284f031d458e4df7950350c9c, type: 3}
   m_Name: Burning
   m_EditorClassIdentifier: 
-  visualEffect: {fileID: 11400000, guid: 067d4981dbe58c247a4f739f7723690c, type: 2}
+  visualEffect: {fileID: 0}
   time: 10
   currentTime: 0
   effectCurve:

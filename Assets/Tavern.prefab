@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1845159502323059705}
   - component: {fileID: 2242958696890888720}
   - component: {fileID: 6144034803736022667}
+  - component: {fileID: 922951821405860464}
   m_Layer: 0
   m_Name: 'Entrance '
   m_TagString: Untagged
@@ -26,13 +27,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266203926384188091}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000029802322, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.014379996, z: -0.0035999904}
-  m_LocalScale: {x: 0.003, y: 0.0015000001, z: 0.015000001}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: -0.7199974, z: 5.751999}
+  m_LocalScale: {x: 1.8000001, y: 0.6, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5751281873447229030}
-  m_Father: {fileID: 5194302242059647092}
+  - {fileID: 5194302242059647092}
+  m_Father: {fileID: 6696403758108452850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2242958696890888720
 BoxCollider:
@@ -70,6 +72,29 @@ MonoBehaviour:
   exit: {fileID: 0}
   interior: {fileID: 0}
   insideDoor: 0
+--- !u!114 &922951821405860464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266203926384188091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5678b0035a555e429f94f7766e53be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grounds: 1
+  offset: {x: 0, y: 1.4, z: 0}
+  offsetRange: {x: 0, y: 0, z: 0}
+  groundRotate: 0
+  minScale: 1
+  maxScale: 1
+  minRot: {x: 0, y: 0, z: 0}
+  maxRot: {x: 0, y: 0, z: 360}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &766223503643533529
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,8 +157,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5194302242059647092}
   - {fileID: 9134566949539998043}
+  - {fileID: 1845159502323059705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6760385733190620777
@@ -151,6 +176,9 @@ MonoBehaviour:
   interior: {fileID: 766223503643533529}
   entranceOutside: {fileID: 6144034803736022667}
   entranceInside: {fileID: 7283253876353171692}
+  eventOnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2169515967519701711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,19 +1564,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6696403758108452850}
+    m_TransformParent: {fileID: 1845159502323059705}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 600
+      value: 333.33334
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 400
+      value: 666.6667
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 200
+      value: 66.66667
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1556,19 +1584,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9.586663
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.2399993
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1612,10 +1640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1845159502323059705}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       insertIndex: -1
@@ -1623,9 +1648,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8563533823120066894}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3454626044288428833}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08a26e7714fbed4478775e83e84a4eb9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3550426817431457342}
@@ -1678,29 +1700,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.022, y: 0.008, z: 0.01}
   m_Center: {x: 0, y: -0.015, z: -0.015}
---- !u!114 &3454626044288428833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4854333884173296334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5678b0035a555e429f94f7766e53be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grounds: 1
-  offset: {x: 0, y: 2.5, z: 0}
-  offsetRange: {x: 0, y: 0, z: 0}
-  groundRotate: 0
-  minScale: 1
-  maxScale: 1
-  minRot: {x: 1, y: 1, z: 1}
-  maxRot: {x: 1, y: 1, z: 1}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!82 &3550426817431457342
 AudioSource:
   m_ObjectHideFlags: 0

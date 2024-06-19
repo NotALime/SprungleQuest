@@ -5539,7 +5539,15 @@ MonoBehaviour:
     hurtSound: {fileID: 5603414294052347959}
     idleSound: {fileID: 7422980606636622599}
     idleDialogue: []
-  drops: []
+  drops:
+  - item: {fileID: 2492034194245245472, guid: 470f184ec930df34293c2bb7c7517d69, type: 3}
+    dropChance: 1
+    minAmount: 1
+    maxAmount: 1
+  - item: {fileID: 3936608540075821201, guid: 6cc7944ea7877f54da342ec18cfd54fa, type: 3}
+    dropChance: 1
+    minAmount: 4
+    maxAmount: 8
   renderer:
   - {fileID: 972856485757573868}
   iframe: 0.2
@@ -5549,7 +5557,7 @@ MonoBehaviour:
       health: 1
       moveSpeed: 1
       damage: 1
-      attackSpeed: 0.75
+      attackSpeed: 0.6
       level: 1
       defense: 0
       luck: 1
@@ -5698,12 +5706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 1695243063853282917}
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  accessories:
-  - {fileID: 0}
+  items: []
+  accessories: []
   head: {fileID: 0}
   body: {fileID: 0}
   legs: {fileID: 0}
@@ -5714,7 +5718,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hotbarIndex: 0
-  deathDecay: 0.3
+  deathDecay: 0.5
   itemHolder: {fileID: 3358517034708742326}
   accessorization:
     rootBone: {fileID: 6004729266380625989}

@@ -14,7 +14,7 @@ public class InteriorManager : MonoBehaviour
     public UnityEvent eventOnExit;
     private void Awake()
     {
-        interior.transform.position = new Vector3(transform.position.x, -5000, transform.position.z);
+        interior.transform.position = new Vector3(transform.position.x, -2000, transform.position.z);
         interior.transform.rotation = Quaternion.identity;
         interior.SetActive(false);
 
@@ -62,6 +62,7 @@ public class InteriorManager : MonoBehaviour
         }
         entity.interior = false;
         entity.transform.position = entranceOutside.transform.position;
+        entity.transform.parent = null;
     }
 
     private void InteriorDisableDelay()

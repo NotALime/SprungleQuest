@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: DragonVillageBefore
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - 'This village has had a dragon problem, one of them darn reptiles decided to
+      build a nest nearby, can''t go on a leisurely walk in the woods without getting
+      incinerated anymore... '
+    - I always thought dragons were cool, but now that one settled by our village,
+      I understand why they are classified as vermin.
+    - If you want a real challenge, try slaying the dragon that lives nearby, he
+      has been harassing us villagefolk for weeks now.
+  threatenReaction:
+    dialogue: []
+  engageReaction:
+    dialogue: []
+  engageCompleteReaction:
+    dialogue: []

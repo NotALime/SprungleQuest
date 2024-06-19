@@ -330,12 +330,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifier:
-    health: 0.1
+    health: 0
     moveSpeed: 0
     damage: 0
-    attackSpeed: 0
+    attackSpeed: 0.1
     level: 0
-    defense: 0
+    defense: 1
     luck: 0
     visionRange: 0
     effects:

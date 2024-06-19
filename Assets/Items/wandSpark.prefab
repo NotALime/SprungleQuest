@@ -389,7 +389,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2542557654917704261}
         m_TargetAssemblyTypeName: WeaponRanged, Assembly-CSharp
-        m_MethodName: Aim
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   cooldown: 0.4
   shootPoint: {fileID: 2810728016860327048}
   recoil: 0
-  castSound: {fileID: 8385655429613208099}
+  castSound: {fileID: 0}
   automatic: 1
   shotsToBig: -1
   overHeatLevel: -1

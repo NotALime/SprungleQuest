@@ -54,14 +54,14 @@ public class WeaponRanged : MonoBehaviour
                         shotsFired = 0;
                     }
                 }
-                if (shotsToBig > 0)
-                {
-                    castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
-                }
-                else
-                {
-                    castSound.PlaySound();
-                }
+             //   if (shotsToBig > 0)
+             //   {
+             //       castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
+             //   }
+             //   else
+             //   {
+             //       castSound.PlaySound();
+             //   }
             }
             inv.owner.entity.mob.primaryInput = automatic;
             item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
@@ -91,33 +91,20 @@ public class WeaponRanged : MonoBehaviour
     [Header("Player Specific")]
     public float aimFOV;
     public void Aim(Inventory inv)
-    { 
-           // inv.hand.connectedBody.angularVelocity *= 0.5f;
+    {
+        // inv.hand.connectedBody.angularVelocity *= 0.5f;
 
-            if (inv.owner.entity.player)
-            {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, aimFOV, 10 * Time.deltaTime);
-            }
+        if (inv.owner.entity.player)
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, aimFOV, 10 * Time.deltaTime);
+        }
     }
 
     bool rotatedToAttack;
     public void ArmAnim(Inventory inv)
     {
         inv.handAnimator.SetBool("Active", true);
-        if (inv.owner.entity.mob.primaryInput || inv.owner.entity.mob.secondaryInput)
-        {
-            inv.owner.rig.armRight.shoulder.transform.rotation = inv.owner.rig.spine.neck.transform.rotation * Quaternion.Euler(new Vector3(0, 0, -83.622f));
-            rotatedToAttack = true;
-        }
-        else
-        {
-            if (hitscan != null)
-            {
-                hitscan.DisableRay();
-            }
-            inv.owner.rig.armRight.shoulder.transform.localRotation = Quaternion.Slerp(inv.owner.rig.armRight.shoulder.transform.localRotation, inv.owner.rig.armRight.shoulder.initialRot, 10 * Time.deltaTime);
-            rotatedToAttack = false;
-        }
+        inv.owner.rig.armRight.shoulder.transform.rotation = inv.owner.rig.spine.neck.transform.rotation * Quaternion.Euler(new Vector3(0, 0, -83.622f));
     }
 
     public void AIShootWhenSaw(Inventory e)
@@ -151,16 +138,24 @@ public class WeaponRanged : MonoBehaviour
 
             if ((Physics.SphereCast(e.owner.entity.mob.orientation.position, 5, e.owner.entity.mob.orientation.forward, out hit, e.owner.entity.mob.stats.visionRange)))
             {
-                if (EvoUtils.PercentChance(0.2f * e.owner.entity.mob.stats.level, true))
-                {
-                    e.hotbarIndex = Random.Range(0, e.items.Length);
-                    e.owner.entity.mob.primaryInput = !e.owner.entity.mob.primaryInput;
-                }
+                e.owner.entity.mob.primaryInput = true;
             }
-            else
+
+            if (EvoUtils.PercentChance(0.1f * e.owner.entity.mob.stats.level, true))
             {
                 e.owner.entity.mob.primaryInput = false;
+                e.HoldItem(e.items[Random.Range(0, e.items.Length)]);
             }
+        }
+    }
+
+    public void AISingleShot(Inventory e)
+    {
+        if (e.owner.entity.mob.target != null)
+        {
+            e.owner.entity.mob.input = Vector3.zero;
+            e.owner.entity.mob.orientation.rotation = Quaternion.LookRotation(Vector3.down);
+            e.owner.entity.mob.primaryInput = true;
         }
     }
 }

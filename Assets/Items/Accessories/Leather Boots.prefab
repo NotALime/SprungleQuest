@@ -335,7 +335,7 @@ MonoBehaviour:
     damage: 0
     attackSpeed: 0
     level: 0
-    defense: 2
+    defense: 1
     luck: 0
     visionRange: 0
     effects:
