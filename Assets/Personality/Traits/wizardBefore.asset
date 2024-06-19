@@ -14,15 +14,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkReaction:
     dialogue:
-    - You like wizards? I sure hope you don't, my little brother was kidnapped by
-      the one living not far from here.
-    - If you wanna do this town a favor, go slay that darn wizard, he lives not far
-      from here.
-    - I hate wizards so much, the one that lives near here stole my sheep, poor thing
-      came back 3 days later with it's skin flipped inside out, including the wool.
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: The humans sent you, haven't they, dweller?
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: You stand no chance against me dweller, turn away before it is too
+        late for you.
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: I will destroy you, dweller, just like how I destroyed the other
+        adventurers that dared stand in my way.
   threatenReaction:
     dialogue: []
   engageReaction:
-    dialogue: []
+    dialogue:
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: Your fate is sealed, dweller.
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: If we must.
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: Thy end is nigh, dweller.
+    - choice:
+        choice: 0
+        acceptText: 
+        denyText: 
+        onAccept: 0
+        onDeny: 0
+        acceptAnswer: 
+        denyAnswer: 
+      dialogue: I will be your doom, dweller.
   engageCompleteReaction:
     dialogue: []
+  combatLines: []

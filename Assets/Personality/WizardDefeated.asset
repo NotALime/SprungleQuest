@@ -14,10 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkReaction:
     dialogue:
-    - You've
+    - choice:
+        choice: 1
+        acceptText: I want to be a wizard.
+        denyText: Nah, humans better.
+        onAccept: 1
+        onDeny: 4
+        acceptAnswer: Good... you shall be my apprentice...
+        denyAnswer: I gave you a chance, prepare to die!
+      dialogue: You've... defeated me. Dweller, you are strong. Join me...
   threatenReaction:
     dialogue: []
   engageReaction:
     dialogue: []
   engageCompleteReaction:
     dialogue: []
+  combatLines: []

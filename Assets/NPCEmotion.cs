@@ -14,9 +14,10 @@ public class NPCEmotion : MonoBehaviour
 
     public Recipe[] purchases;
 
-    public List<string> talkDialogue;
-    public List<string> threatDialogue;
-    public List<string> engageDialogue;
+    public List<Line> talkDialogue;
+    public List<Line> threatDialogue;
+    public List<Line> engageDialogue;
+    public List<string> combatLine;
 
     public Job job;
 
@@ -30,25 +31,57 @@ public class NPCEmotion : MonoBehaviour
     };
     private void Start()
     {
-        UpdatePersonality();
+        UpdatePersonality(false);
     }
 
-    public void UpdatePersonality()
+    private void FixedUpdate()
     {
+        if (EvoUtils.PercentChance(0.1f, true) && ai.mob.target != null)
+        {
+            Entity.TalkCycle(ai, combatLine[Random.Range(0, combatLine.Count)]);
+        }
+    }
+
+    public void UpdatePersonality(bool reset = true)
+    {
+        if (reset)
+        {
+            talkDialogue.Clear();
+            threatDialogue.Clear();
+            engageDialogue.Clear();
+            combatLine.Clear();
+        }
         foreach (EmotionTrait t in traits)
         {
             talkDialogue.AddRange(t.talkReaction.dialogue);
             threatDialogue.AddRange(t.threatenReaction.dialogue);
             engageDialogue.AddRange(t.engageReaction.dialogue);
-            ai.baseEntity.idleDialogue = talkDialogue.ToArray();
+            combatLine.AddRange(t.combatLines);
         }
     }
     public void AddToPersonality(EmotionTrait trait)
     {
-        talkDialogue.AddRange(trait.talkReaction.dialogue);
-        threatDialogue.AddRange(trait.threatenReaction.dialogue);
-        engageDialogue.AddRange(trait.engageReaction.dialogue);
-        ai.baseEntity.idleDialogue = talkDialogue.ToArray();
+        traits.Add(trait);
         UpdatePersonality();
     }
+}
+
+[System.Serializable]
+public class Line
+{
+    private string name;
+    public DialogueChoice choice;
+    public string dialogue;
+}
+[System.Serializable]
+public class DialogueChoice
+{
+    public bool choice;
+    public string acceptText;
+    public string denyText;
+    public NPCEmotion.Job onAccept;
+    public NPCEmotion.Job onDeny;
+
+    public string acceptAnswer;
+    public string denyAnswer;
 }

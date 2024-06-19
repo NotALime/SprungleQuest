@@ -112,6 +112,6 @@ MonoBehaviour:
     armMax: 1.4
   traits:
   - {fileID: 11400000, guid: 397c4fb20e986254eb292524851adcf1, type: 2}
-  - {fileID: 11400000, guid: 5d300434b67b36747885af29d17809d4, type: 2}
+  - {fileID: 11400000, guid: 4f1e47434bcde1e4795905362b973c22, type: 2}
   traitAmount: 3
   job: 4
