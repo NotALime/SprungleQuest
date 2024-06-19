@@ -9,10 +9,9 @@ public class EmotionTrait : ScriptableObject
     public Reaction threatenReaction;
     public Reaction engageReaction;
     public Reaction engageCompleteReaction;
-    public string[] combatLines;
 }
 [System.Serializable]
 public class Reaction
 {
-    public Line[] dialogue;
+    public string[] dialogue;
 }

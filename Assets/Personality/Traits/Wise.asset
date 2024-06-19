@@ -14,53 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkReaction:
     dialogue:
-    - choice:
-        choice: 0
-        acceptText: 
-        denyText: 
-        onAccept: 0
-        onDeny: 0
-        acceptAnswer: 
-        denyAnswer: 
-      dialogue: He who has not tasted grapes says sour.
-    - choice:
-        choice: 0
-        acceptText: 
-        denyText: 
-        onAccept: 0
-        onDeny: 0
-        acceptAnswer: 
-        denyAnswer: 
-      dialogue: Tea only makes the pastry sweeter.
-    - choice:
-        choice: 0
-        acceptText: 
-        denyText: 
-        onAccept: 0
-        onDeny: 0
-        acceptAnswer: 
-        denyAnswer: 
-      dialogue: The apple does not fall far from the tree... unless the tree is very
-        tall.
-    - choice:
-        choice: 0
-        acceptText: 
-        denyText: 
-        onAccept: 0
-        onDeny: 0
-        acceptAnswer: 
-        denyAnswer: 
-      dialogue: You miss 100% of the shots you don't take.
+    - The apple does not fall far from the tree... unless the tree is very tall.
+    - He who has not tasted grapes says sour.
+    - Goblins will see you teleport and say "he cannot afford a steed".
+    - Tea only makes the pastry sweeter.
+    - We do not look up at the night sky to admire the ceaseless black abyss, we
+      look up in search of the hundreds of thousands of tiny little stars, even if
+      they take up a miniscule fraction of our heavens
+    - You miss 100% of the shots you don't take.
+    - Believe in magic... it's all around us!
+    - More people have been to [settlement] than I have.
   threatenReaction:
-    dialogue: []
+    dialogue:
+    - A fool flatters himself, a wise man flatters the fool.
+    - A fool sees not the same tree that a wise man sees.
+    - Wise men learn by other men's mistakes, fools by their own.
+    - A wise person does at once, what a fool does at last.
+    - Wise people have knowledge and use it. Foolish people have knowledge and do
+      not.
+    - Better a witty fool than a foolish wit.
   engageReaction:
     dialogue: []
-  engageCompleteReaction:
-    dialogue: []
-  combatLines:
-  - 'A fool thinks himself to be wise, but a wise man knows himself to be a fool. '
-  - A wise man knows he knows nothing, a fool thinks he knows everything.
-  - Wise men don't need advice. Fools won't take it.
-  - A fool flatters himself, a wise man flatters the fool.
-  - A wise man gets more use from his enemies than a fool from his friends.
-  - Wise men learn by others' harms, fools by their own.

@@ -163,17 +163,4 @@ public class WeaponRanged : MonoBehaviour
             }
         }
     }
-
-    public void SingleShot(Inventory e)
-    {
-        if (e.owner.entity.mob.target != null)
-        {
-            e.owner.entity.mob.input = Vector3.zero;
-            e.owner.entity.mob.primaryInput = false;
-            e.owner.entity.mob.secondaryInput = true;
-            e.hotbarIndex = Random.Range(0, e.items.Length);
-            e.owner.entity.mob.secondaryInput = false;
-
-        }
-    }
 }

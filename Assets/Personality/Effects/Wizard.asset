@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
-  m_Name: wizardBefore
+  m_Name: Wizard
   m_EditorClassIdentifier: 
   talkReaction:
     dialogue:
-    - You like wizards? I sure hope you don't, my little brother was kidnapped by
-      the one living not far from here.
-    - If you wanna do this town a favor, go slay that darn wizard, he lives not far
-      from here.
-    - I hate wizards so much, the one that lives near here stole my sheep, poor thing
-      came back 3 days later with it's skin flipped inside out, including the wool.
+    - The dwellers have sent you to kill me, haven't they?
+    - Another dweller... are you sure you want to do this, child?
+    - You've come for me, haven't you?
   threatenReaction:
-    dialogue: []
+    dialogue:
+    - Just kill me already.
   engageReaction:
-    dialogue: []
+    dialogue:
+    - Prepare to meet your doom, dweller.
+    - Your end is nigh, dweller.
+    - You brought this upon yourself, dweller.
   engageCompleteReaction:
     dialogue: []
