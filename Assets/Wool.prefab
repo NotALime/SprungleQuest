@@ -147,8 +147,8 @@ MonoBehaviour:
   itemName: Wool
   namePure: Manuscript
   itemDescription: For creating various clothing at looms.
-  maxStack: 0
-  stack: 0
+  maxStack: 999
+  stack: 1
   cooldown: -1.7599989
   ai:
     m_PersistentCalls:

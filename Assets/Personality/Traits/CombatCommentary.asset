@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
-  m_Name: Reclusive
+  m_Name: CombatCommentary
   m_EditorClassIdentifier: 
   talkReaction:
-    dialogue:
-    - Oh my! A visitor!
-    - Life here is peaceful, outside, away from society.
+    dialogue: []
   threatenReaction:
     dialogue: []
   engageReaction:
@@ -23,4 +21,9 @@ MonoBehaviour:
   engageCompleteReaction:
     dialogue: []
   combatLines:
-    dialogue: []
+    dialogue:
+    - En garde!
+    - Prepare to meet your doom!
+    - Stand down!
+    - Die!
+    - You stand no chance!

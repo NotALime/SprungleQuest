@@ -10,17 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
-  m_Name: Reclusive
+  m_Name: GuardEmotion
   m_EditorClassIdentifier: 
   talkReaction:
-    dialogue:
-    - Oh my! A visitor!
-    - Life here is peaceful, outside, away from society.
+    dialogue: []
   threatenReaction:
     dialogue: []
   engageReaction:
-    dialogue: []
+    dialogue:
+    - A dual? En garde!
+    - To the death.
+    - Battle? Sure, why not, day's been slow anyways.
   engageCompleteReaction:
-    dialogue: []
+    dialogue:
+    - Darn, you got me... here, take this reward, you deserve it.
+    - You put up quite a fight! Here, take this reward.
+    - And I almost forgot what losing feels like... you did good, take this prize.
   combatLines:
     dialogue: []

@@ -186,12 +186,6 @@ public class Entity : MonoBehaviour
             {
                 ai.mob.targetPoint = ai.mob.targetPoint + Random.insideUnitSphere * ai.mob.stats.visionRange;
             }
-            else
-            {
-                Vector3 dir = (ai.mob.targetPoint - ai.transform.position).normalized;
-                ai.mob.orientation.forward = dir;
-                ai.mob.input.z = 0.5f;
-            }
             if (ai.GetClosestTarget() != null && ai.mob.aggro)
             {
                 ai.mob.target = ai.GetClosestTarget();
@@ -467,6 +461,7 @@ public class Entity : MonoBehaviour
                 if (practiceDeath)
                 {
                     Entity.Stun(this, 5);
+                    currentIframe = 5;
                     practiceDeath = false;
                     mob.target = null;
                     baseEntity.health = baseEntity.maxHealth;
@@ -475,6 +470,7 @@ public class Entity : MonoBehaviour
                 {
                     if (mostSignificantEntity == null || mostSignificantEntity.significance <= significance)
                     {
+                        Destroy(mostSignificantEntity.gameObject);
                         mostSignificantEntity = this;
                         gameObject.SetActive(false);
                     }

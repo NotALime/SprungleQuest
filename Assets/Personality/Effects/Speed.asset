@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Speed
   m_EditorClassIdentifier: 
   visualEffect: {fileID: 11400000, guid: 76872c3b458810443bb864bd53f06991, type: 2}
-  time: 60
+  time: 120
   currentTime: 0
   effectCurve:
     serializedVersion: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strength
   m_EditorClassIdentifier: 
   visualEffect: {fileID: 11400000, guid: 235ba65921d9c214397632340740c2cb, type: 2}
-  time: 60
+  time: 100
   currentTime: 0
   effectCurve:
     serializedVersion: 2

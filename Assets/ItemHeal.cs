@@ -14,19 +14,19 @@ public class ItemHeal : MonoBehaviour
     private void Awake()
     {
         item = GetComponent<Item>();
-        item.itemDescription += "\n" + healPerSecond.ToString() + " HP/S regeneration ";
+        item.itemDescription += "\n" + healPerSecond.ToString() + " HP/SEC regeneration ";
         if (timeAfterDamage > 0)
         {
             item.itemDescription += timeAfterDamage.ToString() + "seconds outside of danger";
         }
     }
-    public void Heal(Entity e)
+    public void Heal(Inventory e)
     {
-        if (e.currentIframe <= -timeAfterDamage)
+        if (e.owner.entity.currentIframe <= -timeAfterDamage)
         {
-            e.baseEntity.health += healPerSecond * Time.deltaTime;
+            e.owner.entity.baseEntity.health += healPerSecond * Time.deltaTime;
         }
-        healParticle.transform.position = Vector3.LerpUnclamped(healParticle.transform.position, e.mob.orientation.position, 10 * Time.deltaTime);
-        healParticle.enableEmission = (e.currentIframe <= -timeAfterDamage) && e.baseEntity.health < e.baseEntity.maxHealth;
+        healParticle.transform.position = Vector3.LerpUnclamped(healParticle.transform.position, e.owner.entity.mob.orientation.position, 10 * Time.deltaTime);
+        healParticle.enableEmission = (e.owner.entity.currentIframe <= -timeAfterDamage) && e.owner.entity.baseEntity.health < e.owner.entity.baseEntity.maxHealth;
     }
 }

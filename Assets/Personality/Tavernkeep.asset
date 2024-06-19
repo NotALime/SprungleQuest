@@ -98,4 +98,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
   - {fileID: 11400000, guid: 35494eb3d032f434e939877721ad5ba0, type: 2}
   traitAmount: 3
+  trades:
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 25
+    amount: 2
+    output: {fileID: 2492034194245245472, guid: 73ea505f0d3b80548a829a1bf5af5536, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 50
+    amount: 2
+    output: {fileID: 9114004775840258816, guid: c7a9c2f5a474e854393bef5181340b4b, type: 3}
+  - recipe:
+    - item: {fileID: 1268126029276036679, guid: a6ef472da77d2a04e8b96dd91ddee00e, type: 3}
+      amount: 75
+    amount: 2
+    output: {fileID: 6776509231054241616, guid: 6a771b028564f9b46a68a2a67aa0d5b0, type: 3}
+  tradeAmount: 3
   job: 2

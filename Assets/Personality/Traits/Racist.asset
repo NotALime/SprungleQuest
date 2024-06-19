@@ -16,12 +16,9 @@ MonoBehaviour:
     dialogue:
     - Sometimes I think to myself, "man, magic is so cool". And then I remember what
       the mages did to us.
-    - All goblins are thieves, this is simply a fact.
     - I heard the village over the mountain got a wizard, living as if he was a regular
       dweller, terrible how far our society has fallen...
     - I hate wizards so much, it's not even funny.
-    - You know how all goblins are green? I heard it's because they eat the gold
-      that they steal from us... dyes their skin...
     - First your kid wants to go adventuring, then he finds some magic wand, then
       some hermit wizard offers him some peddler's pickles... Next thing you know,
       he's studying the arcane arts! It's a pipeline, I pipeline I tell you!
@@ -29,9 +26,12 @@ MonoBehaviour:
       inbred... I'd be magical too if my family tree was a circle...
   threatenReaction:
     dialogue:
-    - You are acting very goblin-like right now. That's not a good thing.
+    - You are acting very wizard-like right now. That's not a good thing.
     - Oh yeah? And I bet you're a wizard!
-    - We are the same species, what's with the aggression?!
   engageReaction:
     dialogue:
-    - I serve all non-magic and non-green individuals.
+    - I serve all non-magic individuals.
+  engageCompleteReaction:
+    dialogue: []
+  combatLines:
+    dialogue: []

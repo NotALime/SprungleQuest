@@ -42,7 +42,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  minScale: 1
+  minScale: 1.1
   maxScale: 1.3
   stats:
     minHealth: 1.1
@@ -107,4 +107,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
   - {fileID: 11400000, guid: 35494eb3d032f434e939877721ad5ba0, type: 2}
   traitAmount: 3
-  job: 3
+  fixedTraits:
+  - {fileID: 11400000, guid: f6f0dcd4a5331d545899ed7c3ba6a485, type: 2}
+  - {fileID: 11400000, guid: f1f3a79bde93f7f43bc06e9c1f38fefc, type: 2}
+  trades: []
+  tradeAmount: 5
+  job: 4

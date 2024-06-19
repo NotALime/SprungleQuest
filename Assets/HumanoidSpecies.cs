@@ -23,6 +23,12 @@ public class HumanoidSpecies : Species
     public EmotionTrait[] traits;
     public int traitAmount = 3;
 
+    public EmotionTrait[] fixedTraits;
+
+    [Header("Trading")]
+    public Recipe[] trades;
+    public int tradeAmount = 5;
+
     public NPCEmotion.Job job;
 
     public override void ApplyOverride(Entity mob)
@@ -100,6 +106,24 @@ public class HumanoidSpecies : Species
             for (int i = 0; i < traitAmount; i++)
             {
                 d.traits.Add(traits[Random.Range(0, traits.Length)]);
+            }
+            d.UpdatePersonality();
+
+            d.job = job;
+        }
+
+        if (fixedTraits.Length > 0)
+        {
+            NPCEmotion d = mob.GetComponent<NPCEmotion>();
+            d.traits.AddRange(fixedTraits);
+        }
+
+        if (trades.Length > 0)
+        {
+            NPCEmotion d = mob.GetComponent<NPCEmotion>();
+            for (int i = 0; i < tradeAmount; i++)
+            {
+                d.purchases.Add(trades[Random.Range(0, trades.Length)]);
             }
             d.UpdatePersonality();
 

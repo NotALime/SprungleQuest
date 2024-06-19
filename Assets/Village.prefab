@@ -337,6 +337,10 @@ MonoBehaviour:
     price: 5
     population: 1
     perVillage: 0
+  - building: {fileID: 2374111623151023880, guid: ed7e59875a81aa846abd2c8bbecf24db, type: 3}
+    price: 1
+    population: 1
+    perVillage: 0
   problems:
   - problem: {fileID: 5804528505593533343}
     thingToDestroy: {fileID: 1957695239223037803}

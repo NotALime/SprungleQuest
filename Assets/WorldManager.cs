@@ -54,6 +54,8 @@ public class WorldManager : MonoBehaviour
 
     [HideInInspector]
     public static WorldManager instance;
+    public Item currency;
+    public static Item money;
 
     public float startTime = 6;
     private void Start()
@@ -64,6 +66,8 @@ public class WorldManager : MonoBehaviour
         initialMoonIntensity = moonLight.intensity;
         initialSunIntensity = sunLight.intensity;
         wetKey = Shader.globalKeywords[0];
+
+        money = currency;
 
         SetWeather(defaultWeather);
 

@@ -12,11 +12,13 @@ public class NPCEmotion : MonoBehaviour
     public Entity ai;
     public List<EmotionTrait> traits;
 
-    public Recipe[] purchases;
+    public List<Recipe> purchases;
 
     public List<string> talkDialogue;
     public List<string> threatDialogue;
     public List<string> engageDialogue;
+    public List<string> engageCompleteDialogue;
+    public List<string> combatLines;
 
     public Job job;
 
@@ -33,6 +35,21 @@ public class NPCEmotion : MonoBehaviour
         UpdatePersonality();
     }
 
+    private void FixedUpdate()
+    {
+        if (EvoUtils.PercentChance(0.05f, true) && ai.mob.target != null)
+        {
+             if (ai.mob.target != null)
+             {
+                 ai.StartCoroutine(Entity.TalkCycle(ai, combatLines[Random.Range(0, combatLines.Count)]));
+             }
+             else
+             {
+                 ai.StartCoroutine(Entity.TalkCycle(ai, combatLines[Random.Range(0, combatLines.Count)]));
+             }
+        }
+    }
+
     public void UpdatePersonality()
     {
         foreach (EmotionTrait t in traits)
@@ -40,6 +57,7 @@ public class NPCEmotion : MonoBehaviour
             talkDialogue.AddRange(t.talkReaction.dialogue);
             threatDialogue.AddRange(t.threatenReaction.dialogue);
             engageDialogue.AddRange(t.engageReaction.dialogue);
+            combatLines.AddRange(t.combatLines.dialogue);
             ai.baseEntity.idleDialogue = talkDialogue.ToArray();
         }
     }
@@ -48,7 +66,7 @@ public class NPCEmotion : MonoBehaviour
         talkDialogue.AddRange(trait.talkReaction.dialogue);
         threatDialogue.AddRange(trait.threatenReaction.dialogue);
         engageDialogue.AddRange(trait.engageReaction.dialogue);
-        ai.baseEntity.idleDialogue = talkDialogue.ToArray();
+        combatLines.AddRange(trait.combatLines.dialogue);
         UpdatePersonality();
     }
 }

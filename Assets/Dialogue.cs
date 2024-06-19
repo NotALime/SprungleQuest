@@ -26,8 +26,8 @@ public class Dialogue : MonoBehaviour
     {
         if (currentNPC != null)
         {
-            currentNPC.ai.mob.aiEnabled = false;
             currentNPC.ai.mob.orientation.LookAt(GameSettings.player.mob.orientation);
+            GameSettings.player.mob.orientation.LookAt(currentNPC.ai.mob.orientation);
             engageText.text = currentNPC.job.ToString();
         }
     }
@@ -60,7 +60,7 @@ public class Dialogue : MonoBehaviour
         if (currentNPC.job == NPCEmotion.Job.Trade)
         {
             invPlayer.OpenInventory();
-            invPlayer.GenerateCraftingLayout(currentNPC.purchases);
+            invPlayer.GenerateCraftingLayout(currentNPC.purchases.ToArray());
         }
 
         dialogue.text = "";
@@ -73,20 +73,20 @@ public class Dialogue : MonoBehaviour
         {
             currentNPC.hireFunction.Invoke(GameSettings.player);
         }
-        else if (currentNPC.job == NPCEmotion.Job.Quest)
-        {
-            Quest q = Quest.AddQuest(currentNPC.quest);
-            q.source = currentNPC;
-        }
         else if (currentNPC.job == NPCEmotion.Job.Battle)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             GameSettings.LockMouse();
             currentNPC.ai.mob.aiEnabled = true;
             invPlayer.dialogue.gameObject.SetActive(false);
             currentNPC.ai.practiceDeath = true;
             currentNPC.ai.mob.target = GameSettings.player;
             currentNPC = null;
+            yield return new WaitUntil(() => currentNPC.ai.practiceDeath = false);
+            Entity.TalkCycle(currentNPC.ai, currentNPC.engageCompleteDialogue[Random.Range(0, currentNPC.engageCompleteDialogue.Count)]);
+
+            for(int i = 0; i < Random.Range(10, 25); i++)
+            invPlayer.inv.AddItem(WorldManager.money);
         }
     }
 }

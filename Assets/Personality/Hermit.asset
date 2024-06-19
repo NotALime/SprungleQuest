@@ -104,4 +104,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 397c4fb20e986254eb292524851adcf1, type: 2}
   - {fileID: 11400000, guid: 3d544f62b18048f41b2d34d3f302c843, type: 2}
   traitAmount: 3
-  job: 0
+  trades: []
+  tradeAmount: 5
+  job: 2
