@@ -5550,6 +5550,7 @@ MonoBehaviour:
     maxAmount: 8
   renderer:
   - {fileID: 972856485757573868}
+  significance: 0
   iframe: 0.2
   currentIframe: 0
   mob:
@@ -5557,7 +5558,7 @@ MonoBehaviour:
       health: 1
       moveSpeed: 1
       damage: 1
-      attackSpeed: 0.6
+      attackSpeed: 0.5
       level: 1
       defense: 0
       luck: 1
@@ -5781,6 +5782,8 @@ MonoBehaviour:
   talkDialogue: []
   threatDialogue: []
   engageDialogue: []
+  engageCompleteDialogue: []
+  combatLines: []
   job: 1
 --- !u!1001 &8741555454442725234
 PrefabInstance:

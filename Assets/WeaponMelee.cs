@@ -277,16 +277,15 @@ public class WeaponMelee : MonoBehaviour
         if (ai.owner.entity.mob.input.z > 0)
         {
             ai.owner.entity.mob.primaryInput = true;
-
-            if (EvoUtils.PercentChance(0.2f * ai.owner.entity.mob.stats.level, true))
-            {
-                ai.HoldItem(ai.items[Random.Range(0, ai.items.Length)]);
-            }
         }
 
         if (EvoUtils.PercentChance(0.5f, true))
         {
             ai.owner.entity.mob.input.z = -1;
+        }
+        if (EvoUtils.PercentChance(0.1f * ai.owner.entity.mob.stats.level, true))
+        {
+            ai.HoldItem(ai.items[Random.Range(0, ai.items.Length)]);
         }
     }
 

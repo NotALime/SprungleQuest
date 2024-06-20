@@ -106,6 +106,52 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
   - {fileID: 11400000, guid: 35494eb3d032f434e939877721ad5ba0, type: 2}
   traitAmount: 3
-  trades: []
-  tradeAmount: 5
-  job: 0
+  fixedTraits: []
+  trades:
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 30
+    amount: 2
+    output: {fileID: 3524408554177930782, guid: e507f2f42957d774e8fde59369eddc15, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 50
+    amount: 2
+    output: {fileID: 7820941649135222980, guid: b5f619c753a9ae94593d762359d356e1, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 40
+    amount: 2
+    output: {fileID: 9064721976604691909, guid: a0a7880c655790149a8fc9d3ab26a777, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 3
+    amount: 50
+    output: {fileID: 8778192876610775251, guid: 2ba6738f0b04a6948bc3712e3e568936, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 8
+    amount: 50
+    output: {fileID: 1268126029276036679, guid: a6ef472da77d2a04e8b96dd91ddee00e, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 2
+    amount: 100
+    output: {fileID: 5457939238999830764, guid: 3fa805a7eaabfab47ba8b8474eb51b55, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 1
+    amount: 100
+    output: {fileID: 8278502562782976443, guid: fd15aa3ee3ceb664bae53bd04847f5d1, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 3
+    amount: 100
+    output: {fileID: 5898725226033687589, guid: df49cd6ded5a88244ae4536460675270, type: 3}
+  - recipe:
+    - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+      amount: 20
+    amount: 5
+    output: {fileID: 2596498270038355374, guid: 083629afcc054e748bd8d18d06c3207c, type: 3}
+  tradeAmount: 3
+  job: 2
