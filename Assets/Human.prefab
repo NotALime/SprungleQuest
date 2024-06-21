@@ -429,7 +429,7 @@ MonoBehaviour:
       damage: 1
       attackSpeed: 1
       level: 1
-      defense: 50
+      defense: 150
       luck: 1
       visionRange: 30
       effects:
@@ -632,12 +632,7 @@ MonoBehaviour:
       m_Calls: []
   ai: {fileID: 3847118176123637949}
   traits: []
-  purchases:
-  - recipe:
-    - item: {fileID: 0}
-      amount: 1
-    amount: -1
-    output: {fileID: 6381770318502692581, guid: eb120a76ec198d94293b2fb70f53da70, type: 3}
+  purchases: []
   talkDialogue: []
   threatDialogue: []
   engageDialogue: []

@@ -53,14 +53,24 @@ MonoBehaviour:
     maxSpeed: 1.2
     minAttackSpeed: 0.9
     maxAttackSpeed: 1.1
-  generatesName: 0
+  generatesName: 1
   nameStructure:
-    nameStructure:
-    - '[first]-[last]'
-    - '[first]-the-[type]'
-    pieces:
-    - toReplace: '[first]'
-      pieces: []
+  - pieces:
+    - Aaron
+    - Baldbert
+    - Baldemar
+    - Cornelius
+    - Driwethen
+    - Ermenhar
+    - Florence
+    - Helmbert
+    - Cletus
+  - pieces:
+    - The Guard
+    - The Slayer
+    - The Guardian
+    - The Warrior
+    - The Defender
   chanceToMount: 0.1
   possibleMounts:
   - {fileID: 8465281397949382414, guid: 4df3cbd3e73af784f9f01ebedd3ccff6, type: 3}
@@ -103,9 +113,9 @@ MonoBehaviour:
     armMin: 1
     armMax: 1.3
   traits:
-  - {fileID: 11400000, guid: d5cc18c6116cccf4d86e5cf607f14ac0, type: 2}
   - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
   - {fileID: 11400000, guid: 35494eb3d032f434e939877721ad5ba0, type: 2}
+  - {fileID: 11400000, guid: 732558d30f4f1e1409ea306041fff257, type: 2}
   traitAmount: 3
   fixedTraits:
   - {fileID: 11400000, guid: f6f0dcd4a5331d545899ed7c3ba6a485, type: 2}

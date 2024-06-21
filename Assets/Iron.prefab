@@ -127,7 +127,7 @@ MonoBehaviour:
   onIdle:
     m_PersistentCalls:
       m_Calls: []
-  rb: {fileID: 0}
+  rb: {fileID: 4288845870461796256}
   itemTag: 
 --- !u!54 &4288845870461796256
 Rigidbody:

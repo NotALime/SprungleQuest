@@ -868,9 +868,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 1, y: 2}
   rotationOffset: {x: -90, y: 0, z: 0}
-  itemName: Trainer's Blade
+  itemName: Wooden Blade
   namePure: 
-  itemDescription: 
+  itemDescription: Barely even a sword, but it's better than nothing.
   maxStack: 1
   stack: 1
   cooldown: 0.5

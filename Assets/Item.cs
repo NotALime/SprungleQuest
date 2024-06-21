@@ -24,7 +24,6 @@ public class Item : MonoBehaviour
     public UnityEvent<Inventory> onUseSecondary;
     public UnityEvent<Inventory> onIdle;
 
-    [HideInInspector]
     public Rigidbody rb;
 
     public string itemTag;
@@ -32,7 +31,6 @@ public class Item : MonoBehaviour
     private void Start()
     {
         namePure = itemName;
-        TryGetComponent<Rigidbody>(out rb);
     }
 
     private void FixedUpdate()

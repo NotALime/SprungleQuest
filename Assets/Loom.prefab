@@ -84,11 +84,25 @@ MonoBehaviour:
     output: {fileID: 3524408554177930782, guid: 9421cd999db55184aaf506f6956c1c64, type: 3}
   - recipe:
     - item: {fileID: 8278502562782976443, guid: fd15aa3ee3ceb664bae53bd04847f5d1, type: 3}
+      amount: 10
+    - item: {fileID: 6729606837374220820, guid: f45fcf664e9580a4aa44761dbc113d26, type: 3}
+      amount: 5
+    amount: -1
+    output: {fileID: 6328768034301071456, guid: 6a6f22331de683846b5ce36ffdfc4176, type: 3}
+  - recipe:
+    - item: {fileID: 8278502562782976443, guid: fd15aa3ee3ceb664bae53bd04847f5d1, type: 3}
+      amount: 10
+    - item: {fileID: 6729606837374220820, guid: f45fcf664e9580a4aa44761dbc113d26, type: 3}
+      amount: 5
+    amount: -1
+    output: {fileID: 3022343165797147111, guid: 06b45ced32699584590f92e091619aae, type: 3}
+  - recipe:
+    - item: {fileID: 8278502562782976443, guid: fd15aa3ee3ceb664bae53bd04847f5d1, type: 3}
       amount: 5
     - item: {fileID: 6729606837374220820, guid: f45fcf664e9580a4aa44761dbc113d26, type: 3}
       amount: 5
     amount: -1
-    output: {fileID: 3524408554177930782, guid: 9421cd999db55184aaf506f6956c1c64, type: 3}
+    output: {fileID: 8314647592419010750, guid: fd57eab4cb1517d47ad4641edb0f6964, type: 3}
 --- !u!136 &2992936440856347880
 CapsuleCollider:
   m_ObjectHideFlags: 0

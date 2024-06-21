@@ -38,9 +38,19 @@ public class VillageGenerator : MonoBehaviour
 
     public NPCEmotion villagerPrefab;
     public HumanoidSpecies[] villagerTypes;
+
+    public VillageGenerator finalVillage;
+
+    public static int villageIndex;
     
     private void Start()
     {
+        villageIndex++;
+     //   if (villageIndex >= problems.Length)
+     //   {
+     //       Instantiate(finalVillage, transform.position, Quaternion.identity);
+     //       Destroy(this.gameObject);
+     //   }
         Vector3 origin = transform.position;
         PlaceBuilding(townHalls[Random.Range(0, townHalls.Length)], origin);
 
@@ -101,6 +111,7 @@ public class VillageGenerator : MonoBehaviour
     {
         chosenProblem = problems[Random.Range(0, problems.Length)];
 
+        chosenProblem.generated = true;
         chosenProblem.problem.transform.position = Random.insideUnitSphere.normalized * problemRange + Vector3.up * 1000;
 
         foreach (VillageProblem p in problems)
@@ -131,7 +142,7 @@ public class VillageGenerator : MonoBehaviour
         if (budget > 0)
         {
             GameObject built = Instantiate(b.building, pos + Vector3.up * 10, Quaternion.identity);
-            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere.normalized * 10 + Vector3.up * 1000, Quaternion.identity);
+            NPCEmotion npc = Instantiate(villagerPrefab, pos + Random.insideUnitSphere.normalized * 10 + Vector3.up * 100, Quaternion.identity);
             DistanceEnabler.NewDistanceEnabler(npc.transform);
             population.Add(npc);
             npc.transform.parent = transform;
@@ -160,6 +171,7 @@ public class Building
 [System.Serializable]
 public class VillageProblem
 {
+    public bool generated = false;
     public GameObject problem;
     public GameObject thingToDestroy;
     public EmotionTrait before;

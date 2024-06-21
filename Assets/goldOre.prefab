@@ -124,6 +124,7 @@ MonoBehaviour:
     gameName: Gold Ore
     pureName: 
     health: 500
+    effects: []
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
@@ -135,9 +136,10 @@ MonoBehaviour:
   drops:
   - item: {fileID: 1268126029276036679, guid: a6ef472da77d2a04e8b96dd91ddee00e, type: 3}
     dropChance: 100
-    minAmount: 1
-    maxAmount: 3
+    minAmount: 2
+    maxAmount: 10
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -148,6 +150,7 @@ MonoBehaviour:
       attackSpeed: 1
       level: 0
       defense: 0
+      luck: 1
       visionRange: 1
       effects:
         onHit: []
@@ -170,6 +173,7 @@ MonoBehaviour:
     flees: 0
     fleeing: 0
     mountable: 0
+    mounted: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
@@ -180,6 +184,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &1535488839014603792

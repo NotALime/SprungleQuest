@@ -25,6 +25,11 @@ public class DistanceEnabler : MonoBehaviour
         follow.gameObject.SetActive(false);
     }
 
+    private void Start()
+    {
+        Deactivate();
+    }
+
     public static DistanceEnabler NewDistanceEnabler(Transform follow)
     {
         GameObject obj = new GameObject();

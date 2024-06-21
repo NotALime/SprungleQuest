@@ -36,7 +36,7 @@ public class MapObject : MonoBehaviour
             if (grounds)
             {
                 transform.position = hit.point + offset;
-                transform.parent = hit.transform;
+                transform.SetParent(hit.transform, true);
                 Debug.Log("Grounded " + name);
             }
 

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6, y: 0, z: -1}
-  m_LocalScale: {x: 10, y: 10, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,8 +55,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.005
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.07
+  m_Center: {x: 0, y: -0.02, z: 0}
 --- !u!114 &5898725226033687589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   onIdle:
     m_PersistentCalls:
       m_Calls: []
-  rb: {fileID: 0}
+  rb: {fileID: 4695925373723987910}
   itemTag: 
 --- !u!54 &4695925373723987910
 Rigidbody:
@@ -99,8 +99,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3753341946659170325}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 1
+  m_Mass: 0.1
+  m_Drag: 4
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

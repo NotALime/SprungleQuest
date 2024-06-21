@@ -124,6 +124,7 @@ MonoBehaviour:
     gameName: Iron Ore
     pureName: 
     health: 200
+    effects: []
     maxHealth: 0
     tookDamage: 0
     healthbar: {fileID: 0}
@@ -135,9 +136,10 @@ MonoBehaviour:
   drops:
   - item: {fileID: 8778192876610775251, guid: 2ba6738f0b04a6948bc3712e3e568936, type: 3}
     dropChance: 100
-    minAmount: 2
-    maxAmount: 5
+    minAmount: 5
+    maxAmount: 20
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -148,6 +150,7 @@ MonoBehaviour:
       attackSpeed: 1
       level: 0
       defense: 0
+      luck: 1
       visionRange: 1
       effects:
         onHit: []
@@ -170,6 +173,7 @@ MonoBehaviour:
     flees: 0
     fleeing: 0
     mountable: 0
+    mounted: 0
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
@@ -180,6 +184,7 @@ MonoBehaviour:
     interactInput: 0
     specialInput: 0
   interior: 0
+  activeEffects: []
   player: 0
   practiceDeath: 0
 --- !u!114 &2128852497378483206

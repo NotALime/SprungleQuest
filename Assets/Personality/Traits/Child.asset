@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: Child
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - I like to play and draw.
+    - Dad says it's dangerous out there, but it can't be THAT bad...
+    - Mom said I gotta be home by sundown.
+    - I wish I could go adventuring with someone...
+    - Wow! Your weapon looks so cool!
+  threatenReaction:
+    dialogue: []
+  engageReaction:
+    dialogue:
+    - I can go on an adventure..? With you..? Finally! You think I should tell my
+      mom before we leave?
+    - I am a small child and literally just met you, but you seem chill, let's go
+      adventuring!
+    - Oh... I don't know... my dad might get mad if I run off... whatever, they don't
+      understand us adventurers!
+    - An adventure of my own??? Sounds cool!
+    - Unsupervised by my parents? With a stranger homeless adult? I'm in!
+  engageCompleteReaction:
+    dialogue: []
+  combatLines:
+    dialogue: []

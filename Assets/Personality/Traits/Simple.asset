@@ -27,8 +27,8 @@ MonoBehaviour:
     - I make, you buy, got it? Do not bother me with your petty insults.
     - Typical adventurer... no manners... savage and barbaric...
   engageReaction:
-    dialogue:
-    - I make, you buy, got it?
-    - I make it all fresh.
-    - Admire some of this proper, hard work, unlike you... freeloading treasure-trading
-      deliquent...
+    dialogue: []
+  engageCompleteReaction:
+    dialogue: []
+  combatLines:
+    dialogue: []

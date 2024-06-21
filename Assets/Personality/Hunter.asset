@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addcf38eead911043a9ec1003bdfaae7, type: 3}
+  m_Name: Hunter
+  m_EditorClassIdentifier: 
+  tint:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.9196285, b: 0.7877358, a: 1}
+    key1: {r: 0.9764706, g: 0.8156863, b: 0.69803923, a: 1}
+    key2: {r: 0.9215687, g: 0.70980394, b: 0.5686275, a: 0}
+    key3: {r: 0.69803923, g: 0.44593573, b: 0.33333334, a: 0}
+    key4: {r: 0.23529413, g: 0.121568635, b: 0.10588236, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 6361
+    ctime2: 35852
+    ctime3: 50115
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  minScale: 1.1
+  maxScale: 1.3
+  stats:
+    minHealth: 1.1
+    maxHealth: 1.5
+    minDamage: 1
+    maxDamage: 1.2
+    minSpeed: 0.8
+    maxSpeed: 1.2
+    minAttackSpeed: 0.9
+    maxAttackSpeed: 1.1
+  generatesName: 1
+  nameStructure:
+  - pieces:
+    - Aaron
+    - Baldbert
+    - Baldemar
+    - Cornelius
+    - Driwethen
+    - Ermenhar
+    - Florence
+    - Helmbert
+    - Cletus
+  - pieces:
+    - The Slayer
+    - The Warrior
+    - The Mageslayer
+    - The Witchhunter
+    - The Wicked
+    - The Cruel
+    - The Zealot
+  chanceToMount: 0
+  possibleMounts: []
+  minIdleAdd: -0.3
+  maxIdleAdd: 0
+  weaponPool:
+  - {fileID: 8419985488389613606, guid: 446e13943cbd9c2428a6c625dab07f0f, type: 3}
+  - {fileID: 7176128160258495561, guid: e611cfa9007e4534eba5885aa7bfd340, type: 3}
+  - {fileID: 6592131370702825242, guid: 0f70efd3fd1f3664c8fa3cb7b32b3a18, type: 3}
+  loadoutSize: 1
+  predefinedAccessories:
+  - {fileID: 7820941649135222980, guid: 132e1f756e87af74a840d3ca0dec9d63, type: 3}
+  - {fileID: 9064721976604691909, guid: a0a7880c655790149a8fc9d3ab26a777, type: 3}
+  - {fileID: 3524408554177930782, guid: e507f2f42957d774e8fde59369eddc15, type: 3}
+  accessoryPool:
+  - {fileID: 8736764485308168249, guid: 07f93f10f41363a4eab5bacec4a10767, type: 3}
+  - {fileID: 600621710184068597, guid: d1a2e888f0ff9fa46877acbbc0016ffc, type: 3}
+  - {fileID: 6681590203537739555, guid: 16146def85140404a8bd762c36754fd0, type: 3}
+  - {fileID: 4375848825490122596, guid: e7a5903e77b904644a9705bca0c9a489, type: 3}
+  - {fileID: 323252533774018661, guid: 841fde9f18043de4bb72309da928686b, type: 3}
+  - {fileID: 7087732451230298392, guid: 6ad5b643c46d7ea4e84aa8345058c4db, type: 3}
+  - {fileID: 2963063923627930831, guid: bcff07223e52a794aadf0383b9c77846, type: 3}
+  - {fileID: 4085984975385106174, guid: 953b75474413214469c2fe33a9133a02, type: 3}
+  wardrobeSize: 1
+  hairPool: []
+  facePool:
+  - {fileID: -349596632, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 1219370889, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 476048454, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 1554851340, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  rigScale:
+    spineLowerMin: 1
+    spineLowerMax: 1.3
+    neckMin: 0.8
+    neckMax: 1
+    uniformShoulders: 1
+    shoulderMin: 1.4
+    shoulderMax: 1.7
+    uniformArms: 1
+    armMin: 1
+    armMax: 1.2
+  traits:
+  - {fileID: 11400000, guid: a51d1b5dea95e9e4b93386394b619e1a, type: 2}
+  - {fileID: 11400000, guid: 732558d30f4f1e1409ea306041fff257, type: 2}
+  - {fileID: 11400000, guid: 3d544f62b18048f41b2d34d3f302c843, type: 2}
+  traitAmount: 3
+  fixedTraits:
+  - {fileID: 11400000, guid: f6f0dcd4a5331d545899ed7c3ba6a485, type: 2}
+  - {fileID: 11400000, guid: a71b52244bc5c7f40aca55330b77b5c4, type: 2}
+  trades: []
+  tradeAmount: 0
+  job: 1

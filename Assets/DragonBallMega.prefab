@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2150251699204060078}
   - component: {fileID: 4229047808789981777}
   - component: {fileID: 8733922746667863421}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 8865612339015494815}
   - component: {fileID: 8733976178328146381}
   - component: {fileID: 9049607289632641179}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DragonBallMega
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ MonoBehaviour:
   keepsOriginSpeed: 0
   destroyEffect: {fileID: 2214858581731827638, guid: fe35d33dcb5c42d4db4b8010724e5334, type: 3}
   noclip: 0
-  piercing: 1
+  piercing: 0
   persistant: 0
   origin: {fileID: 0}
   level:

@@ -17,7 +17,7 @@ public class Species : ScriptableObject
 
     [Header("Naming")]
     public bool generatesName;
-    public NameStructure nameStructure;
+    public NamePiece[] nameStructure;
 
     [Header("Mounting")]
     public float chanceToMount;
@@ -49,7 +49,11 @@ public class Species : ScriptableObject
 
         if (generatesName)
         {
-            mob.baseEntity.gameName = nameStructure.GenerateName();
+            mob.baseEntity.gameName = "";
+            foreach (NamePiece piece in nameStructure)
+            {
+                mob.baseEntity.gameName += piece.pieces[Random.Range(0, piece.pieces.Length)] + " ";
+            }
         }
 
         if (possibleMounts.Length > 0 && EvoUtils.PercentChance(chanceToMount))
@@ -92,29 +96,8 @@ public class StatRange
     public float maxAttackSpeed = 1.1f;
 }
 [System.Serializable]
-public class NameStructure
-{
-    public string[] nameStructure;
-    public NamePiece[] pieces;
-
-    public string GenerateName()
-    {
- //     string chosenName = nameStructure[Random.Range(0, nameStructure.Length)];
- //
- //     foreach(NamePiece p in pieces)
- //     {
- //         Debug.Log("Generating name...");
- //         chosenName.Replace(p.toReplace, p.pieces[Random.Range(0, p.pieces.Length)]);
- //     }
- //     Debug.Log("Generated name " + chosenName);
-      return "Gluh";
-    }
-}
-[System.Serializable]
 public class NamePiece
 {
-    public string toReplace;
-    [Header("Possible Name Pieces")]
     public string[] pieces;
 }
 

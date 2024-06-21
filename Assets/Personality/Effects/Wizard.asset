@@ -18,8 +18,7 @@ MonoBehaviour:
     - Another dweller... are you sure you want to do this, child?
     - You've come for me, haven't you?
   threatenReaction:
-    dialogue:
-    - Just kill me already.
+    dialogue: []
   engageReaction:
     dialogue:
     - Prepare to meet your doom, dweller.
@@ -27,3 +26,9 @@ MonoBehaviour:
     - You brought this upon yourself, dweller.
   engageCompleteReaction:
     dialogue: []
+  combatLines:
+    dialogue:
+    - Watch my magic! Huzzah!
+    - Abracadabra!
+    - Wizards rule!
+    - Stand down!

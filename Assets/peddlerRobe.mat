@@ -62,7 +62,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Clip: 0
-    - _Contrast: 1
+    - _Contrast: 7
     - _Cull: 0
     - _DstBlend: 0
     - _GlowHighlight: -0.98
@@ -82,8 +82,8 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
-    - _glowStrength: 2.07
+    - _glowStrength: 1
     m_Colors:
     - _GlowColor: {r: 1, g: 0, b: 0.79022217, a: 1}
-    - _Tint: {r: 1, g: 1, b: 1, a: 0}
+    - _Tint: {r: 0.495283, g: 1, b: 0.52958024, a: 1}
   m_BuildTextureStacks: []

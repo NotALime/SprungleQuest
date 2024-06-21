@@ -5144,7 +5144,7 @@ MonoBehaviour:
   item: {fileID: 2492034194245245472}
   effects:
   - {fileID: 11400000, guid: 9b59819ff9190744cac93748603f112c, type: 2}
-  consumeTime: 5
+  consumeTime: 3
   particle: {fileID: 7875413894847888634}
   drinkSound: {fileID: 8804651395552522572}
 --- !u!1001 &4944600463380044040

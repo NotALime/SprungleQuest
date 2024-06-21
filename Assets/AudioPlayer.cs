@@ -12,7 +12,7 @@ public class AudioPlayer : MonoBehaviour
     public AudioSource audio;
 
     public List<AudioClip> clipVarients;
-    public void PlaySound(float pitchMultiplier = 1)
+    public void PlaySound(float pitchMultiplier = 1, float startTime = 0)
     {
         AudioClip clipToPlay = null;
         audio.pitch = Random.Range(minPitch * pitchMultiplier, maxPitch * pitchMultiplier);
@@ -26,6 +26,7 @@ public class AudioPlayer : MonoBehaviour
         }
 
         audio.clip = clipToPlay;
+        audio.time = startTime * audio.clip.length;
         audio.Play();
     }
 

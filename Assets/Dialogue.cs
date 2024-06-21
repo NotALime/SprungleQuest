@@ -12,11 +12,15 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI engageText;
 
     public InventoryUI invPlayer;
-    public IEnumerator ReadString(string text, float delay)
+    public IEnumerator ReadString(string text, float delay, Entity e)
     {
         dialogue.text = "";
         for (int i = 0; i < text.Length; i++)
         {
+            if (char.IsWhiteSpace(text[i]))
+            {
+                currentNPC.ai.baseEntity.idleSound.PlaySound(1, Random.Range(0f, 0.5f));
+            }
             dialogue.text += text[i];
             yield return new WaitForSeconds(delay);
         }
@@ -34,9 +38,9 @@ public class Dialogue : MonoBehaviour
 
     public void OnTalk()
     {
-       currentNPC.ai.baseEntity.idleSound.PlaySound();
+        currentNPC.ai.baseEntity.idleSound.PlaySound();
         StopAllCoroutines();
-        StartCoroutine(ReadString(currentNPC.talkDialogue[Random.Range(0, currentNPC.talkDialogue.Count)], 0.01f));
+        StartCoroutine(ReadString(currentNPC.talkDialogue[Random.Range(0, currentNPC.talkDialogue.Count)], 0.01f, currentNPC.ai));
     }
   
     public void OnThreaten()
@@ -44,7 +48,7 @@ public class Dialogue : MonoBehaviour
         currentNPC.ai.baseEntity.hurtSound.PlaySound();
         currentNPC.ai.baseEntity.idleSound.PlaySound();
         StopAllCoroutines();
-        StartCoroutine(ReadString(currentNPC.threatDialogue[Random.Range(0, currentNPC.threatDialogue.Count)], 0.01f));
+        StartCoroutine(ReadString(currentNPC.threatDialogue[Random.Range(0, currentNPC.threatDialogue.Count)], 0.01f, currentNPC.ai));
     }
     public void OnEngage()
     {
@@ -66,12 +70,17 @@ public class Dialogue : MonoBehaviour
         dialogue.text = "";
         for (int i = 0; i < text.Length; i++)
         {
+            if (char.IsUpper(text[i]))
+            {
+                currentNPC.ai.baseEntity.idleSound.PlaySound(1, Random.Range(0f, 0.5f));
+            }
             dialogue.text += text[i];
             yield return new WaitForSeconds(0.01f);
         }
         if (currentNPC.job == NPCEmotion.Job.Hire)
-        {
+        {            
             currentNPC.hireFunction.Invoke(GameSettings.player);
+            currentNPC.ai.mob.aiEnabled = true;
         }
         else if (currentNPC.job == NPCEmotion.Job.Battle)
         {
@@ -79,14 +88,28 @@ public class Dialogue : MonoBehaviour
             GameSettings.LockMouse();
             currentNPC.ai.mob.aiEnabled = true;
             invPlayer.dialogue.gameObject.SetActive(false);
-            currentNPC.ai.practiceDeath = true;
             currentNPC.ai.mob.target = GameSettings.player;
             currentNPC = null;
-            yield return new WaitUntil(() => currentNPC.ai.practiceDeath = false);
-            Entity.TalkCycle(currentNPC.ai, currentNPC.engageCompleteDialogue[Random.Range(0, currentNPC.engageCompleteDialogue.Count)]);
+            if (!currentNPC.deathOnBattle)
+            {
+                currentNPC.ai.practiceDeath = true;
 
-            for(int i = 0; i < Random.Range(10, 25); i++)
-            invPlayer.inv.AddItem(WorldManager.money);
+                yield return new WaitUntil(() => currentNPC.ai.practiceDeath == false || GameSettings.player.baseEntity.health <= 0);
+
+                if (currentNPC.ai.practiceDeath == false)
+                {
+                    Entity.TalkCycle(currentNPC.ai, currentNPC.engageCompleteDialogue[Random.Range(0, currentNPC.engageCompleteDialogue.Count)]);
+                    for (int i = 0; i < Random.Range(10, 25); i++)
+                        invPlayer.inv.AddItem(WorldManager.money);
+                    currentNPC.job = NPCEmotion.Job.None;
+                }
+                else
+                {
+                    Entity.TalkCycle(currentNPC.ai, "You failed... foolish... foolish indeed...");
+                    currentNPC.ai.mob.target = null;
+                    currentNPC.ai.practiceDeath = false;
+                }
+            }
         }
     }
 }

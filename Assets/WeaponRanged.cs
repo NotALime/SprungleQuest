@@ -42,27 +42,17 @@ public class WeaponRanged : MonoBehaviour
         if (projectile != null)
         {
             Projectile proj = null;
-            if (rotatedToAttack)
+            for (int i = 0; i < projectilesPerShot; i++)
             {
-                for (int i = 0; i < projectilesPerShot; i++)
+                proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
+                proj.ApplyLevel(proj.level.level);
+                if (shotsFired == shotsToBig)
                 {
-                    proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
-                    proj.ApplyLevel(proj.level.level);
-                    if (shotsFired == shotsToBig)
-                    {
-                        proj.ApplyLevel(overHeatLevel);
-                        shotsFired = 0;
-                    }
+                    proj.ApplyLevel(overHeatLevel);
+                    shotsFired = 0;
                 }
-             //   if (shotsToBig > 0)
-             //   {
-             //       castSound.PlaySound(1 + (shotsFired / Mathf.Clamp(shotsToBig, 1, Mathf.Infinity)));
-             //   }
-             //   else
-             //   {
-             //       castSound.PlaySound();
-             //   }
             }
+
             inv.owner.entity.mob.primaryInput = automatic;
             item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
         }
@@ -84,9 +74,7 @@ public class WeaponRanged : MonoBehaviour
                 item.cooldown = cooldown / inv.owner.entity.mob.stats.attackSpeed;
             }
         }
-    }
-
-
+}
 
     [Header("Player Specific")]
     public float aimFOV;
@@ -99,8 +87,6 @@ public class WeaponRanged : MonoBehaviour
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, aimFOV, 10 * Time.deltaTime);
         }
     }
-
-    bool rotatedToAttack;
     public void ArmAnim(Inventory inv)
     {
         inv.handAnimator.SetBool("Active", true);

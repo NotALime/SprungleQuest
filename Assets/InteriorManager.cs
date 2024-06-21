@@ -40,6 +40,7 @@ public class InteriorManager : MonoBehaviour
         if (entity.player)
         {
             RenderSettings.ambientLight = Color.black;
+            WorldManager.instance.celestialRot.gameObject.SetActive(false);
             interior.SetActive(true);
             playerOccupied = true;
         }
@@ -54,7 +55,7 @@ public class InteriorManager : MonoBehaviour
         {
             playerOccupied = false;
             Invoke("InteriorDisableDelay", 20);
-
+            WorldManager.instance.celestialRot.gameObject.SetActive(true);
             if (eventOnExit != null)
             {
                 eventOnExit.Invoke();

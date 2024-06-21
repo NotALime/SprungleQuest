@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f22b2a16f694c83939f30b0fd3fd, type: 3}
+  m_Name: HunterEmotion
+  m_EditorClassIdentifier: 
+  talkReaction:
+    dialogue:
+    - We're out hunting witches, warlocks, and wizards... you can join... but you
+      better not be one of them yourself...
+    - Wizard says "what"!... you passed the test...
+    - We're out on a witch hunt, wanna help us kill some wizards?
+    - They often ask me, "why do you hate wizards so much?" well it's simple. They
+      ain't like us, and I don't like that.
+  threatenReaction:
+    dialogue: []
+  engageReaction:
+    dialogue:
+    - Welcome to the party, now let's go kill some wizards.
+    - I trust you. Don't make me regret that.
+    - Let's go, we have some wizards to kill.
+    - Welcome to the hunt, adventurer.
+  engageCompleteReaction:
+    dialogue: []
+  combatLines:
+    dialogue: []

@@ -363,10 +363,11 @@ MonoBehaviour:
   originBranchAmount: 4
   villagerPrefab: {fileID: 280400077848441736, guid: 7b9048d0e66ef8e409f83e5580e54076, type: 3}
   villagerTypes:
-  - {fileID: 11400000, guid: 7d45c34e34b209a47a6adaad86a0f285, type: 2}
   - {fileID: 11400000, guid: ea789fefa0d2bb842aa0df6c17857c9f, type: 2}
+  - {fileID: 11400000, guid: 942594d3fa61c3b489109245059e9853, type: 2}
   - {fileID: 11400000, guid: 2005888af993dcd47b9eb12a7bf6900b, type: 2}
   - {fileID: 11400000, guid: 2005888af993dcd47b9eb12a7bf6900b, type: 2}
+  - {fileID: 11400000, guid: 30133647ff689844a9be176bf1258dac, type: 2}
   - {fileID: 11400000, guid: 2005888af993dcd47b9eb12a7bf6900b, type: 2}
 --- !u!1001 &118757107853231803
 PrefabInstance:

@@ -120,7 +120,7 @@ public class InventoryUI : MonoBehaviour
                     {
                         dialogue.currentNPC = inv.owner.entity.GetObjectLookedAt().GetComponent<NPCEmotion>();
                         dialogue.OnTalk();
-                        dialogue.currentNPC.ai.mob.aiEnabled = false;
+                     //   dialogue.currentNPC.ai.mob.aiEnabled = false;
                         GameSettings.UnlockMouse();
                     }
                     else
@@ -133,7 +133,6 @@ public class InventoryUI : MonoBehaviour
                 else if (inv.owner.entity.GetObjectLookedAt().GetComponent<CraftingStation>())
                 {
                     OpenInventory();
-                    GameSettings.UnlockMouse();
                     GenerateCraftingLayout(inv.owner.entity.GetObjectLookedAt().GetComponent<CraftingStation>().recipes);
                 }
             }

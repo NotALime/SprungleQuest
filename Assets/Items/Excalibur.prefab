@@ -847,31 +847,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.33824873
+      value: -111.33442
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1992.2631
+      value: -22.970406
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.521378
+      value: -44.698364
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9914449
+      value: 0.5191006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.78588325
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.3344083
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13052616
+      value: -0.03306296
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d048b8dad30f846bc774fe09c56a8b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -976,7 +976,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5305699007381201196}
         m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: MeleeAI
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1006,7 +1006,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5305699007381201196}
         m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Block
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1021,7 +1021,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5305699007381201196}
         m_TargetAssemblyTypeName: WeaponMelee, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Idle
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

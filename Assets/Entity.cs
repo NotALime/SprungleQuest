@@ -1,14 +1,8 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using Terra.CoherentNoise.Generation.Voronoi;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 public class Entity : MonoBehaviour
 {
@@ -54,6 +48,11 @@ public class Entity : MonoBehaviour
         if (mob.species != null)
         {
             mob.species.ApplySpecies(this);
+        }
+
+        if (player)
+        {
+            GameSettings.respawnPoint = transform.position;
         }
 
         baseEntity.maxHealth = baseEntity.health;
@@ -239,7 +238,10 @@ public class Entity : MonoBehaviour
             for (int i = 0; i < dialogue.Length; i++)
             {
                 text.text += dialogue[i];
-                entity.baseEntity.idleSound.PlaySound();
+                if (char.IsUpper(dialogue[i]))
+                {
+                    entity.baseEntity.idleSound.PlaySound(1, Random.Range(0f, 0.5f));
+                }
                 yield return new WaitForSeconds(0.02f);
             }
             yield return new WaitForSeconds(2);
@@ -414,7 +416,7 @@ public class Entity : MonoBehaviour
                     if (damager != null && !player)
                     {
                         Healthbar bar = Instantiate(GameSettings.hitBar, transform.position + Vector3.up * 1.5f, transform.rotation);
-                        bar.transform.parent = transform;
+                        bar.transform.SetParent(transform, true);
                         baseEntity.healthbar = bar;
                         StartCoroutine(EvoUtils.DestroyObject(bar.gameObject, 10));
                         bar.entity = this;
@@ -468,7 +470,7 @@ public class Entity : MonoBehaviour
                 }
                 else if (!player)
                 {
-                    if (mostSignificantEntity == null || mostSignificantEntity.significance <= significance)
+                    if ((mostSignificantEntity == null || mostSignificantEntity.significance <= significance) && significance > 0)
                     {
                         Destroy(mostSignificantEntity.gameObject);
                         mostSignificantEntity = this;
@@ -482,7 +484,7 @@ public class Entity : MonoBehaviour
                 else
                 {
                     RagdollCamera();
-                    GameSettings.player.gameObject.SetActive(false);
+                    StartCoroutine(GameSettings.Respawn());
                 }
             }
 
@@ -502,13 +504,27 @@ public class Entity : MonoBehaviour
     }
 
     public static void RagdollCamera()
-    { 
+    {
         Camera cam = Camera.main;
         cam.transform.parent = null;
         cam.gameObject.AddComponent<BoxCollider>();
         Rigidbody rb = cam.gameObject.AddComponent<Rigidbody>();
         rb.AddForce((Vector3.up + Random.insideUnitSphere.normalized) * 500);
         rb.AddTorque(Random.insideUnitSphere.normalized * 100);
+        GameSettings.player.mob.aiEnabled = false;
+    }
+    public static void ResetCamera()
+    {
+        Camera cam = Camera.main;
+
+        Destroy(cam.gameObject.GetComponent<BoxCollider>());
+        Destroy(cam.gameObject.GetComponent<Rigidbody>());
+        cam.transform.parent = GameSettings.player.GetComponent<Humanoid>().rig.spine.neck.transform;
+        cam.transform.position = GameSettings.player.GetComponent<Humanoid>().rig.spine.neck.transform.position;
+        cam.transform.localPosition = new Vector3(0, 0.00600000005f, 0.0019999037f);
+        cam.transform.rotation = GameSettings.player.GetComponent<Humanoid>().rig.spine.neck.transform.rotation;
+
+        GameSettings.player.mob.aiEnabled = true;
     }
 
     public static void ApplyStats(Entity entity, MobStats mod)

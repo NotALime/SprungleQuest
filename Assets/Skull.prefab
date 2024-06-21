@@ -4863,6 +4863,7 @@ MonoBehaviour:
   attackSound: {fileID: 5187938413963601646}
   attackRange: 1
   cooldown: 1.5
+  warnParticle: {fileID: 0}
   attackPoint: {fileID: 6470026663785974111}
 --- !u!114 &6976546866271678712
 MonoBehaviour:
@@ -4879,9 +4880,9 @@ MonoBehaviour:
   baseEntity:
     gameName: Wisp
     pureName: Wisp
-    health: 50
+    health: 20
     effects: []
-    maxHealth: 50
+    maxHealth: 20
     tookDamage: 0
     healthbar: {fileID: 0}
     dialogue: {fileID: 0}
@@ -4895,7 +4896,8 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 3
   renderer:
-  - {fileID: 0}
+  - {fileID: 7445322715132543142}
+  significance: 0
   iframe: 0.2
   currentIframe: -178.06122
   mob:
@@ -4945,7 +4947,7 @@ MonoBehaviour:
     passenger: {fileID: 0}
     mountSeat: {fileID: 0}
     scale: 1
-    species: {fileID: 11400000, guid: 5a58672b7e2f7b04f82d11b89d2d1406, type: 2}
+    species: {fileID: 0}
     input: {x: 0, y: 0, z: 0}
     primaryInput: 0
     secondaryInput: 0

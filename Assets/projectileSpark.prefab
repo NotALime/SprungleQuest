@@ -5012,10 +5012,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   lifetime: 0.5
   destroysOnImpact: 0
-  keepsOriginSpeed: 1
+  keepsOriginSpeed: 0
   destroyEffect: {fileID: 0}
   noclip: 0
-  piercing: 0
+  piercing: 1
   persistant: 0
   origin: {fileID: 0}
   level:

@@ -4884,7 +4884,7 @@ MonoBehaviour:
   cooldown: 1
   rb: {fileID: 0}
   lifetime: 5
-  destroysOnImpact: 0
+  destroysOnImpact: 1
   keepsOriginSpeed: 1
   destroyEffect: {fileID: 0}
   noclip: 0

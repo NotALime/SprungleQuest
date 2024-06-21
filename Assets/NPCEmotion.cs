@@ -12,6 +12,8 @@ public class NPCEmotion : MonoBehaviour
     public Entity ai;
     public List<EmotionTrait> traits;
 
+    public bool deathOnBattle = false;
+
     public List<Recipe> purchases;
 
     public List<string> talkDialogue;

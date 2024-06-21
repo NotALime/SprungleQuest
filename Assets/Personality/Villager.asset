@@ -53,14 +53,36 @@ MonoBehaviour:
     maxSpeed: 1.2
     minAttackSpeed: 0.9
     maxAttackSpeed: 1.1
-  generatesName: 0
+  generatesName: 1
   nameStructure:
-    nameStructure:
-    - '[first]-[last]'
-    - '[first]-the-[type]'
-    pieces:
-    - toReplace: '[first]'
-      pieces: []
+  - pieces:
+    - Whimsical
+    - Simple
+    - Basic
+    - Outlandish
+    - Foolish
+    - Silly
+    - Calm
+    - Thankful
+    - Witty
+    - Sad
+    - Happy
+    - Angry
+  - pieces:
+    - Harold
+    - Harger
+    - Gaubert
+    - Faber
+    - Dagbert
+    - Bonafilius
+    - 'Hieronymus '
+    - Fred
+    - John
+    - Senthilde
+    - Siggo
+    - Wilk
+    - Wintbald
+    - Cletus
   chanceToMount: 0.1
   possibleMounts: []
   minIdleAdd: -0.3

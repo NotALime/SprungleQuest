@@ -38,6 +38,15 @@ public class GameSettings : MonoBehaviour
     public Transform thirdPersonCam;
 
     public static bool renderHead;
+
+    public GameObject respawnScreen;
+    public TextMeshProUGUI countdown;
+    public TextMeshProUGUI deathText;
+    public string[] deathMessages;
+    public static Vector3 respawnPoint;
+    public float respawnTime = 10;
+
+    public AudioPlayer dieSound;
     private void Start()
     {
         instance = this;
@@ -61,6 +70,21 @@ public class GameSettings : MonoBehaviour
     //    maxThirdPersonDistance = thirdPersonCam.transform.localPosition;
     }
 
+    public static IEnumerator Respawn()
+    {
+        UnlockMouse();
+        GameSettings.instance.deathText.text = GameSettings.instance.deathMessages[Random.Range(0, GameSettings.instance.deathMessages.Length)];
+        GameSettings.instance.dieSound.PlaySound();
+        GameSettings.instance.respawnScreen.SetActive(true);
+        GameSettings.instance.countdown.text = GameSettings.instance.respawnTime.ToString() + " SECONDS TILL RESPAWN";
+        yield return new WaitForSeconds(GameSettings.instance.respawnTime);
+
+        LockMouse();
+        GameSettings.player.baseEntity.health = GameSettings.player.baseEntity.maxHealth;
+        GameSettings.player.transform.position = GameSettings.respawnPoint;
+        GameSettings.instance.respawnScreen.SetActive(false);
+        Entity.ResetCamera();
+    }
 
     public static void LockMouse()
     {
