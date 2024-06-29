@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  damage: 10
+  damage: 20
   cooldown: 1
   rb: {fileID: 0}
   lifetime: 3
@@ -197,7 +197,7 @@ MonoBehaviour:
     cooldownPerLevel: 1.5
     lifeTimePerLevel: 1
     sizePerLevel: 1.5
-  effectInflict: {fileID: 11400000, guid: 2b9edadd8b27c7a409bcb5fca0c06084, type: 2}
+  effectInflict: {fileID: 0}
   behavior: 0
 --- !u!54 &916389964515045778
 Rigidbody:

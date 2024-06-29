@@ -45,7 +45,6 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         //   slotGrid = new ItemSlot[slotWidth, slotHeight];
         inv = GetComponent<Inventory>();
 
@@ -94,6 +93,11 @@ public class InventoryUI : MonoBehaviour
         {
             itemHeld.transform.position = Vector3.Lerp(itemHeld.transform.position, mouseObj.position, 50 * Time.deltaTime);
             itemHeld.transform.rotation = Quaternion.Slerp(itemHeld.transform.rotation, mouseObj.rotation * Quaternion.Euler(itemHeld.rotationOffset), 10 * Time.deltaTime);
+            if (Input.GetMouseButtonDown(1))
+            {
+                inv.DropItem(itemHeld);
+                itemHeld = null;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -146,7 +150,7 @@ public class InventoryUI : MonoBehaviour
                 tooltipTitle.text = item.itemName;
                 tooltipDescription.text = item.itemDescription;
             }
-            else if (GetRectUnderCursor().GetComponent<CraftingSlot>() && GetRectUnderCursor().GetComponent<CraftingSlot>().item != null)
+            if (GetRectUnderCursor().GetComponent<CraftingSlot>() && GetRectUnderCursor().GetComponent<CraftingSlot>().item != null)
             {
                 CraftingSlot slot = GetRectUnderCursor().GetComponent<CraftingSlot>();
                 tooltipTitle.text = slot.item.itemName;
@@ -320,7 +324,7 @@ public class InventoryUI : MonoBehaviour
         if (slot != null)
         {
             i.transform.position = slot.transform.position;
-            i.transform.parent = slot.transform;
+            i.transform.SetParent(slot.transform, true);
           //  inv.items[slot.slotIndex] = i;
             slot.item = i;           
             slot.holdingItem = true;

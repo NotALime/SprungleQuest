@@ -10575,7 +10575,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6491142038345948210}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 174a7e87bb6442d4f8e979208458cc15, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10679,7 +10679,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6668993150480108774}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 174a7e87bb6442d4f8e979208458cc15, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -11023,11 +11023,20 @@ MonoBehaviour:
     idleDialogue: []
   drops:
   - item: {fileID: 2596498270038355374, guid: 083629afcc054e748bd8d18d06c3207c, type: 3}
-    dropChance: 0.1
+    dropChance: 0.5
+    minAmount: 1
+    maxAmount: 1
+  - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+    dropChance: 1
+    minAmount: 3
+    maxAmount: 10
+  - item: {fileID: 2716120190227308712, guid: 313db5259f0b0024891d4a071148718f, type: 3}
+    dropChance: 0.05
     minAmount: 1
     maxAmount: 1
   renderer:
   - {fileID: 9172738080640936568}
+  significance: 0
   iframe: 0.2
   currentIframe: 0
   mob:
@@ -11196,7 +11205,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8635046683695173824}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 174a7e87bb6442d4f8e979208458cc15, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

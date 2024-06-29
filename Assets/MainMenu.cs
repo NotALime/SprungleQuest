@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public static void OpenLink(string url)
+    {
+        Application.OpenURL(url);
+    }
+
     public static void OpenMenu(GameObject menu)
     {
         menu.SetActive(!menu.activeInHierarchy);

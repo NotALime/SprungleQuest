@@ -1192,17 +1192,22 @@ MonoBehaviour:
     idleDialogue: []
   drops:
   - item: {fileID: 8637673701268767203, guid: 63dbf36613d3299409e18674dee6069e, type: 3}
-    dropChance: 0.01
+    dropChance: 0.05
     minAmount: 1
     maxAmount: 1
   - item: {fileID: 5457939238999830764, guid: 3fa805a7eaabfab47ba8b8474eb51b55, type: 3}
     dropChance: 1
     minAmount: 1
     maxAmount: 3
+  - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+    dropChance: 1
+    minAmount: 2
+    maxAmount: 5
   renderer:
   - {fileID: 4518383633555934093}
   - {fileID: 2005428040153362030}
   - {fileID: 3670109741208390941}
+  significance: 0
   iframe: 0.2
   currentIframe: 0
   mob:

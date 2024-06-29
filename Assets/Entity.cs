@@ -82,6 +82,13 @@ public class Entity : MonoBehaviour
     {
         if (mob.aiEnabled)
         {
+            if (mob.target != null)
+            {
+                if (mob.target.baseEntity.health <= 0)
+                {
+                    mob.target = null;
+                }
+            }
             if (mob.passenger == null)
             {
                 mob.behavior.ai.Invoke(this);
@@ -91,7 +98,7 @@ public class Entity : MonoBehaviour
                 mob.input.z = mob.passenger.mob.input.z;
                 mob.orientation.Rotate(0, mob.passenger.mob.input.x * 4, 0);
 
-                if (mob.passenger.mob.interactInput == true && mob.passenger.mob.input.y > 0)
+                if (mob.passenger.mob.input.y > 0)
                 {
                     Unmount();
                 }
@@ -361,6 +368,7 @@ public class Entity : MonoBehaviour
     public Projectile SpawnProjectile(Projectile p, Vector3 pos, Quaternion rot)
     {
         Projectile spawn = Instantiate(p, pos, rot);
+        spawn.transform.position = pos;
         spawn.origin = this;
 
         return spawn;
@@ -397,6 +405,7 @@ public class Entity : MonoBehaviour
 
             if (damager != null)
             {
+                damager.mob.target = this;
                 if (damager.mob.stats.effects.onHit != null)
                 {
                     foreach (UnityEvent<Entity> e in mob.stats.effects.onHit)
@@ -443,6 +452,7 @@ public class Entity : MonoBehaviour
                         for (int i = 0; i < Random.Range(drop.minAmount, drop.maxAmount); i++)
                         {
                             Item item = Instantiate(drop.item, transform.position, Quaternion.Euler(Random.insideUnitSphere));
+                            EvoUtils.DestroyObject(item.gameObject, 120);
                             if (item.rb != null)
                             {
                                 item.rb.AddForce(Random.insideUnitSphere * 500);

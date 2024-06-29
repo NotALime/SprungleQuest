@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
 	// Use this for initialization
 	public void Start()
 	{
-        ApplyLevel(level.level);
+      //  ApplyLevel(level.level);
 
         rb = GetComponent<Rigidbody>();
 
@@ -104,16 +104,19 @@ public class Projectile : MonoBehaviour
 		{
 			child.enableEmission = false;
 			child.transform.parent = null;
+			EvoUtils.DestroyObject(child.gameObject);
 		}
 		foreach (AudioSource child in GetComponentsInChildren<AudioSource>())
 		{
 			child.transform.parent = null;
-		}
+            EvoUtils.DestroyObject(child.gameObject);
+        }
 		foreach (TrailRenderer child in GetComponentsInChildren<TrailRenderer>())
 		{
 			child.emitting = false;
 			child.transform.parent = null;
-		}
+            EvoUtils.DestroyObject(child.gameObject);
+        }
 		Destroy(gameObject);
 	}
 	private void OnTriggerEnter(Collider collision)

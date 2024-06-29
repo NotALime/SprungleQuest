@@ -413,17 +413,17 @@ public class ObjectPlacementType {
 		}
 	}
 
-	/// <summary>
-	/// Transforms the passed gameobject according to the 
-	/// passed Vector3 position and the (optional) random 
-	/// transformations specified in this placement type.
-	/// This does not set the parent for this gameobject
-	/// </summary>
-	/// <param name="go">GameObject to transform</param>
-	/// <param name="position">Calculated position</param>
-	/// <param name="length">Length of the mesh</param>
-	/// <param name="tileOffset">Location where the TerrainTile starts</param>
-	public void TransformGameObject(GameObject go, Vector3 position, int length, Vector3 tileOffset) {
+    /// <summary>
+    /// Transforms the passed gameobject according to the 
+    /// passed Vector3 position and the (optional) random 
+    /// transformations specified in this placement type.
+    /// This does not set the parent for this gameobject
+    /// </summary>
+    /// <param name="go">GameObject to transform</param>
+    /// <param name="position">Calculated position</param>
+    /// <param name="length">Length of the mesh</param>
+    /// <param name="tileOffset">Location where the TerrainTile starts</param>
+    public void TransformGameObject(GameObject go, Vector3 position, int length, Vector3 tileOffset) {
 		float xPos = ((position.x * length) - length / 2) + tileOffset.x;
 		float yPos = position.y;
 		float zPos = ((position.z * length) - length / 2) + tileOffset.z;

@@ -44,13 +44,14 @@ public class WeaponRanged : MonoBehaviour
             Projectile proj = null;
             for (int i = 0; i < projectilesPerShot; i++)
             {
-                proj = inv.owner.entity.SpawnProjectile(projectile, shootPoint.position, shootPoint.rotation * Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread))));
-                proj.ApplyLevel(proj.level.level);
-                if (shotsFired == shotsToBig)
-                {
-                    proj.ApplyLevel(overHeatLevel);
-                    shotsFired = 0;
-                }
+                //Quaternion.Euler(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread),Random.Range(-spread, spread)))
+                proj = inv.owner.entity.SpawnProjectile(projectile, inv.owner.entity.mob.orientation.position, inv.owner.entity.mob.orientation.rotation);
+              // proj.ApplyLevel(proj.level.level);
+              // if (shotsFired == shotsToBig)
+              // {
+              //     proj.ApplyLevel(overHeatLevel);
+              //     shotsFired = 0;
+              // }
             }
 
             inv.owner.entity.mob.primaryInput = automatic;
@@ -127,11 +128,15 @@ public class WeaponRanged : MonoBehaviour
                 e.owner.entity.mob.primaryInput = true;
             }
 
-            if (EvoUtils.PercentChance(0.1f * e.owner.entity.mob.stats.level, true))
+            if (EvoUtils.PercentChance(0.1f, true))
             {
                 e.owner.entity.mob.primaryInput = false;
                 e.HoldItem(e.items[Random.Range(0, e.items.Length)]);
             }
+        }
+        else
+        {
+            e.owner.entity.mob.primaryInput = false;
         }
     }
 

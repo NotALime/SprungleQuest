@@ -960,9 +960,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 1, y: 2}
   rotationOffset: {x: -90, y: 0, z: 0}
-  itemName: Blade
+  itemName: Enchanted Blade
   namePure: 
-  itemDescription: For slicing...
+  itemDescription: Fires magical blade projectiles.
   maxStack: 1
   stack: 1
   cooldown: 0

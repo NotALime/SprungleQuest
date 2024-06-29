@@ -23,8 +23,8 @@ public class CraftingSlot : ItemSlot
             {
                 Debug.Log("Crafted " + item);
                 Item givenItem = Instantiate(item);
-                inv.itemHeld = givenItem;
-                inv.SetItemToInventory(givenItem);
+                givenItem.stack = 1;
+                inv.inv.AddItem(givenItem);
 
                 if (recipe.amount != -1)
                 {

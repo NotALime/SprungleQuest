@@ -253,10 +253,10 @@ MonoBehaviour:
       - m_Target: {fileID: 7024390364698335246}
         m_TargetAssemblyTypeName: ItemHeal, Assembly-CSharp
         m_MethodName: Heal
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Entity, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

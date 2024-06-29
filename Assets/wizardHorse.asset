@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addcf38eead911043a9ec1003bdfaae7, type: 3}
+  m_Name: wizardHorse
+  m_EditorClassIdentifier: 
+  tint:
+    serializedVersion: 2
+    key0: {r: 0.3726415, g: 0.7895474, b: 1, a: 1}
+    key1: {r: 0.74695605, g: 1, b: 0.5896226, a: 1}
+    key2: {r: 1, g: 0.9103928, b: 0.5330188, a: 0}
+    key3: {r: 1, g: 0.79339623, b: 0.6556604, a: 0}
+    key4: {r: 1, g: 0.67843837, b: 0.3820755, a: 0}
+    key5: {r: 0.3490566, g: 0.07409222, b: 0.17040223, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 6361
+    ctime2: 23323
+    ctime3: 42405
+    ctime4: 54163
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  minScale: 0.7
+  maxScale: 1.5
+  stats:
+    minHealth: 1
+    maxHealth: 1
+    minDamage: 1
+    maxDamage: 1.2
+    minSpeed: 1
+    maxSpeed: 2
+    minAttackSpeed: 1
+    maxAttackSpeed: 2
+  generatesName: 1
+  nameStructure:
+  - pieces:
+    - Ezmore
+    - Gandalf
+    - Merlin
+    - Sauron
+    - Saruman
+    - Lazarus
+    - Flamel
+    - Zosimos
+    - Magnus
+    - Hermes
+    - Trismegistus
+    - Martinius
+  - pieces:
+    - The Wise
+    - The Wrathful
+    - The Magical
+    - The Mystical
+    - The Arcane
+    - The Fool
+    - The Ponderer
+    - The Alchemist
+    - The Dark
+    - The Light
+    - The Strange
+    - The Enchanted
+    - The Senile
+    - The Geriatric
+    - The Wizard
+    - The Mage
+    - The Theurgist
+    - The Magician
+  chanceToMount: 0
+  possibleMounts: []
+  minIdleAdd: -0.5
+  maxIdleAdd: 0.5
+  weaponPool:
+  - {fileID: 6381770318502692581, guid: eb120a76ec198d94293b2fb70f53da70, type: 3}
+  loadoutSize: 1
+  predefinedAccessories:
+  - {fileID: 3022343165797147111, guid: 2bbae7e61bed57e43b4d5d8f22062c28, type: 3}
+  - {fileID: 7911734160781995457, guid: d389b652ed1cd3849b3ba739633c0347, type: 3}
+  accessoryPool:
+  - {fileID: 7087732451230298392, guid: 6ad5b643c46d7ea4e84aa8345058c4db, type: 3}
+  - {fileID: 2095364291904359482, guid: 9bf417bd6cbe2ff4d9b7ae06905664f2, type: 3}
+  wardrobeSize: 1
+  hairPool:
+  - {fileID: 5714044653548115539, guid: adc94a9940a51364f8cafb664b4d4c28, type: 3}
+  - {fileID: 1169222015110249202, guid: 85330ad56db41584da02d9d6b27f6e17, type: 3}
+  facePool:
+  - {fileID: -349596632, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: -228328156, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  - {fileID: 1554851340, guid: c50c224c10b46054486afa535385c1e5, type: 3}
+  rigScale:
+    spineLowerMin: 0.8
+    spineLowerMax: 1
+    neckMin: 1
+    neckMax: 1
+    uniformShoulders: 1
+    shoulderMin: 0.8
+    shoulderMax: 1.5
+    uniformArms: 1
+    armMin: 0.8
+    armMax: 1.4
+  traits:
+  - {fileID: 11400000, guid: 397c4fb20e986254eb292524851adcf1, type: 2}
+  - {fileID: 11400000, guid: 732558d30f4f1e1409ea306041fff257, type: 2}
+  - {fileID: 11400000, guid: 3d544f62b18048f41b2d34d3f302c843, type: 2}
+  traitAmount: 3
+  fixedTraits:
+  - {fileID: 11400000, guid: f6f0dcd4a5331d545899ed7c3ba6a485, type: 2}
+  trades: []
+  tradeAmount: 5
+  job: 1

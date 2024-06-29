@@ -9,6 +9,7 @@ public class NPCEmotion : MonoBehaviour
     public UnityEvent<Entity> tradeFunction;
     public Quest quest;
     public UnityEvent<Entity> questFunction;
+    public UnityEvent<Entity> battleFunction;
     public Entity ai;
     public List<EmotionTrait> traits;
 
@@ -49,7 +50,7 @@ public class NPCEmotion : MonoBehaviour
              {
                  ai.StartCoroutine(Entity.TalkCycle(ai, combatLines[Random.Range(0, combatLines.Count)]));
              }
-        }
+        } 
     }
 
     public void UpdatePersonality()

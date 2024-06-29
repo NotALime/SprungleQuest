@@ -4850,7 +4850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3555720651458027221}
   - component: {fileID: 3644226371750904261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: thrust
   m_TagString: Untagged
   m_Icon: {fileID: 0}

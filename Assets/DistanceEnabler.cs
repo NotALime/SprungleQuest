@@ -22,7 +22,8 @@ public class DistanceEnabler : MonoBehaviour
     }
     public void Deactivate()
     {
-        follow.gameObject.SetActive(false);
+            Destroy(gameObject);
+     //       follow.gameObject.SetActive(false);
     }
 
     private void Start()

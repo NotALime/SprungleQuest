@@ -5485,9 +5485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseEntity:
-    gameName: Demon
+    gameName: Cyclops
     pureName: 
-    health: 400
+    health: 200
     effects: []
     maxHealth: 0
     tookDamage: 0

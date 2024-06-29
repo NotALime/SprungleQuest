@@ -5538,8 +5538,12 @@ MonoBehaviour:
     maxAmount: 1
   - item: {fileID: 3936608540075821201, guid: 6cc7944ea7877f54da342ec18cfd54fa, type: 3}
     dropChance: 1
-    minAmount: 4
-    maxAmount: 8
+    minAmount: 5
+    maxAmount: 10
+  - item: {fileID: 6336739878035719994, guid: 240f97bf927ac1a48b157cc3e012a511, type: 3}
+    dropChance: 1
+    minAmount: 75
+    maxAmount: 100
   renderer:
   - {fileID: 972856485757573868}
   significance: 0
@@ -5749,8 +5753,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  battleFunction:
+    m_PersistentCalls:
+      m_Calls: []
   ai: {fileID: 3302983904679526036}
   traits: []
+  deathOnBattle: 0
   purchases: []
   talkDialogue: []
   threatDialogue: []

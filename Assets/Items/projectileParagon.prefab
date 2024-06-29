@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6399002053938813956}
   - component: {fileID: 4236474030416059587}
   - component: {fileID: 7311007631995551394}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: projectileParagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 3286914376988195465}
   - component: {fileID: 6073364765708204189}
   - component: {fileID: 5551753074551469083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

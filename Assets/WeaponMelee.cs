@@ -68,6 +68,7 @@ public class WeaponMelee : MonoBehaviour
     {
         inv.owner.entity.mob.primaryInput = false;
 
+        attack.sound.transform.position = inv.owner.entity.mob.orientation.transform.position;
         attack.sound.PlaySound();
         item.cooldown = attack.attackCooldown / inv.owner.entity.mob.stats.attackSpeed;
         attack.attack.Invoke(inv);
@@ -214,7 +215,7 @@ public class WeaponMelee : MonoBehaviour
     public void DamageCheck(Inventory inv)
     {
         float sizeMultiplier = 1 + System.Convert.ToInt16(inv.owner.entity.player);
-        Collider[] damageCheck = Physics.OverlapBox(damageCollider.transform.position, damageCollider.size * sizeMultiplier, damageCollider.transform.rotation);
+        Collider[] damageCheck = Physics.OverlapBox(inv.hand.transform.position, damageCollider.size * sizeMultiplier, damageCollider.transform.rotation);
         foreach (Collider col in damageCheck)
         {
             if (!attacking) break;

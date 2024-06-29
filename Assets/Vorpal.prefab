@@ -5179,7 +5179,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5938,7 +5938,7 @@ MonoBehaviour:
     attackCooldown: 0.2
     thrust: 50
     locks: 0
-    damage: 25
+    damage: 15
     knockback: 200
     stunTime: 0.3
     charge: 0
@@ -5952,7 +5952,7 @@ MonoBehaviour:
     attackCooldown: 0.2
     thrust: 50
     locks: 0
-    damage: 25
+    damage: 15
     knockback: 600
     stunTime: 0.3
     charge: 0

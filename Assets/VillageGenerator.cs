@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Splines;
+
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.UIElements;
@@ -42,6 +42,8 @@ public class VillageGenerator : MonoBehaviour
     public VillageGenerator finalVillage;
 
     public static int villageIndex;
+
+    public Entity horse;
     
     private void Start()
     {
@@ -87,7 +89,7 @@ public class VillageGenerator : MonoBehaviour
                 Building b = buildings[Random.Range(0, buildings.Length)];
                 Vector3 offset = Random.insideUnitSphere.normalized * 40;
                 GameObject placed = PlaceBuilding(b, placePos + offset);
-                placed.transform.parent = pathRender.transform;
+                placed.transform.parent = transform;
                 villagePath.Add(knot);
                 previousDir = placePos;
 
@@ -112,7 +114,7 @@ public class VillageGenerator : MonoBehaviour
         chosenProblem = problems[Random.Range(0, problems.Length)];
 
         chosenProblem.generated = true;
-        chosenProblem.problem.transform.position = Random.insideUnitSphere.normalized * problemRange + Vector3.up * 1000;
+        chosenProblem.problem.transform.position = Random.insideUnitSphere.normalized * problemRange + Vector3.up * 2000;
 
         foreach (VillageProblem p in problems)
         {

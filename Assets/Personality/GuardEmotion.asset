@@ -18,9 +18,9 @@ MonoBehaviour:
     dialogue: []
   engageReaction:
     dialogue:
-    - A dual? En garde!
-    - To the death.
-    - Battle? Sure, why not, day's been slow anyways.
+    - Accompany your quest? If it involves cleansing the world of evil, I'm in!
+    - Very well, guarding this little town is getting boring anyways...
+    - Let's go, we have some wizards to slay.
   engageCompleteReaction:
     dialogue:
     - Darn, you got me... here, take this reward, you deserve it.

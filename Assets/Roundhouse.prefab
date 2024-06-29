@@ -752,6 +752,42 @@ PrefabInstance:
       propertyPath: drops.Array.data[3].item
       value: 
       objectReference: {fileID: 2157744354133627976, guid: 0eaa7b2ba66a168449c8e6ae20f77a7b, type: 3}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].maxAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].minAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].maxAmount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].minAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].maxAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].dropChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[3].dropChance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5055866227169058373, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
       propertyPath: m_Name
       value: Village Chest (3)
@@ -1105,6 +1141,42 @@ PrefabInstance:
       propertyPath: drops.Array.data[3].item
       value: 
       objectReference: {fileID: 2157744354133627976, guid: 0eaa7b2ba66a168449c8e6ae20f77a7b, type: 3}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].maxAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].minAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].maxAmount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].minAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].maxAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].dropChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[3].dropChance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5055866227169058373, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
       propertyPath: m_Name
       value: Village Chest (1)
@@ -1184,6 +1256,42 @@ PrefabInstance:
       propertyPath: drops.Array.data[3].item
       value: 
       objectReference: {fileID: 2157744354133627976, guid: 0eaa7b2ba66a168449c8e6ae20f77a7b, type: 3}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].maxAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].minAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].maxAmount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].minAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].maxAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].dropChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[3].dropChance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5055866227169058373, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
       propertyPath: m_Name
       value: Village Chest (2)
@@ -1376,7 +1484,7 @@ MonoBehaviour:
   structurePieces:
   - structure:
     - {fileID: 1885074498264759117}
-    chanceToSpawn: 0.2
+    chanceToSpawn: 0.8
   structureMobs: []
   level: 1
   chanceToSpawnMob: 0.1
@@ -1534,6 +1642,42 @@ PrefabInstance:
       propertyPath: drops.Array.data[3].item
       value: 
       objectReference: {fileID: 2157744354133627976, guid: 0eaa7b2ba66a168449c8e6ae20f77a7b, type: 3}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].maxAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].minAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].maxAmount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].minAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].maxAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].dropChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[3].dropChance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5055866227169058373, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
       propertyPath: m_Name
       value: Village Chest
@@ -1905,7 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounds: 1
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0.5, z: 0}
   offsetRange: {x: 0, y: 0, z: 0}
   groundRotate: 0
   minScale: 1
@@ -1940,6 +2084,42 @@ PrefabInstance:
       propertyPath: drops.Array.data[3].item
       value: 
       objectReference: {fileID: 2157744354133627976, guid: 0eaa7b2ba66a168449c8e6ae20f77a7b, type: 3}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].maxAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].minAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].maxAmount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].minAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].maxAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[0].dropChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[1].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[2].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71926846689084439, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
+      propertyPath: drops.Array.data[3].dropChance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5055866227169058373, guid: 6a9cd391cf5a1c745ada205b1976d1b0, type: 3}
       propertyPath: m_Name
       value: Village Chest (4)

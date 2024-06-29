@@ -5154,7 +5154,7 @@ MonoBehaviour:
   hitscanFrames: 0
   projectilesPerShot: 3
   spread: 30
-  cooldown: 0.75
+  cooldown: 1
   shootPoint: {fileID: 1643155552528143312}
   recoil: 20
   castSound: {fileID: 7342361307775171018}

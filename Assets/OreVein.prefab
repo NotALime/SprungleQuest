@@ -207,7 +207,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -416,7 +417,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -432,6 +433,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -625,7 +627,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -641,6 +643,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -834,7 +837,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -850,6 +853,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -1043,7 +1047,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -1059,6 +1063,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -1252,7 +1257,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -1268,6 +1273,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -1461,7 +1467,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -1477,6 +1483,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -1670,7 +1677,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -1686,6 +1693,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -1879,7 +1887,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -1895,6 +1903,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -2088,7 +2097,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -2104,6 +2113,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -2297,7 +2307,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -2313,6 +2323,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -2506,7 +2517,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -2522,6 +2533,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -2715,7 +2727,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -2731,6 +2743,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -2924,7 +2937,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -2940,6 +2953,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -3133,7 +3147,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -3149,6 +3163,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -3342,7 +3357,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -3358,6 +3373,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -3551,7 +3567,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -3567,6 +3583,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -3760,7 +3777,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -3776,6 +3793,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -3969,7 +3987,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -3985,6 +4003,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -4178,7 +4197,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -4194,6 +4213,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -4387,7 +4407,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -4403,6 +4423,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -4596,7 +4617,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -4612,6 +4633,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -4805,7 +4827,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -4821,6 +4843,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -5014,7 +5037,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -5030,6 +5053,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -5223,7 +5247,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -5239,6 +5263,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -5432,7 +5457,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -5448,6 +5473,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -5778,7 +5804,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 2000
+    health: 300
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -5794,6 +5820,7 @@ MonoBehaviour:
     minAmount: 2
     maxAmount: 5
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -5987,7 +6014,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -6003,6 +6030,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -6196,7 +6224,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -6212,6 +6240,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -6405,7 +6434,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -6421,6 +6450,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:
@@ -6614,7 +6644,7 @@ MonoBehaviour:
   baseEntity:
     gameName: 
     pureName: 
-    health: 500
+    health: 100
     effects: []
     maxHealth: 0
     tookDamage: 0
@@ -6630,6 +6660,7 @@ MonoBehaviour:
     minAmount: 3
     maxAmount: 8
   renderer: []
+  significance: 0
   iframe: 0.5
   currentIframe: 0
   mob:

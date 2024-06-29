@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 28bf151273ffbfe44ae7d160332ea8c0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28bf151273ffbfe44ae7d160332ea8c0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28bf151273ffbfe44ae7d160332ea8c0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28bf151273ffbfe44ae7d160332ea8c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28bf151273ffbfe44ae7d160332ea8c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2004.77
+      value: 2007.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28bf151273ffbfe44ae7d160332ea8c0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -137,7 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounds: 1
-  offset: {x: 0, y: 6, z: 0}
+  offset: {x: 0, y: 8, z: 0}
+  offsetRange: {x: 0, y: 0, z: 0}
   groundRotate: 0
   minScale: 0.9
   maxScale: 1.1
@@ -191,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grounds: 0
   offset: {x: 0, y: 0, z: 0}
+  offsetRange: {x: 0, y: 0, z: 0}
   groundRotate: 0
   minScale: 1
   maxScale: 1.1
@@ -240,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grounds: 0
   offset: {x: 0, y: 0, z: 0}
+  offsetRange: {x: 0, y: 0, z: 0}
   groundRotate: 0
   minScale: 1
   maxScale: 1.1
@@ -289,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grounds: 0
   offset: {x: 0, y: 0, z: 0}
+  offsetRange: {x: 0, y: 0, z: 0}
   groundRotate: 0
   minScale: 1
   maxScale: 1.1
@@ -338,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grounds: 0
   offset: {x: 0, y: 0, z: 0}
+  offsetRange: {x: 0, y: 0, z: 0}
   groundRotate: 0
   minScale: 1
   maxScale: 1.1

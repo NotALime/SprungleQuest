@@ -4,10 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using static UnityEditor.Progress;
 using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Humanoid))]
@@ -219,12 +217,12 @@ public class Inventory : MonoBehaviour
         handAnimator.SetBool("Active", false);
 
         i.gameObject.SetActive(true);
+        i.transform.SetParent(hand.transform, true);
+        i.transform.position = hand.transform.position;
+        i.transform.rotation = hand.transform.rotation;
         if (i.rb != null)
         {
             i.rb.constraints = RigidbodyConstraints.FreezeAll;
-            i.transform.SetParent(hand.transform, true);
-            i.transform.position = hand.transform.position;
-            i.transform.rotation = hand.transform.rotation;
         }
             i.gameObject.layer = 6;
             foreach (Transform t in i.transform)

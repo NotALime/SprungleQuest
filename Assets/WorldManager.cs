@@ -42,6 +42,8 @@ public class WorldManager : MonoBehaviour
 
     public Volume flashbang;
 
+    public RandomEncounter[] encounters;
+
     public float sunset = 10;
     public float sunrise = 2;
 
@@ -115,8 +117,6 @@ public class WorldManager : MonoBehaviour
     }
     public void Spawning()
     {
-        if (!EntityEffect.peddling)
-        {
             foreach (MobSpawn spawn in spawns)
             {
                 if (time > spawn.conditions.minTime * 60 || time < spawn.conditions.maxTime * 60)
@@ -152,8 +152,7 @@ public class WorldManager : MonoBehaviour
                     }
                 }
             }
-        }
-        else
+        if(EntityEffect.peddling)
         {
             foreach (MobSpawn spawn in peddledSpawns)
             {
@@ -188,6 +187,20 @@ public class WorldManager : MonoBehaviour
                             }
                         }
                     }
+                }
+            }
+        }
+
+        foreach (RandomEncounter e in encounters)
+        {
+            if (e.repeats || e.happened == false)
+            {
+                if (EvoUtils.PercentChance(e.chance, true))
+                {
+                    Instantiate(e.encounter, GameSettings.player.transform.position + Random.insideUnitSphere.normalized * spawnRadius + Vector3.up * 100, Quaternion.identity);
+                    MusicManager.instance.StartSong(e.startSound);
+                    WorldManager.instance.SendTitleMessage(e.startText);
+                    e.happened = true;
                 }
             }
         }
@@ -292,6 +305,18 @@ public class MobSpawn
     public bool leader;
     public bool autoTarget;
     public float chanceToSpawn;
+
+    public MobSpawnConditions conditions;
+}
+[System.Serializable]
+public class RandomEncounter
+{
+    public GameObject encounter;
+    public float chance;
+    public bool repeats = true;
+    public bool happened;
+    public AudioClip startSound;
+    public string startText;
 
     public MobSpawnConditions conditions;
 }

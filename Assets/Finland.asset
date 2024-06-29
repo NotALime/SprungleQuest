@@ -15,5 +15,5 @@ MonoBehaviour:
   song: {fileID: 8300000, guid: 35cf84391dd3041419b07d585c6e3117, type: 3}
   combat: 0
   travel: 0
-  timeMin: 0
-  timeMax: 0
+  timeMin: 4
+  timeMax: 8

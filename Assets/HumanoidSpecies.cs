@@ -91,12 +91,14 @@ public class HumanoidSpecies : Species
             {
                 inv.accessories[i] = Instantiate(accessoryPool[Random.Range(0, accessoryPool.Length)]);
                 inv.EquipItem(inv.accessories[i]);
+                inv.accessories[i].gameObject.SetActive(false);
             }
 
             for (int i = 0; i < predefinedAccessories.Length; i++)
             {
                 inv.accessories[i + wardrobeSize] = Instantiate((predefinedAccessories[i]));
                 inv.EquipItem(inv.accessories[i + wardrobeSize]);
+                inv.accessories[i + wardrobeSize].gameObject.SetActive(false);
             }
         }
 

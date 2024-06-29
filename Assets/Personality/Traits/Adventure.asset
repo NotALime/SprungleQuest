@@ -17,7 +17,6 @@ MonoBehaviour:
     - Oh how I wish to see the world beyond this old village...
     - I yearn for the rolling hills... But mom said that only "fools and hooligans"
       choose to pursue a life of adventure... She doesn't get it.
-    - Found this [item] in some old castle, pretty neat
     - You're an adventurer?? A real adventurer???? Oh please take me with you, pleeeeaaasssseeee...
   threatenReaction:
     dialogue:
@@ -30,3 +29,7 @@ MonoBehaviour:
     dialogue:
     - Yes? A quest perhaps?
     - Seriously? I can go on an adventure with you????
+  engageCompleteReaction:
+    dialogue: []
+  combatLines:
+    dialogue: []

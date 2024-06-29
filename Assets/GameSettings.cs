@@ -9,7 +9,7 @@ public class GameSettings : MonoBehaviour
 {
     public static float mouseSensitivity = 150;
 
-    public static float gameFOV = 100;
+    public float gameFOV = 100;
 
     public static AudioPlayer hitSound;
     public AudioPlayer hit;
@@ -81,7 +81,7 @@ public class GameSettings : MonoBehaviour
 
         LockMouse();
         GameSettings.player.baseEntity.health = GameSettings.player.baseEntity.maxHealth;
-        GameSettings.player.transform.position = GameSettings.respawnPoint;
+      //  GameSettings.player.transform.position = GameSettings.respawnPoint;
         GameSettings.instance.respawnScreen.SetActive(false);
         Entity.ResetCamera();
     }
@@ -178,7 +178,12 @@ public class GameSettings : MonoBehaviour
     public static void ShowTitle(string text, AudioSource sound = null)
     {
         title.text = text;
-        titleAnim.SetTrigger("Play");
         titleSound.PlaySound();
+        instance.Invoke("RemoveTitle", 10);
+    }
+
+    public void RemoveTitle()
+    {
+        title.text = "";
     }
 }

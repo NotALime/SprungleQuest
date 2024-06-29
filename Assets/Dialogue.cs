@@ -84,6 +84,7 @@ public class Dialogue : MonoBehaviour
         }
         else if (currentNPC.job == NPCEmotion.Job.Battle)
         {
+            currentNPC.battleFunction.Invoke(GameSettings.player);
             yield return new WaitForSeconds(0.5f);
             GameSettings.LockMouse();
             currentNPC.ai.mob.aiEnabled = true;

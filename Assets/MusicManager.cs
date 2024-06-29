@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.XR;
+
 using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
@@ -45,11 +45,8 @@ public class MusicManager : MonoBehaviour
 
     public void StartSong(AudioClip music)
     {
-        if (!musicPlayer.isPlaying)
-        {
             musicPlayer.clip = music;
             musicPlayer.Play();
-        }
     }
     public void EndSong()
     {

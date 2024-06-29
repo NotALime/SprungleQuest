@@ -16,7 +16,6 @@ MonoBehaviour:
     dialogue:
     - Want my autograph?
     - You know what... It's nice to be not recognized by someone for once!
-    - The one, the only, the majestical [name].
     - I'm actually quite famous, I'm surprised you haven't heard of me.
     - You wish you were me.
   threatenReaction:
