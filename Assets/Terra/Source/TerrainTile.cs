@@ -177,7 +177,7 @@ namespace Terra.Terrain {
 
 			MeshRenderer mr = GetComponent<MeshRenderer>();
 			mr.renderingLayerMask += 2;
-			mr.sharedMaterial = Settings.CustomMaterial;
+			mr.sharedMaterial = WorldGen.instance.baseMaterial;
 			TerraEvent.TriggerOnCustomMaterialDidApply(gameObject);
 		}
 
@@ -224,7 +224,10 @@ namespace Terra.Terrain {
 			float spread = 1f / (settings.Spread * settings.MeshResolution);
 
 			Vector3[] vertices = new Vector3[res * res];
-			for (int z = 0; z < res; z++) {
+
+            int vertexIndex = 0;
+            Vector2[] uvs = new Vector2[vertices.Length];
+            for (int z = 0; z < res; z++) {
 				float zPos = ((float)z / (res - 1) - .5f) * len;
 
 				for (int x = 0; x < res; x++) {
@@ -233,15 +236,23 @@ namespace Terra.Terrain {
 						((position.y * len) + zPos) * spread, 0f) * settings.Amplitude;
 
 					vertices[x + z * res] = new Vector3(xPos, yPos, zPos);
-				}
-			}
 
-			Vector2[] uvs = new Vector2[vertices.Length];
-			for (int v = 0; v < res; v++) {
-				for (int u = 0; u < res; u++) {
-					uvs[u + v * res] = new Vector2((float)u / (res - 1), (float)v / (res - 1));
-				}
-			}
+                    Biome b = WorldGen.instance.GetBiome(new Vector2(xPos, zPos), gen);
+
+                    // Add UVs for the tile
+                    int textureIndex = b.index; // Example logic for assigning textures
+                    uvs[vertexIndex + 0] = WorldGen.instance.uvAtlas[textureIndex * 4];
+                    uvs[vertexIndex + 1] = WorldGen.instance.uvAtlas[textureIndex * 4 + 1];
+                    uvs[vertexIndex + 2] = WorldGen.instance.uvAtlas[textureIndex * 4 + 2];
+                    uvs[vertexIndex + 3] = WorldGen.instance.uvAtlas[textureIndex * 4 + 3];
+                }
+			} 
+			 
+		//	for (int v = 0; v < res; v++) {
+		//		for (int u = 0; u < res; u++) {
+		//			uvs[u + v * res] = new Vector2((float)u / (res - 1), (float)v / (res - 1));
+		//		}
+		//	}
 
 			int nbFaces = (res - 1) * (res - 1);
 			int[] triangles = new int[nbFaces * 6];
@@ -284,7 +295,7 @@ namespace Terra.Terrain {
 
 			Terrain.vertices = data.vertices;
 			Terrain.triangles = data.triangles;
-			Terrain.uv = data.uvs;
+			//Terrain.uv = data.uvs;
 			Terrain.normals = data.normals;
 		}
 

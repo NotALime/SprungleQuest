@@ -33,6 +33,8 @@ public class Entity : MonoBehaviour
     public bool player;
 
     public bool practiceDeath;
+
+    public bool canReturn;
     private void Awake()
     {
         baseEntity.pureName = baseEntity.gameName;
@@ -480,16 +482,14 @@ public class Entity : MonoBehaviour
                 }
                 else if (!player)
                 {
-                    if ((mostSignificantEntity == null || mostSignificantEntity.significance <= significance) && significance > 0)
+                    if (canReturn == true)
                     {
-                        Destroy(mostSignificantEntity.gameObject);
-                        mostSignificantEntity = this;
-                        gameObject.SetActive(false);
+                        if (EvoUtils.PercentChance(0.05f))
+                        {
+                            gameObject.SetActive(false);
+                        }
                     }
-                    else
-                    {
                         Destroy(this.gameObject);
-                    }
                 }
                 else
                 {

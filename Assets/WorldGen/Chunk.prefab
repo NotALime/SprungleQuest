@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5917888084113530790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3503364525505632142}
+  - component: {fileID: 4287378107544804554}
+  - component: {fileID: 2213565086258185801}
+  m_Layer: 3
+  m_Name: Chunk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3503364525505632142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917888084113530790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4287378107544804554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917888084113530790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db58f671666fd142a89aad34a4733e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridWidth: 10
+  gridHeight: 10
+  tileSize: 20
+  baseMaterial: {fileID: 2100000, guid: 8917aae6e30c74140942a1b1ef1a5b52, type: 2}
+  textureAtlas: {fileID: 2800000, guid: 5b2809901fdba5a4a8ab1e817f7fc3b0, type: 3}
+  uvAtlas: []
+  terrainGraph: {fileID: 11400000, guid: 34421d4ca75bfa246bbb4865160ee793, type: 2}
+  heightFactor: 0.5
+  spreadFactor: 0.003
+  humidityScale: 0.00005
+  temperatureScale: 0.00002
+  biomes:
+  - {fileID: 11400000, guid: 3def22cd5135cbc43a9cc4cae386d973, type: 2}
+  - {fileID: 11400000, guid: 0ec398a5d845d5545ae6927f4c4f24ee, type: 2}
+  - {fileID: 11400000, guid: 29ebfb54007863d48b85a7d5739c5a33, type: 2}
+  - {fileID: 11400000, guid: 781d7bb2720a791469535f4a874b9f4c, type: 2}
+  - {fileID: 11400000, guid: b3d8285a2f4586e47b3cff67c311ac98, type: 2}
+  - {fileID: 11400000, guid: d5096afcf696e6945bcf2a3183845283, type: 2}
+  - {fileID: 11400000, guid: 4158869be76fab24a97a9d752310ff42, type: 2}
+  - {fileID: 11400000, guid: 8fb0040746191b842b5edf751917dde0, type: 2}
+  - {fileID: 11400000, guid: 3013bded667517941a3e8804cc060afb, type: 2}
+  nullBiome: {fileID: 11400000, guid: 29ebfb54007863d48b85a7d5739c5a33, type: 2}
+  generationOffset: {x: 0, y: 0, z: 0}
+  LOD: 20
+--- !u!64 &2213565086258185801
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917888084113530790}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
